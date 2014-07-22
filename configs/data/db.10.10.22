@@ -1,0 +1,250 @@
+; $Id: db.10.10.22,v 1.10 2013/09/13 22:25:21 blc Exp $
+; 10.10.22.0/23 - GES Network Vlan 410
+;
+$TTL 3600
+@           SOA     farm.farm.hsv.redhat.com. hostmaster.redhat.com. (
+			      2013091302   ; serial yyyymmddss
+                              3600         ; Refresh
+                              1800         ; Retry
+                              604800       ; E10pire
+                              86400        ; TTL
+                              )
+
+	IN	NS	farmer.farm.hsv.redhat.com.
+        IN      NS      infoblox-trust02.intranet.prod.int.rdu2.redhat.com.
+        IN      NS      infoblox-trust01.intranet.prod.int.phx2.redhat.com.
+
+0	IN	PTR	network.
+
+; Lab hosts:
+9	IN	PTR	sancho.ges.redhat.com.
+11	IN	PTR	pm1.ges.redhat.com.
+
+42	IN	PTR	rhel4-2.ges.redhat.com.
+
+;; network devices : 10.10.22.240-254
+$GENERATE 240-253	$	PTR	reserved-27-$.rdu.redhat.com.
+254		IN	PTR	corerouter.rdu.redhat.com.
+
+
+
+
+
+
+
+; Reserve for Network devices
+;
+1               IN  PTR        unused.
+2               IN  PTR        unused.
+3               IN  PTR        unused.
+4               IN  PTR        unused.
+5               IN  PTR        unused.
+;
+; End Network reserve
+;
+6               IN  PTR        unused.ges.redhat.com.
+7               IN  PTR        pedro.ges.redhat.com.
+8               IN  PTR        curly.ges.redhat.com.
+9               IN  PTR        sancho.ges.redhat.com.
+10              IN  PTR        dulcinea.ges.redhat.com.
+11              IN  PTR        schlitz.ges.redhat.com.
+12              IN  PTR        unused.
+13              IN  PTR        miller.ges.redhat.com.
+14              IN  PTR        rhel3-7.ges.redhat.com.
+15              IN  PTR        rhel21-1.ges.redhat.com.
+16              IN  PTR        rhel21-4.ges.redhat.com.
+17              IN  PTR        rhel3-1.ges.redhat.com.
+18              IN  PTR        unused.
+19              IN  PTR        rhel3-4.ges.redhat.com.
+20              IN  PTR        rhel21-2.ges.redhat.com.
+21		IN  PTR		apc1.ges.redhat.com.
+22		IN  PTR		apc2.ges.redhat.com.
+23		IN  PTR		apc3.ges.redhat.com.
+24		IN  PTR		apc4.ges.redhat.com.
+25		IN  PTR		apc5.ges.redhat.com.
+26              IN  PTR        unused.
+27              IN  PTR        unused.
+28              IN  PTR        unused.
+28              IN  PTR        rhel21-3.ges.redhat.com.
+29              IN  PTR        amstel.ges.redhat.com.
+30              IN  PTR        heineken.ges.redhat.com.
+31              IN  PTR        grolsch.ges.redhat.com.
+32              IN  PTR        winnt4-1.ges.redhat.com.
+33              IN  PTR        killians.ges.redhat.com.
+34              IN  PTR        coors.ges.redhat.com.
+35              IN  PTR        southpole.ges.redhat.com.
+36              IN  PTR        unused.
+37              IN  PTR        unused.
+38              IN  PTR        sol6-1.ges.redhat.com.
+39              IN  PTR        dosequis.ges.redhat.com.
+40              IN  PTR        corona.ges.redhat.com.
+41              IN  PTR        anchorsteam.ges.redhat.com.
+42              IN  PTR        unused.
+43              IN  PTR        unused.
+44              IN  PTR        zima.ges.redhat.com.
+45              IN  PTR        unused.
+46              IN  PTR        sol7-5.ges.redhat.com.
+47              IN  PTR        unused.
+48              IN  PTR        rhel3-5.ges.redhat.com.
+49              IN  PTR        rhel3-2.ges.redhat.com.
+50              IN  PTR        winxphome-1.ges.redhat.com.
+51              IN  PTR        win2k-1.ges.redhat.com.
+52              IN  PTR        rhel3-3.ges.redhat.com.
+53              IN  PTR        unused.
+54              IN  PTR        winxphome-5.ges.redhat.com.
+55              IN  PTR        winxphome-3.ges.redhat.com.
+56              IN  PTR        win2k-2.ges.redhat.com.
+57              IN  PTR        blackie.ges.redhat.com.
+58              IN  PTR        winme-1.ges.redhat.com.
+59              IN  PTR        rhel3-6.ges.redhat.com.
+60              IN  PTR        bluey.ges.redhat.com.
+61              IN  PTR        winxphome-2.ges.redhat.com.
+62              IN  PTR        winxphome-4.ges.redhat.com.
+63              IN  PTR        beast.ges.redhat.com.
+64              IN  PTR        chimay.ges.redhat.com.
+65              IN  PTR        smirnov-ice.ges.redhat.com.
+66              IN  PTR        czechvar.ges.redhat.com.
+67              IN  PTR        rhel4-1.ges.redhat.com.
+68              IN  PTR        dorothy.ges.redhat.com.
+69              IN  PTR        rhel4-2.ges.redhat.com.
+70              IN  PTR        winxppro-5.ges.redhat.com.
+71              IN  PTR        sol10-1.ges.redhat.com.
+72              IN  PTR        sol7-6.ges.redhat.com.
+73              IN  PTR        winxppro-1.ges.redhat.com.
+74              IN  PTR        winxppro-3.ges.redhat.com.
+75              IN  PTR        winxppro-4.ges.redhat.com.
+76              IN  PTR        winxppro-2.ges.redhat.com.
+77              IN  PTR        sol7-1.ges.redhat.com.
+78              IN  PTR        unused.
+79              IN  PTR        unused.
+80              IN  PTR        unused.
+81              IN  PTR        unused.
+82              IN  PTR        unused.
+83              IN  PTR        unused.
+84              IN  PTR        unused.
+85              IN  PTR        unused.
+86              IN  PTR        unused.
+87              IN  PTR        unused.
+88              IN  PTR        sol5-1.ges.redhat.com.
+89              IN  PTR        unused.
+90              IN  PTR        unused.
+91              IN  PTR        sol8-1.ges.redhat.com.
+92              IN  PTR        unused.
+93              IN  PTR        unused.
+94              IN  PTR        unused.
+95              IN  PTR        unused.
+96              IN  PTR        unused.
+97              IN  PTR        unused.
+98              IN  PTR        unused.
+99              IN  PTR        unused.
+100             IN  PTR        unused.
+101             IN  PTR        unused.
+102             IN  PTR        unused.
+103             IN  PTR        unused.
+104             IN  PTR        unused.
+105             IN  PTR        unused.
+106             IN  PTR        unused.
+107             IN  PTR        unused.
+108             IN  PTR        unused.
+109             IN  PTR        unused.
+110             IN  PTR        unused.
+111             IN  PTR        sol7-2.ges.redhat.com.
+112             IN  PTR        sol7-3.ges.redhat.com.
+113             IN  PTR        unused.
+114             IN  PTR        unused.
+115             IN  PTR        unused.
+116             IN  PTR        unused.
+117             IN  PTR        unused.
+118             IN  PTR        unused.
+119             IN  PTR        unused.
+120             IN  PTR        unused.
+121             IN  PTR        unused.
+122             IN  PTR        unused.
+123             IN  PTR        unused.
+124             IN  PTR        unused.
+125             IN  PTR        unused.
+126             IN  PTR        unused.
+127             IN  PTR        unused.
+128             IN  PTR        unused.
+129             IN  PTR        unused.
+130             IN  PTR        unused.
+131             IN  PTR        unused.
+132             IN  PTR        unused.
+133             IN  PTR        unused.
+134             IN  PTR        unused.
+135             IN  PTR        unused.
+136             IN  PTR        unused.
+137             IN  PTR        unused.
+138             IN  PTR        unused.
+139             IN  PTR        unused.
+140             IN  PTR        unused.
+141             IN  PTR        unused.
+142             IN  PTR        unused.
+143             IN  PTR        unused.
+144             IN  PTR        unused.
+145             IN  PTR        unused.
+146             IN  PTR        unused.
+147             IN  PTR        unused.
+148             IN  PTR        unused.
+149             IN  PTR        unused.
+150             IN  PTR        sol7-4.ges.redhat.com.
+151             IN  PTR        unused.
+152             IN  PTR        unused.
+153             IN  PTR        unused.
+154             IN  PTR        unused.
+155             IN  PTR        unused.
+156             IN  PTR        unused.
+157             IN  PTR        unused.
+158             IN  PTR        unused.
+159             IN  PTR        unused.
+160             IN  PTR        unused.
+161             IN  PTR        unused.
+162             IN  PTR        unused.
+163             IN  PTR        unused.
+164             IN  PTR        unused.
+165             IN  PTR        sol9-1.ges.redhat.com.
+166             IN  PTR        unused.
+167             IN  PTR        unused.
+168             IN  PTR        unused.
+169             IN  PTR        unused.
+170             IN  PTR        unused.
+171             IN  PTR        unused.
+172             IN  PTR        unused.
+173             IN  PTR        unused.
+174             IN  PTR        unused.
+175             IN  PTR        unused.
+176             IN  PTR        unused.
+177             IN  PTR        unused.
+178             IN  PTR        unused.
+179             IN  PTR        unused.
+180             IN  PTR        unused.
+181             IN  PTR        unused.
+182             IN  PTR        unused.
+183             IN  PTR        unused.
+184             IN  PTR        unused.
+185             IN  PTR        unused.
+186             IN  PTR        unused.
+187             IN  PTR        unused.
+188             IN  PTR        unused.
+189             IN  PTR        unused.
+190             IN  PTR        unused.
+191             IN  PTR        unused.
+
+;
+; dhcp pool allocation for GES vlan 
+; DO NOT REMOVE
+$GENERATE 192-244 $ PTR dhcp192-168-10-$.ges.redhat.com.
+;
+
+; 245-255 Reserved for Network Group
+245             IN  PTR        unused.
+246             IN  PTR        unused.
+247             IN  PTR        unused.
+248             IN  PTR        unused.
+249             IN  PTR        unused.
+250             IN  PTR        unused.
+251             IN  PTR        unused.
+252             IN  PTR        unused.
+253             IN  PTR        unused.
+254             IN  PTR        unused.
+255             IN  PTR        broadcast.
