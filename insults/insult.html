@@ -3,11 +3,16 @@
 <style>
 p {
 	font-family: "Verdana", "Geneva", "sans-serif";
+	text-align: center;
+}
+#insult {
 	font-size: 60px;
+	font-weight: bold;
 }
 </style>
 <body>
 <p id="insult"></p>
+<p><a href="">Try Another</a></p>
 <script>
 	var adjs = ["absolute", "abhorrent", "sordid", "repulsive", "catatonic",
 				"superfluous", "tedious", "preposterious", "incongruous",
@@ -18,7 +23,7 @@ p {
 				"woolen sock"];
 	var adj = adjs[Math.floor(Math.random() * adjs.length)];
 	var noun = nouns[Math.floor(Math.random() * nouns.length)];
-	document.getElementById("insult").innerHTML = adj.toUpperCase() + "&nbsp" + noun.toUpperCase();
+	document.getElementById("insult").innerHTML = "<br>" + adj.toUpperCase() + "&nbsp" + noun.toUpperCase();
 </script>
 </body>
 </html>
