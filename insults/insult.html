@@ -12,7 +12,7 @@ p {
 </style>
 <body>
 <p id="insult"></p>
-<p><a href="">Try Another</a></p>
+<p><button type="button" onclick="gen()">Try Another</button></p>
 <script>
 	var adjs = ["absolute", "abhorrent", "sordid", "repulsive", "catatonic",
 				"superfluous", "tedious", "preposterious", "incongruous",
@@ -21,9 +21,12 @@ p {
 				"legume", "desk lamp", "ballpoint pen", "pumpkin seed", "cactus",
 				"jar of relish", "curtain rod", "rocking chair", "knitting needle",
 				"woolen sock"];
-	var adj = adjs[Math.floor(Math.random() * adjs.length)];
-	var noun = nouns[Math.floor(Math.random() * nouns.length)];
-	document.getElementById("insult").innerHTML = "<br>" + adj.toUpperCase() + "&nbsp" + noun.toUpperCase();
+	gen();
+	function gen() {
+		var adj = adjs[Math.floor(Math.random() * adjs.length)];
+		var noun = nouns[Math.floor(Math.random() * nouns.length)];
+		document.getElementById("insult").innerHTML = "<br>" + adj.toUpperCase() + "&nbsp" + noun.toUpperCase();
+	}
 </script>
 </body>
 </html>
