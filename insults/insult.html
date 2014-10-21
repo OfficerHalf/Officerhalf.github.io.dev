@@ -11,11 +11,12 @@ p {
 }
 </style>
 <body>
+<p style="font-size:20px;">Curse-free Insult Generator</p>
 <p id="insult"></p>
 <p><button type="button" onclick="gen()">Try Another</button></p>
 <script>
 	var adjs = ["absolute", "abhorrent", "sordid", "repulsive", "catatonic",
-				"superfluous", "tedious", "preposterious", "incongruous",
+				"superfluous", "tedious", "preposterous", "incongruous",
 				"derisory", "obtuse"];
 	var nouns = ["cabbage", "canteloupe", "peanut", "waffle", "celery stick",
 				"legume", "desk lamp", "ballpoint pen", "pumpkin seed", "cactus",
@@ -25,7 +26,7 @@ p {
 	function gen() {
 		var adj = adjs[Math.floor(Math.random() * adjs.length)];
 		var noun = nouns[Math.floor(Math.random() * nouns.length)];
-		document.getElementById("insult").innerHTML = "<br>" + adj.toUpperCase() + "&nbsp" + noun.toUpperCase();
+		document.getElementById("insult").innerHTML = adj.toUpperCase() + "&nbsp" + noun.toUpperCase();
 	}
 </script>
 </body>
