@@ -4,31 +4,267 @@
 	input[type=number] {
 		width: 40px;
 	}
+	@font-face {
+		font-family: EotE;
+		src: url("EotESymbol-RegularMod.otf") format("opentype");
+	}
 </style>
-<script type="text/javascript" src="scripts.js"></script>
-<body>
-<form>
-	<table>
-	<?php
-		$types = array("Boost", "Setback", "Ability", "Difficulty", "Proficiency", "Challenge", "Force");
-		echo "<tr>";
-		echo "<th>Die Type</th>";
-		echo "<th>Count</th>";
-		echo "<th>Values</th>";
-		echo "</tr>";
-		foreach($types as $type)
-		{
-			echo '<tr id=" . $type . 'Row">';
-			echo '<td>' . $type . '</td>';
-			echo '<td><input maxlength="4" type="number" id="' . $type . 'Dice" value="0" onchange="updateNumDice(' . $type . ')"></td>';
-			for( $i = 1; $i <= 10; $i++)
-			{
-				echo '<td><input maxlength="2" type="number" id="' . $type . 'Die' . $i . '" value="0"></td>';
-			}
-			echo '</tr>';
+<script type="text/javascript">
+	function updateNumDice(type) {
+		var count = document.getElementById('num' + type + 'Dice').value;
+		for(var i = 1; i <= 10; i++) {
+			var die = document.getElementById(type + 'Die' + i);
+			if(i <= count)
+				die.style.display = "inline";
+			else
+				die.style.display = "none";
+			updateDieValues();
 		}
-	?>
-	</table>
-</form>
+	}
+	function updateDieValues() {
+		var types = ["Boost", "Setback", "Ability", "Difficulty", "Proficiency", "Challenge", "Force"];
+		var countSuccess = 0;
+		var countFailure = 0;
+		var countAdvantage = 0;
+		var countThreat = 0;
+		var countTriumph = 0;
+		var countDespair = 0;
+		var countLight = 0;
+		var countDark = 0;
+		for(var type = 0; type < 7; type++)
+		{
+			for(var i = 1; i <=10; i++)
+			{
+				var die = document.getElementById(types[type] + 'Die' + i);
+				if(die.style.display == "none")
+					continue;
+				var value = die.value;
+				if(types[type] == "Boost")
+				{
+					if(value == 3)
+						countSuccess++;
+					else if(value == 4) {
+						countSuccess++;
+						countAdvantage++;
+					}
+					else if(value == 5)
+						countAdvantage += 2;
+					else if(value == 6)
+						countAdvantage++;
+				}
+				else if(types[type] == "Setback")
+				{
+					if(value == 3 || value == 4)
+						countFailure++;
+					else if(value == 5 || value == 6)
+						countThreat++;
+				}
+				else if(types[type] == "Ability")
+				{
+					if(value == 2 || value == 3)
+						countSuccess++;
+					else if(value == 4)
+						countSuccess+=2;
+					else if(value == 5 || value == 6)
+						countAdvantage++;
+					else if(value == 7) {
+						countSuccess++;
+						countAdvantage++;
+					}
+					else if(value == 8)
+						countAdvantage+=2;
+				}
+				else if(types[type] == "Difficulty")
+				{
+					if(value == 2)
+						countFailure++;
+					else if(value == 3)
+						countFailure+=2;
+					else if(value == 4 || value == 5 || value == 6)
+						countThreat++;
+					else if(value == 7)
+						countThreat+=2;
+					else if(value == 8) {
+						countFailure++;
+						countThreat++;
+					}
+				}
+				else if(types[type] == "Proficiency")
+				{
+					if(value == 2 || value == 3)
+						countSuccess++;
+					else if(value == 4 || value == 5)
+						countSuccess+=2;
+					else if(value == 6)
+						countAdvantage++;
+					else if(value == 7 || value == 8 || value == 9) {
+						countSuccess++;
+						countAdvantage++;
+					}
+					else if(value == 10 || value == 11)
+						countAdvantage+=2;
+					else if(value == 12)
+						countTriumph++;
+				}
+				else if(types[type] == "Challenge")
+				{
+					if(value == 2 || value == 3)
+						countFailure++;
+					else if(value == 4 || value == 5)
+						countFailure+=2;
+					else if(value == 6 || value == 7)
+						countThreat++;
+					else if(value == 8 || value == 9) {
+						countFailure++;
+						countThreat++;
+					}
+					else if(value == 10 || value == 11)
+						countThreat+=2;
+					else if(value == 12)
+						countDespair++;
+				}
+				else if(types[type] == "Force")
+				{
+					if(value <= 6 && value >= 1)
+						countDark++;
+					else if(value == 7)
+						countDark+=2;
+					else if(value == 8 || value == 9)
+						countLight++;
+					else if(value >= 10 && value <= 12)
+						countLight+=2;
+				}
+			}
+		}
+		var success = document.getElementById("totalSuccess");
+		var failure = document.getElementById("totalFailure");
+		var advantage = document.getElementById("totalAdvantage");
+		var threat = document.getElementById("totalThreat");
+		var triumph = document.getElementById("totalTriumph");
+		var despair = document.getElementById("totalDespair");
+		var light = document.getElementById("totalLight");
+		var dark = document.getElementById("totalDark");
+		success.innerHTML = countSuccess;
+		failure.innerHTML = countFailure;
+		advantage.innerHTML = countAdvantage;
+		threat.innerHTML = countThreat;
+		triumph.innerHTML = countTriumph;
+		despair.innerHTML = countDespair;
+		light.innerHTML = countLight;
+		dark.innerHTML = countDark;
+	}
+</script>
+<body>
+<table>
+	<tr>
+		<td>s</td>
+		<td>f</td>
+		<td>a</td>
+		<td>t</td>
+		<td>x</td>
+		<td>o</td>
+		<td>z</td>
+		<td>Z</td>
+		<td>b</td>
+		<td>c</td>
+		<td>d</td>
+		<td>C</td>
+	</tr>
+	<tr style="font-family: EotE;">
+		<td>s</td>
+		<td>f</td>
+		<td>a</td>
+		<td>t</td>
+		<td>x</td>
+		<td>o</td>
+		<td>z</td>
+		<td>Z</td>
+		<td>b</td>
+		<td>c</td>
+		<td>d</td>
+		<td>C</td>
+	</tr>
+</table>
+<p><table id="dicetable">
+	<tr>
+		<th>Sym</th>
+		<th>Die Type</th>
+		<th>Sides</th>
+		<th>Count</th>
+		<th>Values</th>
+	</tr>
+	<script type="text/javascript">
+		var types = ["Boost", "Setback", "Ability", "Difficulty", "Proficiency", "Challenge", "Force"];
+		var sides = ["d6", "d6", "d8", "d8", "d12", "d12", "d12"];
+		var symColors = ["#b8d7f6", "#000000", "#4a7643", "#371144", "#f0d85a", "#c82423", "#000000"];
+		var syms = ["b", "b", "d", "d", "c", "c", "C"];
+		var tbl = document.getElementById("dicetable");
+		for (var type = 0; type < types.length; type++) {
+			var row = tbl.insertRow(type+1);
+			var cellSym = row.insertCell(0);
+			cellSym.style.fontFamily = "EotE";
+			cellSym.style.color = symColors[type];
+			cellSym.innerHTML = syms[type];
+			var cellType = row.insertCell(1);
+			cellType.innerHTML = types[type];
+			var cellSides = row.insertCell(2);
+			cellSides.innerHTML = sides[type];
+			var cellNum = row.insertCell(3);
+			cellNum.innerHTML = '<input maxlength="4" type="number" id="num' + types[type] + 'Dice" value="0" oninput="updateNumDice(\'' + types[type] + '\')">';
+			for(var i = 1; i <=10; i++) {
+				var cell = row.insertCell(i+3)
+				cell.innerHTML = '<input maxlength="2" type="number" id="' + types[type] + 'Die' + i + '" value="0" onchange="updateDieValues()">';
+				document.getElementById(types[type] + 'Die' + i).style.display = "none"
+			}
+		}
+	</script>
+</table></p>
+<p><table>
+	<tr>
+		<th>Sym</th>
+		<th>Type</th>
+		<th>Total</th>
+	</tr>
+	<tr>
+		<td style="font-family: EotE;">s</td>
+		<td>Success</td>
+		<td id="totalSuccess">0</td>
+	</tr>
+	<tr>
+		<td style="font-family: EotE;">f</td>
+		<td>Failure</td>
+		<td id="totalFailure">0</td>
+	</tr>
+	<tr>
+		<td style="font-family: EotE;">a</td>
+		<td>Advantage</td>
+		<td id="totalAdvantage">0</td>
+	</tr>
+	<tr>
+		<td style="font-family: EotE;">t</td>
+		<td>Threat</td>
+		<td id="totalThreat">0</td>
+	</tr>
+	<tr>
+		<td style="font-family: EotE;">x</td>
+		<td>Triumph</td>
+		<td id="totalTriumph">0</td>
+	</tr>
+	<tr>
+		<td style="font-family: EotE;">o</td>
+		<td>Despair</td>
+		<td id="totalDespair">0</td>
+	</tr>
+	<tr>
+		<td style="font-family: EotE;">Z</td>
+		<td>Light</td>
+		<td id="totalLight">0</td>
+	</tr>
+	<tr>
+		<td style="font-family: EotE;">z</td>
+		<td>Dark</td>
+		<td id="totalDark">0</td>
+	</tr>
+</table></p>
 </body>
 </html>
