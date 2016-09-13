@@ -1,6 +1,14 @@
 <!DOCTYPE HTML>
 <html>
 <style>
+	body {
+		font-size: 16pt;
+		font-family: sans-serif;
+	}
+	th, td {
+		padding: 5px;
+		text-align: left;
+	}
 	input[type=number] {
 		width: 40px;
 	}
@@ -155,6 +163,9 @@
 	}
 </script>
 <body>
+<p><h2>Standard dice to Edge of the Empire dice Converter</h2>
+
+Just put in the number of each die rolled (max 10), and the corresponding d6/d8/d12 value, and the totals will be displayed below.</p>
 <p><table id="dicetable">
 	<tr>
 		<th>Sym</th>
@@ -174,12 +185,15 @@
 			var cellSym = row.insertCell(0);
 			cellSym.style.fontFamily = "EotE";
 			cellSym.style.color = symColors[type];
+			cellSym.style.textAlign = "center";
 			cellSym.innerHTML = syms[type];
 			var cellType = row.insertCell(1);
 			cellType.innerHTML = types[type];
 			var cellSides = row.insertCell(2);
+			cellSides.style.textAlign = "center";
 			cellSides.innerHTML = sides[type];
 			var cellNum = row.insertCell(3);
+			cellNum.style.textAlign = "center";
 			cellNum.innerHTML = '<input maxlength="4" type="number" id="num' + types[type] + 'Dice" value="0" oninput="updateNumDice(\'' + types[type] + '\')">';
 			for(var i = 1; i <=10; i++) {
 				var cell = row.insertCell(i+3)
@@ -198,42 +212,42 @@
 	<tr>
 		<td style="font-family: EotE;">s</td>
 		<td>Success</td>
-		<td id="totalSuccess">0</td>
+		<td id="totalSuccess" style="text-align: center;">0</td>
 	</tr>
 	<tr>
 		<td style="font-family: EotE;">f</td>
 		<td>Failure</td>
-		<td id="totalFailure">0</td>
+		<td id="totalFailure" style="text-align: center;">0</td>
 	</tr>
 	<tr>
 		<td style="font-family: EotE;">a</td>
 		<td>Advantage</td>
-		<td id="totalAdvantage">0</td>
+		<td id="totalAdvantage" style="text-align: center;">0</td>
 	</tr>
 	<tr>
 		<td style="font-family: EotE;">t</td>
 		<td>Threat</td>
-		<td id="totalThreat">0</td>
+		<td id="totalThreat" style="text-align: center;">0</td>
 	</tr>
 	<tr>
 		<td style="font-family: EotE;">x</td>
 		<td>Triumph</td>
-		<td id="totalTriumph">0</td>
+		<td id="totalTriumph" style="text-align: center;">0</td>
 	</tr>
 	<tr>
 		<td style="font-family: EotE;">o</td>
 		<td>Despair</td>
-		<td id="totalDespair">0</td>
+		<td id="totalDespair" style="text-align: center;">0</td>
 	</tr>
 	<tr>
 		<td style="font-family: EotE;">Z</td>
 		<td>Light</td>
-		<td id="totalLight">0</td>
+		<td id="totalLight" style="text-align: center;">0</td>
 	</tr>
 	<tr>
 		<td style="font-family: EotE;">z</td>
 		<td>Dark</td>
-		<td id="totalDark">0</td>
+		<td id="totalDark" style="text-align: center;">0</td>
 	</tr>
 </table></p>
 </body>
