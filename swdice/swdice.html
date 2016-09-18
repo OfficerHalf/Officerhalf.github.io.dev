@@ -197,7 +197,7 @@ Just put in the number of each die rolled (max 10), and the corresponding d6/d8/
 			cellNum.innerHTML = '<input maxlength="4" type="number" id="num' + types[type] + 'Dice" value="0" oninput="updateNumDice(\'' + types[type] + '\')">';
 			for(var i = 1; i <=10; i++) {
 				var cell = row.insertCell(i+3)
-				cell.innerHTML = '<input maxlength="2" type="number" id="' + types[type] + 'Die' + i + '" value="0" onchange="updateDieValues()">';
+				cell.innerHTML = '<input maxlength="2" type="number" id="' + types[type] + 'Die' + i + '" value="0" onchange="updateDieValues()" style="float: right">';
 				document.getElementById(types[type] + 'Die' + i).style.display = "none"
 			}
 		}
