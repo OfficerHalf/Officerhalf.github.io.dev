@@ -13,8 +13,6 @@
     	domtoimage.toBlob(document.getElementById("5eStats"))
     		.then(function (blob) {
     			window.saveAs(blob, '5eStats.png');
-    		}).catch(function(e) {
-                console.log(e);
             });
     }
     </script>
