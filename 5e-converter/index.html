@@ -10,7 +10,7 @@
     <script src=FileSaver.min.js></script>
     <script>
     var renderImage = function () {
-    	domtoimage.toBlob(document.getElementById("5eStats"))
+    	domtoimage.toBlob(document.getElementsByClassName("content-wrap")[0])
     		.then(function (blob) {
     			window.saveAs(blob, '5eStats.png');
             });
@@ -42,9 +42,7 @@
             <div class="content-wrap", id="5eStats">
                 <h1 ng-bind=stats.attr.name></h1>
                 <h2><span ng-bind=capitalizeFirstLetter(stats.attr.size)></span> <span ng-bind=stats.attr.type></span>, <span ng-bind=stats.attr.alignment></span></h2>
-                <svg>
-                    <polyline points="0,0 400,2.5 0,5"></polyline>
-                </svg>
+                <hr>
                 <div class=top-stats>
                     <div>
                         <h4>Armor Class</h4>&nbsp;<span ng-bind=stats.attr.ac.ac></span> <span ng-if=stats.attr.ac.note>(<span ng-bind=stats.attr.ac.note></span>)</span>
@@ -55,18 +53,14 @@
                     <div>
                         <h4>Speed</h4>&nbsp;<span ng-repeat="(speed, speedValue) in stats.attr.speed"><span ng-if="speed != 'speed'"><span ng-bind=speed></span>&nbsp;</span><span ng-bind=speedValue></span><span>&nbsp;ft.</span>{{$last ? '' : ', '}}</span>
                     </div>
-                    <svg>
-                        <polyline points="0,0 400,2.5 0,5"></polyline>
-                    </svg>
+                    <hr>
                     <div>
                         <div class=ability-wrapper ng-repeat="ability in stats.attr.abilities">
                             <h4 ng-bind=ability.shortName.toUpperCase()></h4>
                             <div><span ng-bind=ability.score></span> (<span ng-bind="ability.mod | arithmeticSymbol"></span>)</div>
                         </div>
                     </div>
-                    <svg>
-                        <polyline points="0,0 400,2.5 0,5"></polyline>
-                    </svg>
+                    <hr>
                     <div ng-if=stats.saves>
                         <h4>Saving Throws</h4>&nbsp;<span><span ng-repeat="(saveKey,saveMod) in stats.saves"><span class=skill-name ng-bind=capitalizeFirstLetter(saveKey)></span> <span ng-bind="saveMod | arithmeticSymbol"></span>{{$last ? '' : ', '}}</span>
                         </span>
@@ -89,9 +83,7 @@
                         <h4>Challenge</h4>&nbsp;<span ng-bind=stats.attr.cr.display></span> <span>(<span ng-bind="stats.attr.xp | number"></span> XP)</span>
                     </div>
                 </div>
-                <svg>
-                    <polyline points="0,0 400,2.5 0,5"></polyline>
-                </svg>
+                <hr>
                 <div class=properties-block>
                     <div class=trait ng-repeat="trait in stats.traits">
                         <h4><span ng-bind=trait.name></span>.</h4>&nbsp;<span ng-bind=trait.description></span>.</div>
