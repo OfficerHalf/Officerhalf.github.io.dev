@@ -8,6 +8,7 @@
     <script src=fraction.js></script>
     <script src=dom-to-image.js></script>
     <script src=FileSaver.min.js></script>
+    <script src=html2canvas.js></script>
     <script>
     var renderImage = function () {
     	domtoimage.toBlob(document.getElementsByClassName("content-wrap")[0])
@@ -15,6 +16,22 @@
     			window.saveAs(blob, '5eStats.png');
             });
     }
+    </script>
+    <script>
+    var renderImage2 = function() {
+        el = document.getElementById("5eStats");
+        html2canvas(el), 
+        {
+          onrendered: function (canvas) {
+            var a = document.createElement('a');
+            // toDataURL defaults to png, so we need to request a jpeg, then convert for file download.
+            a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+            a.download = 'somefilename.jpg';
+            a.click();
+          }
+      }
+  }
+
     </script>
     <link href="http://fonts.googleapis.com/css?family=Lora:700" rel=stylesheet type=text/css>
     <link href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic" rel=stylesheet type=text/css>
@@ -34,7 +51,7 @@
                     <input type=checkbox ng-model=useCondensed ng-change=parseStats()> Use condensed Skills and Saving throws</label>
             </div>
             <div>
-            	<button id="renderButton" onclick="renderImage()">Render to Image</button>
+            	<button id="renderButton" onclick="renderImage2()">Render to Image</button>
             </div>
         </div>
         <div class="stat-block ng-cloak">
