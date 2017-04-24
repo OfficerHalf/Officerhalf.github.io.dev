@@ -13,7 +13,9 @@
     	domtoimage.toBlob(document.getElementById("5eStats"))
     		.then(function (blob) {
     			window.saveAs(blob, '5eStats.png');
-    		});
+    		}).catch(function(e) {
+                console.log(e);
+            });
     }
     </script>
     <link href="http://fonts.googleapis.com/css?family=Lora:700" rel=stylesheet type=text/css>
