@@ -6,8 +6,8 @@
     height: 80px;
     display: flex;
     align-items: center;
+    padding: 0 $l;
     &.background {
         background: blue;
     }
-    padding: 0 $l;
 }
