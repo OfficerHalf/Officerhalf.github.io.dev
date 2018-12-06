@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Logo from '../Logo/Logo';
+import Navbar from '../Navbar/Navbar';
 
 export default class Home extends Component {
     public render() {
         return (
             <div>
-                <Logo/>
+                <Navbar/>
             </div>
         );
     }
