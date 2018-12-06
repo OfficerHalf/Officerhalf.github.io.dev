@@ -1,0 +1,13 @@
+@import '../../Global.scss';
+
+.NavbarComponent {
+    width: 100vw;
+    background: transparent;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    &.background {
+        background: blue;
+    }
+    padding: 0 $l;
+}

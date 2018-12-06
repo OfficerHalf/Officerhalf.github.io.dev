@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
 $s: 5px;
 $m: $s * 2;
+$l: $s * 4;
 $colors-light: #eee;
 $colors-dark: #222;
 
@@ -9,4 +10,9 @@ html {
 }
 *, *:before, *:after {
     box-sizing: inherit;
+}
+
+body {
+    overflow-x: hidden;
+    margin: 0;
 }
