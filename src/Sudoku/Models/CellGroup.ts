@@ -13,8 +13,12 @@ export class CellGroup {
         this.cells.forEach(cell => {
             if (foundCells[cell.value]) {
                 const existing = foundCells[cell.value] as Cell;
-                existing.valid = false;
-                cell.valid = false;
+                if (existing.editable) {
+                    existing.valid = false;
+                }
+                if (cell.editable) {
+                    cell.valid = false;
+                }
                 valid = false;
             } else {
                 foundCells[cell.value] = cell;
