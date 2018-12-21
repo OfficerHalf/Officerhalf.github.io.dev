@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Logo.scss';
+import { Colors } from '../../Constants';
 
 interface LogoProps {
     color?: string;
@@ -9,7 +10,7 @@ export default class Logo extends Component<LogoProps, {}> {
     private color: string;
     constructor(props: LogoProps) {
         super(props);
-        this.color = props.color ? props.color : '#000';
+        this.color = props.color ? props.color : Colors.dark;
     }
 
     public render() {

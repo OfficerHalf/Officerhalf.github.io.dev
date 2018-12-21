@@ -1,13 +1,19 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed:400,700');
+@import url('https://fonts.googleapis.com/css?family=Inconsolata|Montserrat');
 $s: 5px;
 $m: $s * 2;
 $l: $s * 4;
-$colors-light: #eee;
-$colors-dark: #222;
+$colors-light: #f7f7f7;
+$colors-dark: #282828;
 $hover-link: .25s;
 $hover-s: .2s;
 $hover-m: $hover-s * 2;
 $hover-l: $hover-s * 4;
+
+$alloy-fuschia: #f95793;
+$alloy-purple: #ceb5ff;
+$alloy-blue: #97e0ef;
+$alloy-green: #b5e25a;
+$alloy-orange: #fcac50;
 
 html {
     box-sizing: border-box;
@@ -19,4 +25,12 @@ html {
 body {
     overflow-x: hidden;
     margin: 0;
+    color: $colors-light;
+    background-color: $colors-dark;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Inconsolata', monospace, 'Tahoma', sans-serif;
+    font-weight: 400;
 }
