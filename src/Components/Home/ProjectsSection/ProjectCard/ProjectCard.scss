@@ -1,5 +1,8 @@
+@import '../../../../Global.scss';
+
 .ProjectCardComponent {
     display: inline-block;
+    background-color: $alloy-darkGray;
     img.projectIcon {
         max-width: 100px;
     }

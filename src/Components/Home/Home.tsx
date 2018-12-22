@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Projects from './ProjectsSection/ProjectsSection';
 import About from './AboutSection/AboutSection';
+import Contact from './ContactSection/ContactSection';
 import './Home.scss';
 import { CellCollection } from '../../Sudoku/Models/CellCollection';
 import ButterCmsProvider from '../../Providers/ButterCmsProvider';
@@ -29,6 +30,7 @@ export default class Home extends Component<{}, HomeState> {
                 <Navbar/>
                 <About/>
                 <Projects projects={this.state.projects}/>
+                <Contact/>
             </div>
         );
     }
