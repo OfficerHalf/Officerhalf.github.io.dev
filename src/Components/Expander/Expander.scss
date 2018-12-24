@@ -1,0 +1,12 @@
+@import '../../Global.scss';
+
+.ExpanderComponent {
+    .content {
+        overflow: hidden;
+        transition: max-height $hover-m;
+    }
+    .icon {
+        transition: all $hover-s;
+        display: inline-block;
+    }
+}

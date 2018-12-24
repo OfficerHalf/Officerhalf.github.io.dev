@@ -3,6 +3,7 @@
 .ProjectCardComponent {
     display: inline-block;
     background-color: $alloy-darkGray;
+    max-width: 500px;
     img.projectIcon {
         max-width: 100px;
     }
