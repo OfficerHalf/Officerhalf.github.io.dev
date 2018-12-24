@@ -28,9 +28,11 @@ export default class Home extends Component<{}, HomeState> {
         return (
             <div className="HomeComponent">
                 <Navbar/>
-                <About/>
-                <Projects projects={this.state.projects}/>
-                <Contact/>
+                <div className="sections">
+                    <About/>
+                    <Projects projects={this.state.projects}/>
+                    <Contact/>
+                </div>
             </div>
         );
     }

@@ -20,28 +20,22 @@ export default class Expander extends Component<ExpanderProps, ExpanderState> {
         super(props);
         this.state = {
             expanded: this.props.startExpanded ? this.props.startExpanded : false,
-            height: 0
+            height: this.props.startExpanded ? -1 : 0
         };
         this.expanderContent = React.createRef();
-    }
-
-    public componentDidMount() {
-        if (this.props.startExpanded) {
-            this.setState({height: this.expanderContent.current!.scrollHeight});
-        }
     }
 
     public render() {
         const contentClasses = classNames('content', {expanded: this.state.expanded});
         const contentStyles: React.CSSProperties = {
-            maxHeight: this.state.height
+            maxHeight: this.state.height === -1 ? 'initial' : this.state.height
         };
         const iconStyles: React.CSSProperties = {
             transform: `rotate(${this.state.expanded ? 90 : 0}deg)`
         };
         return (
             <div className="ExpanderComponent">
-                <span onClick={this.toggleExpander}><h2><span style={iconStyles} className="icon">></span> {this.props.label}</h2></span>
+                <span className="hoverable" onClick={this.toggleExpander}><h2><span style={iconStyles} className="icon">></span> {this.props.label}</h2></span>
                 <div ref={this.expanderContent} className={contentClasses} style={contentStyles}>
                     {this.props.children}
                 </div>
@@ -50,9 +44,9 @@ export default class Expander extends Component<ExpanderProps, ExpanderState> {
     }
 
     public toggleExpander = () => {
-        const height: number = this.state.height === 0 ? this.expanderContent.current!.scrollHeight : 0;
         const expanded = !this.state.expanded;
-        this.setState({expanded: !this.state.expanded, height});
+        const height: number = expanded ? this.expanderContent.current!.scrollHeight : 0;
+        this.setState({expanded, height});
         if (expanded && this.props.expandCallback) {
             this.props.expandCallback(this);
         } else if (!expanded && this.props.collapseCallback) {

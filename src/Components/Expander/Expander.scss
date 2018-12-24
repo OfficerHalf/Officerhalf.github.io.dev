@@ -1,6 +1,9 @@
 @import '../../Global.scss';
 
 .ExpanderComponent {
+    .hoverable {
+        cursor: pointer;
+    }
     .content {
         overflow: hidden;
         transition: max-height $hover-m;

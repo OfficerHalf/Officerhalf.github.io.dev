@@ -15,25 +15,47 @@ export default class ProjectsSection extends Component<ProjectsSectionProps, {}>
         this.expanders = [];
         this.expanders.push(React.createRef<Expander>());
         this.expanders.push(React.createRef<Expander>());
+        this.expanders.push(React.createRef<Expander>());
     }
     public render() {
+        const projects = this.getProjects();
         return (
             <div>
                 <h1>projects</h1>
-                <Expander label="Some Expander" ref={this.expanders[0]} expandCallback={this.expanderChange} startExpanded={true}>
-                Some content
+                <Expander label="Completed Projects" ref={this.expanders[0]} expandCallback={this.expanderChange} startExpanded={true}>
+                    {this.renderProjects(projects.Complete)}
                 </Expander>
-                <Expander label="Some Other Expander" ref={this.expanders[1]} expandCallback={this.expanderChange}>
-                Some other content
+                <Expander label="Ongoing Projects" ref={this.expanders[1]} expandCallback={this.expanderChange}>
+                    {this.renderProjects(projects.Ongoing)}
                 </Expander>
-                <div>{this.getProjects()}</div>
+                <Expander label="On Hold Projects" ref={this.expanders[2]} expandCallback={this.expanderChange}>
+                    {this.renderProjects(projects.OnHold)}
+                </Expander>
             </div>
         );
     }
 
-    private getProjects(): JSX.Element[] {
-        const cards: JSX.Element[] = [];
+    private getProjects(): ProjectCollection {
+        const collection: ProjectCollection = {
+            Complete: [],
+            OnHold: [],
+            Ongoing: []
+        };
         this.props.projects.forEach(project => {
+            if (project.status === 'Ongoing') {
+                collection.Ongoing.push(project);
+            } else if (project.status === 'Complete') {
+                collection.Complete.push(project);
+            } else if (project.status === 'On Hold') {
+                collection.OnHold.push(project);
+            }
+        });
+        return collection;
+    }
+
+    private renderProjects(projects: Project[]): JSX.Element[] {
+        const cards: JSX.Element[] = [];
+        projects.forEach(project => {
             const key = slugify(project.name);
             cards.push(<ProjectCard key={key} project={project}/>);
         });
@@ -46,4 +68,11 @@ export default class ProjectsSection extends Component<ProjectsSectionProps, {}>
         });
         expander.expand();
     }
+
+}
+
+interface ProjectCollection {
+    Complete: Project[];
+    Ongoing: Project[];
+    OnHold: Project[];
 }
