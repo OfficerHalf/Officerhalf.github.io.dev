@@ -3,7 +3,20 @@
 .ProjectCardComponent {
     display: inline-block;
     background-color: $alloy-darkGray;
-    max-width: 500px;
+    max-width: 400px;
+    .wrapper {
+        display: flex;
+        .contentSection {
+            margin-left: $m;
+            padding: $m;
+            .bottom {
+                display: flex;
+                .status {
+                    flex-grow: 1;
+                }
+            }
+        }
+    }
     img.projectIcon {
         max-width: 100px;
     }
