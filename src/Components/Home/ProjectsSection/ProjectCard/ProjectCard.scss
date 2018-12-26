@@ -3,15 +3,22 @@
 .ProjectCardComponent {
     display: inline-block;
     background-color: $alloy-darkGray;
-    max-width: 400px;
+    max-width: 450px;
     .wrapper {
         display: flex;
         .contentSection {
             margin-left: $m;
             padding: $m;
+            .name {
+                padding: 0;
+                margin: 0;
+            }
             .bottom {
                 display: flex;
                 align-items: center;
+                .MoreInfoButtonComponent {
+                    flex-grow: 1
+                }
             }
         }
     }

@@ -3,13 +3,8 @@
 .MoreInfoButtonComponent {
     border: 1px solid $alloy-blue;
     padding: $m;
-    a {
-        color: $alloy-blue;
-    }
+    text-align: center;
     &:hover {
         border-color: $alloy-green;
-        a {
-            color: $alloy-green;
-        }
     }
 }

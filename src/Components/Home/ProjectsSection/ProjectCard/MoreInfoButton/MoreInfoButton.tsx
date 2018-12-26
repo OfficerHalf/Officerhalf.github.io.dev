@@ -8,10 +8,8 @@ interface MoreInfoButtonProps {
 export default class MoreInfoButton extends Component<MoreInfoButtonProps, {}> {
     public render() {
         return (
-            <a href={this.props.href}>
-                <div className="MoreInfoButtonComponent">
+            <a href={this.props.href} className="MoreInfoButtonComponent">
                     More Info
-                </div>
             </a>
         );
     }

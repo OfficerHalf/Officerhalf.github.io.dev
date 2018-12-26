@@ -16,7 +16,7 @@ export default class ProjectCard extends Component<ProjectCardProps, {}> {
                         <img className="projectIcon" src={this.props.project.icon} alt=""/>
                     </div>
                     <div className="contentSection">
-                        <div className="name">{this.props.project.name}</div>
+                        <h3 className="name">{this.props.project.name}</h3>
                         <div className="description" dangerouslySetInnerHTML={{__html: this.props.project.description}}/>
                         <div className="bottom">
                             <MoreInfoButton href={this.props.project.more}/>

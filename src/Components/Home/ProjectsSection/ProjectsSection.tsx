@@ -3,6 +3,7 @@ import { Project } from '../../../Models/Project';
 import ProjectCard from './ProjectCard/ProjectCard';
 import slugify from 'slugify';
 import Expander from '../../Expander/Expander';
+import './ProjectsSection.scss';
 
 interface ProjectsSectionProps {
     projects: Project[];
@@ -20,7 +21,7 @@ export default class ProjectsSection extends Component<ProjectsSectionProps, {}>
     public render() {
         const projects = this.getProjects();
         return (
-            <div>
+            <div className="ProjectsSectionComponent">
                 <h1>projects</h1>
                 <Expander label="Completed Projects" ref={this.expanders[0]} expandCallback={this.expanderChange} startExpanded={true}>
                     {this.renderProjects(projects.Complete)}
