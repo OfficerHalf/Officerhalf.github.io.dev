@@ -16,13 +16,24 @@ interface ExpanderState {
 
 export default class Expander extends Component<ExpanderProps, ExpanderState> {
     private expanderContent: React.RefObject<HTMLDivElement>;
+    private first: boolean = false;
     constructor(props: ExpanderProps) {
         super(props);
         this.state = {
-            expanded: this.props.startExpanded ? this.props.startExpanded : false,
-            height: this.props.startExpanded ? -1 : 0
+            expanded: false,
+            height: 0
         };
         this.expanderContent = React.createRef();
+        if (this.props.startExpanded) {
+            this.first = true;
+        }
+    }
+
+    public componentDidUpdate() {
+        if (this.first && this.props.startExpanded) {
+            this.first = false;
+            this.expand();
+        }
     }
 
     public render() {

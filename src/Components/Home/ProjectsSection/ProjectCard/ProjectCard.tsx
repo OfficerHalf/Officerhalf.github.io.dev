@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Project } from '../../../../Models/Project';
+import MoreInfoButton from './MoreInfoButton/MoreInfoButton';
 import './ProjectCard.scss';
 
 interface ProjectCardProps {
@@ -18,8 +19,7 @@ export default class ProjectCard extends Component<ProjectCardProps, {}> {
                         <div className="name">{this.props.project.name}</div>
                         <div className="description" dangerouslySetInnerHTML={{__html: this.props.project.description}}/>
                         <div className="bottom">
-                            <span className="status">{this.props.project.status}</span>
-                            <a href={this.props.project.more}>More Info</a>
+                            <MoreInfoButton href={this.props.project.more}/>
                         </div>
                     </div>
                 </div>

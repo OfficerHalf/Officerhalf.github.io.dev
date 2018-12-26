@@ -11,13 +11,16 @@
             padding: $m;
             .bottom {
                 display: flex;
-                .status {
-                    flex-grow: 1;
-                }
+                align-items: center;
             }
         }
     }
-    img.projectIcon {
-        max-width: 100px;
+    .iconSection {
+        display: flex;
+        align-items: center;
+        padding: $m;
+        img.projectIcon {
+            max-width: 100px;
+        }
     }
 }
