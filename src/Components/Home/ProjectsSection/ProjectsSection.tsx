@@ -21,8 +21,8 @@ export default class ProjectsSection extends Component<ProjectsSectionProps, {}>
     public render() {
         const projects = this.getProjects();
         return (
-            <div className="ProjectsSectionComponent">
-                <h1>projects</h1>
+            <div className="ProjectsSectionComponent section">
+                <h1># projects</h1>
                 <Expander label="Completed Projects" ref={this.expanders[0]} expandCallback={this.expanderChange} startExpanded={true}>
                     {this.renderProjects(projects.Complete)}
                 </Expander>
