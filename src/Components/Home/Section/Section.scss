@@ -1,0 +1,10 @@
+@import '../../../Global.scss';
+
+.SectionComponent {
+    .title::before {
+        content: "# ";
+    }
+    .content {
+        margin-left: 32px;
+    }
+}
