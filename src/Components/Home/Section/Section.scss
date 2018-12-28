@@ -1,8 +1,15 @@
 @import '../../../Global.scss';
 
 .SectionComponent {
-    .title::before {
-        content: "# ";
+    .title {
+        transition: color $hover-link;
+        &:hover {
+            color: $alloy-fuschia;
+            cursor: pointer;
+        }
+        &::before {
+            content: "# ";
+        }
     }
     .content {
         margin-left: 32px;

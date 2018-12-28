@@ -14,11 +14,16 @@ interface HomeState {
 
 export default class Home extends Component<{}, HomeState> {
     private butterProvider: ButterCmsProvider = new ButterCmsProvider();
+    private sections: Array<React.RefObject<Section>>;
     constructor(props: {}) {
         super(props);
         this.state = {
             projects: []
         };
+        this.sections = [];
+        this.sections.push(React.createRef());
+        this.sections.push(React.createRef());
+        this.sections.push(React.createRef());
     }
     public render() {
         const collection = new CellCollection(testBoard, 9);
@@ -27,11 +32,11 @@ export default class Home extends Component<{}, HomeState> {
             <div className="HomeComponent">
                 <Navbar/>
                 <div className="sections">
-                    <Section title="about">
+                    <Section title="about" ref={this.sections[0]}>
                         software developer
                     </Section>
-                    <Section title="projects"/>
-                    <Section title="contact">
+                    <Section title="projects" ref={this.sections[1]}/>
+                    <Section title="contact" ref={this.sections[2]}>
                         <a href="mailto:nathan@nathan-smith.org">nathan@nathan-smith.org</a>
                         <a href="https://www.linkedin.com/in/nathan-r-smith/">linkedin</a>
                         <a href="https://github.com/OfficerHalf">github</a>
