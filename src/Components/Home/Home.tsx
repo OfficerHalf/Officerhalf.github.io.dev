@@ -5,6 +5,7 @@ import { CellCollection } from '../../Sudoku/Models/CellCollection';
 import ButterCmsProvider from '../../Providers/ButterCmsProvider';
 import { Project } from '../../Models/Project';
 import Section from './Section/Section';
+import Footer from './Footer/Footer';
 
 const testBoard: string = '530070000600195000098000060800060003400803001700020006060000280000419005000080079';
 
@@ -32,16 +33,26 @@ export default class Home extends Component<{}, HomeState> {
             <div className="HomeComponent">
                 <Navbar/>
                 <div className="sections">
-                    <Section title="about" ref={this.sections[0]}>
-                        software developer
+                    <Section title="about" ref={this.sections[0]} startExpanded>
+                        <p>
+                            I am an Associate Software Developer at Bentley Systems, having graduated from Mississippi State Univeristy with my Bachelors degree in Software Engineering in 2016 and my Masters degree in Computer Science in 2017.
+                        </p>
+                        <p>
+                            I have a passion for open source software, music, and video games.
+                        </p>
                     </Section>
                     <Section title="projects" ref={this.sections[1]}/>
                     <Section title="contact" ref={this.sections[2]}>
-                        <a href="mailto:nathan@nathan-smith.org">nathan@nathan-smith.org</a>
-                        <a href="https://www.linkedin.com/in/nathan-r-smith/">linkedin</a>
-                        <a href="https://github.com/OfficerHalf">github</a>
+                        <p>
+                            I can be reached at <a href="mailto:nathan@nathan-smith.org">nathan@nathan-smith.org</a> or on these platforms.
+                        </p>
+                        <div className="contactLinks">
+                            <a href="https://www.linkedin.com/in/nathan-r-smith/">linkedin</a>
+                            <a href="https://github.com/OfficerHalf">github</a>
+                        </div>
                     </Section>
                 </div>
+                <Footer/>
             </div>
         );
     }

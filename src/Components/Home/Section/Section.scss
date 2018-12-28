@@ -3,6 +3,9 @@
 .SectionComponent {
     .title {
         transition: color $hover-link;
+        &.expanded {
+            color: $alloy-green;
+        }
         &:hover {
             color: $alloy-fuschia;
             cursor: pointer;

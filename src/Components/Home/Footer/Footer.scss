@@ -1,0 +1,12 @@
+@import '../../../Global.scss';
+
+.FooterComponent {
+    position: fixed;
+    bottom: 0;
+    margin-left: $m;
+    margin-bottom: $m;
+    font-size: 13px;
+    .colors > * {
+        transition: color $hover-s;
+    }
+}
