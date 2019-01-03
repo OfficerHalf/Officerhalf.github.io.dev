@@ -10,3 +10,10 @@ export const Colors = {
     orange: '#fcac50',
     purple: '#ceb5ff'
 };
+
+export const Hover = {
+    l: '0.8s',
+    link: '0.25s',
+    m: '0.4s',
+    s: '0.2s'
+};

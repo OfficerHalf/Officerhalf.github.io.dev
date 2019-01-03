@@ -1,11 +1,25 @@
 @import '../../Global.scss';
 
+$spacer: 40px;
+
 .HomeComponent {
-    min-height: 100vh;
-    // background-image: $backgroundImage;
-    // background-repeat: no-repeat;
-    .sections {
-        padding-left: $l;
-        padding-right: $l;
+    margin: $spacer * 2;
+    .top {
+        display: flex;
+        align-items: center;
+        .NameCardComponent {
+            margin-left: $spacer;
+        }
+    }
+    .columns {
+        display: flex;
+        .leftColumn {
+            margin-top: $spacer;
+            width: 250px;
+        }
+        .rightColumn {
+            margin-left: $spacer;
+            margin-top: $spacer;
+        }
     }
 }

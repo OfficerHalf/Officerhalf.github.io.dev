@@ -17,6 +17,12 @@ $alloy-orange: #fcac50;
 $alloy-darkGray: #424242;
 $alloy-lightGray: #757575;
 
+$alloy-fuschia-dark: #f9669c;
+$alloy-purple-dark: #a995d1;
+$alloy-blue-dark: #71a7b3;
+$alloy-green-dark: #aad060;
+$alloy-orange-dark: #fcb35f;
+
 html {
     box-sizing: border-box;
 }
@@ -27,8 +33,7 @@ html {
 body {
     overflow-x: hidden;
     margin: 0;
-    color: $colors-light;
-    background-color: $colors-dark;
+    color: $colors-dark;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -38,11 +43,22 @@ h1, h2, h3 {
 }
 
 a {
-    color: $alloy-blue;
+    color: $alloy-blue-dark;
     text-decoration: none;
     transition: color $hover-link;
+    svg.icon {
+        height: 28px;
+        width: 28px;
+        .background {
+            transition: fill $hover-link;
+            fill: $alloy-blue-dark;
+        }
+    }
 }
 
 a:hover {
-    color: $alloy-green;
+    color: $alloy-green-dark;
+    svg.icon .background {
+        fill: $alloy-green-dark;
+    }
 }
