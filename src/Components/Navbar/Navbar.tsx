@@ -7,7 +7,8 @@ export default class Navbar extends Component {
     public render() {
         return (
             <nav className="NavbarComponent">
-                <Logo color={Colors.light}/>
+                <Logo color={Colors.dark}/>
+                <NavLinks/>
             </nav>
         );
     }

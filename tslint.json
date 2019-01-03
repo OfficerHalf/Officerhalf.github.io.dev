@@ -12,6 +12,7 @@
         "interface-name": false,
         "jsx-wrap-multiline": true,
         "jsx-no-multiline-js": false,
+        "jsx-boolean-value": false,
         "object-literal-sort-keys": true,
         "arrow-parens": false,
         "radix": false

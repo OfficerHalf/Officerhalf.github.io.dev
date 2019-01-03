@@ -43,20 +43,6 @@ export default class Section extends Component<SectionProps, SectionState> {
             </div>
         );
     }
-    
-    private titleClicked = () => {
-        if (this.state.expanded) {
-            this.setState({expanded: false});
-            if (this.props.expandCallback) {
-                this.props.expandCallback(this);
-            }
-        } else {
-            this.setState({expanded: true});
-            if (this.props.collapseCallback) {
-                this.props.collapseCallback(this);
-            }
-        }
-    }
 
     public expand() {
         this.setState({expanded: true});
@@ -64,5 +50,19 @@ export default class Section extends Component<SectionProps, SectionState> {
 
     public collapse() {
         this.setState({expanded: false});
+    }
+
+    private titleClicked = () => {
+        if (this.state.expanded) {
+            this.setState({expanded: false});
+            if (this.props.collapseCallback) {
+                this.props.collapseCallback(this);
+            }
+        } else {
+            this.setState({expanded: true});
+            if (this.props.expandCallback) {
+                this.props.expandCallback(this);
+            }
+        }
     }
 }

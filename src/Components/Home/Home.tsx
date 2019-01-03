@@ -5,7 +5,6 @@ import { CellCollection } from '../../Sudoku/Models/CellCollection';
 import ButterCmsProvider from '../../Providers/ButterCmsProvider';
 import { Project } from '../../Models/Project';
 import Section from './Section/Section';
-import Footer from './Footer/Footer';
 import ContactLink from './ContactLink/ContactLink';
 
 const testBoard: string = '530070000600195000098000060800060003400803001700020006060000280000419005000080079';
@@ -61,7 +60,6 @@ export default class Home extends Component<{}, HomeState> {
                         </div>
                     </Section>
                 </div>
-                <Footer/>
             </div>
         );
     }
@@ -74,8 +72,9 @@ export default class Home extends Component<{}, HomeState> {
 
     private projectsExpanded = (section: Section) => {
         this.sections.forEach(s => {
-           s.current!.collapse(); 
+            if (s.current && s.current !== section) {
+                s.current!.collapse();
+            }
         });
-        section.expand();
     }
 }
