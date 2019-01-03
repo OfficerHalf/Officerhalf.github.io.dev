@@ -1,0 +1,10 @@
+@import '../../../Global.scss';
+
+.ContactLinkComponent {
+    list-style-type: none;
+    &::before {
+        content: "*";
+        vertical-align: sub;
+        margin-right: $s;
+    }
+}

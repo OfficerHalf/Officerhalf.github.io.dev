@@ -3,6 +3,7 @@
 .SectionComponent {
     .title {
         transition: color $hover-link;
+        margin-bottom: 0;
         &.expanded {
             color: $alloy-green;
         }
@@ -11,10 +12,9 @@
             cursor: pointer;
         }
         &::before {
-            content: "# ";
+            content: "#";
+            margin-right: $m;
+            text-decoration: underline;
         }
-    }
-    .content {
-        margin-left: 32px;
     }
 }
