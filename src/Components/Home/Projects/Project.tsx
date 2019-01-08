@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Project } from '../../../Models/Project';
+import { Measures } from '../../../Constants';
 
 interface AProjectProps {
     project: Project;
@@ -7,7 +8,8 @@ interface AProjectProps {
 
 const iconStyle: React.CSSProperties = {
     maxWidth: '25px',
-    maxHeight: '25px'
+    maxHeight: '25px',
+    marginRight: Measures.nbsp * 2
 }
 
 const projectStyle: React.CSSProperties = {
@@ -25,7 +27,7 @@ export default class AProject extends Component<AProjectProps, {}> {
             <li style={projectStyle}>
                 <span style={rowStyle}>
                     <img style={iconStyle} src={this.props.project.icon} alt={this.props.project.name}/>
-                    &nbsp;&nbsp;{this.props.project.name}
+                    {this.props.project.name}
                 </span>
             </li>
         );

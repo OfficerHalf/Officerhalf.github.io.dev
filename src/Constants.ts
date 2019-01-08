@@ -12,8 +12,15 @@ export const Colors = {
 };
 
 export const Hover = {
-    l: '0.8s',
-    link: '0.25s',
-    m: '0.4s',
-    s: '0.2s'
+    l: 0.8,
+    link: 0.25,
+    m: 0.4,
+    s: 0.2
+};
+
+export const Measures = {
+    l: 20,
+    m: 10,
+    nbsp: 4.195,
+    s: 5
 };
