@@ -16,7 +16,7 @@ export default class Expander extends Component<ExpanderProps, {}> {
     public render() {
         const contentClasses = classNames('ExpanderComponent', 'content', {expanded: this.props.expanded});
         const contentStyles: React.CSSProperties = {
-            maxHeight: this.props.expanded && this.expanderContent.current ? this.expanderContent.current.scrollHeight : 0
+            maxHeight: this.props.expanded && this.expanderContent.current ? this.expanderContent.current.scrollHeight : this.props.expanded ? 'auto' : 0
         };
 
         return (

@@ -4,6 +4,7 @@ export interface Project {
     description: string;
     status: ProjectStatus;
     more: string;
+    tagline: string;
 }
 
 export enum ProjectStatus {

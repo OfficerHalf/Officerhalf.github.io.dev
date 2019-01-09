@@ -3,7 +3,9 @@
 $spacer: 40px;
 
 .HomeComponent {
-    margin: $spacer * 2;
+    background-color: white;
+    padding: $spacer;
+    max-width: 900px;
     .top {
         display: flex;
         align-items: center;
@@ -15,7 +17,8 @@ $spacer: 40px;
         display: flex;
         .leftColumn {
             margin-top: $spacer;
-            width: 250px;
+            max-width: 250px;
+            min-width: 250px;
         }
         .rightColumn {
             margin-left: $spacer;
