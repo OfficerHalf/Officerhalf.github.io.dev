@@ -56,7 +56,7 @@ export default class AProject extends Component<AProjectProps, AProjectState> {
     public render() {
         return (
             <li className="AProjectComponent" style={mainStyle}>
-                <span onClick={this.clicked} style={titleStyle}><span style={spacerStyle}>{this.props.project.name} - {this.props.project.tagline}</span><PlusMinus size={14} minus={this.state.expanded} color={Colors.darkGray}/></span>
+                <span onClick={this.clicked} style={titleStyle}><span className="projectTitle" style={spacerStyle}>{this.props.project.name} - {this.props.project.tagline}</span><PlusMinus size={14} minus={this.state.expanded} color={Colors.darkGray}/></span>
                 <Expander expanded={this.state.expanded}>
                     <div style={expandedStyle}>
                         <img className="projectIcon" src={this.props.project.icon} alt={`${this.props.project.name} icon`} style={iconStyle}/>
