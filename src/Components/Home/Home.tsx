@@ -7,6 +7,7 @@ import NameCard from './NameCard/NameCard';
 import Contact from './Contact/Contact';
 import About from './About';
 import Projects from './Projects/Projects';
+import { Colors } from '../../Constants';
 
 // const testBoard: string = '530070000600195000098000060800060003400803001700020006060000280000419005000080079';
 
@@ -16,6 +17,7 @@ interface HomeState {
 
 export default class Home extends Component<{}, HomeState> {
     private butterProvider: ButterCmsProvider = new ButterCmsProvider();
+    private accentColor: string = Colors.blueDark;
     constructor(props: {}) {
         super(props);
         this.state = {
@@ -23,19 +25,24 @@ export default class Home extends Component<{}, HomeState> {
         };
     }
     public render() {
+        const wrapperStyle: React.CSSProperties = {
+            backgroundColor: this.accentColor,
+        };
         return (
-            <div className="HomeComponent">
-                <div className="top">
-                    <Photo/>
-                    <NameCard/>
-                </div>
-                <div className="columns">
-                    <div className="leftColumn">
-                        <About/>
-                        <Contact/>
+            <div className="wrapper" style={wrapperStyle}>
+                <div className="HomeComponent">
+                    <div className="top">
+                        <Photo/>
+                        <NameCard/>
                     </div>
-                    <div className="rightColumn">
-                        <Projects projects={this.state.projects}/>
+                    <div className="columns">
+                        <div className="leftColumn">
+                            <About/>
+                            <Contact/>
+                        </div>
+                        <div className="rightColumn">
+                            <Projects projects={this.state.projects}/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -47,4 +54,12 @@ export default class Home extends Component<{}, HomeState> {
             this.setState({projects});
         });
     }
+
+    // private randomBackgroundColor(): string {
+    //     if (this.accentColor === '') {
+    //         const possible: string[] = [Colors.blueDark, Colors.greenDark];
+    //         this.accentColor = possible[Math.floor(Math.random() * possible.length)];
+    //     }
+    //     return this.accentColor;
+    // }
 }

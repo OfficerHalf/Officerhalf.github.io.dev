@@ -1,11 +1,24 @@
 @import '../../Global.scss';
 
 $spacer: 40px;
+$breakPoint: 910px;
+
+.wrapper {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: $spacer;
+    @media only screen and (max-width: $breakPoint) {
+        padding: 0;
+    }
+}
 
 .HomeComponent {
     background-color: white;
     padding: $spacer;
     max-width: 900px;
+    box-shadow: rgba(0, 0, 0, 0.3) 4px 7px 93px 3px;
     .top {
         display: flex;
         align-items: center;
@@ -23,6 +36,24 @@ $spacer: 40px;
         .rightColumn {
             margin-left: $spacer;
             margin-top: $spacer;
+        }
+    }
+    @media only screen and (max-width: $breakPoint){
+        .top {
+            flex-direction: column;
+            align-items: initial;
+            .NameCardComponent {
+                margin: 0;
+            }
+        }
+        .columns {
+            flex-direction: column;
+            .leftColumn {
+                margin: 0;
+            }
+            .rightColumn {
+                margin: 0;
+            }
         }
     }
 }

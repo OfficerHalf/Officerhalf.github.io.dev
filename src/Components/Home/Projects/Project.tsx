@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Project } from '../../../Models/Project';
 // import { Measures } from '../../../Constants';
 import Expander from '../../Expander/Expander';
+import { Measures, Colors } from '../../../Constants';
+import PlusMinus from './PlusMinus';
 
 interface AProjectProps {
     project: Project;
@@ -10,29 +12,57 @@ interface AProjectProps {
 
 interface AProjectState {
     expanded: boolean;
+    hovered: boolean;
 }
 
-// const iconStyle: React.CSSProperties = {
-//     maxHeight: '25px',
-//     maxWidth: '25px'
-// };
+const mainStyle: React.CSSProperties = {
+    marginBottom: Measures.s
+};
 
-// const projectStyle: React.CSSProperties = {
-// };
+const iconStyle: React.CSSProperties = {
+    marginRight: Measures.m,
+    maxHeight: '50px',
+    maxWidth: '50px'
+};
+
+const expandedStyle: React.CSSProperties = {
+    alignItems: 'center',
+    display: 'flex'
+};
+
+const titleStyle: React.CSSProperties = {
+    alignItems: 'center',
+    cursor: 'pointer',
+    display: 'flex'
+};
+
+const moreInfoStyle: React.CSSProperties = {
+    flexShrink: 0,
+    marginLeft: Measures.m
+};
+
+const spacerStyle: React.CSSProperties = {
+    marginRight: Measures.nbsp
+};
 
 export default class AProject extends Component<AProjectProps, AProjectState> {
     constructor(props: AProjectProps) {
         super(props);
         this.state = {
-            expanded: false
+            expanded: false,
+            hovered: false
         };
     }
     public render() {
         return (
-            <li>
-                <span>{this.props.project.name} - {this.props.project.tagline}</span><span onClick={this.clicked}>+</span>
+            <li className="AProjectComponent" style={mainStyle}>
+                <span onClick={this.clicked} style={titleStyle}><span style={spacerStyle}>{this.props.project.name} - {this.props.project.tagline}</span><PlusMinus size={14} minus={this.state.expanded} color={Colors.darkGray}/></span>
                 <Expander expanded={this.state.expanded}>
-                    <div dangerouslySetInnerHTML={{__html: this.props.project.description}}/>
+                    <div style={expandedStyle}>
+                        <img src={this.props.project.icon} alt={`${this.props.project.name} icon`} style={iconStyle}/>
+                        <div dangerouslySetInnerHTML={{__html: this.props.project.description}}/>
+                        <a href={this.props.project.more} style={moreInfoStyle}>More Info</a>
+                    </div>
                 </Expander>
             </li>
         );
