@@ -59,7 +59,7 @@ export default class AProject extends Component<AProjectProps, AProjectState> {
                 <span onClick={this.clicked} style={titleStyle}><span style={spacerStyle}>{this.props.project.name} - {this.props.project.tagline}</span><PlusMinus size={14} minus={this.state.expanded} color={Colors.darkGray}/></span>
                 <Expander expanded={this.state.expanded}>
                     <div style={expandedStyle}>
-                        <img src={this.props.project.icon} alt={`${this.props.project.name} icon`} style={iconStyle}/>
+                        <img className="projectIcon" src={this.props.project.icon} alt={`${this.props.project.name} icon`} style={iconStyle}/>
                         <div dangerouslySetInnerHTML={{__html: this.props.project.description}}/>
                         <a href={this.props.project.more} style={moreInfoStyle}>More Info</a>
                     </div>

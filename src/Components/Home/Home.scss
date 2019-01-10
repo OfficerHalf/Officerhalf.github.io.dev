@@ -53,6 +53,11 @@ $breakPoint: 910px;
             }
             .rightColumn {
                 margin: 0;
+                .AProjectComponent {
+                    .projectIcon {
+                        display: none;
+                    }
+                }
             }
         }
     }
