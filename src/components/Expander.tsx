@@ -15,7 +15,7 @@ interface ExpanderState {
     first: boolean;
 }
 
-class Expander extends React.Component<ExpanderProps, ExpanderState> {
+class Expander extends React.PureComponent<ExpanderProps, ExpanderState> {
     private content: React.RefObject<HTMLDivElement>;
     constructor(props: ExpanderProps) {
         super(props);
@@ -26,7 +26,7 @@ class Expander extends React.Component<ExpanderProps, ExpanderState> {
     }
 
     public componentDidMount() {
-        if (this.state.first) {
+        if (this.state.first && this.props.expanded) {
             this.setState({ first: false });
         }
     }
