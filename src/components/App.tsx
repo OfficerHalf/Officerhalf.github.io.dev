@@ -1,5 +1,7 @@
 import React from 'react';
-import Expander, { ExpanderDirection } from './Expander';
+import { HashRouter, Switch, Route } from 'react-router-dom';
+import Home from '../pages/Home';
+import Generators from '../pages/Generators';
 
 interface AppState {
     toggle: boolean;
@@ -15,21 +17,15 @@ class App extends React.Component<{}, AppState> {
     public render() {
         return (
             <div className="container">
-                <button onClick={this.toggle}>Toggle</button>
-                <Expander
-                    expanded={this.state.toggle}
-                    direction={ExpanderDirection.Vertical}
-                >
-                    <div>Some more content</div>
-                </Expander>
+                <HashRouter>
+                    <Switch>
+                        <Route exact={true} path="/" component={Home} />
+                        <Route path="/dnd" component={Generators} />
+                    </Switch>
+                </HashRouter>
             </div>
         );
     }
-    private toggle = () => {
-        this.setState({
-            toggle: !this.state.toggle
-        });
-    };
 }
 
 export default App;
