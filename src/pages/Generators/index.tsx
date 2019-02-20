@@ -1,52 +1,73 @@
 import React from 'react';
-import axios from 'axios';
 import LootItem from './components/LootItem';
-
-const api = axios.create({
-    baseURL: 'https://api.buttercms.com/v2/content/',
-    params: {
-        auth_token: '9ffd3dad4fd54423ad22bc3ce3e1a2fd6bbc9081'
-    }
-});
+import Api from './api';
+import * as Types from './types';
+import Loader from '../../components/Loader';
+import Fader from '../../components/Fader';
 
 interface GeneratorsState {
-    items: any[];
+    loot: Types.LootType[];
+    loading: boolean;
 }
 
 export default class Generators extends React.PureComponent<
     {},
     GeneratorsState
 > {
+    private api: Api;
     constructor(props: any) {
         super(props);
+        this.api = new Api();
         this.state = {
-            items: []
+            loot: [],
+            loading: true
         };
     }
     public render() {
         return (
             <div>
                 <h1>Generators</h1>
-                <ul>
-                    {this.state.items.map((item, index) => (
-                        <LootItem
-                            name={item.item}
-                            description={item.description}
-                            key={index}
-                        />
-                    ))}
-                </ul>
+                <Loader loading={this.state.loading} size={10} color="#222" />
+                {this.renderLootTypes()}
             </div>
         );
     }
     public componentDidMount() {
-        api.get('', {
-            params: {
-                keys: 'loot_types[name=Evil Mage]'
-            }
-        }).then(resp => {
-            console.log(resp);
-            this.setState({ items: resp.data.data.loot_types[0].items });
+        this.api.GetAllLootByType().then(loot => {
+            this.setState({ loot, loading: false });
         });
+    }
+    private renderLootTypes(): JSX.Element[] {
+        const types: JSX.Element[] = [];
+        this.state.loot.forEach((type, index) => {
+            const typeEl = (
+                <Fader
+                    key={type.name}
+                    index={index}
+                    total={this.state.loot.length}
+                >
+                    <div>
+                        <h2>{type.name}</h2>
+                        {this.renderLootList(type.items)}
+                    </div>
+                </Fader>
+            );
+            types.push(typeEl);
+        });
+        return types;
+    }
+
+    private renderLootList(lootItems: Types.Loot[]): JSX.Element[] {
+        const loot: JSX.Element[] = [];
+        lootItems.forEach(lootItem => {
+            loot.push(
+                <LootItem
+                    name={lootItem.item}
+                    description={lootItem.description}
+                    key={lootItem.item}
+                />
+            );
+        });
+        return loot;
     }
 }
