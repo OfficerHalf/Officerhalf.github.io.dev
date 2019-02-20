@@ -1,5 +1,6 @@
 import React from 'react';
 import LootItem from './components/LootItem';
+import LootTypeTile from './components/LootTypeTile';
 import Api from './api';
 import * as Types from './types';
 import Loader from '../../components/Loader';
@@ -19,8 +20,8 @@ export default class Generators extends React.PureComponent<
         super(props);
         this.api = new Api();
         this.state = {
-            loot: [],
-            loading: true
+            loading: true,
+            loot: []
         };
     }
     public render() {
@@ -46,10 +47,7 @@ export default class Generators extends React.PureComponent<
                     index={index}
                     total={this.state.loot.length}
                 >
-                    <div>
-                        <h2>{type.name}</h2>
-                        {this.renderLootList(type.items)}
-                    </div>
+                    <LootTypeTile type={type.name} />
                 </Fader>
             );
             types.push(typeEl);
