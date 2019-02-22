@@ -1,19 +1,26 @@
 import React from 'react';
+import './LootTypeTile.css';
+import * as Types from '../types';
 
 interface LootTypeTileProps {
-    type: string;
+    type: Types.LootType;
 }
-
-const style: React.CSSProperties = {
-    backgroundColor: '#eee',
-    height: 200,
-    width: 200
-};
 
 export default class LootTypeTile extends React.PureComponent<
     LootTypeTileProps
 > {
     public render() {
-        return <div style={style}>{this.props.type}</div>;
+        return (
+            <div
+                className="lootTypeTile"
+                style={{
+                    backgroundImage: this.props.type.image
+                        ? `url(${this.props.type.image})`
+                        : undefined
+                }}
+            >
+                <span className="lootTypeText">{this.props.type.name}</span>
+            </div>
+        );
     }
 }

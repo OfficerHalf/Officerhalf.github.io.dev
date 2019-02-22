@@ -5,6 +5,7 @@ import Api from './api';
 import * as Types from './types';
 import Loader from '../../components/Loader';
 import Fader from '../../components/Fader';
+import './index.css';
 
 interface GeneratorsState {
     loot: Types.LootType[];
@@ -29,7 +30,7 @@ export default class Generators extends React.PureComponent<
             <div>
                 <h1>Generators</h1>
                 <Loader loading={this.state.loading} size={10} color="#222" />
-                {this.renderLootTypes()}
+                <div id="lootTiles">{this.renderLootTypes()}</div>
             </div>
         );
     }
@@ -47,7 +48,7 @@ export default class Generators extends React.PureComponent<
                     index={index}
                     total={this.state.loot.length}
                 >
-                    <LootTypeTile type={type.name} />
+                    <LootTypeTile type={type} />
                 </Fader>
             );
             types.push(typeEl);

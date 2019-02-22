@@ -2,6 +2,7 @@ export interface Loot {
     value: string;
     description: string;
     item: string;
+    image?: string;
 }
 
 export interface LootMap {
@@ -10,6 +11,7 @@ export interface LootMap {
 
 export interface LootType {
     name: string;
+    image?: string;
     items: Loot[];
 }
 
