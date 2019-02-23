@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Switch, RouteComponentProps } from 'react-router-dom';
-import LootItem from './components/LootItem';
 import TypeList from './components/TypeList';
 import Generator from './components/Generator';
 import Api from './api';
@@ -18,7 +17,7 @@ interface GeneratorRouteParams {
 }
 
 export default class Generators extends React.PureComponent<
-    {},
+    RouteComponentProps,
     GeneratorsState
 > {
     private api: Api;

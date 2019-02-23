@@ -1,33 +1,26 @@
 import React from 'react';
-import Expander, { ExpanderDirection } from '../../components/Expander';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 
-interface HomeState {
-    toggle: boolean;
-}
-
-export default class Home extends React.PureComponent<{}, HomeState> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            toggle: true
-        };
-    }
+export default class Home extends React.PureComponent<RouteComponentProps> {
     public render() {
         return (
             <div>
-                <Link to="/dnd">
-                    <h3>DND</h3>
-                </Link>
-                <Link to="/recipes">
-                    <h3>Recipes</h3>
-                </Link>
+                <h1>Nathan Smith</h1>
+                <p>
+                    Hi, welcome to my site. Nothing really here yet - I'm
+                    redoing things.
+                </p>
+                <ul>
+                    <li>
+                        <Link to="/dnd">
+                            DnD Stuff (not really working yet)
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/recipes">Recipes (nothing here yet)</Link>
+                    </li>
+                </ul>
             </div>
         );
     }
-    private toggle = () => {
-        this.setState({
-            toggle: !this.state.toggle
-        });
-    };
 }
