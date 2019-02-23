@@ -1,5 +1,6 @@
 import React from 'react';
 import Expander, { ExpanderDirection } from '../../components/Expander';
+import { Link } from 'react-router-dom';
 
 interface HomeState {
     toggle: boolean;
@@ -15,13 +16,12 @@ export default class Home extends React.PureComponent<{}, HomeState> {
     public render() {
         return (
             <div>
-                <button onClick={this.toggle}>Toggle</button>
-                <Expander
-                    expanded={this.state.toggle}
-                    direction={ExpanderDirection.Vertical}
-                >
-                    <div>Some more content</div>
-                </Expander>
+                <Link to="/dnd">
+                    <h3>DND</h3>
+                </Link>
+                <Link to="/recipes">
+                    <h3>Recipes</h3>
+                </Link>
             </div>
         );
     }

@@ -1,15 +1,20 @@
 import React from 'react';
+import { Route, Switch, RouteComponentProps } from 'react-router-dom';
 import LootItem from './components/LootItem';
-import LootTypeTile from './components/LootTypeTile';
+import TypeList from './components/TypeList';
+import Generator from './components/Generator';
 import Api from './api';
 import * as Types from './types';
 import Loader from '../../components/Loader';
-import Fader from '../../components/Fader';
 import './index.css';
 
 interface GeneratorsState {
     loot: Types.LootType[];
     loading: boolean;
+}
+
+interface GeneratorRouteParams {
+    type: string;
 }
 
 export default class Generators extends React.PureComponent<
@@ -28,9 +33,17 @@ export default class Generators extends React.PureComponent<
     public render() {
         return (
             <div>
-                <h1>Generators</h1>
                 <Loader loading={this.state.loading} size={10} color="#222" />
-                <div id="lootTiles">{this.renderLootTypes()}</div>
+                {!this.state.loading && (
+                    <Switch>
+                        <Route
+                            exact={true}
+                            path="/dnd"
+                            render={this.typeList}
+                        />
+                        <Route path="/dnd/:type" render={this.generator} />
+                    </Switch>
+                )}
             </div>
         );
     }
@@ -39,34 +52,12 @@ export default class Generators extends React.PureComponent<
             this.setState({ loot, loading: false });
         });
     }
-    private renderLootTypes(): JSX.Element[] {
-        const types: JSX.Element[] = [];
-        this.state.loot.forEach((type, index) => {
-            const typeEl = (
-                <Fader
-                    key={type.name}
-                    index={index}
-                    total={this.state.loot.length}
-                >
-                    <LootTypeTile type={type} />
-                </Fader>
-            );
-            types.push(typeEl);
-        });
-        return types;
-    }
 
-    private renderLootList(lootItems: Types.Loot[]): JSX.Element[] {
-        const loot: JSX.Element[] = [];
-        lootItems.forEach(lootItem => {
-            loot.push(
-                <LootItem
-                    name={lootItem.item}
-                    description={lootItem.description}
-                    key={lootItem.item}
-                />
-            );
-        });
-        return loot;
-    }
+    private typeList = () => <TypeList types={this.state.loot} />;
+    private generator = (props: RouteComponentProps<GeneratorRouteParams>) => {
+        const type = this.state.loot.find(
+            x => x.name === props.match.params.type
+        );
+        return <Generator type={type ? type : { items: [], name: '' }} />;
+    };
 }
