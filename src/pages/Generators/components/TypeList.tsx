@@ -1,14 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import Fader from '../../../components/Fader';
 import LootTypeTile from './LootTypeTile';
 import * as Types from '../types';
 
-interface TypeListProps {
+type TypeListProps = RouteComponentProps & {
     types: Types.LootType[];
-}
+};
 
-export default class TypeList extends React.PureComponent<TypeListProps> {
+class TypeList extends React.PureComponent<TypeListProps> {
     public render() {
         return (
             <div>
@@ -37,3 +37,5 @@ export default class TypeList extends React.PureComponent<TypeListProps> {
         return types;
     }
 }
+
+export default withRouter(TypeList);

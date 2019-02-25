@@ -1,0 +1,11 @@
+.contactLinks a {
+    margin-right: 10px;
+}
+
+.contactLinks i {
+    color: #333;
+}
+
+.contactLinks i:hover {
+    color: #0fa0ce;
+}

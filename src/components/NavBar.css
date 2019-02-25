@@ -1,0 +1,4 @@
+.navLinks span:hover {
+    cursor: pointer;
+    color: #1eaedb;
+}

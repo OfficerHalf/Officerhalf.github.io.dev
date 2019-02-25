@@ -1,12 +1,13 @@
 import React from 'react';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import LootItem from './LootItem';
 import * as Types from '../types';
 
-interface GeneratorProps {
+type GeneratorProps = RouteComponentProps & {
     type: Types.LootType;
-}
+};
 
-export default class Generator extends React.PureComponent<GeneratorProps> {
+class Generator extends React.PureComponent<GeneratorProps> {
     public render() {
         return (
             <div>
@@ -30,3 +31,5 @@ export default class Generator extends React.PureComponent<GeneratorProps> {
         return loot;
     }
 }
+
+export default withRouter(Generator);

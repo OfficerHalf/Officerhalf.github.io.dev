@@ -1,5 +1,6 @@
 import React from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
+import NavBar from './NavBar';
 import Home from '../pages/Home';
 import Generators from '../pages/Generators';
 import Recipes from '../pages/Recipes';
@@ -17,13 +18,18 @@ class App extends React.Component<{}, AppState> {
     }
     public render() {
         return (
-            <div className="container">
+            <div id="AppWrapper">
                 <HashRouter>
-                    <Switch>
-                        <Route exact={true} path="/" component={Home} />
-                        <Route path="/dnd" component={Generators} />
-                        <Route path="/recipes" component={Recipes} />
-                    </Switch>
+                    <div>
+                        <NavBar />
+                        <div>
+                            <Switch>
+                                <Route exact={true} path="/" component={Home} />
+                                <Route path="/dnd" component={Generators} />
+                                <Route path="/recipes" component={Recipes} />
+                            </Switch>
+                        </div>
+                    </div>
                 </HashRouter>
             </div>
         );
