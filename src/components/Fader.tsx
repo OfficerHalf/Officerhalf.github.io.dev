@@ -9,6 +9,7 @@ interface FaderProps {
     speed?: number;
     delay?: number;
     timing?: string;
+    className?: string;
 }
 
 export default class Fader extends React.PureComponent<FaderProps> {
@@ -31,6 +32,10 @@ export default class Fader extends React.PureComponent<FaderProps> {
             animation: `fade-in ${speed}s ${timing} ${delay}s`,
             animationFillMode: 'both'
         };
-        return <div style={style}>{this.props.children}</div>;
+        return (
+            <div className={this.props.className} style={style}>
+                {this.props.children}
+            </div>
+        );
     }
 }

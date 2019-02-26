@@ -26,6 +26,7 @@ class TypeList extends React.PureComponent<TypeListProps> {
                     key={type.name}
                     index={index}
                     total={this.props.types.length}
+                    className="lootTile"
                 >
                     <Link to={`/dnd/${type.name}`}>
                         <LootTypeTile type={type} />
