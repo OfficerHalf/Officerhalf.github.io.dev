@@ -1,11 +1,14 @@
 import React from 'react';
 import { Route, Switch, RouteComponentProps } from 'react-router-dom';
+import * as Cache from '../../StorageHelper';
 import TypeList from './components/TypeList';
 import Generator from './components/Generator';
 import Api from './api';
 import * as Types from './types';
 import Loader from '../../components/Loader';
 import './index.css';
+
+const lootStorageKey: string = 'loots';
 
 interface GeneratorsState {
     loot: Types.LootType[];
@@ -28,6 +31,14 @@ export default class Generators extends React.PureComponent<
             loading: true,
             loot: []
         };
+        // Get loot from local storage
+        const lootString = Cache.getString(lootStorageKey);
+        if (lootString !== null) {
+            this.state = {
+                loading: false,
+                loot: JSON.parse(lootString)
+            };
+        }
     }
     public render() {
         return (
@@ -47,9 +58,12 @@ export default class Generators extends React.PureComponent<
         );
     }
     public componentDidMount() {
-        this.api.GetAllLootByType().then(loot => {
-            this.setState({ loot, loading: false });
-        });
+        if (this.state.loot.length === 0) {
+            this.api.GetAllLootByType().then(loot => {
+                Cache.setString(JSON.stringify(loot), lootStorageKey);
+                this.setState({ loot, loading: false });
+            });
+        }
     }
 
     private typeList = () => <TypeList types={this.state.loot} />;
