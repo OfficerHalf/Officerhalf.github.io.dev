@@ -31,7 +31,7 @@ export default class Generators extends React.PureComponent<
     }
     public render() {
         return (
-            <div>
+            <div className="container">
                 <Loader loading={this.state.loading} size={10} color="#222" />
                 {!this.state.loading && (
                     <Switch>

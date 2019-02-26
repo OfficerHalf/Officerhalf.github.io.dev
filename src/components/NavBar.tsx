@@ -28,11 +28,6 @@ class NavBar extends React.PureComponent<RouteComponentProps> {
         return (
             <nav className="u-full-width" style={style}>
                 <div className="container navLinks">
-                    {this.props.location.pathname !== '/' && (
-                        <span style={linkStyle} onClick={this.goUp}>
-                            Back
-                        </span>
-                    )}
                     <Link to="/" style={clearStyle}>
                         <span style={linkStyle}>Home</span>
                     </Link>
@@ -46,17 +41,6 @@ class NavBar extends React.PureComponent<RouteComponentProps> {
             </nav>
         );
     }
-    private goUp = () => {
-        const path = this.props.location.pathname;
-        if (path !== '/') {
-            const prevPath = path.substring(0, path.lastIndexOf('/'));
-            if (prevPath !== '') {
-                this.props.history.push(prevPath);
-            } else {
-                this.props.history.push('/');
-            }
-        }
-    };
 }
 
 export default withRouter(NavBar);
