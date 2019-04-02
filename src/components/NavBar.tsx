@@ -1,11 +1,11 @@
 import React from 'react';
 import { RouteComponentProps, withRouter, Link } from 'react-router-dom';
+import { Colors } from '../Constants';
 import './NavBar.css';
 
 const style: React.CSSProperties = {
-    backgroundColor: 'white',
-    borderBottom: '1px solid #eee',
-    borderTop: '1px solid #eee',
+    borderBottom: `1px solid ${Colors.black2}`,
+    borderTop: `0px solid ${Colors.black}`,
     fontSize: 13,
     fontWeight: 600,
     height: 60,

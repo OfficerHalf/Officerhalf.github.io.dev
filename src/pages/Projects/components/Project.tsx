@@ -52,7 +52,7 @@ export default class Project extends React.PureComponent<
 
     public render() {
         return (
-            <div className="container">
+            <div>
                 <Fader>
                     <div>
                         {this.isGithubProject(this.state.project.more) && (

@@ -5,6 +5,7 @@ import Home from '../pages/Home';
 import Generators from '../pages/Generators';
 import Blog from '../pages/Blog';
 import Projects from '../pages/Projects';
+import { Colors } from '../Constants';
 
 interface AppState {
     toggle: boolean;
@@ -19,7 +20,15 @@ class App extends React.Component<{}, AppState> {
     }
     public render() {
         return (
-            <div id="AppWrapper">
+            <div
+                id="AppWrapper"
+                style={{
+                    minHeight: '100vh',
+                    backgroundImage: `linear-gradient(to bottom right, white, ${
+                        Colors.blue
+                    }25)`
+                }}
+            >
                 <HashRouter>
                     <div>
                         <NavBar />

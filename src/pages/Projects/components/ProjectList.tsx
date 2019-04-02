@@ -9,7 +9,7 @@ interface ProjectListProps {
 export default class ProjectList extends React.PureComponent<ProjectListProps> {
     public render() {
         return (
-            <div className="container">
+            <div>
                 <ul>{this.getProjects()}</ul>
             </div>
         );
