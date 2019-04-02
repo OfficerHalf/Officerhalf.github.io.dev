@@ -54,11 +54,23 @@ export default class Project extends React.PureComponent<
         return (
             <div className="container">
                 <Fader>
-                    <div
-                        dangerouslySetInnerHTML={{
-                            __html: this.state.project.body
-                        }}
-                    />
+                    <div>
+                        {this.isGithubProject(this.state.project.more) && (
+                            <div style={{ marginTop: 20, marginBottom: 20 }}>
+                                <a
+                                    href={this.state.project.more}
+                                    target="_blank"
+                                >
+                                    See the source on GitHub.
+                                </a>
+                            </div>
+                        )}
+                        <div
+                            dangerouslySetInnerHTML={{
+                                __html: this.state.project.body
+                            }}
+                        />
+                    </div>
                 </Fader>
             </div>
         );
