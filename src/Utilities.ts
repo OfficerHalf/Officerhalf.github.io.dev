@@ -15,11 +15,17 @@ export function StripGithubAnchorLinks(html: string): string {
     const lines = html.split('\n');
     let newHtml = '';
     lines.forEach(line => {
-        if (line.indexOf('href="#') !== -1) {
-            newHtml += line.replace('href=', 'data-href=') + '\n';
-        } else {
-            newHtml += line + '\n';
+        let newLine = line;
+        if (newLine.indexOf('href="#') !== -1) {
+            newLine = newLine.replace('href=', 'data-href=') + '\n';
         }
+        if (newLine.indexOf('class="octicon octicon-link"') !== -1) {
+            newLine = newLine.replace(
+                'class="octicon octicon-link"',
+                'class="octicon octicon-link hide"'
+            );
+        }
+        newHtml += newLine;
     });
     return newHtml;
 }
