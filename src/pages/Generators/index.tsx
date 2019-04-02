@@ -3,8 +3,8 @@ import { Route, Switch, RouteComponentProps } from 'react-router-dom';
 import * as Cache from '../../StorageHelper';
 import TypeList from './components/TypeList';
 import Generator from './components/Generator';
-import Api from './api';
-import * as Types from './types';
+import Api from '../../api/GeneratorApi';
+import * as Types from '../../types/GeneratorTypes';
 import Loader from '../../components/Loader';
 import './index.css';
 

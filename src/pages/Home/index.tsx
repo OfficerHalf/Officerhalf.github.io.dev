@@ -1,8 +1,35 @@
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, Link } from 'react-router-dom';
+import { Shuffle } from '../../Utilities';
+import ProjectApi from '../../api/ProjectApi';
+import * as ProjectTypes from '../../types/ProjectTypes';
 import './index.css';
 
-export default class Home extends React.PureComponent<RouteComponentProps> {
+interface HomeState {
+    projects: ProjectTypes.Project[];
+}
+
+export default class Home extends React.PureComponent<
+    RouteComponentProps,
+    HomeState
+> {
+    private api: ProjectApi;
+    constructor(props: RouteComponentProps) {
+        super(props);
+        this.state = {
+            projects: []
+        };
+        this.api = new ProjectApi();
+    }
+
+    public componentDidMount() {
+        this.api
+            .GetProjectsWithStatus(ProjectTypes.ProjectStatus.Complete)
+            .then(projects => {
+                this.setState({ projects });
+            });
+    }
+
     public render() {
         return (
             <div className="container">
@@ -18,12 +45,13 @@ export default class Home extends React.PureComponent<RouteComponentProps> {
                             <a href="https://www.bentley.com/en">
                                 Bentley Systems
                             </a>
-                            . I have a passion for open source software, music,
+                            . I have a passion for software development, music,
                             and video games.
                         </p>
                     </div>
                     <div className="two-thirds column">
-                        <p>stuff</p>
+                        <p>Check out one of these projects:</p>
+                        <ul>{this.getRandomProjects()}</ul>
                     </div>
                 </div>
                 <div className="row">
@@ -45,5 +73,25 @@ export default class Home extends React.PureComponent<RouteComponentProps> {
                 </div>
             </div>
         );
+    }
+
+    private getRandomProjects(): JSX.Element[] {
+        const select = Math.min(3, this.state.projects.length);
+        const projects: JSX.Element[] = [];
+        if (select > 0) {
+            const shuffled: ProjectTypes.Project[] = Shuffle(
+                this.state.projects
+            );
+            for (let i = 0; i < select; i++) {
+                projects.push(
+                    <li key={shuffled[i].name}>
+                        <Link to={`/projects/${shuffled[i].name}`}>
+                            {shuffled[i].name}
+                        </Link>
+                    </li>
+                );
+            }
+        }
+        return projects;
     }
 }

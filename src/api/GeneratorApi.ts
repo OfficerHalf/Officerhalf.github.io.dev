@@ -1,16 +1,14 @@
-import axios, { AxiosInstance, AxiosPromise, AxiosResponse } from 'axios';
-import * as Types from './types';
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import { AwBeans, ContentEndpoint } from './ApiConstants';
+import * as Types from '../types/GeneratorTypes';
 
 export default class GeneratorApi {
-    // It's read only anyway. Why are you stealing this?
-    private awBeans: string = '9ffd3dad4fd54423ad22bc3ce3e1a2fd6bbc9081';
-    private endpoint: string = 'https://api.buttercms.com/v2/content/';
     private api: AxiosInstance;
     constructor() {
         this.api = axios.create({
-            baseURL: this.endpoint,
+            baseURL: ContentEndpoint,
             params: {
-                auth_token: this.awBeans
+                auth_token: AwBeans
             }
         });
     }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import Fader from '../../../components/Fader';
 import LootTypeTile from './LootTypeTile';
-import * as Types from '../types';
+import * as Types from '../../../types/GeneratorTypes';
 
 type TypeListProps = RouteComponentProps & {
     types: Types.LootType[];

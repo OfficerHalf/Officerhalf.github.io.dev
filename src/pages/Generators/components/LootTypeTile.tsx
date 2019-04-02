@@ -1,6 +1,6 @@
 import React from 'react';
 import './LootTypeTile.css';
-import * as Types from '../types';
+import * as Types from '../../../types/GeneratorTypes';
 
 interface LootTypeTileProps {
     type: Types.LootType;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import LootItem from './LootItem';
-import * as Types from '../types';
+import * as Types from '../../../types/GeneratorTypes';
 
 type GeneratorProps = RouteComponentProps & {
     type: Types.LootType;

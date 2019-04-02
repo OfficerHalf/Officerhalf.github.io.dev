@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 import Home from '../pages/Home';
 import Generators from '../pages/Generators';
 import Blog from '../pages/Blog';
+import Projects from '../pages/Projects';
 
 interface AppState {
     toggle: boolean;
@@ -26,7 +27,8 @@ class App extends React.Component<{}, AppState> {
                             <Switch>
                                 <Route exact={true} path="/" component={Home} />
                                 <Route path="/dnd" component={Generators} />
-                                <Route path="/Blog" component={Blog} />
+                                <Route path="/blog" component={Blog} />
+                                <Route path="/projects" component={Projects} />
                             </Switch>
                         </div>
                     </div>

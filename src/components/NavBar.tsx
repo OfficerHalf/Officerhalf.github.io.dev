@@ -31,11 +31,14 @@ class NavBar extends React.PureComponent<RouteComponentProps> {
                     <Link to="/" style={clearStyle}>
                         <span style={linkStyle}>Home</span>
                     </Link>
+                    <Link to="/projects" style={clearStyle}>
+                        <span style={linkStyle}>Projects</span>
+                    </Link>
                     <Link to="/dnd" style={clearStyle}>
                         <span style={linkStyle}>D&D</span>
                     </Link>
-                    <Link to="/recipes" style={clearStyle}>
-                        <span style={linkStyle}>Recipes</span>
+                    <Link to="/blog" style={clearStyle}>
+                        <span style={linkStyle}>Blog</span>
                     </Link>
                 </div>
             </nav>
