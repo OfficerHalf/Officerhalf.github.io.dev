@@ -3,7 +3,8 @@ import * as Types from '../../../types/ProjectTypes';
 import ProjectApi from '../../../api/ProjectApi';
 import GithubApi from '../../../api/GithubApi';
 import Fader from '../../../components/Fader';
-import { StripGithubAnchorLinks } from '../../../Utilities';
+import Loader from '../../../components/Loader';
+import { Colors } from '../../../Constants';
 
 interface ProjectProps {
     name: string;
@@ -11,6 +12,7 @@ interface ProjectProps {
 
 interface ProjectState {
     project: Types.Project;
+    loading: boolean;
 }
 
 export default class Project extends React.PureComponent<
@@ -31,31 +33,37 @@ export default class Project extends React.PureComponent<
                 more: '',
                 name: '',
                 status: Types.ProjectStatus.Complete
-            }
+            },
+            loading: true
         };
     }
 
     public componentDidMount() {
         this.projectApi.GetProjectByName(this.props.name).then(project => {
             if (project.body === '' && this.isGithubProject(project.more)) {
-                this.githubApi
-                    .GetReadmeByRepoUrl(project.more)
-                    .then(readmeText => {
-                        project.body = StripGithubAnchorLinks(readmeText);
-                        this.setState({ project });
-                    });
+                this.githubApi.GetReadmeByRepoUrl(project.more).then(html => {
+                    project.body = html;
+                    this.setState({ project, loading: false });
+                });
             } else {
-                this.setState({ project });
+                this.setState({ project, loading: false });
             }
         });
     }
 
     public render() {
+        const isGithub = this.isGithubProject(this.state.project.more);
+        const bodyClasses = isGithub ? 'markdown-body' : '';
         return (
             <div>
+                <Loader
+                    loading={this.state.loading}
+                    size={8}
+                    color={Colors.accentDark}
+                />
                 <Fader>
                     <div>
-                        {this.isGithubProject(this.state.project.more) && (
+                        {isGithub && !this.state.loading && (
                             <div style={{ marginTop: 20, marginBottom: 20 }}>
                                 <a
                                     href={this.state.project.more}
@@ -66,6 +74,7 @@ export default class Project extends React.PureComponent<
                             </div>
                         )}
                         <div
+                            className={bodyClasses}
                             dangerouslySetInnerHTML={{
                                 __html: this.state.project.body
                             }}

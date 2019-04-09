@@ -27,3 +27,10 @@ body {
 .hide {
     display: none;
 }
+
+a {
+    color: #70587c;
+}
+a:hover {
+    color: #48394f;
+}

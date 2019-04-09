@@ -13,7 +13,7 @@ export const Colors = {
     white1: '#464646',
     white2: '#8c8c8c',
     white3: '#bababa',
-    accentDark: '#9FD356',
+    accentDark: '#70587C',
     accentDark1: '#1f1822',
     accentDark2: '#48394f',
     accentDark3: '#a494ab',

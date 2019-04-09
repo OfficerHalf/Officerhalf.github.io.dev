@@ -1,3 +1,3 @@
-export interface ButterResponseReadmeHtml {
+export interface ButterResponseGithub {
     data: string;
 }

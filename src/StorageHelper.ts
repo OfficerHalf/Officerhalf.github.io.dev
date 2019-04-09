@@ -9,7 +9,7 @@ interface StorageItem {
 export function setString(
     value: string,
     key: string,
-    expiration: number = 3600000
+    expiration: number = 300000
 ) {
     const item: StorageItem = {
         expiration,

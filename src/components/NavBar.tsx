@@ -4,11 +4,12 @@ import { Colors } from '../Constants';
 import './NavBar.css';
 
 const style: React.CSSProperties = {
-    borderBottom: `1px solid ${Colors.black2}`,
-    borderTop: `0px solid ${Colors.black}`,
+    backgroundColor: Colors.accentDark,
+    color: Colors.white,
+    borderBottom: '1px solid #eee',
     fontSize: 13,
     fontWeight: 600,
-    height: 60,
+    height: 65,
     letterSpacing: '.2rem',
     lineHeight: '6.5rem',
     textTransform: 'uppercase'
@@ -16,11 +17,15 @@ const style: React.CSSProperties = {
 
 const clearStyle: React.CSSProperties = {
     color: 'inherit',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    display: 'inline-block',
+    height: '100%'
 };
 
 const linkStyle: React.CSSProperties = {
-    marginRight: 35
+    marginRight: 35,
+    display: 'inline-block',
+    height: '100%'
 };
 
 class NavBar extends React.PureComponent<RouteComponentProps> {

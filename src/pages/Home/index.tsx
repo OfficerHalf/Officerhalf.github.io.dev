@@ -1,7 +1,6 @@
 import React from 'react';
 import { RouteComponentProps, Link } from 'react-router-dom';
 import { Shuffle } from '../../Utilities';
-import { Colors } from '../../Constants';
 import ProjectApi from '../../api/ProjectApi';
 import * as ProjectTypes from '../../types/ProjectTypes';
 import './index.css';
@@ -56,13 +55,7 @@ export default class Home extends React.PureComponent<
                     </div>
                 </div>
                 <div className="row">
-                    <hr
-                        style={{
-                            marginTop: 0,
-                            marginBottom: 20,
-                            borderColor: `${Colors.black2}`
-                        }}
-                    />
+                    <hr style={{ marginTop: 0, marginBottom: 20 }} />
                     <div className="contactLinks" style={{ fontSize: 25 }}>
                         <a
                             href="mailto:nathan@nathan-smith.org"

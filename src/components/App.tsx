@@ -20,15 +20,7 @@ class App extends React.Component<{}, AppState> {
     }
     public render() {
         return (
-            <div
-                id="AppWrapper"
-                style={{
-                    minHeight: '100vh',
-                    backgroundImage: `linear-gradient(to bottom right, white, ${
-                        Colors.blue
-                    }25)`
-                }}
-            >
+            <div id="AppWrapper">
                 <HashRouter>
                     <div>
                         <NavBar />
