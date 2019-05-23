@@ -1,9 +1,0 @@
-#lootTiles {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-#lootTiles .lootTile {
-    margin: 10px;
-}
