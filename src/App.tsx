@@ -4,9 +4,8 @@ import { ThemeProvider } from "@material-ui/styles";
 import { HashRouter, Switch, Route } from "react-router-dom";
 
 import Theme from "./styles/Theme";
-import { TopBar } from "./components";
 import { routes } from "./constants/routes";
-import { Home, Blog, Projects } from "./views";
+import { Home, Blog, Projects, TopBar } from "./components";
 
 const App: React.FC = () => {
   return (
@@ -14,14 +13,12 @@ const App: React.FC = () => {
       <HashRouter>
         <CssBaseline />
         <ThemeProvider theme={Theme}>
-          <Container maxWidth="lg">
-            <TopBar />
-            <Switch>
-              <Route exact path={routes.home.base} component={Home} />
-              <Route path={routes.projects.base} component={Projects} />
-              <Route path={routes.blog.base} component={Blog} />
-            </Switch>
-          </Container>
+          <TopBar />
+          <Switch>
+            <Route exact path={routes.home.base} component={Home} />
+            <Route path={routes.projects.base} component={Projects} />
+            <Route path={routes.blog.base} component={Blog} />
+          </Switch>
         </ThemeProvider>
       </HashRouter>
     </>

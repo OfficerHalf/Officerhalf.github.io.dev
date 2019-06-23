@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { butter } from "../../api/butter";
-import { BlogPost } from "../../interfaces/BlogPost";
+import { butter } from "../api/butter";
+import { BlogPost } from "../interfaces/BlogPost";
 
 interface BlogState {
   posts: BlogPost[];
