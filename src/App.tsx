@@ -6,7 +6,7 @@ import { HashRouter, Switch, Route } from "react-router-dom";
 import Theme from "./styles/Theme";
 import { TopBar } from "./components";
 import { routes } from "./constants/routes";
-import { Home } from "./views/Home";
+import { Home, Blog, Projects } from "./views";
 
 const App: React.FC = () => {
   return (
@@ -18,6 +18,8 @@ const App: React.FC = () => {
             <TopBar />
             <Switch>
               <Route exact path={routes.home.base} component={Home} />
+              <Route path={routes.projects.base} component={Projects} />
+              <Route path={routes.blog.base} component={Blog} />
             </Switch>
           </Container>
         </ThemeProvider>
