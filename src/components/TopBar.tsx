@@ -1,14 +1,9 @@
 import * as React from "react";
-import {
-  Toolbar,
-  IconButton,
-  makeStyles,
-  AppBar,
-  Tabs,
-  Tab
-} from "@material-ui/core";
+import { IconButton, makeStyles, AppBar, Tabs, Tab } from "@material-ui/core";
 import { GithubCircle, LinkedinBox } from "mdi-material-ui";
 import { Email } from "@material-ui/icons";
+import { RouteComponentProps, withRouter } from "react-router";
+import { routes } from "../constants/routes";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,26 +17,36 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const TopBar: React.FC = props => {
+const TopBarComponent: React.FC<RouteComponentProps> = props => {
   const classes = useStyles();
-  const [tab, setTab] = React.useState<number>(0);
 
-  function handleChange(event: React.ChangeEvent<{}>, value: number) {
-    setTab(value);
+  function handleChange(event: React.ChangeEvent<{}>, value: string) {
+    props.history.push(value);
+  }
+
+  function getTab(): string {
+    const path = props.location.pathname;
+    if (path.startsWith(routes.projects.base)) {
+      return routes.projects.base;
+    } else if (path.startsWith(routes.blog.base)) {
+      return routes.blog.base;
+    } else {
+      return routes.home.base;
+    }
   }
 
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.appBar}>
         <Tabs
-          value={tab}
+          value={getTab()}
           onChange={handleChange}
           className={classes.tabs}
           indicatorColor="secondary"
         >
-          <Tab label="Home" />
-          <Tab label="Projects" />
-          <Tab label="Blog" />
+          <Tab label="Home" value={routes.home.base} />
+          <Tab label="Projects" value={routes.projects.base} />
+          <Tab label="Blog" value={routes.blog.base} />
         </Tabs>
         <IconButton color="inherit">
           <GithubCircle />
@@ -56,3 +61,5 @@ export const TopBar: React.FC = props => {
     </div>
   );
 };
+
+export const TopBar = withRouter(TopBarComponent);
