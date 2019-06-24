@@ -8,6 +8,8 @@ import {
 import { Email } from "@material-ui/icons";
 import { GithubCircle, LinkedinBox } from "mdi-material-ui";
 
+import { links } from "../../constants/links";
+
 const useStyles = makeStyles(theme =>
   createStyles({
     actions: {
@@ -20,13 +22,13 @@ export const Footer: React.FC = props => {
   const classes = useStyles();
   return (
     <CardActions className={classes.actions}>
-      <IconButton>
+      <IconButton href={links.github} target="_blank" rel="noopener">
         <GithubCircle />
       </IconButton>
-      <IconButton>
+      <IconButton href={links.linkedin} target="_blank" rel="noopener">
         <LinkedinBox />
       </IconButton>
-      <IconButton>
+      <IconButton href={links.email}>
         <Email />
       </IconButton>
     </CardActions>
