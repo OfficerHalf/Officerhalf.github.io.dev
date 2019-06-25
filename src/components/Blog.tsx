@@ -1,30 +1,20 @@
 import * as React from "react";
+import { Container, Grid } from "@material-ui/core";
 
-import { butter } from "../api/butter";
-import { BlogPost } from "../interfaces/BlogPost";
+import { BlogContext } from "../store/BlogContext";
+import { BlogPostCard } from "./BlogPostCard";
 
-interface BlogState {
-  posts: BlogPost[];
-}
-
-export class Blog extends React.Component<{}, BlogState> {
-  private api: butter;
-
-  constructor(props: any) {
-    super(props);
-    this.api = new butter();
-    this.state = {
-      posts: []
-    };
-  }
-
-  public componentDidMount() {
-    this.api.getPosts().then(resp => {
-      this.setState({ posts: resp.data });
-    });
-  }
-
-  public render() {
-    return <div>{this.state.posts.map(post => post.title)}</div>;
-  }
-}
+export const Blog: React.FC = props => {
+  const context = React.useContext(BlogContext);
+  return (
+    <Container maxWidth="lg">
+      <Grid container spacing={2}>
+        {context.posts.map(post => (
+          <Grid item sm>
+            <BlogPostCard post={post} />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
+  );
+};
