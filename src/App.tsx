@@ -1,7 +1,7 @@
 import React from "react";
 import { CssBaseline, Container } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
-import { HashRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Helmet from "react-helmet";
 
 import Theme from "./styles/Theme";
@@ -12,7 +12,7 @@ import { BlogProvider } from "./store/BlogContext";
 const App: React.FC = () => {
   return (
     <>
-      <HashRouter>
+      <BrowserRouter>
         <Helmet>
           <title>Nathan Smith</title>
           <meta
@@ -31,7 +31,7 @@ const App: React.FC = () => {
             </Switch>
           </ThemeProvider>
         </BlogProvider>
-      </HashRouter>
+      </BrowserRouter>
     </>
   );
 };

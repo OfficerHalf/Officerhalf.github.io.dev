@@ -20,16 +20,16 @@ export const Blog: React.FC = props => {
   const context = React.useContext(BlogContext);
   const classes = useStyles();
   return (
-    <Switch>
-      <Route exact path={routes.blog.base}>
-        <>
-          <Helmet>
-            <title>Nathan Smith - Blog</title>
-            <meta
-              name="description"
-              content="Nathan's blog is where he occasionally puts words about life, software, and Dungeons and Dragons."
-            />
-          </Helmet>
+    <>
+      <Helmet>
+        <title>Nathan Smith - Blog</title>
+        <meta
+          name="description"
+          content="Nathan's blog is where he occasionally puts words about life, software, and Dungeons and Dragons."
+        />
+      </Helmet>
+      <Switch>
+        <Route exact path={routes.blog.base}>
           <Container maxWidth="lg" classes={{ root: classes.root }}>
             <Grid container spacing={2}>
               {context.posts.map(post => (
@@ -39,9 +39,9 @@ export const Blog: React.FC = props => {
               ))}
             </Grid>
           </Container>
-        </>
-      </Route>
-      <Route path={routes.blog.post.template} component={BlogPost} />
-    </Switch>
+        </Route>
+        <Route path={routes.blog.post.template} component={BlogPost} />
+      </Switch>
+    </>
   );
 };
