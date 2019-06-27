@@ -15,8 +15,10 @@ export class butter {
   }
 
   public getPosts(): Promise<GetPostsResponse> {
-    return this.client.get<GetPostsResponse>("posts", {}).then(postData => {
-      return postData.data;
-    });
+    return this.client
+      .get<GetPostsResponse>("pages/blog_post", {})
+      .then(postData => {
+        return postData.data;
+      });
   }
 }

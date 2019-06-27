@@ -1,19 +1,21 @@
 import { Author } from "./Author";
 import { Tag } from "./Tag";
+import { Category } from "./Category";
 
 export interface BlogPost {
-  created: string;
-  published: string;
-  url: string;
   slug: string;
-  featured_image: string;
-  title: string;
-  body: string;
-  summary: string;
-  seo_title: string;
-  meta_description: string;
-  status: string;
-  author: Author;
-  tags: Tag[];
-  categories: Tag[];
+  page_type: string;
+  fields: {
+    title: string;
+    subtitle: string;
+    body: string;
+    summary: string;
+    seo_title: string;
+    meta_description: string;
+    publish_date: string;
+    tags: Tag[];
+    category: Category;
+    card_image: string;
+    header_image: string;
+  };
 }

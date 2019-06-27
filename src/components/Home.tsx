@@ -6,7 +6,7 @@ import { BioCard } from "./BioCard";
 const useStyles = makeStyles(theme =>
   createStyles({
     root: {
-      padding: theme.spacing(2, 2)
+      padding: theme.spacing(3, 3)
     }
   })
 );

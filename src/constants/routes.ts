@@ -6,6 +6,10 @@ export const routes = {
     base: "/projects"
   },
   blog: {
-    base: "/blog"
+    base: "/blog",
+    post: {
+      template: "/blog/post/:slug",
+      value: (slug: string) => `/blog/post/${slug}`
+    }
   }
 };
