@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme =>
 const BlogPostCardBase: React.FC<
   BlogPostCardProps & RouteComponentProps
 > = props => {
-  const { post, featured = false, history } = props;
+  const { post, history } = props;
   const classes = useStyles();
   return (
     <CardActionArea
@@ -53,11 +53,14 @@ const BlogPostCardBase: React.FC<
           </Typography>
           <Typography>{post.fields.summary}</Typography>
         </CardContent>
-        <CardMedia
-          component="img"
-          src={post.fields.card_image}
-          classes={{ root: classes.media }}
-        />
+        {post.fields.card_image !== "" && (
+          <CardMedia
+            component="img"
+            src={post.fields.card_image}
+            alt={post.fields.card_image_alt}
+            classes={{ root: classes.media }}
+          />
+        )}
       </Card>
     </CardActionArea>
   );

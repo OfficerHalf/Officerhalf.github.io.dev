@@ -1,5 +1,5 @@
 import React from "react";
-import { CssBaseline, Container } from "@material-ui/core";
+import { CssBaseline } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Helmet from "react-helmet";

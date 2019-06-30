@@ -38,7 +38,6 @@ export class BlogProvider extends React.Component<{}, ContextProps> {
 
   private getPosts(): void {
     this.api.getPosts().then(postResponse => {
-      console.log(postResponse.data);
       this.setState({ posts: postResponse.data });
     });
   }

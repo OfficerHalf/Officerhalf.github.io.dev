@@ -1,4 +1,3 @@
-import { Author } from "./Author";
 import { Tag } from "./Tag";
 import { Category } from "./Category";
 
@@ -16,6 +15,8 @@ export interface BlogPost {
     tags: Tag[];
     category: Category;
     card_image: string;
+    card_image_alt: string;
     header_image: string;
+    header_image_alt: string;
   };
 }

@@ -8,8 +8,14 @@ export const routes = {
   blog: {
     base: "/blog",
     post: {
+      base: "/blog/post",
       template: "/blog/post/:slug",
       value: (slug: string) => `/blog/post/${slug}`
+    },
+    category: {
+      base: "/blog/category",
+      template: "/blog/category/:cat",
+      value: (cat: string) => `/blog/category/${cat}`
     }
   }
 };
