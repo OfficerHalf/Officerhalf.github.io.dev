@@ -1,7 +1,14 @@
 import * as React from "react";
-import { Container, Grid, makeStyles, createStyles } from "@material-ui/core";
+import {
+  Container,
+  Grid,
+  makeStyles,
+  createStyles,
+  useMediaQuery
+} from "@material-ui/core";
+import { useTheme } from "@material-ui/core/styles";
 
-import { BioCard } from "./BioCard";
+import { BioCard } from "../BioCard";
 
 const useStyles = makeStyles(theme =>
   createStyles({
@@ -13,20 +20,13 @@ const useStyles = makeStyles(theme =>
 
 export const Home: React.FC = props => {
   const classes = useStyles();
+  const theme = useTheme();
+  const condensed = useMediaQuery(theme.breakpoints.down("xs"));
   return (
     <Container maxWidth="lg" className={classes.root}>
       <Grid container spacing={2}>
         <Grid item sm>
-          <BioCard condensed />
-        </Grid>
-        <Grid item sm>
-          <BioCard />
-        </Grid>
-        <Grid item sm>
-          <BioCard condensed />
-        </Grid>
-        <Grid item sm>
-          <BioCard condensed />
+          <BioCard condensed={condensed} flat />
         </Grid>
       </Grid>
     </Container>
