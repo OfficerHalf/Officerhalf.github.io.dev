@@ -6,6 +6,12 @@ import { BlogContext } from "../../store/BlogContext";
 import { BlogPostCard } from "../BlogPostCard";
 import { routes } from "../../constants/routes";
 
+enum PostGridMode {
+  All,
+  Category,
+  Tag
+}
+
 const useStyles = makeStyles(theme =>
   createStyles({
     root: {
@@ -14,18 +20,31 @@ const useStyles = makeStyles(theme =>
   })
 );
 
-const PostGridBase: React.FC<RouteComponentProps<{ cat?: string }>> = props => {
+interface PostGridParams {
+  cat: string;
+  tag: string;
+}
+
+const PostGridBase: React.FC<RouteComponentProps<PostGridParams>> = props => {
+  const { location, match } = props;
   const classes = useStyles();
   const context = React.useContext(BlogContext);
+  const mode: PostGridMode =
+    location.pathname === routes.blog.base
+      ? PostGridMode.All
+      : location.pathname.startsWith(routes.blog.category.base)
+      ? PostGridMode.Category
+      : PostGridMode.Tag;
   return (
     <Container maxWidth="lg" classes={{ root: classes.root }}>
       <Grid container spacing={2}>
         {context.posts.map(post => {
+          const tags = post.fields.tags.map(tag => tag.tag);
           if (
-            props.location.pathname === routes.blog.base ||
-            (props.location.pathname.startsWith(routes.blog.category.base) &&
-              props.match.params.cat !== undefined &&
-              props.match.params.cat === post.fields.category.category)
+            mode === PostGridMode.All ||
+            (mode === PostGridMode.Category &&
+              post.fields.category.category === match.params.cat) ||
+            (mode === PostGridMode.Tag && tags.indexOf(match.params.tag) !== -1)
           ) {
             return (
               <Grid item sm key={`card-${post.slug}`}>

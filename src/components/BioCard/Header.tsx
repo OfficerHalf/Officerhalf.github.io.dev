@@ -15,6 +15,7 @@ import { GithubCircle, LinkedinBox } from "mdi-material-ui";
 import { MoreVert, Email } from "@material-ui/icons";
 
 import { links } from "../../constants/links";
+import { bioImage } from "../../constants/strings";
 
 const useStyles = makeStyles(theme =>
   createStyles({
@@ -28,12 +29,7 @@ const useStyles = makeStyles(theme =>
 
 export const Header: React.FC = props => {
   const classes = useStyles();
-  return (
-    <CardMedia
-      image="https://cdn.buttercms.com/Tg7ZPzeRaOVxhFyTVImj"
-      classes={{ root: classes.media }}
-    />
-  );
+  return <CardMedia image={bioImage} classes={{ root: classes.media }} />;
 };
 
 export const CondensedHeader: React.FC = props => {
@@ -49,11 +45,7 @@ export const CondensedHeader: React.FC = props => {
   return (
     <>
       <CardHeader
-        avatar={
-          <Avatar src="https://cdn.buttercms.com/Tg7ZPzeRaOVxhFyTVImj">
-            NS
-          </Avatar>
-        }
+        avatar={<Avatar src={bioImage}>NS</Avatar>}
         title="Nathan Smith"
         action={
           <IconButton onClick={handleClick}>
