@@ -19,6 +19,7 @@ export const Blog: React.FC = props => {
       <Switch>
         <Route exact path={routes.blog.base} component={PostGrid} />
         <Route path={routes.blog.category.template} component={PostGrid} />
+        <Route path={routes.blog.tag.template} component={PostGrid} />
         <Route path={routes.blog.post.template} component={BlogPost} />
       </Switch>
     </>
