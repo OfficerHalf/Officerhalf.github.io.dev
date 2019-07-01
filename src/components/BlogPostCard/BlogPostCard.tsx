@@ -6,8 +6,10 @@ import {
   CardActionArea,
   makeStyles,
   createStyles,
-  Typography
+  Typography,
+  useMediaQuery
 } from "@material-ui/core";
+import { useTheme } from "@material-ui/core/styles";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import moment from "moment";
 
@@ -42,6 +44,8 @@ const BlogPostCardBase: React.FC<
   BlogPostCardProps & RouteComponentProps
 > = props => {
   const { post, history } = props;
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("xs"));
   const classes = useStyles();
   return (
     <CardActionArea
@@ -58,7 +62,7 @@ const BlogPostCardBase: React.FC<
           </Typography>
           <Typography>{post.fields.summary}</Typography>
         </CardContent>
-        {post.fields.card_image !== "" && (
+        {!mobile && post.fields.card_image !== "" && (
           <CardMedia
             component="img"
             src={post.fields.card_image}
