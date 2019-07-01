@@ -12,7 +12,7 @@ import {
   IconButton
 } from "@material-ui/core";
 import { GithubCircle, LinkedinBox } from "mdi-material-ui";
-import { MoreVert, Email } from "@material-ui/icons";
+import { MoreVert } from "@material-ui/icons";
 
 import { links } from "../../constants/links";
 import { bioImage } from "../../constants/strings";
@@ -81,12 +81,6 @@ export const CondensedHeader: React.FC = props => {
             <LinkedinBox />
           </ListItemIcon>
           <ListItemText>LinkedIn</ListItemText>
-        </MenuItem>
-        <MenuItem component="a" href={links.email}>
-          <ListItemIcon>
-            <Email />
-          </ListItemIcon>
-          <ListItemText>Email</ListItemText>
         </MenuItem>
       </Menu>
     </>

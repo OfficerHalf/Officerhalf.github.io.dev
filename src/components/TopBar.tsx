@@ -1,13 +1,12 @@
 import * as React from "react";
 import { IconButton, makeStyles, AppBar, Tabs, Tab } from "@material-ui/core";
 import { GithubCircle, LinkedinBox } from "mdi-material-ui";
-import { Email } from "@material-ui/icons";
 import { RouteComponentProps, withRouter } from "react-router";
 import { routes } from "../constants/routes";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexShrink: 1
   },
   appBar: {
     flexDirection: "row"
@@ -30,6 +29,8 @@ const TopBarComponent: React.FC<RouteComponentProps> = props => {
       return routes.projects.base;
     } else if (path.startsWith(routes.blog.base)) {
       return routes.blog.base;
+    } else if (path.startsWith(routes.contact.base)) {
+      return routes.contact.base;
     } else {
       return routes.home.base;
     }
@@ -47,15 +48,13 @@ const TopBarComponent: React.FC<RouteComponentProps> = props => {
           <Tab label="Home" value={routes.home.base} />
           <Tab label="Projects" value={routes.projects.base} />
           <Tab label="Blog" value={routes.blog.base} />
+          <Tab label="Contact" value={routes.contact.base} />
         </Tabs>
         <IconButton color="inherit">
           <GithubCircle />
         </IconButton>
         <IconButton color="inherit">
           <LinkedinBox />
-        </IconButton>
-        <IconButton color="inherit">
-          <Email />
         </IconButton>
       </AppBar>
     </div>

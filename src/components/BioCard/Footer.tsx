@@ -5,7 +5,6 @@ import {
   makeStyles,
   createStyles
 } from "@material-ui/core";
-import { Email } from "@material-ui/icons";
 import { GithubCircle, LinkedinBox } from "mdi-material-ui";
 
 import { links } from "../../constants/links";
@@ -27,9 +26,6 @@ export const Footer: React.FC = props => {
       </IconButton>
       <IconButton href={links.linkedin} target="_blank" rel="noopener">
         <LinkedinBox />
-      </IconButton>
-      <IconButton href={links.email}>
-        <Email />
       </IconButton>
     </CardActions>
   );

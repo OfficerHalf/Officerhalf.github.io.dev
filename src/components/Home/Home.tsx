@@ -15,7 +15,9 @@ import { BlogContext } from "../../store/BlogContext";
 const useStyles = makeStyles(theme =>
   createStyles({
     root: {
-      padding: theme.spacing(3, 3)
+      padding: theme.spacing(3, 3),
+      flexGrow: 1,
+      height: "100%"
     }
   })
 );

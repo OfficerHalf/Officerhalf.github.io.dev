@@ -2,6 +2,9 @@ export const routes = {
   home: {
     base: "/"
   },
+  contact: {
+    base: "/contact"
+  },
   projects: {
     base: "/projects"
   },
