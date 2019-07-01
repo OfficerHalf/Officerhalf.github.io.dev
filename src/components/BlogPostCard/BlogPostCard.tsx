@@ -21,15 +21,19 @@ interface BlogPostCardProps {
 
 const useStyles = makeStyles(theme =>
   createStyles({
+    root: {
+      maxWidth: 700
+    },
     card: {
       display: "flex",
       minHeight: 200
     },
     cardContent: {
-      flexGrow: 1
+      flexGrow: 1,
+      minWidth: 200
     },
     media: {
-      maxWidth: 200
+      width: 200
     }
   })
 );
@@ -41,6 +45,7 @@ const BlogPostCardBase: React.FC<
   const classes = useStyles();
   return (
     <CardActionArea
+      classes={{ root: classes.root }}
       onClick={() => history.push(`${routes.blog.base}/post/${post.slug}`)}
     >
       <Card classes={{ root: classes.card }}>
