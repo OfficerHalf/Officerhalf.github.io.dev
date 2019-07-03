@@ -1,7 +1,5 @@
-import { BlogPost } from "./BlogPost";
-
-export interface GetPostsResponse {
-  data: BlogPost[];
+export interface ButterResponse<T> {
+  data: T;
   meta: {
     count: number;
     previous_page: string | null;

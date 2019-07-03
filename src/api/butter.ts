@@ -1,5 +1,6 @@
 import Axios, { AxiosInstance } from "axios";
-import { GetPostsResponse } from "../interfaces/GetPostsResponse";
+import { ButterResponse } from "../interfaces/ButterResponse";
+import { BlogPost } from "../interfaces/BlogPost";
 
 const awBeans: string = "9ffd3dad4fd54423ad22bc3ce3e1a2fd6bbc9081";
 
@@ -14,11 +15,13 @@ export class butter {
     });
   }
 
-  public getPosts(): Promise<GetPostsResponse> {
+  public getPosts(): Promise<ButterResponse<BlogPost[]>> {
     return this.client
-      .get<GetPostsResponse>("pages/blog_post", {})
+      .get<ButterResponse<BlogPost[]>>("pages/blog_post", {})
       .then(postData => {
         return postData.data;
       });
   }
+
+  public getProjects(): Promise<ButterResponse<Project[]>>;
 }
