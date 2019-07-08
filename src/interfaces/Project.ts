@@ -3,12 +3,15 @@ export interface Project {
   pageType: string;
   fields: {
     title: string;
-    livePreview?: string;
-    source?: string;
+    live_link?: string;
+    source_link?: string;
     technologies: string[];
-    myRole?: string;
+    my_role?: string;
     challenges?: string;
     solution?: string;
     features: string;
+    icon: string;
+    preview_image: string;
+    summary: string;
   };
 }
