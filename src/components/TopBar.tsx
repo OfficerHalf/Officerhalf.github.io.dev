@@ -3,6 +3,7 @@ import { IconButton, makeStyles, AppBar, Tabs, Tab } from "@material-ui/core";
 import { GithubCircle, LinkedinBox } from "mdi-material-ui";
 import { RouteComponentProps, withRouter } from "react-router";
 import { routes } from "../constants/routes";
+import { ThemeContext } from "../store/ThemeContext";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,7 +18,18 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TopBarComponent: React.FC<RouteComponentProps> = props => {
+  const themeContext = React.useContext(ThemeContext);
+  const barRef = React.createRef<HTMLDivElement>();
   const classes = useStyles();
+
+  React.useEffect(() => {
+    if (
+      barRef.current !== null &&
+      themeContext.topBarHeight !== barRef.current.scrollHeight
+    ) {
+      themeContext.setTopBarHeight(barRef.current.scrollHeight);
+    }
+  }, [barRef.current]);
 
   function handleChange(event: React.ChangeEvent<{}>, value: string) {
     props.history.push(value);
@@ -37,7 +49,7 @@ const TopBarComponent: React.FC<RouteComponentProps> = props => {
   }
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} ref={barRef}>
       <AppBar position="static" className={classes.appBar}>
         <Tabs
           value={getTab()}

@@ -9,6 +9,6 @@ import { createMuiTheme } from "@material-ui/core/styles";
 //   }
 // });
 
-const theme = createMuiTheme();
+export const Theme = createMuiTheme();
 
-export default theme;
+export default Theme;
