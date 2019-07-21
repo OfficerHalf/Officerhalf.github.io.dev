@@ -1,0 +1,8 @@
+@import '../../variables/space.scss';
+
+.top-bar {
+    margin-bottom: $space-m;
+    .top-bar-button {
+        margin-right: $space-xs;
+    }
+}
