@@ -8,6 +8,6 @@ export const routes = {
 };
 
 export enum Route {
-  Home,
-  Contact
+  Home = '/',
+  Contact = '/contact'
 }

@@ -3,11 +3,12 @@ import {
   Navbar,
   NavbarGroup,
   NavbarHeading,
-  NavbarDivider
+  NavbarDivider,
+  Tabs,
+  Tab
 } from '@blueprintjs/core';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { routes, Route } from '../../constants/routes';
-import { TopBarButton } from './TopBarButton';
 import '../../styles/components/Navigation/TopBar.scss';
 
 const TopBarBase: React.FC<RouteComponentProps> = props => {
@@ -22,15 +23,13 @@ const TopBarBase: React.FC<RouteComponentProps> = props => {
       <NavbarGroup>
         <NavbarHeading>Nathan Smith</NavbarHeading>
         <NavbarDivider />
-        <TopBarButton to={routes.home.base} active={active === Route.Home}>
-          Home
-        </TopBarButton>
-        <TopBarButton
-          to={routes.contact.base}
-          active={active === Route.Contact}
+        <Tabs
+          selectedTabId={active}
+          onChange={(route: string) => props.history.push(route)}
         >
-          Contact
-        </TopBarButton>
+          <Tab id={Route.Home} title="Home" />
+          <Tab id={Route.Contact} title="Contact" />
+        </Tabs>
       </NavbarGroup>
     </Navbar>
   );
