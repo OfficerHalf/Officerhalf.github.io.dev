@@ -8,15 +8,15 @@ import {
   Tab
 } from '@blueprintjs/core';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { routes, Route } from '../../constants/routes';
+import { routes, AppRoute } from '../../constants/routes';
 import '../../styles/components/Navigation/TopBar.scss';
 
 const TopBarBase: React.FC<RouteComponentProps> = props => {
-  let active: Route;
-  if (props.location.pathname.startsWith(routes.contact.base)) {
-    active = Route.Contact;
+  let active: AppRoute;
+  if (props.location.pathname.startsWith(routes.app.contact.base)) {
+    active = AppRoute.Contact;
   } else {
-    active = Route.Home;
+    active = AppRoute.Home;
   }
   return (
     <Navbar className="top-bar bp3-dark">
@@ -27,8 +27,8 @@ const TopBarBase: React.FC<RouteComponentProps> = props => {
           selectedTabId={active}
           onChange={(route: string) => props.history.push(route)}
         >
-          <Tab id={Route.Home} title="Home" />
-          <Tab id={Route.Contact} title="Contact" />
+          <Tab id={AppRoute.Home} title="Home" />
+          <Tab id={AppRoute.Contact} title="Contact" />
         </Tabs>
       </NavbarGroup>
     </Navbar>

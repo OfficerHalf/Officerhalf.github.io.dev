@@ -1,13 +1,19 @@
 export const routes = {
-  home: {
-    base: '/'
+  app: {
+    root: '/',
+    home: {
+      base: '/'
+    },
+    contact: {
+      base: '/contact'
+    }
   },
-  contact: {
-    base: '/contact'
+  dndTools: {
+    root: '/dnd'
   }
 };
 
-export enum Route {
+export enum AppRoute {
   Home = '/',
   Contact = '/contact'
 }
