@@ -1,14 +1,15 @@
 {
-    "extends": [
-      "tslint:latest",
-      "tslint-react",
-      "tslint-config-prettier"
-    ],
-    "rules": {
-        "ordered-imports": false,
-        "no-submodule-imports": false,
-        "object-literal-sort-keys": false,
-        "jsx-no-lambda": false,
-        "jsx-boolean-value": false
-    }
+  "extends": [
+    "tslint:latest",
+    "tslint-react",
+    "tslint-config-prettier"
+  ],
+  "rules": {
+    "ordered-imports": false,
+    "no-submodule-imports": false,
+    "object-literal-sort-keys": false,
+    "jsx-no-lambda": false,
+    "jsx-boolean-value": false,
+    "interface-name": false
   }
+}
