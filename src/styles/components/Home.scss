@@ -1,6 +1,11 @@
+@import '../variables/responsive.scss';
+
 .home-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  @media only screen and (min-width: $break-mobile) {
+    max-width: 700px;
+  }
 }
