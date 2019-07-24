@@ -1,38 +1,60 @@
 import * as React from 'react';
-import { CSSTransition } from 'react-transition-group';
+import { TransitionProps } from 'react-transition-group/Transition';
+import { Transition } from 'react-transition-group';
+import { TransitionStyles } from '../../interfaces/TransitionStyles';
 
-export enum BounceDirection {
-  Bottom = 'bottom',
-  Top = 'top',
-  Left = 'left',
-  Right = 'right'
+function getTranslation(direction: string, percent: number): string {
+  switch (direction) {
+    case 'bottom':
+      return `translateY(${percent}%)`;
+    case 'top':
+      return `translateY(-${percent}%)`;
+    case 'right':
+      return `translateX(${percent}%)`;
+    case 'left':
+      return `translateX(-${percent}%)`;
+  }
+  return '';
 }
 
 interface BounceProps {
   in: boolean;
-  direction?: BounceDirection;
-  appear?: boolean;
-  unmountOnExit?: boolean;
+  percent?: number;
+  direction?: 'top' | 'bottom' | 'left' | 'right';
   timeout?: number;
 }
 
-export const Bounce: React.FC<BounceProps> = props => {
+export const Bounce: React.FC<
+  BounceProps & Partial<TransitionProps>
+> = props => {
   const {
     in: inProp,
-    direction = BounceDirection.Bottom,
-    unmountOnExit,
-    appear,
+    percent = 50,
+    direction = 'bottom',
     timeout = 300,
-    children
+    ease = 'ease',
+    children,
+    ...rest
   } = props;
+
+  const startStyle: React.CSSProperties = {
+    transition: `transform ${timeout}ms`,
+    transitionTimingFunction: ease,
+    transform: getTranslation(direction, percent)
+  };
+
+  const styles: TransitionStyles = {
+    entering: { transform: getTranslation(direction, 0) },
+    entered: { transform: getTranslation(direction, 0) },
+    exiting: { transform: getTranslation(direction, percent) },
+    exited: { transform: getTranslation(direction, percent) }
+  };
+
   return (
-    <CSSTransition
-      children={children}
-      timeout={timeout}
-      in={inProp}
-      unmountOnExit={unmountOnExit}
-      appear={appear}
-      classNames={`${direction} bounce`}
-    />
+    <Transition timeout={timeout} in={inProp} {...rest}>
+      {state => (
+        <div style={{ ...startStyle, ...styles[state] }} children={children} />
+      )}
+    </Transition>
   );
 };
