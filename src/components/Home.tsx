@@ -13,10 +13,17 @@ export const Home: React.FC = props => {
         applications and maintains a CSS + React UI library. In his spare time
         he plays tabletop and video games and takes pictures of his cats.
       </p>
+      <p>
+        This is v3.0 or maybe v4.0 of my website, but it is still under
+        construction. For a more complete experience, see{' '}
+        <a href="http://nathan-smith.org">here</a>.
+      </p>
       <h2>Projects</h2>
-      {projects.map(project => (
-        <Project {...project} key={project.title} />
-      ))}
+      <div className="home-projects-list">
+        {projects.map(project => (
+          <Project {...project} key={project.title} />
+        ))}
+      </div>
     </div>
   );
 };

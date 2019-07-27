@@ -10,5 +10,12 @@ export const projects: ProjectProps[] = [
       'An extension for Visual Studio Code that formats the markdown preview in the same manner as the Homebrewery',
     link:
       'https://marketplace.visualstudio.com/items?itemName=officerhalf.homebrewery-vscode'
+  },
+  {
+    title: 'Alloy Theme',
+    description:
+      'A more monochromatic, desaturated Monokai theme for Visual Studio Code, PrismJS, and Conemu.',
+    link:
+      'https://marketplace.visualstudio.com/items?itemName=officerhalf.alloy-theme'
   }
 ];

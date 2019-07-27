@@ -7,6 +7,7 @@ import {
   Tabs,
   Tab
 } from '@blueprintjs/core';
+import { Linkedin, Github } from '../Icons';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { routes, AppRoute } from '../../constants/routes';
 import '../../styles/components/Navigation/TopBar.scss';
@@ -30,6 +31,10 @@ const TopBarBase: React.FC<RouteComponentProps> = props => {
           <Tab id={AppRoute.Home} title="Home" />
           <Tab id={AppRoute.Contact} title="Contact" />
         </Tabs>
+      </NavbarGroup>
+      <NavbarGroup align="right">
+        <Linkedin />
+        <Github />
       </NavbarGroup>
     </Navbar>
   );
