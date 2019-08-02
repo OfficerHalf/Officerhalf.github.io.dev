@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {
+  AnchorButton,
   Navbar,
   NavbarGroup,
   NavbarHeading,
@@ -33,8 +34,24 @@ const TopBarBase: React.FC<RouteComponentProps> = props => {
         </Tabs>
       </NavbarGroup>
       <NavbarGroup align="right">
-        <Linkedin />
-        <Github />
+        <AnchorButton
+          minimal
+          href="https://www.linkedin.com/in/nathan-r-smith/"
+          target="_blank"
+          rel="noopener noreferrer"
+          icon={<Linkedin />}
+        >
+          LinkedIn
+        </AnchorButton>
+        <AnchorButton
+          minimal
+          href="https://github.com/OfficerHalf"
+          target="_blank"
+          rel="noopener noreferrer"
+          icon={<Github />}
+        >
+          GitHub
+        </AnchorButton>
       </NavbarGroup>
     </Navbar>
   );
