@@ -10,11 +10,11 @@ interface ScaleProps {
   ease?: 'ease' | 'linear' | 'ease-in' | 'ease-out' | 'ease-in-out';
 }
 
-export const Scale: React.FC<ScaleProps & Partial<TransitionProps>> = props => {
+export const Pulse: React.FC<ScaleProps & Partial<TransitionProps>> = props => {
   const {
     in: inProp,
-    scale = 0.9,
-    timeout = 300,
+    scale = 1.1,
+    timeout = 100,
     ease = 'ease',
     children,
     ...rest
@@ -22,15 +22,14 @@ export const Scale: React.FC<ScaleProps & Partial<TransitionProps>> = props => {
 
   const startStyle: React.CSSProperties = {
     transition: `transform ${timeout}ms`,
-    transitionTimingFunction: ease,
-    transform: `scale(${scale})`
+    transitionTimingFunction: ease
   };
 
   const styles: TransitionStyles = {
-    entering: { transform: `scale(1)` },
-    entered: { transform: `scale(1)` },
-    exiting: { transform: `scale(${scale})` },
-    exited: { transform: `scale(${scale})` }
+    entering: { transform: `scale(${scale})` },
+    entered: {},
+    exiting: {},
+    exited: {}
   };
 
   return (

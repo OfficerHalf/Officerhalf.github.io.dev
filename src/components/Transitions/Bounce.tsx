@@ -22,6 +22,7 @@ interface BounceProps {
   percent?: number;
   direction?: 'top' | 'bottom' | 'left' | 'right';
   timeout?: number;
+  ease?: 'ease' | 'linear' | 'ease-in' | 'ease-out' | 'ease-in-out';
 }
 
 export const Bounce: React.FC<
