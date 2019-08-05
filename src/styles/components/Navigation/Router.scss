@@ -1,9 +1,8 @@
 @import '../../variables/space.scss';
 
 .router-wrapper {
-  padding-top: $space-m;
-  padding-left: $space-m;
-  padding-right: $space-m;
   display: flex;
   justify-content: center;
+  min-width: 100vw;
+  min-height: 100vh;
 }

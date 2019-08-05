@@ -1,0 +1,25 @@
+@import '../../variables/all.scss';
+
+.home-wrapper {
+  background-image: url('../../../images/components/Home/Trees2.jpg');
+  background-color: $background-color;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  .home-section {
+    color: white;
+    background-color: rgba($color: $background-color, $alpha: 0.3);
+  }
+}
+
+.home-projects-list {
+  .project-wrapper {
+    margin-bottom: $space-m;
+  }
+}
