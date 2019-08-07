@@ -6,7 +6,7 @@ import '../../styles/components/Home/Home.scss';
 export const Home: React.FC = props => {
   return (
     <div className="home-wrapper">
-      <div className="home-section">
+      <div className="home-section bp3-dark">
         <h2>About</h2>
         <p>
           Nathan Smith is an Associate Software Developer at Bentley Systems
@@ -21,7 +21,7 @@ export const Home: React.FC = props => {
           <a href="http://nathan-smith.org">here</a>.
         </p>
       </div>
-      <div className="home-section">
+      <div className="home-section bp3-dark">
         <h2>Projects</h2>
         <div className="home-projects-list">
           {projects.map(project => (
