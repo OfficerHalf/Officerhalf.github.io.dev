@@ -1,33 +1,37 @@
 import * as React from 'react';
 import { Project } from '../Project';
 import { projects } from '../../constants/strings';
+import { Contact } from '../Contact';
 import '../../styles/components/Home/Home.scss';
 
 export const Home: React.FC = props => {
   return (
     <div className="home-wrapper">
-      <div className="home-section bp3-dark">
-        <h2>About</h2>
-        <p>
-          Nathan Smith is an Associate Software Developer at Bentley Systems
-          where he writes full-stack enterprise ASP.NET Core and TypeScript +
-          React web applications and maintains a CSS + React UI library. In his
-          spare time he plays tabletop and video games and takes pictures of his
-          cats.
-        </p>
-        <p>
-          This is v3.0 or maybe v4.0 of my website, but it is still under
-          construction. For a more complete experience, see{' '}
-          <a href="http://nathan-smith.org">here</a>.
-        </p>
-      </div>
-      <div className="home-section bp3-dark">
-        <h2>Projects</h2>
-        <div className="home-projects-list">
+      <div className="home-section">
+        <div className="home-section-inner">
+          <h2>About</h2>
+          <p>
+            Nathan Smith is an Associate Software Developer at Bentley Systems
+            where he writes full-stack enterprise ASP.NET Core and TypeScript +
+            React web applications and maintains a CSS + React UI library. In
+            his spare time he plays tabletop and video games and takes pictures
+            of his cats.
+          </p>
+          <p>
+            This is v3.0 or maybe v4.0 of my website, but it is still under
+            construction. For a more complete experience, see{' '}
+            <a href="http://nathan-smith.org">here</a>.
+          </p>
+        </div>
+        <div className="home-section-inner">
+          <h2>Projects</h2>
           {projects.map(project => (
             <Project {...project} key={project.title} />
           ))}
         </div>
+      </div>
+      <div className="home-section">
+        <Contact />
       </div>
     </div>
   );

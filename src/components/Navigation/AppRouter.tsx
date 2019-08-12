@@ -5,15 +5,14 @@ import { StickyNav } from './StickyNav';
 import { Home } from '../Home/Home';
 import { Contact } from '../Contact';
 import { FourZeroFour } from '../RootComponents/404';
-import '../../styles/components/Navigation/Router.scss';
 
 export const Router: React.FC = props => (
-  <div className="router-wrapper">
+  <>
     <StickyNav />
     <Switch>
       <Route exact path={routes.app.contact.base} component={Contact} />
       <Route exact path={routes.app.home.base} component={Home} />
       <Route component={FourZeroFour} />
     </Switch>
-  </div>
+  </>
 );

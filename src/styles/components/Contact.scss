@@ -1,18 +1,11 @@
 @import '../variables/space.scss';
-@import '../../../node_modules/@blueprintjs/core/lib/scss/variables.scss';
 
 .contact-iframe {
     border: 0;
     width: 100%;
-    min-height: calc(100vh - #{$pt-navbar-height} - #{$space-l});
+    min-height: calc(100vh - #{$space-xxl});
+    margin-top: $space-xxl;
     &.hidden {
         display: none;
     }
-}
-
-.contact-spinner-wrapper {
-    min-height: calc(50vh - #{$pt-navbar-height});
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }

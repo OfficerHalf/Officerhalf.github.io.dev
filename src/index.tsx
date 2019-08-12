@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { Router } from './components/Navigation/RootRouter';
 import 'normalize.css';
-import '@blueprintjs/core/lib/css/blueprint.css';
+import './styles/index.scss';
 
 ReactDOM.render(<Router />, document.getElementById('root'));
 
