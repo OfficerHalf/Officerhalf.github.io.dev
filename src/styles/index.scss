@@ -6,6 +6,7 @@ body {
   margin: 0;
   font-family: 'Rex Hat Text', sans-serif;
   color: $font-color-light;
+  scroll-behavior: smooth;
 }
 
 article,
@@ -15,20 +16,23 @@ header,
 nav,
 section,
 main {
-    display: block;
+  display: block;
 }
 
 * {
-    box-sizing: border-box;
-    font-family: inherit;
+  box-sizing: border-box;
+  font-family: inherit;
 }
 
 *:before,
 *:after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
-a, a:visited, a:hover, a:active {
+a,
+a:visited,
+a:hover,
+a:active {
   text-decoration: none;
   color: $font-color-light-link;
   &:hover {
@@ -36,7 +40,12 @@ a, a:visited, a:hover, a:active {
   }
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-top: 0;
   font-family: 'Red Hat Display', sans-serif;
 }

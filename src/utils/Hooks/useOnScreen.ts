@@ -17,7 +17,7 @@ export function useOnScreen<T extends Element>(
     if (ref.current) {
       observer.observe(ref.current);
     }
-    return () => observer.unobserve(ref.current);
+    return () => observer.unobserve(ref.current!);
   }, []);
 
   return intersecting;

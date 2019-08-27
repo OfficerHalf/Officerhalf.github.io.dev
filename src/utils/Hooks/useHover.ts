@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 
-export function useHover() {
+export function useHover<T extends Element>(): [React.RefObject<T>, boolean] {
   const [hovered, setHovered] = useState<boolean>(false);
-  const ref = useRef<Element>(null);
+  const ref = useRef<T>(null);
   const handleMouseOver = () => setHovered(true);
   const handleMouseOut = () => setHovered(false);
 
