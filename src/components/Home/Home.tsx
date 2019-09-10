@@ -4,11 +4,14 @@ import { projects } from '../../constants/strings';
 import { Contact } from '../Contact';
 import '../../styles/components/Home/Home.scss';
 import { StickyNav } from '../Navigation/StickyNav';
-import { useScrollTo } from '../../utils/Hooks/useScrollTo';
+import { useScrollTo } from 'the-captains-hooks';
 
 export const Home: React.FC = props => {
-  const [homeRef, scrollToHome] = useScrollTo<HTMLDivElement>();
-  const [contactRef, scrollToContact] = useScrollTo<HTMLDivElement>();
+  const homeRef = React.useRef<HTMLDivElement>(null);
+  const contactRef = React.useRef<HTMLDivElement>(null);
+  const scrollToHome = useScrollTo<HTMLDivElement>(homeRef);
+  const scrollToContact = useScrollTo<HTMLDivElement>(contactRef);
+
   return (
     <>
       <StickyNav
