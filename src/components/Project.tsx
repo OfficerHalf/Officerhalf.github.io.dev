@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card } from '@blueprintjs/core';
+import '../styles/components/Project.scss';
 
 export interface ProjectProps {
   title: string;
@@ -9,12 +9,17 @@ export interface ProjectProps {
 
 export const Project: React.FC<ProjectProps> = props => {
   return (
-    <Card className="project-wrapper">
-      <h3>{props.title}</h3>
-      <p>{props.description}</p>
-      <a href={props.link} target="_blank" rel="noopener noreferrer">
+    <div className="project">
+      <h3 className="project-title">{props.title}</h3>
+      <p className="project-description">{props.description}</p>
+      <a
+        className="project-more-link"
+        href={props.link}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         See more
       </a>
-    </Card>
+    </div>
   );
 };

@@ -20,6 +20,11 @@
     text-align: center;
     padding: $space-m;
   }
+  .home-section-inner-projects {
+    .project:not(:last-child) {
+      margin-bottom: $space-m;
+    }
+  }
 }
 
 .home-projects-list {

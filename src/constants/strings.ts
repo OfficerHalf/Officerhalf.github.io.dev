@@ -17,5 +17,10 @@ export const projects: ProjectProps[] = [
       'A more monochromatic, desaturated Monokai theme for Visual Studio Code, PrismJS, and Conemu.',
     link:
       'https://marketplace.visualstudio.com/items?itemName=officerhalf.alloy-theme'
+  },
+  {
+    title: "The Captain's Hooks",
+    description: 'A collection of useful React utility hooks.',
+    link: 'https://www.npmjs.com/package/the-captains-hooks'
   }
 ];
