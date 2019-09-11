@@ -1,5 +1,4 @@
 import * as React from 'react';
-import '../styles/components/Project.scss';
 
 export interface ProjectProps {
   title: string;

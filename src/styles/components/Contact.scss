@@ -1,11 +1,17 @@
 @import '../variables/space.scss';
 
 .contact-iframe {
-    border: 0;
-    width: 100%;
-    min-height: calc(100vh - #{$space-xxl});
-    margin-top: $space-xxl;
-    &.hidden {
-        display: none;
-    }
+  border: 0;
+  width: 100%;
+  min-height: calc(100vh);
+  padding-top: $space-3xl;
+}
+
+.contact-spinner-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 60%;
 }
