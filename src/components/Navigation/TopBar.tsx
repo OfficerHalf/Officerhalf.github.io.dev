@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { Linkedin, Github } from '../Icons';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { routes, AppRoute } from '../../constants/routes';
 import { Menu, Divider } from 'antd';
 
 const TopBarBase: React.FC<RouteComponentProps> = props => {
