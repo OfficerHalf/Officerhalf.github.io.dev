@@ -7,7 +7,7 @@ import { Menu, Divider } from 'antd';
 const TopBarBase: React.FC<RouteComponentProps> = props => {
   return (
     <>
-      <span className="logo" style={{ color: 'white' }}>
+      <span className="logo" style={{ color: 'white', paddingRight: 20 }}>
         Nathan Smith
       </span>
       <Divider type="vertical" />
