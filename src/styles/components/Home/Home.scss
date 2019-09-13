@@ -1,34 +1,11 @@
 @import '../../variables/all.scss';
 
-.home-wrapper {
-  background-image: url('../../../images/components/Home/Trees2.jpg');
-  background-color: $background-color;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-
-  .home-section {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  .home-section-inner {
-    background-color: rgba($color: $background-color, $alpha: 0.8);
-    max-width: 700px;
-    text-align: center;
-    padding: $space-m;
-  }
-  .home-section-inner-projects {
-    .project:not(:last-child) {
-      margin-bottom: $space-m;
-    }
-  }
-}
-
-.home-projects-list {
-  .project-wrapper {
-    margin-bottom: $space-m;
+.home-project-grid {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  .project {
+    flex: 1 1 auto;
   }
 }

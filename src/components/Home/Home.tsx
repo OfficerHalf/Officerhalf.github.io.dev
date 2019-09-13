@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Project } from '../Project';
 import { projects } from '../../constants/strings';
 import { Contact } from '../Contact';
+import '../../styles/components/Home/Home.scss';
 
 export const Home: React.FC = props => {
   return (
@@ -19,9 +20,11 @@ export const Home: React.FC = props => {
         </div>
         <div className="home-section-inner home-section-inner-projects">
           <h2>Projects</h2>
-          {projects.map(project => (
-            <Project {...project} key={project.title} />
-          ))}
+          <div className="home-project-grid">
+            {projects.map(project => (
+              <Project {...project} key={project.title} />
+            ))}
+          </div>
         </div>
       </div>
       <div className="home-section">

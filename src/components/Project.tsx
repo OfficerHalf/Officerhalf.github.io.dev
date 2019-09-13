@@ -23,6 +23,7 @@ export const Project: React.FC<ProjectProps> = props => {
           More
         </a>
       }
+      style={{ margin: 8 }}
     >
       <p className="project-description" style={{ margin: 0 }}>
         {props.description}
