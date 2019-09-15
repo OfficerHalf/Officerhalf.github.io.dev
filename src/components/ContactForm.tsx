@@ -5,15 +5,11 @@ import { Spin } from 'antd';
 import { contactForm } from '../constants/strings';
 import { Fade } from './Transitions/Fade';
 
-export const Contact: React.FC = props => {
+export const ContactForm: React.FC = props => {
   const [loading, setLoading] = React.useState<boolean>(true);
   return (
-    <>
-      {loading && (
-        <div className="contact-spinner-wrapper">
-          <Spin className="contact-spinner" />
-        </div>
-      )}
+    <div className="contact-wrapper">
+      {loading && <Spin className="contact-spinner" />}
       <Fade in={!loading}>
         <iframe
           className={cx('contact-iframe')}
@@ -22,6 +18,6 @@ export const Contact: React.FC = props => {
           onLoad={() => setLoading(false)}
         />
       </Fade>
-    </>
+    </div>
   );
 };
