@@ -6,7 +6,10 @@ import '../../styles/components/Home/Home.scss';
 
 export const Home: React.FC = props => {
   return (
-    <div className="home-wrapper">
+    <div
+      className="home-wrapper"
+      style={{ backgroundColor: 'white', padding: 24, minHeight: 280 }}
+    >
       <div className="home-section">
         <div className="home-section-inner">
           <h2>About</h2>
