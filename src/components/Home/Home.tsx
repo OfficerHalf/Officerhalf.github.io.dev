@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Project } from '../Project';
 import { projects } from '../../constants/strings';
-import { ContactForm } from '../ContactForm';
 import '../../styles/components/Home/Home.scss';
 
 export const Home: React.FC = props => {
@@ -29,9 +28,6 @@ export const Home: React.FC = props => {
             ))}
           </div>
         </div>
-      </div>
-      <div className="home-section">
-        <ContactForm />
       </div>
     </div>
   );
