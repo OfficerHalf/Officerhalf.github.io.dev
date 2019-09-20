@@ -6,6 +6,12 @@ export const routes = {
     },
     contact: {
       base: '/contact'
+    },
+    project: {
+      base: '/project',
+      alloy: {
+        base: '/project/alloy'
+      }
     }
   },
   dndTools: {
