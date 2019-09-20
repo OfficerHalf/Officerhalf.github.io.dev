@@ -1,0 +1,21 @@
+.image-comparison-left {
+    height: 100%;
+    float: left;
+    background-position: left;
+}
+
+.image-comparison-right {
+    height: 100%;
+    float: right;
+    background-position: right
+}
+
+.image-comparison-draggable {
+    height: 100%;
+    width: 3px;
+    background-color: black;
+    cursor: grab;
+    &:active {
+        cursor: grabbing;
+    }
+}
