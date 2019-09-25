@@ -13,13 +13,6 @@ interface ImageComparisonProps {
   dragHandleRadius?: number;
 }
 
-const makeDragImg = (): HTMLImageElement => {
-  const img = new Image(0, 0);
-  img.src =
-    'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-  return img;
-};
-
 export const ImageComparison: React.FC<ImageComparisonProps> = props => {
   const {
     width = 700,
