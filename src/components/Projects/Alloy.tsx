@@ -2,13 +2,17 @@ import * as React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { PageHeader, Layout } from 'antd';
 import { ImageComparison } from '../Common/ImageComparison';
+import { routes } from '../../constants/routes';
 
 const { Content } = Layout;
 
 const Alloy: React.FC<RouteComponentProps> = props => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <PageHeader onBack={() => props.history.goBack()} title="Alloy" />
+      <PageHeader
+        onBack={() => props.history.push(routes.app.home.base)}
+        title="Alloy"
+      />
       <Content
         style={{
           justifyContent: 'center',
