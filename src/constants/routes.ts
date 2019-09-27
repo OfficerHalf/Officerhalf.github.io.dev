@@ -11,6 +11,9 @@ export const routes = {
       base: '/project',
       alloy: {
         base: '/project/alloy'
+      },
+      homebrewery: {
+        base: '/project/homebrewery-preview'
       }
     }
   },

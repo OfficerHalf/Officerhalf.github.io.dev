@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { Card } from 'antd';
 import '../styles/components/Project.scss';
+import { Link } from 'react-router-dom';
 
 export interface ProjectProps {
   title: string;
   description: string;
   link: string;
+  linkType: 'a' | 'Link';
 }
 
 export const Project: React.FC<ProjectProps> = props => {
@@ -14,14 +16,18 @@ export const Project: React.FC<ProjectProps> = props => {
       className="project"
       title={props.title}
       extra={
-        <a
-          className="project-more-link"
-          href={props.link}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          More
-        </a>
+        props.linkType === 'a' ? (
+          <a
+            className="project-more-link"
+            href={props.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            More
+          </a>
+        ) : (
+          <Link to={props.link}>More</Link>
+        )
       }
       style={{ margin: 8 }}
     >

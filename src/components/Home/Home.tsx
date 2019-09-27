@@ -2,7 +2,6 @@ import * as React from 'react';
 import { AppLayout } from '../Common/AppLayout';
 import { Project } from '../Project';
 import { projects } from '../../constants/strings';
-import { AlloyCard } from '../Projects/AlloyCard';
 import '../../styles/components/Home/Home.scss';
 
 export const Home: React.FC = props => {
@@ -26,7 +25,6 @@ export const Home: React.FC = props => {
           <div className="home-section-inner home-section-inner-projects">
             <h2>Projects</h2>
             <div className="home-project-grid">
-              <AlloyCard />
               {projects.map(project => (
                 <Project {...project} key={project.title} />
               ))}
