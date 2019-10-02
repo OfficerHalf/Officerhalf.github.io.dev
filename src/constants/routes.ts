@@ -14,6 +14,12 @@ export const routes = {
       },
       homebrewery: {
         base: '/project/homebrewery-preview'
+      },
+      userManagement: {
+        base: '/work/user-management'
+      },
+      csrg: {
+        base: '/work/service-registry'
       }
     }
   },

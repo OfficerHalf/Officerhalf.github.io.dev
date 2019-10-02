@@ -26,3 +26,18 @@ export const projects: ProjectProps[] = [
     linkType: 'a'
   }
 ];
+
+export const work: ProjectProps[] = [
+  {
+    title: 'User Management @ Bentley Systems',
+    description: '',
+    link: routes.app.project.userManagement.base,
+    linkType: 'Link'
+  },
+  {
+    title: 'Service Registry @ Bentley Systems',
+    description: '',
+    link: routes.app.project.csrg.base,
+    linkType: 'Link'
+  }
+];
