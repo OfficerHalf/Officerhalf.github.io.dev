@@ -1,5 +1,6 @@
 import { ProjectProps } from '../components/Project';
 import { routes } from './routes';
+import { WorkProject } from '../interfaces/WorkProject';
 
 export const contactForm =
   'https://docs.google.com/forms/d/e/1FAIpQLScLKJVojwvtY0TpBPYfaUQEhKjQfa2iAZsitp3iRxkEoAYvmw/viewform?embedded=true';
@@ -27,17 +28,31 @@ export const projects: ProjectProps[] = [
   }
 ];
 
-export const work: ProjectProps[] = [
+export const work: WorkProject[] = [
   {
-    title: 'User Management @ Bentley Systems',
+    cardProps: {
+      title: 'User Management @ Bentley Systems',
+      description: '',
+      link: routes.app.project.userManagement.base,
+      linkType: 'Link'
+    },
+    challengesSolutions: '',
     description: '',
-    link: routes.app.project.userManagement.base,
-    linkType: 'Link'
+    images: [],
+    myRole: '',
+    technologies: []
   },
   {
-    title: 'Service Registry @ Bentley Systems',
+    cardProps: {
+      title: 'Service Registry @ Bentley Systems',
+      description: '',
+      link: routes.app.project.csrg.base,
+      linkType: 'Link'
+    },
+    challengesSolutions: '',
     description: '',
-    link: routes.app.project.csrg.base,
-    linkType: 'Link'
+    images: [],
+    myRole: '',
+    technologies: []
   }
 ];

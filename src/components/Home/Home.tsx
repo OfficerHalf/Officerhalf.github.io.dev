@@ -34,7 +34,7 @@ export const Home: React.FC = props => {
             <h2>Work</h2>
             <div className="home-project-grid">
               {work.map(thing => (
-                <Project {...thing} key={thing.title} />
+                <Project {...thing.cardProps} key={thing.cardProps.title} />
               ))}
             </div>
           </div>

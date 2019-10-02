@@ -7,9 +7,15 @@ import { FourZeroFour } from '../RootComponents/404';
 import { Alloy } from '../Projects/Alloy';
 import { Homebrewery } from '../Projects/Homebrewery';
 import { CSRG } from '../Projects/CSRG';
+import { UserManagement } from '../Projects/UserManagement';
 
 export const Router: React.FC = props => (
   <Switch>
+    <Route
+      exact
+      path={routes.app.project.userManagement.base}
+      component={UserManagement}
+    />
     <Route exact path={routes.app.project.csrg.base} component={CSRG} />
     <Route
       exact
