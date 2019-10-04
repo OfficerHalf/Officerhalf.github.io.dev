@@ -1,0 +1,20 @@
+#work-layout {
+    min-height: 100vh;
+
+    .ant-page-header-heading-title {
+        color: #2A2F34;
+    }
+
+    #work-layout-header {
+        background-color: white;
+        display: flex;
+        align-items: center;
+        min-height: 80.5px;
+    }
+
+    #work-layout-project-title {
+        margin-left: 24px;
+        margin-bottom: 0px;
+        color: #2A2F34;
+    }
+}

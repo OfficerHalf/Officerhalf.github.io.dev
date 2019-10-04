@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AppLayout } from '../Common/AppLayout';
 import { Project } from '../Project';
-import { projects, work } from '../../constants/strings';
+import { projects, work } from '../../constants/projects';
 import '../../styles/components/Home/Home.scss';
 
 export const Home: React.FC = props => {
