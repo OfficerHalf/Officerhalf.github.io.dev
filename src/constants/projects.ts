@@ -28,26 +28,55 @@ export const projects: ProjectProps[] = [
 export const work: WorkProject[] = [
   {
     cardProps: {
-      title: 'User Management @ Bentley Systems',
+      title: 'User Management',
       description: '',
       link: routes.app.project.userManagement.base,
       linkType: 'Link'
     },
     challengesSolutions: '',
     description: '',
-    images: [],
+    images: [
+      {
+        src: `${process.env.PUBLIC_URL}/UserMan1.png`,
+        alt: 'User Management main view'
+      },
+      {
+        src: `${process.env.PUBLIC_URL}/UserMan2a.png`,
+        alt: 'User Profile view'
+      },
+      {
+        src: `${process.env.PUBLIC_URL}/UserMan3.png`,
+        alt: 'Modify roles view'
+      }
+    ],
     myRole: '',
-    technologies: []
+    technologies: [],
+    company: 'Bentley Systems'
   },
   {
     cardProps: {
-      title: 'Service Registry @ Bentley Systems',
+      title: 'Service Registry',
       description: '',
       link: routes.app.project.csrg.base,
       linkType: 'Link'
     },
     challengesSolutions: '',
     description: '',
+    images: [],
+    myRole: '',
+    technologies: [],
+    company: 'Bentley Systems'
+  },
+  {
+    cardProps: {
+      title: 'Bentley Web Components',
+      description: '',
+      link: routes.app.project.bwc.base,
+      linkType: 'Link'
+    },
+    challengesSolutions: '',
+    description: '',
+    company: 'Bentley Systems',
     images: [],
     myRole: '',
     technologies: []

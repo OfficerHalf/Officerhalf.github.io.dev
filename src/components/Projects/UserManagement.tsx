@@ -9,6 +9,6 @@ export const UserManagement: React.FC = props => {
       proj => proj.cardProps.link === routes.app.project.userManagement.base
     );
     return work[index];
-  }, [work, routes.app.project.userManagement.base]);
+  }, []);
   return <WorkLayout {...project} />;
 };

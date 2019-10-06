@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Layout, PageHeader, Icon, Divider } from 'antd';
+import { Layout, PageHeader, Icon, Divider, Carousel } from 'antd';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { routes } from '../../constants/routes';
 import { WorkProject } from '../../interfaces/WorkProject';
@@ -13,7 +13,8 @@ const WorkLayout: React.FC<RouteComponentProps & WorkProject> = props => {
     description,
     images,
     myRole,
-    technologies
+    technologies,
+    company
   } = props;
   const { title } = props.cardProps;
   return (
@@ -22,7 +23,7 @@ const WorkLayout: React.FC<RouteComponentProps & WorkProject> = props => {
         <PageHeader
           backIcon={<Icon type="home" />}
           title="Nathan Smith"
-          subTitle="@ Bentley Systems"
+          subTitle={`@ ${company}`}
           style={{
             display: 'inline-block'
           }}
@@ -31,7 +32,31 @@ const WorkLayout: React.FC<RouteComponentProps & WorkProject> = props => {
         <Divider type="vertical" style={{ height: 18 }} />
         <h3 id="work-layout-project-title">{title}</h3>
       </Header>
-      <Content>Main</Content>
+      <Content
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          padding: 16
+        }}
+      >
+        <div id="work-layout-carousel">
+          <Carousel
+            autoplay
+            style={{ width: 600, height: 560 }}
+            easing="ease-in-out"
+          >
+            {images.map((image, index) => (
+              <div key={index}>
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  style={{ maxWidth: 600, maxHeight: 560 }}
+                />
+              </div>
+            ))}
+          </Carousel>
+        </div>
+      </Content>
       <Footer>Footer</Footer>
     </Layout>
   );

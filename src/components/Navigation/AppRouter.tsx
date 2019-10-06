@@ -8,9 +8,11 @@ import { Alloy } from '../Projects/Alloy';
 import { Homebrewery } from '../Projects/Homebrewery';
 import { CSRG } from '../Projects/CSRG';
 import { UserManagement } from '../Projects/UserManagement';
+import { BWC } from '../Projects/BWC';
 
 export const Router: React.FC = props => (
   <Switch>
+    <Route exact path={routes.app.project.bwc.base} component={BWC} />
     <Route
       exact
       path={routes.app.project.userManagement.base}

@@ -17,4 +17,20 @@
         margin-bottom: 0px;
         color: #2A2F34;
     }
+
+    #work-layout-carousel {
+        .slick-track {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .slick-dots {
+            li button {
+                background-color: #000;
+            }
+            li.slick-active button {
+                background-color: #008be1;
+            }
+        }
+    }
 }

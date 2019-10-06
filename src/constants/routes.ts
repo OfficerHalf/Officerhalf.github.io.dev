@@ -20,6 +20,9 @@ export const routes = {
       },
       csrg: {
         base: '/work/service-registry'
+      },
+      bwc: {
+        base: '/work/bwc'
       }
     }
   },

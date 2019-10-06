@@ -3,10 +3,10 @@ import { WorkLayout } from '../Common/WorkLayout';
 import { work } from '../../constants/projects';
 import { routes } from '../../constants/routes';
 
-export const CSRG: React.FC = props => {
+export const BWC: React.FC = props => {
   const project = React.useMemo(() => {
     const index = work.findIndex(
-      proj => proj.cardProps.link === routes.app.project.csrg.base
+      proj => proj.cardProps.link === routes.app.project.bwc.base
     );
     return work[index];
   }, []);
