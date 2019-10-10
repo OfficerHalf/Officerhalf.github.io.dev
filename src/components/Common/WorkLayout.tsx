@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Layout, PageHeader, Icon, Divider, Carousel } from 'antd';
+import { Layout, PageHeader, Icon, Divider, Carousel, List, Card } from 'antd';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { routes } from '../../constants/routes';
 import { WorkProject } from '../../interfaces/WorkProject';
@@ -32,29 +32,35 @@ const WorkLayout: React.FC<RouteComponentProps & WorkProject> = props => {
         <Divider type="vertical" style={{ height: 18 }} />
         <h3 id="work-layout-project-title">{title}</h3>
       </Header>
-      <Content
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          padding: 16
-        }}
-      >
-        <div id="work-layout-carousel">
-          <Carousel
-            autoplay
-            style={{ width: 600, height: 560 }}
-            easing="ease-in-out"
-          >
+      <Content id="work-layout-content">
+        <div className="work-layout-section">
+          <div id="work-layout-description">{description}</div>
+          <Card id="work-layout-my-role" title="My Role">
+            {myRole}
+          </Card>
+          <Carousel autoplay easing="ease-in-out">
             {images.map((image, index) => (
               <div key={index}>
                 <img
+                  className="work-layout-img"
                   src={image.src}
                   alt={image.alt}
-                  style={{ maxWidth: 600, maxHeight: 560 }}
                 />
               </div>
             ))}
           </Carousel>
+        </div>
+        <div className="work-layout-section">
+          <List
+            id="work-layout-technologies"
+            header={
+              <h3 id="work-layout-technologies-header">Technologies Used</h3>
+            }
+            bordered
+            dataSource={technologies}
+            renderItem={item => <List.Item>{item}</List.Item>}
+          />
+          <div id="work-layout-challenges-solutions">{challengesSolutions}</div>
         </div>
       </Content>
       <Footer>Footer</Footer>
