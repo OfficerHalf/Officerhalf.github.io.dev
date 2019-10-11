@@ -37,7 +37,17 @@ export const work: WorkProject[] = [
     },
     challengesSolutions:
       'Changing schema, differing apis, inexperienced developers',
-    description: 'User Management',
+    description: (
+      <>
+        <p>
+          When Bentley switched from an internal user database to a 3rd party
+          solution, a new User Management application was created to replace the
+          old solution. The new application was intended to have feature parity
+          with the old,to be more responsive, and to better fit with the
+          company's newer aesthetic style.
+        </p>
+      </>
+    ),
     images: [
       {
         src: `${process.env.PUBLIC_URL}/UserMan1.png`,
@@ -76,7 +86,50 @@ export const work: WorkProject[] = [
       'TypeScript',
       'C#'
     ],
-    company: 'Bentley Systems'
+    company: 'Bentley Systems',
+    features: [
+      {
+        name: 'Manage Users',
+        description: (
+          <ul>
+            <li>Create users manually or via CSV upload</li>
+            <li>Update users manually or via CSV upload</li>
+            <li>Delete users</li>
+            <li>Assign roles to users</li>
+          </ul>
+        )
+      },
+      {
+        name: 'Manage Groups',
+        description: (
+          <ul>
+            <li>Create user groups</li>
+            <li>Delete user groups</li>
+            <li>Assign users to groups</li>
+            <li>
+              Groups can be simple user groups, allocation groups for reporting,
+              or entitlement groups for billing.
+            </li>
+          </ul>
+        )
+      },
+      {
+        name: 'Manage Owned Domains',
+        description: (
+          <ul>
+            <li>
+              Company ABC can claim ownership 'abc.com' so that any users that
+              register with an 'abc.com' email will automatically be associated
+              with ABC's account.
+            </li>
+            <li>
+              New users for an owned domain can be manually or automatically
+              approved.
+            </li>
+          </ul>
+        )
+      }
+    ]
   },
   {
     cardProps: {
@@ -90,7 +143,8 @@ export const work: WorkProject[] = [
     images: [],
     myRole: '',
     technologies: ['ASP.Net Core', 'React', 'OIDC', 'TypeScript', 'C#'],
-    company: 'Bentley Systems'
+    company: 'Bentley Systems',
+    features: []
   },
   {
     cardProps: {
@@ -104,6 +158,7 @@ export const work: WorkProject[] = [
     company: 'Bentley Systems',
     images: [],
     myRole: '',
-    technologies: ['React', 'TypeScript']
+    technologies: ['React', 'TypeScript'],
+    features: []
   }
 ];

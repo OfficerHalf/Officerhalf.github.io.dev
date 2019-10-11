@@ -14,7 +14,8 @@ const WorkLayout: React.FC<RouteComponentProps & WorkProject> = props => {
     images,
     myRole,
     technologies,
-    company
+    company,
+    features
   } = props;
   const { title } = props.cardProps;
   return (
@@ -35,6 +36,24 @@ const WorkLayout: React.FC<RouteComponentProps & WorkProject> = props => {
       <Content id="work-layout-content">
         <div className="work-layout-section">
           <div id="work-layout-description">{description}</div>
+          <List
+            style={{ backgroundColor: 'white' }}
+            id="work-layout-features"
+            header={<h3 style={{ margin: 0 }}>Features</h3>}
+            bordered
+            dataSource={features}
+            renderItem={item => (
+              <List.Item
+                style={{
+                  flexDirection: 'column',
+                  alignItems: 'flex-start'
+                }}
+              >
+                <h4>{item.name}</h4>
+                {item.description}
+              </List.Item>
+            )}
+          />
           <Card id="work-layout-my-role" title="My Role">
             {myRole}
           </Card>

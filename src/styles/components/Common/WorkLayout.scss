@@ -27,6 +27,7 @@
     .work-layout-section {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .ant-carousel {
@@ -55,7 +56,8 @@
       }
     }
 
-    #work-layout-my-role {
+    #work-layout-my-role,
+    #work-layout-features {
       max-width: 400px;
     }
 
