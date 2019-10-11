@@ -2,6 +2,7 @@ import * as React from 'react';
 import { AppLayout } from '../Common/AppLayout';
 import { Project } from '../Project';
 import { projects, work } from '../../constants/projects';
+import { WorkInProgress } from '../Common/WorkInProgress';
 import '../../styles/components/Home/Home.scss';
 
 export const Home: React.FC = props => {
@@ -13,6 +14,7 @@ export const Home: React.FC = props => {
       >
         <div className="home-section">
           <div className="home-section-inner">
+            <WorkInProgress />
             <h2>About</h2>
             <p>
               Nathan Smith is an Associate Software Developer at Bentley Systems
