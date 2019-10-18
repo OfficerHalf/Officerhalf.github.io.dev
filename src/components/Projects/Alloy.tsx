@@ -39,13 +39,39 @@ const Alloy: React.FC<RouteComponentProps> = props => {
             Monokai's vibrant palette.
           </p>
           <p>
+            Get the theme for{' '}
             <a
               href="https://marketplace.visualstudio.com/items?itemName=officerhalf.alloy-theme"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Get the extension for VS Code.
+              VS Code
             </a>
+            ,{' '}
+            <a
+              href="https://github.com/OfficerHalf/alloy-theme-prismjs"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              prismjs
+            </a>
+            ,{' '}
+            <a
+              href="https://gist.github.com/OfficerHalf/15e58676b29dfde1a85a2945799e66b4"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ConEmu
+            </a>
+            , and{' '}
+            <a
+              href="https://gist.github.com/OfficerHalf/6b0b0803b5788aeb185415285b2c34c3"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Windows Terminal
+            </a>
+            .
             <br />
             <a
               href="https://github.com/OfficerHalf/alloy-theme"
