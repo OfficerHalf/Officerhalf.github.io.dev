@@ -22,12 +22,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    margin: 16px;
     padding: 16px;
+    background-color: white;
 
     .work-layout-section {
       display: flex;
-      align-items: center;
       flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flex-item {
+      margin: 16px;
     }
 
     .ant-carousel {
@@ -57,7 +65,9 @@
     }
 
     #work-layout-my-role,
-    #work-layout-features {
+    #work-layout-features,
+    #work-layout-description,
+    #work-layout-challenges-solutions {
       max-width: 400px;
     }
 

@@ -35,8 +35,40 @@ const WorkLayout: React.FC<RouteComponentProps & WorkProject> = props => {
       </Header>
       <Content id="work-layout-content">
         <div className="work-layout-section">
-          <div id="work-layout-description">{description}</div>
+          <div>
+            <Card
+              className="flex-item"
+              title="Description"
+              id="work-layout-description"
+            >
+              {description}
+            </Card>
+            <Card
+              className="flex-item"
+              id="work-layout-my-role"
+              title="My Role"
+            >
+              {myRole}
+            </Card>
+          </div>
+          <div className="flex-item">
+            <Carousel autoplay easing="ease-in-out">
+              {images.map((image, index) => (
+                <div key={index}>
+                  <img
+                    className="work-layout-img"
+                    src={image.src}
+                    alt={image.alt}
+                  />
+                </div>
+              ))}
+            </Carousel>
+          </div>
+        </div>
+
+        <div className="work-layout-section">
           <List
+            className="flex-item"
             style={{ backgroundColor: 'white' }}
             id="work-layout-features"
             header={<h3 style={{ margin: 0 }}>Features</h3>}
@@ -54,23 +86,15 @@ const WorkLayout: React.FC<RouteComponentProps & WorkProject> = props => {
               </List.Item>
             )}
           />
-          <Card id="work-layout-my-role" title="My Role">
-            {myRole}
+          <Card
+            title="Challenges & Solutions"
+            className="flex-item"
+            id="work-layout-challenges-solutions"
+          >
+            {challengesSolutions}
           </Card>
-          <Carousel autoplay easing="ease-in-out">
-            {images.map((image, index) => (
-              <div key={index}>
-                <img
-                  className="work-layout-img"
-                  src={image.src}
-                  alt={image.alt}
-                />
-              </div>
-            ))}
-          </Carousel>
-        </div>
-        <div className="work-layout-section">
           <List
+            className="flex-item"
             id="work-layout-technologies"
             header={
               <h3 id="work-layout-technologies-header">Technologies Used</h3>
@@ -79,7 +103,6 @@ const WorkLayout: React.FC<RouteComponentProps & WorkProject> = props => {
             dataSource={technologies}
             renderItem={item => <List.Item>{item}</List.Item>}
           />
-          <div id="work-layout-challenges-solutions">{challengesSolutions}</div>
         </div>
       </Content>
       <Footer>Footer</Footer>

@@ -35,15 +35,37 @@ export const work: WorkProject[] = [
       link: routes.app.project.userManagement.base,
       linkType: 'Link'
     },
-    challengesSolutions:
-      'Changing schema, differing apis, inexperienced developers',
+    challengesSolutions: (
+      <>
+        <p>
+          The largest challenge on this project was communication between
+          Bentley stakeholders and 3rd party software provider stakeholders. As
+          the 3rd party changed the directory schema, the Bentley development
+          team had to quickly react to update the application to accept the new
+          data model.
+        </p>
+        <p>
+          Another project challenge was that the development team was initially
+          told to use one API, but was then told to use another. Thankfully, we
+          used a robust development style with interfaces and implementations,
+          saving us from rewriting the entire application.
+        </p>
+        <p>
+          Finally, four different developers joined the team for short periods
+          who had little or no front-end development knowledge. I onboarded them
+          to the project, but also ensured through code review that they were
+          following best practices.
+        </p>
+      </>
+    ),
+
     description: (
       <>
         <p>
           When Bentley switched from an internal user database to a 3rd party
           solution, a new User Management application was created to replace the
           old solution. The new application was intended to have feature parity
-          with the old,to be more responsive, and to better fit with the
+          with the old, to be more responsive, and to better fit with the
           company's newer aesthetic style.
         </p>
       </>
@@ -118,9 +140,9 @@ export const work: WorkProject[] = [
         description: (
           <ul>
             <li>
-              Company ABC can claim ownership 'abc.com' so that any users that
-              register with an 'abc.com' email will automatically be associated
-              with ABC's account.
+              Company ABC can claim ownership of 'abc.com' so that any users
+              that register with an 'abc.com' email will automatically be
+              associated with ABC's account.
             </li>
             <li>
               New users for an owned domain can be manually or automatically
@@ -134,7 +156,8 @@ export const work: WorkProject[] = [
   {
     cardProps: {
       title: 'Service Registry',
-      description: '',
+      description:
+        'An administrative interface managing a company-wide web application portfolio.',
       link: routes.app.project.csrg.base,
       linkType: 'Link'
     },
@@ -149,7 +172,7 @@ export const work: WorkProject[] = [
   {
     cardProps: {
       title: 'Bentley Web Components',
-      description: '',
+      description: 'An InnerSource CSS and React UI component library.',
       link: routes.app.project.bwc.base,
       linkType: 'Link'
     },
@@ -158,7 +181,13 @@ export const work: WorkProject[] = [
     company: 'Bentley Systems',
     images: [],
     myRole: '',
-    technologies: ['React', 'TypeScript'],
+    technologies: [
+      'React',
+      'TypeScript',
+      'Jest',
+      'react-testing-library',
+      'react-table'
+    ],
     features: []
   }
 ];
