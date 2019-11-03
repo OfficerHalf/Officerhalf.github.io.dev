@@ -7,7 +7,7 @@ import '../../styles/components/Home/Home.scss';
 
 export const Home: React.FC = props => {
   return (
-    <AppLayout>
+    <AppLayout fixedWidth={1000}>
       <div
         className="home-wrapper"
         style={{ backgroundColor: 'white', padding: 24, minHeight: 280 }}

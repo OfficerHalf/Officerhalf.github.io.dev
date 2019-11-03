@@ -1,8 +1,12 @@
 import * as React from 'react';
 import { Button } from 'antd';
 
-export const Footer: React.FC = props => (
-  <div>
+interface FooterProps {
+  style?: React.CSSProperties;
+}
+
+export const Footer: React.FC<FooterProps> = props => (
+  <div style={props.style}>
     Find me here:
     <Button
       icon="github"

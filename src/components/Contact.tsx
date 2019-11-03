@@ -4,7 +4,7 @@ import { AppLayout } from './Common/AppLayout';
 
 export const Contact: React.FC = props => {
   return (
-    <AppLayout>
+    <AppLayout fixedWidth={1000}>
       <div
         style={{
           flex: '1 1 auto',

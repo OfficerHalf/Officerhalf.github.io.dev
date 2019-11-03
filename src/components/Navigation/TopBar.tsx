@@ -3,9 +3,13 @@ import { RouteComponentProps, withRouter, Link } from 'react-router-dom';
 import { Menu, Divider } from 'antd';
 import { routes } from '../../constants/routes';
 
-const TopBarBase: React.FC<RouteComponentProps> = props => {
+interface TopBarProps {
+  style?: React.CSSProperties;
+}
+
+const TopBarBase: React.FC<TopBarProps & RouteComponentProps> = props => {
   return (
-    <>
+    <div style={props.style}>
       <span className="logo" style={{ color: 'white', paddingRight: 20 }}>
         Nathan Smith
       </span>
@@ -22,7 +26,7 @@ const TopBarBase: React.FC<RouteComponentProps> = props => {
           <Link to={routes.app.contact.base}>Contact</Link>
         </Menu.Item>
       </Menu>
-    </>
+    </div>
   );
 };
 
