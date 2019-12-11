@@ -1,6 +1,0 @@
-@import '../../variables/space.scss';
-@import '../../../../node_modules/@blueprintjs/core/lib/scss/variables.scss';
-
-#not-found {
-  height: calc(100vh - #{$pt-navbar-height} - #{$space-3xl});
-}

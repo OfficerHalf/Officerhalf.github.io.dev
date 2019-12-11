@@ -1,9 +1,0 @@
-@import '../../variables/all.scss';
-
-.sticky-nav {
-  position: fixed;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-right: $space-m;
-}
