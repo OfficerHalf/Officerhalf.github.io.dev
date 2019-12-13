@@ -1,15 +1,31 @@
 .post-card-container {
-  display: flex;
+  display: inline-flex;
+  max-width: 720px;
+  max-height: 220px;
   .post-card-image {
+    max-height: 200px;
+    max-width: 340px;
+    margin-left: 20px;
+    margin-right: 20px;
   }
   .post-card-content {
+    margin-left: 20px;
+    margin-right: 20px;
     .post-card-category {
+      height: 24px;
+      margin-bottom: 24px;
+      font-size: 14px;
     }
     .post-card-title {
+      margin: 0;
     }
     .post-card-byline {
+      margin-top: 18px;
+      font-size: 12px;
     }
     .post-card-summary {
+      margin-top: 16px;
+      font-size: 14px;
     }
   }
 }

@@ -1,7 +1,6 @@
 import { ButterListMeta } from "./ButterListMeta";
-import { BlogPost } from "./BlogPost";
 
-export interface ButterListResponse {
+export interface ButterListResponse<T> {
   meta: ButterListMeta;
-  data: BlogPost[];
+  data: T[];
 }

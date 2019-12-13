@@ -20,9 +20,11 @@ export const PostCard: React.FC<PostCardProps &
   });
   return (
     <div {...rest} className={cx("post-card-container", className)}>
-      <div className="post-card-image">
-        <img src={post.featured_image} alt={`${post.slug}-featured-image`} />
-      </div>
+      <img
+        className="post-card-image"
+        src={post.featured_image}
+        alt={`${post.slug}`}
+      />
       <div className="post-card-content">
         <div className="post-card-category">
           <a href={post.slug}>
@@ -31,7 +33,7 @@ export const PostCard: React.FC<PostCardProps &
               : ""}
           </a>
         </div>
-        <h2 className="post-card-title">title</h2>
+        <h2 className="post-card-title">{post.title}</h2>
         <div className="post-card-byline">{postDate}</div>
         <div className="post-card-summary">{post.summary}</div>
       </div>
