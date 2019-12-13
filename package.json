@@ -11,6 +11,9 @@
         "@types/node": "^12.12.17",
         "@types/react": "^16.9.16",
         "@types/react-dom": "^16.9.4",
+        "axios": "^0.19.0",
+        "buttercms": "^1.2.1",
+        "classnames": "^2.2.6",
         "gh-pages": "^2.1.1",
         "react": "^16.12.0",
         "react-dom": "^16.12.0",
@@ -43,5 +46,9 @@
             "last 1 safari version"
         ]
     },
-    "devDependencies": {}
+    "devDependencies": {
+        "@types/classnames": "^2.2.9",
+        "node-sass": "^4.13.0",
+        "normalize.css": "^8.0.1"
+    }
 }
