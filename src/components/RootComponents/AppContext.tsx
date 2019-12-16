@@ -20,7 +20,7 @@ const AppContextInner: React.FC = props => {
   }, []);
   React.useEffect(() => {
     categories().then(resp => {
-      setCategories(resp.data.data);
+      setCategories(resp.data.data.categories);
     });
   }, []);
   /* eslint-enable react-hooks/exhaustive-deps */

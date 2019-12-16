@@ -4,6 +4,8 @@ import { routes } from "../../constants/routes";
 import { BlogPost } from "../../interfaces/BlogPost";
 import cx from "classnames";
 import "../../style/components/Blog/PostCard.scss";
+import { CategoryContext } from "../../store/CategoryContext";
+import { Category } from "../../interfaces/Category";
 
 interface PostCardProps {
   post: BlogPost;
@@ -15,6 +17,30 @@ export const PostCard: React.FC<PostCardProps &
     HTMLDivElement
   >> = props => {
   const { post, className, ...rest } = props;
+  const { categories } = React.useContext(CategoryContext);
+  const category: Category = (categories &&
+    categories.find(category => post.categories[0].slug === category.slug)) || {
+    slug: "",
+    name: "",
+    letter: "",
+    icon: "",
+    color: ""
+  };
+  const categoryIcon =
+    category.icon === "" ? (
+      <span
+        className="post-card-category-icon"
+        style={{ backgroundColor: category.color }}
+      >
+        {category.letter}
+      </span>
+    ) : (
+      <img
+        className="post-card-category-icon"
+        src={category.icon}
+        alt={`category-icon-${category.slug}`}
+      />
+    );
   const postDate = new Date(post.published).toLocaleDateString(undefined, {
     year: "numeric",
     month: "long",
@@ -31,8 +57,8 @@ export const PostCard: React.FC<PostCardProps &
       </Link>
       <div className="post-card-content">
         <div className="post-card-category">
-          <Link to={routes.app.blog.category(post.categories[0].slug)}>
-            {post.categories[0].name}
+          <Link to={routes.app.blog.category(category.slug)}>
+            {categoryIcon} &mdash; {category.name}
           </Link>
         </div>
         <Link to={routes.app.blog.post(post.slug)}>

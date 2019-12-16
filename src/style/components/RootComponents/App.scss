@@ -18,3 +18,15 @@ h3,
 h4 {
   font-family: "Exo 2", sans-serif;
 }
+
+a {
+  text-decoration: none;
+  &,
+  &:visited {
+    color: #000;
+  }
+  &:active,
+  &:hover {
+    color: #888;
+  }
+}

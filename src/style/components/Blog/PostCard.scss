@@ -15,6 +15,17 @@
       height: 24px;
       margin-bottom: 24px;
       font-size: 14px;
+      .post-card-category-icon {
+        width: 24px;
+        height: 24px;
+      }
+      span.post-card-category-icon {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-weight: 700;
+      }
     }
     .post-card-title {
       margin: 0;

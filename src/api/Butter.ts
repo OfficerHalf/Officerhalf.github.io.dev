@@ -11,18 +11,18 @@ const awBeans = "9ffd3dad4fd54423ad22bc3ce3e1a2fd6bbc9081";
 const ButterApi = butter(awBeans);
 
 export function postList(): Promise<
-  AxiosResponse<ButterListResponse<BlogPost>>
+  AxiosResponse<ButterListResponse<BlogPost[]>>
 > {
   return ButterApi.post.list() as Promise<
-    AxiosResponse<ButterListResponse<BlogPost>>
+    AxiosResponse<ButterListResponse<BlogPost[]>>
   >;
 }
 
 export function categories(): Promise<
-  AxiosResponse<ButterListResponse<Category>>
+  AxiosResponse<ButterListResponse<{ categories: Category[] }>>
 > {
   return ButterApi.content.retrieve(["categories"]) as Promise<
-    AxiosResponse<ButterListResponse<Category>>
+    AxiosResponse<ButterListResponse<{ categories: Category[] }>>
   >;
 }
 

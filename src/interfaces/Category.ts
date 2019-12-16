@@ -3,4 +3,5 @@ export interface Category {
   name: string;
   letter: string;
   icon: string;
+  color: string;
 }
