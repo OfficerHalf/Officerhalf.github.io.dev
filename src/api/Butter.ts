@@ -3,6 +3,7 @@ import { AxiosResponse } from "axios";
 import { ButterListResponse } from "../interfaces/ButterListResponse";
 import { BlogPost } from "../interfaces/BlogPost";
 import { Category } from "../interfaces/Category";
+import { ButterRetrieveResponse } from "../interfaces/ButterRetrieveResponse";
 
 // This is readonly, why are you stealing it?
 const awBeans = "9ffd3dad4fd54423ad22bc3ce3e1a2fd6bbc9081";
@@ -22,5 +23,13 @@ export function categories(): Promise<
 > {
   return ButterApi.content.retrieve(["categories"]) as Promise<
     AxiosResponse<ButterListResponse<Category>>
+  >;
+}
+
+export function getPost(
+  slug: string
+): Promise<AxiosResponse<ButterRetrieveResponse>> {
+  return ButterApi.post.retrieve(slug) as Promise<
+    AxiosResponse<ButterRetrieveResponse>
   >;
 }

@@ -1,4 +1,6 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
+import { routes } from "../../constants/routes";
 import { BlogPost } from "../../interfaces/BlogPost";
 import cx from "classnames";
 import "../../style/components/Blog/PostCard.scss";
@@ -20,20 +22,22 @@ export const PostCard: React.FC<PostCardProps &
   });
   return (
     <div {...rest} className={cx("post-card-container", className)}>
-      <img
-        className="post-card-image"
-        src={post.featured_image}
-        alt={`${post.slug}`}
-      />
+      <Link to={routes.app.blog.post(post.slug)}>
+        <img
+          className="post-card-image"
+          src={post.featured_image}
+          alt={`${post.slug}`}
+        />
+      </Link>
       <div className="post-card-content">
         <div className="post-card-category">
-          <a href={post.slug}>
-            {post.categories && post.categories[0]
-              ? post.categories[0].name
-              : ""}
-          </a>
+          <Link to={routes.app.blog.category(post.categories[0].slug)}>
+            {post.categories[0].name}
+          </Link>
         </div>
-        <h2 className="post-card-title">{post.title}</h2>
+        <Link to={routes.app.blog.post(post.slug)}>
+          <h2 className="post-card-title">{post.title}</h2>
+        </Link>
         <div className="post-card-byline">{postDate}</div>
         <div className="post-card-summary">{post.summary}</div>
       </div>

@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { AppContext } from "./components/RootComponents/AppContext";
+import { RootRouter } from "./components/RootComponents/RootRouter";
 import * as serviceWorker from "./serviceWorker";
 import "normalize.css";
 
-ReactDOM.render(<AppContext />, document.getElementById("root"));
+ReactDOM.render(<RootRouter />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
