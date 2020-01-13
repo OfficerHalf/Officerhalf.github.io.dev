@@ -1,0 +1,17 @@
+.post-card-category-icon {
+  width: 24px;
+  height: 24px;
+  font-size: 14px;
+  &.large {
+    width: 64px;
+    height: 64px;
+    font-size: 3rem;
+  }
+}
+span.post-card-category-icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 700;
+}
