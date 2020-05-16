@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.28",
+    "buttercms": "^1.2.2",
     "emotion-theming": "^10.0.27",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
