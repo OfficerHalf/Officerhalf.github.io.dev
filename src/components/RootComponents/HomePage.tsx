@@ -1,6 +1,13 @@
+/** @jsx jsx */
 import React from 'react';
 import { postList } from '../../util/cms';
 import { BlogPost } from '../../types/cms';
+import { Post } from '../Blog/Post';
+import { css, jsx } from '@emotion/core';
+
+const postListStyle = css`
+  max-width: 900px;
+`;
 
 export const HomePage: React.FC = props => {
   const [posts, setPosts] = React.useState<BlogPost[]>([]);
@@ -13,9 +20,9 @@ export const HomePage: React.FC = props => {
     fetch();
   }, []);
   return (
-    <div>
+    <div css={postListStyle}>
       {posts.map(p => (
-        <div dangerouslySetInnerHTML={{ __html: p.body }} />
+        <Post post={p} />
       ))}
     </div>
   );
