@@ -5,6 +5,7 @@ import { AboutPage } from '../RootComponents/AboutPage';
 import { theme } from '../../util/theme';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout';
+import { ContactPage } from '../RootComponents/ContactPage';
 
 const { color, typography } = theme;
 const globalStyles = css`
@@ -30,6 +31,7 @@ export const App: React.FC = props => {
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="about" element={<AboutPage />} />
+            <Route path="contact" element={<ContactPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
