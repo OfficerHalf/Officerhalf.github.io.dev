@@ -1,5 +1,6 @@
 import React from 'react';
 import { BlogPost } from '../../types/cms';
+import { usePrismjs } from '../../hooks/usePrismjs';
 
 interface PostProps {
   post: BlogPost;
@@ -8,6 +9,8 @@ interface PostProps {
 export const Post: React.FC<PostProps> = props => {
   const { body, title, published } = props.post;
   const date = new Date(published);
+  const bodyRef = React.useRef<HTMLDivElement>(null);
+  usePrismjs(bodyRef, ['line-numbers']);
 
   return (
     <div>
@@ -22,7 +25,7 @@ export const Post: React.FC<PostProps> = props => {
           minute: 'numeric'
         })}
       </h4>
-      <div dangerouslySetInnerHTML={{ __html: body }} />
+      <div ref={bodyRef} dangerouslySetInnerHTML={{ __html: body }} />
     </div>
   );
 };
