@@ -5,11 +5,7 @@ import { BlogPost } from '../../types/cms';
 import { Post } from '../Blog/Post';
 import { css, jsx } from '@emotion/core';
 import theme from '../../util/theme';
-
-const postListStyle = css`
-  max-width: 900px;
-  margin: ${theme.space.xl};
-`;
+import { PostList } from '../Blog/PostList';
 
 export const HomePage: React.FC = props => {
   const [posts, setPosts] = React.useState<BlogPost[]>([]);
@@ -21,11 +17,10 @@ export const HomePage: React.FC = props => {
     };
     fetch();
   }, []);
+
   return (
-    <div css={postListStyle}>
-      {posts.map(p => (
-        <Post post={p} />
-      ))}
+    <div>
+      <PostList posts={posts} />
     </div>
   );
 };

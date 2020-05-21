@@ -23,3 +23,14 @@ export function getPost(
     AxiosResponse<ButterRetrieveResponse>
   >;
 }
+
+export function parsePostDate(date: string): string {
+  return new Date(date).toLocaleString(undefined, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    hour12: true,
+    minute: 'numeric'
+  });
+}

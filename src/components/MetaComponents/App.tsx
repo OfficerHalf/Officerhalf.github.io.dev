@@ -6,6 +6,8 @@ import { theme } from '../../util/theme';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout';
 import { ContactPage } from '../RootComponents/ContactPage';
+import { Post } from '../Blog/Post';
+import { routes } from '../../util/routes';
 
 const { color, typography } = theme;
 const globalStyles = css`
@@ -30,8 +32,11 @@ export const App: React.FC = props => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route path="/" element={<HomePage />} />
-            <Route path="about" element={<AboutPage />} />
-            <Route path="contact" element={<ContactPage />} />
+            <Route path={routes.about} element={<AboutPage />} />
+            <Route path={routes.contact} element={<ContactPage />} />
+            <Route path={routes.blog.base}>
+              <Route path={routes.blog.post.template} element={<Post />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>

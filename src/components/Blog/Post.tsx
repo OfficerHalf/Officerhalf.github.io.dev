@@ -1,31 +1,32 @@
 import React from 'react';
 import { BlogPost } from '../../types/cms';
 import { usePrismjs } from '../../hooks/usePrismjs';
+import { useParams } from 'react-router';
+import { getPost, parsePostDate } from '../../util/cms';
 
-interface PostProps {
-  post: BlogPost;
-}
-
-export const Post: React.FC<PostProps> = props => {
-  const { body, title, published } = props.post;
-  const date = new Date(published);
+export const Post: React.FC = props => {
+  const [post, setPost] = React.useState<BlogPost>();
+  const { slug } = useParams();
   const bodyRef = React.useRef<HTMLDivElement>(null);
   usePrismjs(bodyRef, ['line-numbers']);
 
+  React.useEffect(() => {
+    const fetch = async () => {
+      const resp = await getPost(slug);
+      setPost(resp.data.data);
+    };
+    fetch();
+  }, [slug]);
+
   return (
     <div>
-      <h1>{title}</h1>
-      <h4>
-        {date.toLocaleString(undefined, {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: 'numeric',
-          hour12: true,
-          minute: 'numeric'
-        })}
-      </h4>
-      <div ref={bodyRef} dangerouslySetInnerHTML={{ __html: body }} />
+      {post && (
+        <>
+          <h1>{post.title}</h1>
+          <h4>{parsePostDate(post.published)}</h4>
+          <div ref={bodyRef} dangerouslySetInnerHTML={{ __html: post.body }} />
+        </>
+      )}
     </div>
   );
 };
