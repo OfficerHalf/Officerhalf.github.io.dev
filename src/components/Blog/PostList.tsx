@@ -7,10 +7,25 @@ import { jsx, css } from '@emotion/core';
 import theme from '../../util/theme';
 import { routes } from '../../util/routes';
 
-const { space } = theme;
+const { space, color } = theme;
 
 const postCardStyle = css`
-  max-width: 500px;
+  max-width: 700px;
+  margin: ${space.m};
+  background-color: white;
+  .title {
+    display: block;
+    margin: 0;
+    padding: ${space.xs};
+    background-color: ${color.primary};
+    text-decoration: none;
+    &,
+    &:focus,
+    &:visited,
+    &:active {
+      color: white;
+    }
+  }
 `;
 
 const postFeatureStyle = css`
@@ -33,8 +48,8 @@ export const PostList: React.FC<PostListProps> = props => {
     <div>
       {posts.map(p => (
         <div key={p.slug} css={postCardStyle}>
-          <Link to={routes.blog.post.link(p.slug)}>
-            <h3>{p.title}</h3>
+          <Link className="title" to={routes.blog.post.link(p.slug)}>
+            {p.title}
           </Link>
           <div>
             <span>{parsePostDate(p.published)}</span>

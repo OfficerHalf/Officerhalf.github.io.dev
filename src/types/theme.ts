@@ -3,11 +3,19 @@ interface GoogleFont {
   styles: string[];
 }
 
+interface Font {
+  size: string;
+  weight: string;
+  lineHeight: number;
+}
+
 export interface Theme {
   color: {
     primary: string;
     accent: string;
     text: string;
+    mutedText: string;
+    background: string;
   };
   space: {
     xxs: string;
@@ -22,9 +30,13 @@ export interface Theme {
   };
   typography: {
     baseFontSize: string;
-    baseLineHeight: number;
-    headerFontFamily: string;
-    bodyFontFamily: string;
+    fontFamily: string;
+    small: Font;
+    body: Font;
+    headline: Font;
+    leading: Font;
+    subheading: Font;
+    title: Font;
     googleFonts: GoogleFont[];
   };
 }
