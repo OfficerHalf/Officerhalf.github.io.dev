@@ -47,7 +47,6 @@ const globalStyles = css`
   h4,
   p {
     margin: 0;
-    margin-bottom: 0.5em;
     .muted {
       color: ${color.mutedText};
     }

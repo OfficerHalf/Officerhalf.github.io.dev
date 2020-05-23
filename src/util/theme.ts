@@ -23,34 +23,34 @@ export const theme: Theme = {
   },
   typography: {
     fontFamily: 'Lato, sans-serif',
-    baseFontSize: '18px',
+    baseFontSize: '16px',
     body: {
       size: '1em',
       weight: '400',
       lineHeight: baseLineHeight
     },
     small: {
-      size: '0.857em',
+      size: '0.8em',
       weight: '400',
       lineHeight: baseLineHeight
     },
     leading: {
-      size: '1.143em',
+      size: '1.15em',
       weight: '400',
       lineHeight: baseLineHeight
     },
     headline: {
-      size: '2.286em',
+      size: '2em',
       weight: '300',
       lineHeight: baseLineHeight * 2
     },
     subheading: {
-      size: '1.286em',
+      size: '1.3em',
       weight: '400',
       lineHeight: baseLineHeight * 1.5
     },
     title: {
-      size: '1.714em',
+      size: '1.5em',
       weight: '300',
       lineHeight: baseLineHeight * 1.5
     },

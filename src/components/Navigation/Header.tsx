@@ -2,6 +2,7 @@
 import { css, jsx } from '@emotion/core';
 import { theme } from '../../util/theme';
 import { Link } from 'react-router-dom';
+import { Title } from '../Typography';
 
 const { color, space } = theme;
 
@@ -50,14 +51,20 @@ export const Header: React.FC = props => {
     <header css={headerStyles}>
       <ul>
         <li>
-          <Link to="/">Nathan Smith</Link>
+          <Link to="/">
+            <Title>Nathan Smith</Title>
+          </Link>
         </li>
         <li className="spacer" />
         <li>
-          <Link to="/about">About</Link>
+          <Link to="/about">
+            <Title>About</Title>
+          </Link>
         </li>
         <li>
-          <Link to="/contact">Contact</Link>
+          <Link to="/contact">
+            <Title>Contact</Title>
+          </Link>
         </li>
       </ul>
     </header>

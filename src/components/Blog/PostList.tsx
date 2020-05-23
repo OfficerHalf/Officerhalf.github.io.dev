@@ -6,6 +6,7 @@ import { parsePostDate } from '../../util/cms';
 import { jsx, css } from '@emotion/core';
 import theme from '../../util/theme';
 import { routes } from '../../util/routes';
+import { Body, Small, Subheading } from '../Typography';
 
 const { space, color } = theme;
 
@@ -13,19 +14,6 @@ const postCardStyle = css`
   max-width: 700px;
   margin: ${space.m};
   background-color: white;
-  .title {
-    display: block;
-    margin: 0;
-    padding: ${space.xs};
-    background-color: ${color.primary};
-    text-decoration: none;
-    &,
-    &:focus,
-    &:visited,
-    &:active {
-      color: white;
-    }
-  }
 `;
 
 const postFeatureStyle = css`
@@ -38,6 +26,22 @@ const postFeatureStyle = css`
   }
 `;
 
+const titleStyle = css`
+  display: block;
+  margin: 0;
+  text-decoration: none;
+  &,
+  &:focus,
+  &:visited,
+  &:active {
+    color: ${color.primary};
+  }
+`;
+
+const dateStyle = css`
+  margin-bottom: ${space.sm};
+`;
+
 interface PostListProps {
   posts: BlogPost[];
 }
@@ -46,36 +50,47 @@ export const PostList: React.FC<PostListProps> = props => {
   const { posts } = props;
   return (
     <div>
-      {posts.map(p => (
-        <div key={p.slug} css={postCardStyle}>
-          <Link className="title" to={routes.blog.post.link(p.slug)}>
-            {p.title}
-          </Link>
-          <div>
-            <span>{parsePostDate(p.published)}</span>
-            <span>
-              {p.categories.map(c => (
-                <Link key={c.slug} to={routes.blog.category.link(c.slug)}>
-                  {c.name}
+      {posts.map(p => {
+        const category =
+          p.categories && p.categories.length > 0 ? p.categories[0] : null;
+        return (
+          <div key={p.slug} css={postCardStyle}>
+            <Link css={titleStyle} to={routes.blog.post.link(p.slug)}>
+              <Subheading>{p.title}</Subheading>
+            </Link>
+            <div
+              css={css`
+                display: flex;
+              `}>
+              <Small css={dateStyle}>{parsePostDate(p.published)}</Small>
+              {category && (
+                <React.Fragment>
+                  <Small>&mdash;</Small>
+                  <Link to={routes.blog.category.link(category.slug)}>
+                    <Small>{category.name}</Small>
+                  </Link>
+                </React.Fragment>
+              )}
+            </div>
+            <div css={postFeatureStyle}>
+              {p.featured_image && p.featured_image !== '' && (
+                <img alt="featured" src={p.featured_image} />
+              )}
+              <Body>{p.summary}</Body>
+            </div>
+            <div
+              css={css`
+                display: flex;
+              `}>
+              {p.tags.map(t => (
+                <Link key={t.slug} to={routes.blog.tag.link(t.slug)}>
+                  <Small>{t.name}</Small>
                 </Link>
               ))}
-            </span>
+            </div>
           </div>
-          <div css={postFeatureStyle}>
-            {p.featured_image && p.featured_image !== '' && (
-              <img alt="featured" src={p.featured_image} />
-            )}
-            <div>{p.summary}</div>
-          </div>
-          <div>
-            {p.tags.map(t => (
-              <Link key={t.slug} to={routes.blog.tag.link(t.slug)}>
-                {t.name}
-              </Link>
-            ))}
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
