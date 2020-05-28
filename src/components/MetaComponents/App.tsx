@@ -8,6 +8,8 @@ import { Layout } from './Layout';
 import { ContactPage } from '../RootComponents/ContactPage';
 import { Post } from '../Blog/Post';
 import { routes } from '../../util/routes';
+import { Category } from '../Blog/Category';
+import { Tag } from '../Blog/Tag';
 
 const { color, typography } = theme;
 const globalStyles = css`
@@ -70,6 +72,11 @@ export const App: React.FC = props => {
             <Route path={routes.contact} element={<ContactPage />} />
             <Route path={routes.blog.base}>
               <Route path={routes.blog.post.template} element={<Post />} />
+              <Route
+                path={routes.blog.category.template}
+                element={<Category />}
+              />
+              <Route path={routes.blog.tag.template} element={<Tag />} />
             </Route>
           </Route>
         </Routes>

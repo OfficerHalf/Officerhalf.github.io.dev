@@ -12,7 +12,7 @@ export const routes = {
       link: (slug: string) => `/blog/category/${slug}`
     },
     tag: {
-      templtae: 'tag/:slug',
+      template: 'tag/:slug',
       link: (slug: string) => `/blog/tag/${slug}`
     }
   }

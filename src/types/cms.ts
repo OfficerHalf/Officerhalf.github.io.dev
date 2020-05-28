@@ -64,3 +64,13 @@ export interface BlogPost {
   tags: KeyValuePair[];
   categories: KeyValuePair[];
 }
+
+export interface ButterListOptions {
+  page?: number;
+  page_size?: number;
+  preview?: 1;
+  exclude_body?: boolean;
+  author_slug?: string;
+  category_slug?: string;
+  tag_slug?: string;
+}
