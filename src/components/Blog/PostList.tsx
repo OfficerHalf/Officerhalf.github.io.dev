@@ -7,12 +7,14 @@ import { jsx, css } from '@emotion/core';
 import theme from '../../util/theme';
 import { routes } from '../../util/routes';
 import { Body, Small, Subheading } from '../Typography';
+import { Tag } from '../Icons/Tag';
 
 const { space, color } = theme;
 
 const postCardStyle = css`
   max-width: 700px;
   margin: ${space.m};
+  padding: ${space.s};
   background-color: white;
 `;
 
@@ -28,7 +30,7 @@ const postFeatureStyle = css`
 
 const titleStyle = css`
   display: block;
-  margin: 0;
+  margin: 0 0 ${space.xs} 0;
   text-decoration: none;
   &,
   &:focus,
@@ -40,6 +42,29 @@ const titleStyle = css`
 
 const dateStyle = css`
   margin-bottom: ${space.sm};
+`;
+
+const tagStyle = css`
+  display: flex;
+  margin-top: ${space.s};
+  .tag-icon {
+    width: ${space.m};
+    height: ${space.m};
+    fill: ${color.lightGray};
+  }
+  .tag-link {
+    color: ${color.mutedText};
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+    &:not(:last-child) {
+      margin-right: ${space.xs};
+    }
+    &:not(:first-child) {
+      margin-left: ${space.xs};
+    }
+  }
 `;
 
 interface PostListProps {
@@ -78,16 +103,19 @@ export const PostList: React.FC<PostListProps> = props => {
               )}
               <Body>{p.summary}</Body>
             </div>
-            <div
-              css={css`
-                display: flex;
-              `}>
-              {p.tags.map(t => (
-                <Link key={t.slug} to={routes.blog.tag.link(t.slug)}>
-                  <Small>{t.name}</Small>
-                </Link>
-              ))}
-            </div>
+            {p.tags.length > 0 && (
+              <div css={tagStyle}>
+                <Tag className="tag-icon" />
+                {p.tags.map(t => (
+                  <Link
+                    className="tag-link"
+                    key={t.slug}
+                    to={routes.blog.tag.link(t.slug)}>
+                    <Small>{t.name}</Small>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         );
       })}

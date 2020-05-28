@@ -8,6 +8,7 @@ export const theme: Theme = {
     accent: '#4CE0B3',
     text: '#333',
     mutedText: '#707070',
+    lightGray: '#999',
     background: '#e7ecef'
   },
   space: {

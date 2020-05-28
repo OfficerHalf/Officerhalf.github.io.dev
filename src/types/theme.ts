@@ -15,6 +15,7 @@ export interface Theme {
     accent: string;
     text: string;
     mutedText: string;
+    lightGray: string;
     background: string;
   };
   space: {
