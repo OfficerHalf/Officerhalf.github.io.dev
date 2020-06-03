@@ -22,7 +22,7 @@ interface PartialPostMeta {
   featured_image: string;
 }
 
-interface ButterRetrieveMeta {
+export interface ButterRetrieveMeta {
   next_post: PartialPostMeta | null;
   previous_post: PartialPostMeta | null;
 }
