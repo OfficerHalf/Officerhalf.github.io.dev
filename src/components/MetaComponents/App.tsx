@@ -10,6 +10,7 @@ import { Post } from '../Blog/Post';
 import { routes } from '../../util/routes';
 import { Category } from '../Blog/Category';
 import { Tag } from '../Blog/Tag';
+import { Alloy } from '../Projects/Alloy';
 
 const { color, typography } = theme;
 const globalStyles = css`
@@ -77,6 +78,9 @@ export const App: React.FC = props => {
                 element={<Category />}
               />
               <Route path={routes.blog.tag.template} element={<Tag />} />
+            </Route>
+            <Route path={routes.project.base}>
+              <Route path={routes.project.alloy.base} element={<Alloy />} />
             </Route>
           </Route>
         </Routes>

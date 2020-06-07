@@ -15,5 +15,12 @@ export const routes = {
       template: 'tag/:slug',
       link: (slug: string) => `/blog/tag/${slug}`
     }
+  },
+  project: {
+    base: 'project',
+    alloy: {
+      base: 'alloy',
+      link: '/project/alloy'
+    }
   }
 };
