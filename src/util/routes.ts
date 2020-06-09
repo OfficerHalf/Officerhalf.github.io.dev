@@ -21,6 +21,10 @@ export const routes = {
     alloy: {
       base: 'alloy',
       link: '/project/alloy'
+    },
+    homebrewery: {
+      base: 'homebrewery',
+      link: '/project/homebrewery'
     }
   }
 };

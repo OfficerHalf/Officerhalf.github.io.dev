@@ -11,6 +11,7 @@ import { routes } from '../../util/routes';
 import { Category } from '../Blog/Category';
 import { Tag } from '../Blog/Tag';
 import { Alloy } from '../Projects/Alloy';
+import { Homebrewery } from '../Projects/Homebrewery/Homebrewery';
 
 const { color, typography } = theme;
 const globalStyles = css`
@@ -81,6 +82,10 @@ export const App: React.FC = props => {
             </Route>
             <Route path={routes.project.base}>
               <Route path={routes.project.alloy.base} element={<Alloy />} />
+              <Route
+                path={routes.project.homebrewery.base}
+                element={<Homebrewery />}
+              />
             </Route>
           </Route>
         </Routes>

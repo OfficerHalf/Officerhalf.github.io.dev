@@ -68,6 +68,10 @@ export const Header: React.FC = props => {
               {
                 text: 'Alloy',
                 onClick: () => navigate(routes.project.alloy.link)
+              },
+              {
+                text: 'Homebrewery Markdown Preview',
+                onClick: () => navigate(routes.project.homebrewery.link)
               }
             ]}
             arrow>
