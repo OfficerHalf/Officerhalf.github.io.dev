@@ -69,5 +69,12 @@
     "react-snap": "^1.23.0",
     "react-typography": "^0.16.19",
     "sass": "^1.26.5"
+  },
+  "reactSnap": {
+    "include": [
+      "/",
+      "/project/alloy",
+      "/project/homebrewery"
+    ]
   }
 }
