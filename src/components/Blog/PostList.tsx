@@ -6,10 +6,10 @@ import { parsePostDate } from '../../util/cms';
 import { jsx, css } from '@emotion/core';
 import theme from '../../util/theme';
 import { routes } from '../../util/routes';
-import { Body, Small, Subheading } from '../Typography';
-import { Tag } from '../Icons/Tag';
+import { Body, Small } from '../Typography';
+import { TagList } from './TagList';
 
-const { space, color } = theme;
+const { space, color, typography } = theme;
 
 const postCardStyle = css`
   max-width: 700px;
@@ -32,6 +32,8 @@ const titleStyle = css`
   display: block;
   margin: 0 0 ${space.xs} 0;
   text-decoration: none;
+  font-size: ${typography.subheading.size};
+  font-weight: ${typography.subheading.weight};
   &,
   &:focus,
   &:visited,
@@ -42,29 +44,6 @@ const titleStyle = css`
 
 const dateStyle = css`
   margin-bottom: ${space.sm};
-`;
-
-const tagStyle = css`
-  display: flex;
-  margin-top: ${space.s};
-  .tag-icon {
-    width: ${space.m};
-    height: ${space.m};
-    fill: ${color.lightGray};
-  }
-  .tag-link {
-    color: ${color.mutedText};
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-    &:not(:last-child) {
-      margin-right: ${space.xs};
-    }
-    &:not(:first-child) {
-      margin-left: ${space.xs};
-    }
-  }
 `;
 
 interface PostListProps {
@@ -81,7 +60,7 @@ export const PostList: React.FC<PostListProps> = props => {
         return (
           <div key={p.slug} css={postCardStyle}>
             <Link css={titleStyle} to={routes.blog.post.link(p.slug)}>
-              <Subheading>{p.title}</Subheading>
+              {p.title}
             </Link>
             <div
               css={css`
@@ -103,19 +82,7 @@ export const PostList: React.FC<PostListProps> = props => {
               )}
               <Body>{p.summary}</Body>
             </div>
-            {p.tags.length > 0 && (
-              <div css={tagStyle}>
-                <Tag className="tag-icon" />
-                {p.tags.map(t => (
-                  <Link
-                    className="tag-link"
-                    key={t.slug}
-                    to={routes.blog.tag.link(t.slug)}>
-                    <Small>{t.name}</Small>
-                  </Link>
-                ))}
-              </div>
-            )}
+            <TagList tags={p.tags} />
           </div>
         );
       })}

@@ -25,25 +25,30 @@ const globalStyles = css`
   h1 {
     font-size: ${typography.headline.size};
     font-weight: ${typography.headline.weight};
+    line-height: ${typography.headline.lineHeight};
   }
   /* Title */
   h2 {
     font-size: ${typography.title.size};
     font-weight: ${typography.title.weight};
+    line-height: ${typography.title.lineHeight};
   }
   /* Subheading */
   h3 {
     font-size: ${typography.subheading.size};
     font-weight: ${typography.subheading.weight};
+    line-height: ${typography.subheading.lineHeight};
   }
   /* Lead text */
   h4 {
     font-size: ${typography.leading.size};
     font-weight: ${typography.leading.weight};
+    line-height: ${typography.leading.lineHeight};
   }
   p {
     font-size: ${typography.body.size};
     font-weight: ${typography.body.weight};
+    line-height: ${typography.body.lineHeight};
   }
   h1,
   h2,

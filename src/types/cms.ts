@@ -28,7 +28,7 @@ export interface ButterRetrieveMeta {
 }
 
 // Models
-interface KeyValuePair {
+export interface KeyValuePair {
   name: string;
   slug: string;
 }

@@ -3,11 +3,10 @@ import React from 'react';
 import { css, jsx } from '@emotion/core';
 import { theme } from '../../util/theme';
 import { Link, useNavigate } from 'react-router-dom';
-import { Title } from '../Typography';
 import { Dropdown } from '../Common/Dropdown';
 import { routes } from '../../util/routes';
 
-const { color, space } = theme;
+const { color, space, typography } = theme;
 
 const headerStyles = css`
   background-color: ${color.primary};
@@ -50,6 +49,11 @@ const listStyle = css`
   }
 `;
 
+const navLinkStyle = css`
+  font-size: ${typography.title.size};
+  font-weight: ${typography.title.weight};
+`;
+
 export const Header: React.FC = props => {
   const navigate = useNavigate();
 
@@ -58,7 +62,7 @@ export const Header: React.FC = props => {
       <ul css={listStyle}>
         <li>
           <Link to="/">
-            <Title>Nathan Smith</Title>
+            <span css={navLinkStyle}>Nathan Smith</span>
           </Link>
         </li>
         <li className="spacer" />
@@ -75,17 +79,17 @@ export const Header: React.FC = props => {
               }
             ]}
             arrow>
-            <Title>Projects</Title>
+            <span css={navLinkStyle}>Projects</span>
           </Dropdown>
         </li>
         <li>
           <Link to={routes.about}>
-            <Title>About</Title>
+            <span css={navLinkStyle}>About</span>
           </Link>
         </li>
         <li>
           <Link to={routes.contact}>
-            <Title>Contact</Title>
+            <span css={navLinkStyle}>Contact</span>
           </Link>
         </li>
       </ul>

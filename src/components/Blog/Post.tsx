@@ -9,45 +9,20 @@ import { theme } from '../../util/theme';
 import { Link } from 'react-router-dom';
 import { routes } from '../../util/routes';
 import { Tag } from '../Icons/Tag';
-import { Small } from '../Typography';
+import { Small, Headline, Body } from '../Typography';
 
 const { space, color } = theme;
 
 const wrapperStyle = css`
-  margin-top: ${space.l};
   margin-bottom: ${space.m};
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
 `;
 
-const titleStyle = css`
-  margin-bottom: ${space.xs};
-`;
-
-const dateStyle = css`
-  margin-bottom: ${space.sm};
-`;
-
-const bodyStyle = css`
-  margin-bottom: ${space.l};
-
-  p {
-    margin-bottom: ${space.m};
-    margin-top: ${space.xs};
-  }
-  h1,
-  h2 {
-    margin-bottom: ${space.xs};
-  }
-  h3,
-  h4 {
-    margin-bottom: ${space.m};
-  }
-`;
-
 const tagStyle = css`
   display: flex;
+  margin-top: ${space.sm};
   margin-bottom: ${space.xs};
   .tag-icon {
     width: ${space.m};
@@ -57,20 +32,11 @@ const tagStyle = css`
   .tag-link {
     color: ${color.mutedText};
     text-decoration: none;
+    margin-left: ${space.xs};
     &:hover {
       text-decoration: underline;
     }
-    &:not(:last-child) {
-      margin-right: ${space.xs};
-    }
-    &:not(:first-child) {
-      margin-left: ${space.xs};
-    }
   }
-`;
-
-const nextPrevStyle = css`
-  margin-bottom: ${space.xs};
 `;
 
 export const Post: React.FC = props => {
@@ -96,8 +62,8 @@ export const Post: React.FC = props => {
     <div css={wrapperStyle}>
       {post && meta && (
         <Fragment>
-          <h1 css={titleStyle}>{post.title}</h1>
-          <h4 css={dateStyle}>
+          <Headline>{post.title}</Headline>
+          <h4>
             {parsePostDate(post.published)}
             {category && (
               <Fragment>
@@ -108,11 +74,7 @@ export const Post: React.FC = props => {
               </Fragment>
             )}
           </h4>
-          <div
-            css={bodyStyle}
-            ref={bodyRef}
-            dangerouslySetInnerHTML={{ __html: post.body }}
-          />
+          <div ref={bodyRef} dangerouslySetInnerHTML={{ __html: post.body }} />
           {post.tags.length > 0 && (
             <div css={tagStyle}>
               <Tag className="tag-icon" />
@@ -127,20 +89,20 @@ export const Post: React.FC = props => {
             </div>
           )}
           {meta.previous_post && (
-            <div css={nextPrevStyle}>
+            <Body>
               Previous:&nbsp;
               <Link to={routes.blog.post.link(meta.previous_post.slug)}>
                 {meta.previous_post.title}
               </Link>
-            </div>
+            </Body>
           )}
           {meta.next_post && (
-            <div css={nextPrevStyle}>
+            <Body>
               Next:&nbsp;
               <Link to={routes.blog.post.link(meta.next_post.slug)}>
                 {meta.next_post.title}
               </Link>
-            </div>
+            </Body>
           )}
         </Fragment>
       )}

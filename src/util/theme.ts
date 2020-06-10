@@ -43,7 +43,7 @@ export const theme: Theme = {
     headline: {
       size: '2em',
       weight: '300',
-      lineHeight: baseLineHeight * 2
+      lineHeight: baseLineHeight * 1.5
     },
     subheading: {
       size: '1.3em',
