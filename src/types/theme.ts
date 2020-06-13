@@ -7,6 +7,7 @@ interface Font {
   size: string;
   weight: string;
   lineHeight: number;
+  marginBottom?: string;
 }
 
 export interface Theme {

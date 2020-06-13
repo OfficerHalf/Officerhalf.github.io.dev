@@ -2,6 +2,18 @@ import { Theme } from '../types/theme';
 
 const baseLineHeight = 1.61;
 
+const space = {
+  xxs: '2px',
+  xs: '4px',
+  s: '8px',
+  sm: '12px',
+  m: '16px',
+  l: '24px',
+  xl: '32px',
+  xxl: '64px',
+  xxxl: '96px'
+};
+
 export const theme: Theme = {
   color: {
     primary: '#377771',
@@ -11,24 +23,15 @@ export const theme: Theme = {
     lightGray: '#999',
     background: '#e7ecef'
   },
-  space: {
-    xxs: '2px',
-    xs: '4px',
-    s: '8px',
-    sm: '12px',
-    m: '16px',
-    l: '24px',
-    xl: '32px',
-    xxl: '64px',
-    xxxl: '96px'
-  },
+  space,
   typography: {
     fontFamily: 'Lato, sans-serif',
     baseFontSize: '16px',
     body: {
       size: '1em',
       weight: '400',
-      lineHeight: baseLineHeight
+      lineHeight: baseLineHeight,
+      marginBottom: space.m
     },
     small: {
       size: '0.8em',
@@ -38,22 +41,26 @@ export const theme: Theme = {
     leading: {
       size: '1.15em',
       weight: '400',
-      lineHeight: baseLineHeight
+      lineHeight: baseLineHeight,
+      marginBottom: space.s
     },
     headline: {
       size: '2em',
       weight: '300',
-      lineHeight: baseLineHeight * 1.5
+      lineHeight: baseLineHeight,
+      marginBottom: space.l
     },
     subheading: {
       size: '1.3em',
       weight: '400',
-      lineHeight: baseLineHeight * 1.5
+      lineHeight: baseLineHeight,
+      marginBottom: space.s
     },
     title: {
       size: '1.5em',
       weight: '300',
-      lineHeight: baseLineHeight * 1.5
+      lineHeight: baseLineHeight,
+      marginBottom: space.m
     },
     googleFonts: [
       {

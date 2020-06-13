@@ -91,7 +91,15 @@ export const Post: React.FC = props => {
           {meta.previous_post && (
             <Body>
               Previous:&nbsp;
-              <Link to={routes.blog.post.link(meta.previous_post.slug)}>
+              <Link
+                onClick={() =>
+                  window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth'
+                  })
+                }
+                to={routes.blog.post.link(meta.previous_post.slug)}>
                 {meta.previous_post.title}
               </Link>
             </Body>
@@ -99,7 +107,11 @@ export const Post: React.FC = props => {
           {meta.next_post && (
             <Body>
               Next:&nbsp;
-              <Link to={routes.blog.post.link(meta.next_post.slug)}>
+              <Link
+                onClick={() =>
+                  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+                }
+                to={routes.blog.post.link(meta.next_post.slug)}>
                 {meta.next_post.title}
               </Link>
             </Body>

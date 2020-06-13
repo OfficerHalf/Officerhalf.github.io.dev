@@ -4,7 +4,7 @@ import { BlogPost } from '../../types/cms';
 import { Link } from 'react-router-dom';
 import { parsePostDate } from '../../util/cms';
 import { jsx, css } from '@emotion/core';
-import theme from '../../util/theme';
+import { theme } from '../../util/theme';
 import { routes } from '../../util/routes';
 import { Body, Small } from '../Typography';
 import { TagList } from './TagList';
@@ -80,9 +80,19 @@ export const PostList: React.FC<PostListProps> = props => {
               {p.featured_image && p.featured_image !== '' && (
                 <img alt="featured" src={p.featured_image} />
               )}
-              <Body>{p.summary}</Body>
+              <Body
+                css={css`
+                  margin-bottom: 0;
+                `}>
+                {p.summary}
+              </Body>
             </div>
-            <TagList tags={p.tags} />
+            <TagList
+              css={css`
+                margin-top: ${space.s};
+              `}
+              tags={p.tags}
+            />
           </div>
         );
       })}

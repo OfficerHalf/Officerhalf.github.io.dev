@@ -29,29 +29,32 @@ interface TagListProps {
   tags?: KeyValuePair[];
 }
 
-export const TagList = React.forwardRef<HTMLDivElement, TagListProps>(
-  (props, ref) => {
-    const { tags = [] } = props;
-    if (tags.length === 0) {
-      return null;
-    }
-    return (
-      <div
-        ref={ref}
-        css={css`
-          display: flex;
-          align-items: center;
-        `}>
-        <Tag css={tagIconStyle} />
-        {tags.map(t => (
-          <Link
-            css={tagLinkStyle}
-            key={t.slug}
-            to={routes.blog.tag.link(t.slug)}>
-            {t.name}
-          </Link>
-        ))}
-      </div>
-    );
+export const TagList = React.forwardRef<
+  HTMLDivElement,
+  TagListProps &
+    React.DetailedHTMLProps<
+      React.HTMLAttributes<HTMLDivElement>,
+      HTMLDivElement
+    >
+>((props, ref) => {
+  const { tags = [], ...rest } = props;
+  if (tags.length === 0) {
+    return null;
   }
-);
+  return (
+    <div
+      ref={ref}
+      css={css`
+        display: flex;
+        align-items: center;
+      `}
+      {...rest}>
+      <Tag css={tagIconStyle} />
+      {tags.map(t => (
+        <Link css={tagLinkStyle} key={t.slug} to={routes.blog.tag.link(t.slug)}>
+          {t.name}
+        </Link>
+      ))}
+    </div>
+  );
+});

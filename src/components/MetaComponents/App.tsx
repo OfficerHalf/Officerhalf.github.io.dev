@@ -13,7 +13,7 @@ import { Tag } from '../Blog/Tag';
 import { Alloy } from '../Projects/Alloy';
 import { Homebrewery } from '../Projects/Homebrewery/Homebrewery';
 
-const { color, typography } = theme;
+const { color, typography, space } = theme;
 const globalStyles = css`
   html {
     box-sizing: border-box;
@@ -21,6 +21,17 @@ const globalStyles = css`
     font-family: ${typography.fontFamily};
     font-size: ${typography.baseFontSize};
   }
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    margin: 0;
+    .muted {
+      color: ${color.mutedText};
+    }
+  }
+
   /* Headline */
   h1 {
     font-size: ${typography.headline.size};
@@ -38,28 +49,27 @@ const globalStyles = css`
     font-size: ${typography.subheading.size};
     font-weight: ${typography.subheading.weight};
     line-height: ${typography.subheading.lineHeight};
+    margin-bottom: ${typography.subheading.marginBottom!};
   }
   /* Lead text */
   h4 {
     font-size: ${typography.leading.size};
     font-weight: ${typography.leading.weight};
     line-height: ${typography.leading.lineHeight};
+    margin-bottom: ${typography.leading.marginBottom!};
   }
   p {
     font-size: ${typography.body.size};
     font-weight: ${typography.body.weight};
     line-height: ${typography.body.lineHeight};
+    margin-bottom: ${typography.body.marginBottom!};
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  p {
-    margin: 0;
-    .muted {
-      color: ${color.mutedText};
-    }
+
+  ol > li,
+  ul > li {
+    margin-bottom: ${space.s};
   }
+
   *,
   *:before,
   *:after {
