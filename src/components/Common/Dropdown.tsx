@@ -111,7 +111,12 @@ const DropdownContent: React.FC<DropdownContentProps> = props => {
     <ul css={listStyle}>
       {options.map(o => (
         <li key={o.key || o.text} onClick={o.onClick}>
-          <Leading>{o.text}</Leading>
+          <Leading
+            css={css`
+              margin-bottom: 0;
+            `}>
+            {o.text}
+          </Leading>
         </li>
       ))}
     </ul>
