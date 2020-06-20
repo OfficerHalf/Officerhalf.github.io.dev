@@ -68,4 +68,10 @@ export interface Theme {
     '23': string;
     '24': string;
   };
+  queries: {
+    '5': string;
+    '7': string;
+    '9': string;
+    '12': string;
+  };
 }

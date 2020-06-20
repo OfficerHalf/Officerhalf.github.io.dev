@@ -2,9 +2,7 @@
 import React from 'react';
 import { postList } from '../../util/cms';
 import { BlogPost } from '../../types/cms';
-import { Post } from '../Blog/Post';
-import { css, jsx } from '@emotion/core';
-import theme from '../../util/theme';
+import { jsx } from '@emotion/core';
 import { PostList } from '../Blog/PostList';
 
 export const HomePage: React.FC = props => {

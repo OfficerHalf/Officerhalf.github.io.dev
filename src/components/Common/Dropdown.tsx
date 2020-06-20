@@ -4,13 +4,10 @@ import Tippy, { TippyProps } from '@tippyjs/react';
 import { theme } from '../../util/theme';
 import { css, jsx } from '@emotion/core';
 import { Leading } from '../Typography';
+import { MenuItem } from '../../types/nav';
 
 interface DropdownContentProps {
-  options: {
-    key?: string;
-    text: string;
-    onClick: (event: React.MouseEvent) => void;
-  }[];
+  options: MenuItem[];
 }
 
 const tipStyle = css`
@@ -110,7 +107,7 @@ const DropdownContent: React.FC<DropdownContentProps> = props => {
   return (
     <ul css={listStyle}>
       {options.map(o => (
-        <li key={o.key || o.text} onClick={o.onClick}>
+        <li key={o.id || o.text} onClick={o.onClick}>
           <Leading
             css={css`
               margin-bottom: 0;

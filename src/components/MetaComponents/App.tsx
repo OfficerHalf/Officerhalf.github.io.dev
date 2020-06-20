@@ -89,18 +89,12 @@ export const App: React.FC = props => {
             <Route path={routes.contact} element={<ContactPage />} />
             <Route path={routes.blog.base}>
               <Route path={routes.blog.post.template} element={<Post />} />
-              <Route
-                path={routes.blog.category.template}
-                element={<Category />}
-              />
+              <Route path={routes.blog.category.template} element={<Category />} />
               <Route path={routes.blog.tag.template} element={<Tag />} />
             </Route>
             <Route path={routes.project.base}>
               <Route path={routes.project.alloy.base} element={<Alloy />} />
-              <Route
-                path={routes.project.homebrewery.base}
-                element={<Homebrewery />}
-              />
+              <Route path={routes.project.homebrewery.base} element={<Homebrewery />} />
             </Route>
           </Route>
         </Routes>
