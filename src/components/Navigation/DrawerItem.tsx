@@ -14,6 +14,13 @@ const drawerItemStyle = css`
   align-items: center;
 `;
 
+const noChildrenStyle = css`
+  cursor: pointer;
+  &:hover {
+    background-color: ${color.accent};
+  }
+`;
+
 interface DrawerItemProps {
   isChild?: boolean;
   onClose: React.MouseEventHandler;
@@ -49,10 +56,7 @@ export const DrawerItem: React.FC<MenuItem & DrawerItemProps> = props => {
         css={css`
           ${drawerItemStyle};
           padding-left: ${isChild ? space.xl : space.m};
-          ${!hasChildren &&
-          `&:hover {
-        background-color: ${color.accent};
-      }`};
+          ${!hasChildren && noChildrenStyle};
         `}
         onClick={_onClick}>
         {text}

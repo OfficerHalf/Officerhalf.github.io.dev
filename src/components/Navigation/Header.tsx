@@ -8,6 +8,7 @@ import { Menu } from '../Icons';
 import { Drawer } from './Drawer';
 import { MenuItem } from '../../types/nav';
 import { useMedia } from 'react-media';
+import { Horizontal } from './Horizontal';
 
 const { color, space, typography, queries } = theme;
 
@@ -42,6 +43,7 @@ const menuStyle = css`
   width: ${space.l};
   height: ${space.l};
   fill: white;
+  cursor: pointer;
 `;
 
 export const Header: React.FC = props => {
@@ -57,10 +59,6 @@ export const Header: React.FC = props => {
 
   const menuItems: MenuItem[] = React.useMemo(
     () => [
-      {
-        text: 'Home',
-        to: '/'
-      },
       {
         text: 'Projects',
         childItems: [
@@ -91,6 +89,7 @@ export const Header: React.FC = props => {
       <div className="spacer" />
       {!breakpoints[5] && <Menu css={menuStyle} onClick={() => setDrawerOpen(true)} />}
       {!breakpoints[5] && <Drawer open={drawerOpen} items={menuItems} onClose={() => setDrawerOpen(false)} />}
+      {breakpoints[5] && <Horizontal items={menuItems} />}
       {/* <ul css={listStyle}>
         <li>
           <Link to="/">

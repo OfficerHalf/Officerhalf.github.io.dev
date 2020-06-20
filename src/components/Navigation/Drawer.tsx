@@ -99,6 +99,7 @@ const closeStyle = css`
   width: ${space.l};
   height: ${space.l};
   fill: ${color.text};
+  cursor: pointer;
 `;
 
 interface DrawerProps {

@@ -96,6 +96,7 @@ const listStyle = css`
     background-color: white;
     transition: background-color ease-in-out 0.3s;
     text-align: center;
+    cursor: pointer;
     &:hover {
       background-color: ${theme.color.accent};
     }
@@ -124,12 +125,5 @@ type DropdownProps = Omit<TippyProps & DropdownContentProps, 'content'>;
 
 export const Dropdown: React.FC<DropdownProps> = props => {
   const { options, interactive = true, ...rest } = props;
-  return (
-    <Tippy
-      css={tipStyle}
-      interactive={interactive}
-      {...rest}
-      content={<DropdownContent options={options} />}
-    />
-  );
+  return <Tippy css={tipStyle} interactive={interactive} {...rest} content={<DropdownContent options={options} />} />;
 };
