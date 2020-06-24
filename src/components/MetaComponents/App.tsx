@@ -1,7 +1,7 @@
 import React from 'react';
 import { Global, css } from '@emotion/core';
 import { HomePage } from '../RootComponents/HomePage';
-import { AboutPage } from '../RootComponents/AboutPage';
+import { AboutPage } from '../RootComponents/AboutPage/AboutPage';
 import { theme } from '../../util/theme';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout';
