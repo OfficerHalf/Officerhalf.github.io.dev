@@ -122,7 +122,6 @@ body {
   -moz-column-gap: 1cm;
   counter-increment: phb-page-numbers;
   position: relative;
-  z-index: 15;
   box-sizing: border-box;
   overflow: hidden;
   height: 279.4mm;
@@ -167,10 +166,6 @@ body {
 .phb ul + p,
 .phb ol + p {
   text-indent: 1em;
-}
-
-.phb img {
-  z-index: -1;
 }
 
 .phb strong {
@@ -480,7 +475,6 @@ body {
 .phb p,
 .phb blockquote,
 .phb table {
-  z-index: 15;
   -webkit-column-break-inside: avoid;
   column-break-inside: avoid;
   overflow: hidden;
