@@ -10,7 +10,7 @@ import { Post } from '../Blog/Post';
 import { routes } from '../../util/routes';
 import { Category } from '../Blog/Category';
 import { Tag } from '../Blog/Tag';
-import { Alloy } from '../Projects/Alloy';
+import { Alloy } from '../Projects/Alloy/Alloy';
 import { Homebrewery } from '../Projects/Homebrewery/Homebrewery';
 
 const { color, typography, space } = theme;

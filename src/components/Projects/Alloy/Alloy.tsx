@@ -1,39 +1,54 @@
 /** @jsx jsx */
 import * as React from 'react';
-import { ImageComparison } from '../Common/ImageComparison';
+import { ImageComparison } from '../../Common/ImageComparison';
 import { css, jsx } from '@emotion/core';
-import { theme } from '../../util/theme';
+import { theme } from '../../../util/theme';
+import { useMedia } from 'react-media';
+import AlloySmall from './AlloyCropped.png';
+
+const { space, queries } = theme;
 
 export const Alloy: React.FC = props => {
+  const breakpoint = useMedia({ queries });
   return (
     <div
       css={css`
         justify-content: center;
         display: flex;
         text-align: center;
-        margin-top: ${theme.space.l};
-        margin-bottom: ${theme.space.l};
+        margin-top: ${space.l};
+        margin-bottom: ${space.l};
       `}>
       <div>
-        <ImageComparison
-          imageLeftSrc={`${process.env.PUBLIC_URL}/Alloy2.png`}
-          imageRightSrc={`${process.env.PUBLIC_URL}/Monokai2.png`}
-          width={1158}
-          height={700}
-          labelLeft="Alloy"
-          labelRight="Monokai"
-        />
+        {breakpoint[12] && (
+          <ImageComparison
+            imageLeftSrc={`${process.env.PUBLIC_URL}/Alloy2.png`}
+            imageRightSrc={`${process.env.PUBLIC_URL}/Monokai2.png`}
+            width={1158}
+            height={700}
+            labelLeft="Alloy"
+            labelRight="Monokai"
+          />
+        )}
+        {!breakpoint[12] && (
+          <img
+            css={css`
+              max-width: 100%;
+            `}
+            alt="Alloy"
+            src={AlloySmall}
+          />
+        )}
         <h2
           css={css`
-            margin-top: ${theme.space.l};
+            margin-top: ${space.l};
           `}>
           About
         </h2>
         <p>
           Alloy is my response to the green and yellow tinted world of Monokai.
           <br />
-          Alloy has more contrast and clearer color, while maintaining Monokai's
-          vibrant palette.
+          Alloy has more contrast and clearer color, while maintaining Monokai's vibrant palette.
         </p>
         <p>
           Get the theme for{' '}
@@ -44,10 +59,7 @@ export const Alloy: React.FC = props => {
             VS Code
           </a>
           ,{' '}
-          <a
-            href="https://github.com/OfficerHalf/alloy-theme-prismjs"
-            target="_blank"
-            rel="noopener noreferrer">
+          <a href="https://github.com/OfficerHalf/alloy-theme-prismjs" target="_blank" rel="noopener noreferrer">
             prismjs
           </a>
           ,{' '}
@@ -69,7 +81,7 @@ export const Alloy: React.FC = props => {
           <a
             css={css`
               display: inline-block;
-              margin-top: ${theme.space.s};
+              margin-top: ${space.s};
             `}
             href="https://github.com/OfficerHalf/alloy-theme"
             target="_blank"

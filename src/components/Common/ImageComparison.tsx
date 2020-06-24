@@ -75,13 +75,21 @@ export const ImageComparison: React.FC<ImageComparisonProps> = props => {
   const [startPosition, setStartPosition] = React.useState<number>(0);
   const [position, setPosition] = React.useState<number>(width / 2);
 
+  const resetToDefault = React.useCallback(() => {
+    setDragging(false);
+    setStartPosition(dragRef.current!.getBoundingClientRect().left);
+    setPosition(width / 2);
+  }, [width]);
+
   React.useEffect(() => {
+    window.addEventListener('resize', resetToDefault);
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
+      window.removeEventListener('resize', resetToDefault);
     };
-  }, []);
+  }, [resetToDefault]);
 
   React.useEffect(() => {
     setStartPosition(dragRef.current!.getBoundingClientRect().left);
@@ -99,10 +107,7 @@ export const ImageComparison: React.FC<ImageComparisonProps> = props => {
         animationFrameRef.current = requestAnimationFrame(() => {
           setPosition(
             Math.min(
-              Math.max(
-                dragHandleRadius / 2,
-                event.pageX - dragHandleRadius / 2 - startPosition + width / 2
-              ),
+              Math.max(dragHandleRadius / 2, event.pageX - dragHandleRadius / 2 - startPosition + width / 2),
               width - dragHandleRadius / 2
             )
           );
@@ -119,10 +124,7 @@ export const ImageComparison: React.FC<ImageComparisonProps> = props => {
         animationFrameRef.current = requestAnimationFrame(() => {
           setPosition(
             Math.min(
-              Math.max(
-                dragHandleRadius / 2,
-                event.pageX - dragHandleRadius / 2 - startPosition + width / 2
-              ),
+              Math.max(dragHandleRadius / 2, event.pageX - dragHandleRadius / 2 - startPosition + width / 2),
               width - dragHandleRadius / 2
             )
           );
