@@ -7,6 +7,9 @@ import { MenuItem } from '../../types/nav';
 import { Close } from '../Icons';
 import { theme } from '../../util/theme';
 import { DrawerItem } from './DrawerItem';
+import { SearchBox } from './SearchBox';
+import { useNavigate } from 'react-router';
+import { routes } from '../../util/routes';
 
 const { space, color, elevation } = theme;
 
@@ -110,6 +113,7 @@ interface DrawerProps {
 
 export const Drawer: React.FC<DrawerProps> = props => {
   const { open, onClose, items, ...rest } = props;
+  const navigate = useNavigate();
   const drawerRef = React.useRef<HTMLDivElement>(null);
   return (
     <Portal>
@@ -118,6 +122,9 @@ export const Drawer: React.FC<DrawerProps> = props => {
           <div className="content" {...rest} onClick={e => e.stopPropagation()}>
             <div css={closeContainerStyle}>
               <Close css={closeStyle} onClick={onClose} />
+            </div>
+            <div css={closeContainerStyle}>
+              <SearchBox css={closeStyle} onEnter={query => navigate(routes.blog.search.link(query))} />
             </div>
             {items.map(i => (
               <DrawerItem key={i.id || i.text} {...i} onClose={onClose} />

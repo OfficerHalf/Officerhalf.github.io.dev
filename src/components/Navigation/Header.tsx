@@ -15,7 +15,8 @@ const { color, space, typography, queries } = theme;
 const headerStyles = css`
   background-color: ${color.primary};
   color: white;
-  padding: ${space.m};
+  padding: 0 ${space.m};
+  height: 56px;
   display: flex;
   align-items: center;
   .spacer {
@@ -90,40 +91,6 @@ export const Header: React.FC = props => {
       {!breakpoints[5] && <Menu css={menuStyle} onClick={() => setDrawerOpen(true)} />}
       {!breakpoints[5] && <Drawer open={drawerOpen} items={menuItems} onClose={() => setDrawerOpen(false)} />}
       {breakpoints[5] && <Horizontal items={menuItems} />}
-      {/* <ul css={listStyle}>
-        <li>
-          <Link to="/">
-            <span css={navLinkStyle}>Nathan Smith</span>
-          </Link>
-        </li>
-        <li className="spacer" />
-        <li>
-          <Dropdown
-            options={[
-              {
-                text: 'Alloy',
-                onClick: () => navigate(routes.project.alloy.link)
-              },
-              {
-                text: 'Homebrewery Markdown Preview',
-                onClick: () => navigate(routes.project.homebrewery.link)
-              }
-            ]}
-            arrow>
-            <span css={navLinkStyle}>Projects</span>
-          </Dropdown>
-        </li>
-        <li>
-          <Link to={routes.about}>
-            <span css={navLinkStyle}>About</span>
-          </Link>
-        </li>
-        <li>
-          <Link to={routes.contact}>
-            <span css={navLinkStyle}>Contact</span>
-          </Link>
-        </li>
-      </ul> */}
     </header>
   );
 };

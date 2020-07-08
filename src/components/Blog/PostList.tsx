@@ -6,7 +6,7 @@ import { parsePostDate } from '../../util/cms';
 import { jsx, css } from '@emotion/core';
 import { theme } from '../../util/theme';
 import { routes } from '../../util/routes';
-import { Body, Small } from '../Typography';
+import { Body, Small, Title } from '../Typography';
 import { TagList } from './TagList';
 
 const { space, color, typography } = theme;
@@ -54,9 +54,16 @@ export const PostList: React.FC<PostListProps> = props => {
   const { posts } = props;
   return (
     <div>
+      {posts.length === 0 && (
+        <div
+          css={css`
+            margin: ${space.s};
+          `}>
+          <Title>Sorry! No results found.</Title>
+        </div>
+      )}
       {posts.map(p => {
-        const category =
-          p.categories && p.categories.length > 0 ? p.categories[0] : null;
+        const category = p.categories && p.categories.length > 0 ? p.categories[0] : null;
         return (
           <div key={p.slug} css={postCardStyle}>
             <Link css={titleStyle} to={routes.blog.post.link(p.slug)}>
@@ -77,9 +84,7 @@ export const PostList: React.FC<PostListProps> = props => {
               )}
             </div>
             <div css={postFeatureStyle}>
-              {p.featured_image && p.featured_image !== '' && (
-                <img alt="featured" src={p.featured_image} />
-              )}
+              {p.featured_image && p.featured_image !== '' && <img alt="featured" src={p.featured_image} />}
               <Body
                 css={css`
                   margin-bottom: 0;

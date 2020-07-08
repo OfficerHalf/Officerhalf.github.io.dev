@@ -12,6 +12,8 @@ import { Category } from '../Blog/Category';
 import { Tag } from '../Blog/Tag';
 import { Alloy } from '../Projects/Alloy/Alloy';
 import { Homebrewery } from '../Projects/Homebrewery/Homebrewery';
+import { Search } from '../Blog/Search';
+import { HelmetProvider } from 'react-helmet-async';
 
 const { color, typography, space } = theme;
 const globalStyles = css`
@@ -79,7 +81,7 @@ const globalStyles = css`
 
 export const App: React.FC = props => {
   return (
-    <>
+    <HelmetProvider>
       <Global styles={globalStyles} />
       <BrowserRouter>
         <Routes>
@@ -91,6 +93,7 @@ export const App: React.FC = props => {
               <Route path={routes.blog.post.template} element={<Post />} />
               <Route path={routes.blog.category.template} element={<Category />} />
               <Route path={routes.blog.tag.template} element={<Tag />} />
+              <Route path={routes.blog.search.template} element={<Search />} />
             </Route>
             <Route path={routes.project.base}>
               <Route path={routes.project.alloy.base} element={<Alloy />} />
@@ -99,6 +102,6 @@ export const App: React.FC = props => {
           </Route>
         </Routes>
       </BrowserRouter>
-    </>
+    </HelmetProvider>
   );
 };

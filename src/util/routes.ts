@@ -1,3 +1,5 @@
+import queryString from 'query-string';
+
 export const routes = {
   about: 'about',
   contact: 'contact',
@@ -14,6 +16,10 @@ export const routes = {
     tag: {
       template: 'tag/:slug',
       link: (slug: string) => `/blog/tag/${slug}`
+    },
+    search: {
+      template: 'search',
+      link: (query: string) => queryString.stringifyUrl({ query: { search: query }, url: '/blog/search' })
     }
   },
   project: {
