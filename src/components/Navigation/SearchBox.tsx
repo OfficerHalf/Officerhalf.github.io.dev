@@ -4,28 +4,86 @@ import { Search, Close } from '../Icons';
 import { useOnClickOutside } from 'the-captains-hooks';
 import { css, jsx } from '@emotion/core';
 import { theme } from '../../util/theme';
+import { CSSTransition } from 'react-transition-group';
 
 const { space, color } = theme;
 
-const iconStyle = css`
-  width: 20px;
-  cursor: pointer;
-  fill: ${color.background};
-`;
-
 interface SearchBoxProps {
   onEnter: (value: string) => void;
+  fill?: string;
+  border?: boolean;
+  maxWidth?: string;
 }
 
+const inputWrapperStyle = css`
+  padding: ${space.xxs};
+  display: none;
+  background-color: white;
+  height: 100%;
+  border-radius: ${space.xs};
+  margin-right: ${space.s};
+  &.enter {
+    display: flex;
+    width: 0px;
+  }
+  &.enter-active {
+    display: flex;
+    transition: width 200ms ease-in-out;
+    width: 100%;
+  }
+  &.enter-done {
+    display: flex;
+    width: 100%;
+  }
+  &.exit {
+    display: flex;
+    width: 100%;
+  }
+  &.exit-active {
+    display: flex;
+    transition: width 200ms ease-in-out;
+    width: 0px;
+  }
+  &.exit-done {
+  }
+`;
+
+const inputWrapperDrawer = css`
+  &.enter-active {
+    border: 2px solid ${color.accent};
+  }
+  &.enter-done {
+    border: 2px solid ${color.accent};
+  }
+  &.exit {
+    border: 2px solid ${color.accent};
+  }
+  &.exit-active {
+    border: 2px solid ${color.accent};
+  }
+`;
+
+const wrapperStyle = css`
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-grow: 1;
+`;
+
 export const SearchBox: React.FC<SearchBoxProps> = props => {
-  const { onEnter } = props;
+  const { onEnter, fill = color.background, border = false, maxWidth } = props;
   const [showInput, setShowInput] = React.useState<boolean>(false);
   const searchBoxRef = React.useRef<HTMLDivElement>(null);
+  const inputWrapperRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
+
   useOnClickOutside(searchBoxRef, () => setShowInput(false));
   React.useEffect(() => {
     if (showInput && inputRef.current) {
       inputRef.current.focus();
+    } else if (!showInput && inputRef.current) {
+      inputRef.current.value = '';
     }
   }, [showInput]);
   const toggleSearchBox = React.useCallback(() => {
@@ -35,6 +93,22 @@ export const SearchBox: React.FC<SearchBoxProps> = props => {
       setShowInput(true);
     }
   }, [showInput]);
+
+  const iconStyle = css`
+    display: block;
+    width: ${space.l};
+    height: ${space.l};
+    cursor: pointer;
+    fill: ${fill};
+    flex-shrink: 0;
+  `;
+
+  const inputStyle = css`
+    outline: none;
+    border: none;
+    background-color: transparent;
+    flex-grow: 1;
+  `;
 
   const handleEnter = React.useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -48,35 +122,23 @@ export const SearchBox: React.FC<SearchBoxProps> = props => {
   return (
     <div
       css={css`
-        display: flex;
+        ${wrapperStyle};
+        ${maxWidth &&
+        css`
+          max-width: ${maxWidth};
+        `};
       `}
       ref={searchBoxRef}>
-      <div
-        css={css`
-          background-color: white;
-          width: ${showInput ? 250 : 0}px;
-          transition: all 0.2s;
-          height: 32px;
-          border-radius: 2px;
-          margin-right: ${space.s};
-        `}>
-        {showInput && (
-          <input
-            tabIndex={0}
-            ref={inputRef}
-            css={css`
-              background-color: transparent;
-              border: 0;
-              outline: none;
-              width: 250px;
-              height: 32px;
-              padding: ${space.xs};
-            `}
-            type="text"
-            onKeyDown={handleEnter}
-          />
-        )}
-      </div>
+      <CSSTransition in={showInput} timeout={200} nodeRef={inputWrapperRef}>
+        <div
+          css={css`
+            ${inputWrapperStyle};
+            ${border && inputWrapperDrawer};
+          `}
+          ref={inputWrapperRef}>
+          <input css={inputStyle} tabIndex={0} ref={inputRef} type="text" onKeyDown={handleEnter} />
+        </div>
+      </CSSTransition>
       {!showInput && <Search css={iconStyle} onClick={toggleSearchBox} />}
       {showInput && <Close css={iconStyle} onClick={toggleSearchBox} />}
     </div>

@@ -96,6 +96,7 @@ const closeContainerStyle = css`
   align-items: center;
   height: 56px;
   padding-right: ${space.m};
+  padding-left: ${space.m};
 `;
 
 const closeStyle = css`
@@ -107,7 +108,7 @@ const closeStyle = css`
 
 interface DrawerProps {
   open: boolean;
-  onClose: React.MouseEventHandler;
+  onClose: () => void;
   items: MenuItem[];
 }
 
@@ -115,6 +116,15 @@ export const Drawer: React.FC<DrawerProps> = props => {
   const { open, onClose, items, ...rest } = props;
   const navigate = useNavigate();
   const drawerRef = React.useRef<HTMLDivElement>(null);
+
+  const handleSearch = React.useCallback(
+    (query: string) => {
+      onClose();
+      navigate(routes.blog.search.link(query));
+    },
+    [navigate, onClose]
+  );
+
   return (
     <Portal>
       <CSSTransition in={open} appear timeout={300} nodeRef={drawerRef}>
@@ -124,7 +134,7 @@ export const Drawer: React.FC<DrawerProps> = props => {
               <Close css={closeStyle} onClick={onClose} />
             </div>
             <div css={closeContainerStyle}>
-              <SearchBox css={closeStyle} onEnter={query => navigate(routes.blog.search.link(query))} />
+              <SearchBox css={closeStyle} onEnter={handleSearch} border={true} fill={color.text} />
             </div>
             {items.map(i => (
               <DrawerItem key={i.id || i.text} {...i} onClose={onClose} />

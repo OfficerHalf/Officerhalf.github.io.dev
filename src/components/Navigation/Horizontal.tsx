@@ -16,7 +16,7 @@ export const Horizontal: React.FC<HorizontalProps> = props => {
   const navigate = useNavigate();
   return (
     <Fragment>
-      <SearchBox onEnter={query => navigate(routes.blog.search.link(query))} />
+      <SearchBox onEnter={query => navigate(routes.blog.search.link(query))} maxWidth="250px" />
       <ul
         css={css`
           display: flex;

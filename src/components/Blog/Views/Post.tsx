@@ -1,15 +1,15 @@
 /** @jsx jsx */
 import React, { Fragment } from 'react';
-import { BlogPost, ButterRetrieveMeta } from '../../types/cms';
-import { usePrismjs } from '../../hooks/usePrismjs';
+import { BlogPost, ButterRetrieveMeta } from '../../../types/cms';
+import { usePrismjs } from '../../../hooks/usePrismjs';
 import { useParams } from 'react-router';
-import { getPost, parsePostDate } from '../../util/cms';
+import { getPost, parsePostDate } from '../../../util/cms';
 import { css, jsx } from '@emotion/core';
-import { theme } from '../../util/theme';
+import { theme } from '../../../util/theme';
 import { Link } from 'react-router-dom';
-import { routes } from '../../util/routes';
-import { Tag } from '../Icons/Tag';
-import { Small, Headline, Body } from '../Typography';
+import { routes } from '../../../util/routes';
+import { Tag } from '../../Icons/Tag';
+import { Small, Headline, Body } from '../../Typography';
 import { Helmet } from 'react-helmet-async';
 
 const { space, color } = theme;

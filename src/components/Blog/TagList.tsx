@@ -31,11 +31,7 @@ interface TagListProps {
 
 export const TagList = React.forwardRef<
   HTMLDivElement,
-  TagListProps &
-    React.DetailedHTMLProps<
-      React.HTMLAttributes<HTMLDivElement>,
-      HTMLDivElement
-    >
+  TagListProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 >((props, ref) => {
   const { tags = [], ...rest } = props;
   if (tags.length === 0) {

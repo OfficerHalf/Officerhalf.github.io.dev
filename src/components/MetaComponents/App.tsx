@@ -6,13 +6,13 @@ import { theme } from '../../util/theme';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout';
 import { ContactPage } from '../RootComponents/ContactPage';
-import { Post } from '../Blog/Post';
+import { Post } from '../Blog/Views/Post';
 import { routes } from '../../util/routes';
-import { Category } from '../Blog/Category';
-import { Tag } from '../Blog/Tag';
+import { Category } from '../Blog/Views/Category';
+import { Tag } from '../Blog/Views/Tag';
 import { Alloy } from '../Projects/Alloy/Alloy';
 import { Homebrewery } from '../Projects/Homebrewery/Homebrewery';
-import { Search } from '../Blog/Search';
+import { Search } from '../Blog/Views/Search';
 import { HelmetProvider } from 'react-helmet-async';
 
 const { color, typography, space } = theme;

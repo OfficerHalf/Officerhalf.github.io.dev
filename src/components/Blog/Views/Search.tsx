@@ -1,7 +1,7 @@
 import React from 'react';
-import { PostList } from './PostList';
-import { searchPosts } from '../../util/cms';
-import { BlogPost } from '../../types/cms';
+import { PostList } from '../PostList';
+import { searchPosts } from '../../../util/cms';
+import { BlogPost } from '../../../types/cms';
 import queryString from 'query-string';
 import { useLocation } from 'react-router';
 
