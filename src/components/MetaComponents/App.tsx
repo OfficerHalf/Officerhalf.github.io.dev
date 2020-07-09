@@ -65,6 +65,12 @@ const globalStyles = css`
     font-weight: ${typography.body.weight};
     line-height: ${typography.body.lineHeight};
     margin-bottom: ${typography.body.marginBottom!};
+    code {
+      background-color: ${color.accent}15;
+      padding-left: ${space.xs};
+      padding-right: ${space.xs};
+      border-radius: ${space.s};
+    }
   }
 
   ol > li,
