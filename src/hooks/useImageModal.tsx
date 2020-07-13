@@ -17,7 +17,7 @@ export function useImageModal<T extends HTMLElement>(target: React.RefObject<T>)
   const breakpoints = useMedia({ queries });
   const { pathname } = useLocation();
 
-  const maxWidth = breakpoints[9] ? '900px' : breakpoints[7] ? '700px' : '500px';
+  const maxWidth = breakpoints[9] ? '900px' : '100%';
 
   React.useEffect(() => {
     setShowModal(false);

@@ -4,6 +4,7 @@ import React, { Fragment } from 'react';
 import { css, jsx } from '@emotion/core';
 import { theme } from '../../util/theme';
 import { useOnClickOutside } from 'the-captains-hooks';
+import { Portal } from './Portal';
 
 const { color, space } = theme;
 
@@ -34,40 +35,42 @@ export const ImageModal: React.FC<ImageModalProps> = props => {
   return (
     <Fragment>
       {showModal && image.current && (
-        <div css={modalShadeStyle}>
-          <div
-            id="img-wrapper"
-            ref={fullSizeRef}
-            css={css`
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              flex-direction: column;
-              max-width: 100%;
-              max-height: 100%;
-              padding: ${space.l};
-            `}>
-            <img
+        <Portal>
+          <div css={modalShadeStyle}>
+            <div
+              id="img-wrapper"
+              ref={fullSizeRef}
               css={css`
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
                 max-width: 100%;
                 max-height: 100%;
-              `}
-              alt={image.current.alt}
-              src={image.current.src}
-              srcSet={image.current.srcset}
-              title={image.current.title}
-              id={image.current.id}
-              className={image.current.className}
-            />
-            <span
-              css={css`
-                margin-top: ${space.m};
-                color: ${color.background};
+                padding: ${space.l};
               `}>
-              {image.current.alt && image.current.alt !== 'undefined' && image.current.alt}
-            </span>
+              <img
+                css={css`
+                  max-width: 100%;
+                  max-height: 100%;
+                `}
+                alt={image.current.alt}
+                src={image.current.src}
+                srcSet={image.current.srcset}
+                title={image.current.title}
+                id={image.current.id}
+                className={image.current.className}
+              />
+              <span
+                css={css`
+                  margin-top: ${space.m};
+                  color: ${color.background};
+                `}>
+                {image.current.alt && image.current.alt !== 'undefined' && image.current.alt}
+              </span>
+            </div>
           </div>
-        </div>
+        </Portal>
       )}
     </Fragment>
   );
