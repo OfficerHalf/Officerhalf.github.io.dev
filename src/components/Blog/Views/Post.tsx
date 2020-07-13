@@ -11,6 +11,7 @@ import { routes } from '../../../util/routes';
 import { Tag } from '../../Icons/Tag';
 import { Small, Headline, Body } from '../../Typography';
 import { Helmet } from 'react-helmet-async';
+import { useImageModal } from '../../../hooks/useImageModal';
 
 const { space, color } = theme;
 
@@ -46,6 +47,7 @@ export const Post: React.FC = props => {
   const { slug } = useParams();
   const bodyRef = React.useRef<HTMLDivElement>(null);
   usePrismjs(bodyRef, ['line-numbers']);
+  const imageOutlet = useImageModal(bodyRef);
 
   const category = post && post.categories.length > 0 ? post.categories[0] : undefined;
 
@@ -114,6 +116,7 @@ export const Post: React.FC = props => {
           )}
         </Fragment>
       )}
+      {imageOutlet}
     </div>
   );
 };
