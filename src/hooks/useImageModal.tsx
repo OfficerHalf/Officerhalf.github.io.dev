@@ -26,7 +26,6 @@ export function useImageModal<T extends HTMLElement>(target: React.RefObject<T>)
   React.useEffect(() => {
     if (target.current) {
       const images = Array.from(target.current.querySelectorAll('img'));
-      console.log(`ImageModal - found ${images.length} images`);
       images.forEach(img => {
         img.onclick = openModal;
         img.style.cursor = 'pointer';
