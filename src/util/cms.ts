@@ -1,6 +1,6 @@
 import butter from 'buttercms';
 import { AxiosResponse } from 'axios';
-import { ButterListResponse, BlogPost, ButterRetrieveResponse, ButterListOptions } from '../types/cms';
+import { ButterListResponse, BlogPost, ButterRetrieveResponse, ButterListOptions } from '../../types/cms';
 
 const ButterApi = butter('9ffd3dad4fd54423ad22bc3ce3e1a2fd6bbc9081');
 

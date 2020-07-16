@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { routes } from '../../util/routes';
 import { Menu } from '../Icons';
 import { Drawer } from './Drawer';
-import { MenuItem } from '../../types/nav';
+import { MenuItem } from '../../../types/nav';
 import { useMedia } from 'react-media';
 import { Horizontal } from './Horizontal';
 

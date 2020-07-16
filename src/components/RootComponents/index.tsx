@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react';
 import { postList } from '../../util/cms';
-import { BlogPost } from '../../types/cms';
+import { BlogPost } from '../../../types/cms';
 import { jsx } from '@emotion/core';
 import { PostList } from '../Blog/PostList';
 

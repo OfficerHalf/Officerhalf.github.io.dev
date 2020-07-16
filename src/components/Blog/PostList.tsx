@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React from 'react';
-import { BlogPost } from '../../types/cms';
+import { BlogPost } from '../../../types/cms';
 import { Link } from 'react-router-dom';
 import { parsePostDate } from '../../util/cms';
 import { jsx, css } from '@emotion/core';

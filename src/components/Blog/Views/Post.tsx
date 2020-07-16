@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React, { Fragment } from 'react';
-import { BlogPost, ButterRetrieveMeta } from '../../../types/cms';
-import { usePrismjs } from '../../../hooks/usePrismjs';
+import { BlogPost, ButterRetrieveMeta } from '../../../../types/cms';
+import { usePrismjs } from '../../../../backup/src/hooks/usePrismjs';
 import { useParams } from 'react-router';
 import { getPost, parsePostDate } from '../../../util/cms';
 import { css, jsx } from '@emotion/core';
@@ -11,7 +11,7 @@ import { routes } from '../../../util/routes';
 import { Tag } from '../../Icons/Tag';
 import { Small, Headline, Body } from '../../Typography';
 import { Helmet } from 'react-helmet-async';
-import { useImageModal } from '../../../hooks/useImageModal';
+import { useImageModal } from '../../../../backup/src/hooks/useImageModal';
 
 const { space, color } = theme;
 

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React, { Fragment } from 'react';
-import { MenuItem } from '../../types/nav';
+import { MenuItem } from '../../../types/nav';
 import { css, jsx } from '@emotion/core';
 import { HorizontalItem } from './HorizontalItem';
 import { SearchBox } from './SearchBox';

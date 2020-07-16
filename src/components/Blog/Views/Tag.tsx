@@ -2,7 +2,7 @@ import React from 'react';
 import { PostList } from '../PostList';
 import { useParams } from 'react-router';
 import { postList } from '../../../util/cms';
-import { BlogPost } from '../../../types/cms';
+import { BlogPost } from '../../../../types/cms';
 
 export const Tag: React.FC = props => {
   const [posts, setPosts] = React.useState<BlogPost[]>([]);

@@ -1,84 +1,67 @@
 {
   "name": "dev-site",
-  "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-static start",
+    "stage": "react-static build --staging",
+    "build": "react-static build",
+    "bundle": "react-static bundle",
+    "export": "react-static export",
+    "serve": "serve dist -p 3000 -s"
+  },
   "dependencies": {
     "@emotion/core": "^10.0.28",
-    "@tippyjs/react": "^4.0.2",
-    "buttercms": "^1.2.2",
+    "@reach/router": "^1.2.1",
+    "@tippyjs/react": "^4.1.0",
+    "axios": "^0.19.0",
+    "buttercms": "^1.2.3",
     "classnames": "^2.2.6",
     "emotion-theming": "^10.0.27",
     "normalize.css": "^8.0.1",
     "prismjs": "^1.20.0",
     "query-string": "^6.13.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "react-helmet-async": "^1.0.6",
     "react-media": "^2.0.0-rc.1",
-    "react-popper": "^2.2.3",
-    "react-router": "^6.0.0-alpha.5",
-    "react-router-dom": "^6.0.0-alpha.5",
-    "react-scripts": "3.4.1",
+    "react-router": "^6.0.0-beta.0",
+    "react-router-dom": "^6.0.0-beta.0",
+    "react-static": "^7.2.0",
+    "react-static-plugin-reach-router": "^7.2.0",
+    "react-static-plugin-sitemap": "^7.2.0",
+    "react-static-plugin-source-filesystem": "^7.2.0",
+    "react-static-plugin-typescript": "^7.2.0",
     "react-transition-group": "^4.4.1",
     "the-captains-hooks": "0.0.8",
-    "tippy.js": "^6.2.3",
-    "typescript": "^3.7.5",
-    "typography": "^0.16.19",
-    "typography-plugin-code": "^0.16.19",
-    "typography-theme-noriega": "^0.16.19"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "postbuild": "react-snap",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build -b master",
-    "swap-cname": "rm ./build/CNAME && mv ./build/ProdCNAME ./build/CNAME",
-    "preproduction": "npm run build && npm run swap-cname",
-    "production": "gh-pages -d build -b master -r https://github.com/OfficerHalf/OfficerHalf.github.io.git"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "tippy.js": "^6.2.5"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
     "@types/classnames": "^2.2.10",
-    "@types/jest": "^24.9.1",
-    "@types/node": "^12.12.38",
+    "@types/node": "^12.7.2",
     "@types/prismjs": "^1.16.1",
-    "@types/react": "^16.9.34",
-    "@types/react-dom": "^16.9.7",
+    "@types/reach__router": "^1.2",
+    "@types/react": "^16.9.1",
+    "@types/react-dom": "^16.8.5",
+    "@types/react-hot-loader": "^4.1.0",
     "@types/react-transition-group": "^4.4.0",
-    "@types/typography": "^0.16.3",
+    "@types/webpack-env": "^1.14.0",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-prettier": "^3.1.3",
-    "gh-pages": "^2.2.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-plugin-flowtype": "^4.7.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^2.5.1",
     "prettier": "^2.0.5",
-    "react-snap": "^1.23.0",
-    "react-typography": "^0.16.19",
-    "sass": "^1.26.5"
-  },
-  "reactSnap": {
-    "include": [
-      "/",
-      "/project/alloy",
-      "/project/homebrewery"
-    ]
+    "react-hot-loader": "^4.12.11",
+    "react-static-plugin-emotion": "^7.2.2",
+    "react-static-plugin-react-router": "^7.4.2",
+    "serve": "^11.1.0",
+    "typescript": "^3.5.3"
   }
 }

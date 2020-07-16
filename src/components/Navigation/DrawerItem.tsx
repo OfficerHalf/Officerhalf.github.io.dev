@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React, { Fragment } from 'react';
-import { MenuItem } from '../../types/nav';
+import { MenuItem } from '../../../types/nav';
 import { css, jsx } from '@emotion/core';
 import { theme } from '../../util/theme';
 import { useNavigate } from 'react-router';

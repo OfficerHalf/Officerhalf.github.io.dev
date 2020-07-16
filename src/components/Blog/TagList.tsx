@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react';
 import { Tag } from '../Icons';
-import { KeyValuePair } from '../../types/cms';
+import { KeyValuePair } from '../../../types/cms';
 import { Link } from 'react-router-dom';
 import { routes } from '../../util/routes';
 import { css, jsx } from '@emotion/core';
