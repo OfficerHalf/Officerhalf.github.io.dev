@@ -4,7 +4,7 @@ import Tippy, { TippyProps } from '@tippyjs/react';
 import { theme } from '../../util/theme';
 import { css, jsx } from '@emotion/core';
 import { Leading } from '../Typography';
-import { MenuItem } from '../../types/nav';
+import { MenuItem } from '../../../types/nav';
 
 interface DropdownContentProps {
   options: MenuItem[];

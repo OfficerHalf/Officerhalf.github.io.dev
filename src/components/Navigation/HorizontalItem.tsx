@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import React from 'react';
-import { MenuItem } from '../../types/nav';
+import { MenuItem } from '../../../types/nav';
 import { css, jsx } from '@emotion/core';
 import { theme } from '../../util/theme';
-import { useNavigate } from 'react-router';
+import { useNavigate } from '@reach/router';
 import { Dropdown } from '../Common/Dropdown';
 
 const { typography, space } = theme;

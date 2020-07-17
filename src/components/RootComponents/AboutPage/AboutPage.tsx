@@ -2,8 +2,6 @@
 import React from 'react';
 import { css, jsx } from '@emotion/core';
 import { theme } from '../../../util/theme';
-import Celty from './Celty.jpg';
-import Macready from './Macready.jpg';
 
 const { space } = theme;
 
@@ -31,16 +29,18 @@ export const AboutPage: React.FC = props => {
             max-width: ${maxImageSize};
           `}
           alt="Celty"
-          src={Celty}
+          src="/Celty.jpg"
         />
         <img
           css={css`
             max-width: ${maxImageSize};
           `}
           alt="Macready"
-          src={Macready}
+          src="/Macready.jpg"
         />
       </div>
     </div>
   );
 };
+
+export default AboutPage;

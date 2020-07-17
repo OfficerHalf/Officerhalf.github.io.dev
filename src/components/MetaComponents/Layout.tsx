@@ -1,5 +1,4 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Header } from '../Navigation/Header';
 import { css, Global } from '@emotion/core';
@@ -21,7 +20,7 @@ export const Layout: React.FC = props => {
       </Helmet>
       <Global styles={layoutGlobal} />
       <Header />
-      <Outlet />
+      {props.children}
     </div>
   );
 };

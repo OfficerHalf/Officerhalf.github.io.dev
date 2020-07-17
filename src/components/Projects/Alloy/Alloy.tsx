@@ -4,7 +4,6 @@ import { ImageComparison } from '../../Common/ImageComparison';
 import { css, jsx } from '@emotion/core';
 import { theme } from '../../../util/theme';
 import { useMedia } from 'react-media';
-import AlloySmall from './AlloyCropped.png';
 
 const { space, queries } = theme;
 
@@ -22,8 +21,8 @@ export const Alloy: React.FC = props => {
       <div>
         {breakpoint[12] && (
           <ImageComparison
-            imageLeftSrc={`${process.env.PUBLIC_URL}/Alloy2.png`}
-            imageRightSrc={`${process.env.PUBLIC_URL}/Monokai2.png`}
+            imageLeftSrc={`/Alloy2.png`}
+            imageRightSrc={`/Monokai2.png`}
             width={1158}
             height={700}
             labelLeft="Alloy"
@@ -36,7 +35,7 @@ export const Alloy: React.FC = props => {
               max-width: 100%;
             `}
             alt="Alloy"
-            src={AlloySmall}
+            src="/AlloyCropped.png"
           />
         )}
         <h2
@@ -93,3 +92,5 @@ export const Alloy: React.FC = props => {
     </div>
   );
 };
+
+export default Alloy;

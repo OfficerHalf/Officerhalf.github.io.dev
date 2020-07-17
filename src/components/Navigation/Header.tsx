@@ -2,13 +2,14 @@
 import React from 'react';
 import { css, jsx } from '@emotion/core';
 import { theme } from '../../util/theme';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from '@reach/router';
 import { routes } from '../../util/routes';
 import { Menu } from '../Icons';
 import { Drawer } from './Drawer';
-import { MenuItem } from '../../types/nav';
+import { MenuItem } from '../../../types/nav';
 import { useMedia } from 'react-media';
 import { Horizontal } from './Horizontal';
+import { prefetch } from 'react-static';
 
 const { color, space, typography, queries } = theme;
 
@@ -51,6 +52,13 @@ export const Header: React.FC = props => {
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false);
   const breakpoints = useMedia({ queries });
+
+  React.useEffect(() => {
+    prefetch(routes.project.homebrewery.link);
+    prefetch(routes.project.alloy.link);
+    prefetch(routes.about);
+    prefetch(routes.contact);
+  }, []);
 
   React.useEffect(() => {
     if (breakpoints[7]) {

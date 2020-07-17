@@ -26,3 +26,5 @@ export const ContactPage: React.FC = props => {
     </div>
   );
 };
+
+export default ContactPage;
