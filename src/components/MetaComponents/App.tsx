@@ -1,21 +1,11 @@
 import React from 'react';
 import { Global, css } from '@emotion/core';
-// import { HomePage } from '../RootComponents/HomePage';
-// import { AboutPage } from '../RootComponents/AboutPage/AboutPage';
 import { theme } from '../../util/theme';
 import { Root, Routes } from 'react-static';
 import { Router } from '@reach/router';
 import { Layout } from './Layout';
-import '../../normalize.css';
-// import { ContactPage } from '../RootComponents/ContactPage';
-// import { Post } from '../Blog/Views/Post';
-// import { routes } from '../../util/routes';
-// import { Category } from '../Blog/Views/Category';
-// import { Tag } from '../Blog/Views/Tag';
-// import { Alloy } from '../Projects/Alloy/Alloy';
-// import { Homebrewery } from '../Projects/Homebrewery/Homebrewery';
-// import { Search } from '../Blog/Views/Search';
 import { HelmetProvider } from 'react-helmet-async';
+import '../../normalize.css';
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
 // addPrefetchExcludes(['dynamic']);
@@ -106,28 +96,3 @@ export const App: React.FC = props => {
     </Root>
   );
 };
-
-// function App() {
-//   return (
-//     <Root>
-//       <nav>
-//         <Link to="/">Home</Link>
-//         <Link to="/about">About</Link>
-//         <Link to="/blog">Blog</Link>
-//         <Link to="/dynamic">Dynamic</Link>
-//       </nav>
-//       <div className="content">
-//         <FancyDiv>
-//           <React.Suspense fallback={<em>Loading...</em>}>
-//             <Router>
-//               <Dynamic path="dynamic" />
-//               <Routes path="*" />
-//             </Router>
-//           </React.Suspense>
-//         </FancyDiv>
-//       </div>
-//     </Root>
-//   );
-// }
-
-// export default App;
