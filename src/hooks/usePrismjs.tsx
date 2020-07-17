@@ -10,7 +10,7 @@ require('prismjs/components/prism-tsx');
 require('prismjs/plugins/line-numbers/prism-line-numbers');
 
 export function usePrismjs<T extends HTMLElement>(target: React.RefObject<T>, plugins: string[] = []) {
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (target.current) {
       if (plugins.length > 0) {
         target.current.classList.add(...plugins);

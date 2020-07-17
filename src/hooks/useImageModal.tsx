@@ -23,7 +23,7 @@ export function useImageModal<T extends HTMLElement>(target: React.RefObject<T>)
     setShowModal(false);
   }, [pathname]);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (target.current) {
       const images = Array.from(target.current.querySelectorAll('img'));
       images.forEach(img => {
