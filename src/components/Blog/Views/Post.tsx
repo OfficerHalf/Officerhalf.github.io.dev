@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import React, { Fragment } from 'react';
 import { usePrismjs } from '../../../hooks/usePrismjs';
-import { useParams, Link } from '@reach/router';
-import { getPost, parsePostDate } from '../../../util/cms';
+import { Link } from '@reach/router';
+import { parsePostDate } from '../../../util/cms';
 import { css, jsx } from '@emotion/core';
 import { theme } from '../../../util/theme';
 import { routes } from '../../../util/routes';
 import { Tag } from '../../Icons/Tag';
 import { Small, Headline, Body } from '../../Typography';
-// import { Helmet } from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 import { useImageModal } from '../../../hooks/useImageModal';
 import { useRouteData } from 'react-static';
 import { PostRouteData } from 'types/static';
@@ -52,9 +52,9 @@ export const Post: React.FC = props => {
   return (
     <div css={wrapperStyle}>
       <Fragment>
-        {/* <Helmet>
-            <title>{`Nathan Smith - ${post.title}`}</title>
-          </Helmet> */}
+        <Helmet>
+          <title>{`Nathan Smith - ${post.title}`}</title>
+        </Helmet>
         <Headline>{post.title}</Headline>
         <h4>
           {parsePostDate(post.published)}

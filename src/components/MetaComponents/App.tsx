@@ -15,7 +15,7 @@ import '../../normalize.css';
 // import { Alloy } from '../Projects/Alloy/Alloy';
 // import { Homebrewery } from '../Projects/Homebrewery/Homebrewery';
 // import { Search } from '../Blog/Views/Search';
-// import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from 'react-helmet-async';
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
 // addPrefetchExcludes(['dynamic']);
@@ -93,14 +93,16 @@ const globalStyles = css`
 export const App: React.FC = props => {
   return (
     <Root>
-      <Global styles={globalStyles} />
-      <Layout>
-        <React.Suspense fallback={<em>Loading...</em>}>
-          <Router>
-            <Routes path="*" />
-          </Router>
-        </React.Suspense>
-      </Layout>
+      <HelmetProvider>
+        <Global styles={globalStyles} />
+        <Layout>
+          <React.Suspense fallback={<em>Loading...</em>}>
+            <Router>
+              <Routes path="*" />
+            </Router>
+          </React.Suspense>
+        </Layout>
+      </HelmetProvider>
     </Root>
   );
 };

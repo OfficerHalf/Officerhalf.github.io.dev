@@ -158,12 +158,6 @@ const config /*: ReactStaticConfig*/ = {
     'react-static-plugin-typescript',
     'react-static-plugin-emotion',
     'react-static-plugin-sass',
-    // [
-    //   require.resolve('react-static-plugin-source-filesystem'),
-    //   {
-    //     location: path.resolve('./src/pages')
-    //   }
-    // ],
     'react-static-plugin-reach-router',
     require.resolve('react-static-plugin-sitemap')
   ],
