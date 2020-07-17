@@ -1,24 +1,15 @@
 import React from 'react';
 import { PostList } from '../PostList';
-import { useParams } from 'react-router';
-import { postList } from '../../../util/cms';
-import { BlogPost } from '../../../../types/cms';
+import { useRouteData } from 'react-static';
+import { CategoryRouteData } from 'types/static';
 
 export const Category: React.FC = props => {
-  const [posts, setPosts] = React.useState<BlogPost[]>([]);
-  const { slug } = useParams();
-
-  React.useEffect(() => {
-    const fetch = async () => {
-      const response = await postList({ category_slug: slug });
-      setPosts(response.data.data);
-    };
-    fetch();
-  }, [slug]);
-
+  const { posts } = useRouteData<CategoryRouteData>();
   return (
     <div>
       <PostList posts={posts} />
     </div>
   );
 };
+
+export default Category;

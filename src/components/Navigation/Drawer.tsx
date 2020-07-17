@@ -8,7 +8,7 @@ import { Close } from '../Icons';
 import { theme } from '../../util/theme';
 import { DrawerItem } from './DrawerItem';
 import { SearchBox } from './SearchBox';
-import { useNavigate } from 'react-router';
+import { useNavigate } from '@reach/router';
 import { routes } from '../../util/routes';
 
 const { space, color, elevation } = theme;
@@ -133,9 +133,9 @@ export const Drawer: React.FC<DrawerProps> = props => {
             <div css={closeContainerStyle}>
               <Close css={closeStyle} onClick={onClose} />
             </div>
-            <div css={closeContainerStyle}>
+            {/* <div css={closeContainerStyle}>
               <SearchBox css={closeStyle} onEnter={handleSearch} border={true} fill={color.text} />
-            </div>
+            </div> */}
             {items.map(i => (
               <DrawerItem key={i.id || i.text} {...i} onClose={onClose} />
             ))}

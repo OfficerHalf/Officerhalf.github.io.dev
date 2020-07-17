@@ -8,8 +8,8 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "removeComments": false,
     "preserveConstEnums": true,
     "sourceMap": true,
@@ -18,10 +18,9 @@
     "baseUrl": ".",
     "paths": {
       "components/*": ["src/components/*"],
-      "containers/*": ["src/containers/*"],
       "types/*": ["types/*"]
     },
     "lib": ["dom", "es2015", "es2016"]
   },
-  "exclude": ["artifacts/**/*", "dist/**/*", "public/**/*", "node_modules"]
+  "exclude": ["artifacts/**/*", "dist/**/*", "public/**/*", "node_modules", "backup/**/*"]
 }

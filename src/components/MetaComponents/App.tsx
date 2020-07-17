@@ -1,19 +1,24 @@
 import React from 'react';
 import { Global, css } from '@emotion/core';
-import { HomePage } from '../RootComponents/HomePage';
-import { AboutPage } from '../RootComponents/AboutPage/AboutPage';
+// import { HomePage } from '../RootComponents/HomePage';
+// import { AboutPage } from '../RootComponents/AboutPage/AboutPage';
 import { theme } from '../../util/theme';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Root, Routes } from 'react-static';
+import { Router } from '@reach/router';
 import { Layout } from './Layout';
-import { ContactPage } from '../RootComponents/ContactPage';
-import { Post } from '../Blog/Views/Post';
-import { routes } from '../../util/routes';
-import { Category } from '../Blog/Views/Category';
-import { Tag } from '../Blog/Views/Tag';
-import { Alloy } from '../Projects/Alloy/Alloy';
-import { Homebrewery } from '../Projects/Homebrewery/Homebrewery';
-import { Search } from '../Blog/Views/Search';
-import { HelmetProvider } from 'react-helmet-async';
+import '../../normalize.css';
+// import { ContactPage } from '../RootComponents/ContactPage';
+// import { Post } from '../Blog/Views/Post';
+// import { routes } from '../../util/routes';
+// import { Category } from '../Blog/Views/Category';
+// import { Tag } from '../Blog/Views/Tag';
+// import { Alloy } from '../Projects/Alloy/Alloy';
+// import { Homebrewery } from '../Projects/Homebrewery/Homebrewery';
+// import { Search } from '../Blog/Views/Search';
+// import { HelmetProvider } from 'react-helmet-async';
+
+// Any routes that start with 'dynamic' will be treated as non-static routes
+// addPrefetchExcludes(['dynamic']);
 
 const { color, typography, space } = theme;
 const globalStyles = css`
@@ -87,27 +92,40 @@ const globalStyles = css`
 
 export const App: React.FC = props => {
   return (
-    <HelmetProvider>
+    <Root>
       <Global styles={globalStyles} />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path={routes.about} element={<AboutPage />} />
-            <Route path={routes.contact} element={<ContactPage />} />
-            <Route path={routes.blog.base}>
-              <Route path={routes.blog.post.template} element={<Post />} />
-              <Route path={routes.blog.category.template} element={<Category />} />
-              <Route path={routes.blog.tag.template} element={<Tag />} />
-              <Route path={routes.blog.search.template} element={<Search />} />
-            </Route>
-            <Route path={routes.project.base}>
-              <Route path={routes.project.alloy.base} element={<Alloy />} />
-              <Route path={routes.project.homebrewery.base} element={<Homebrewery />} />
-            </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    </HelmetProvider>
+      <Layout>
+        <React.Suspense fallback={<em>Loading...</em>}>
+          <Router>
+            <Routes path="*" />
+          </Router>
+        </React.Suspense>
+      </Layout>
+    </Root>
   );
 };
+
+// function App() {
+//   return (
+//     <Root>
+//       <nav>
+//         <Link to="/">Home</Link>
+//         <Link to="/about">About</Link>
+//         <Link to="/blog">Blog</Link>
+//         <Link to="/dynamic">Dynamic</Link>
+//       </nav>
+//       <div className="content">
+//         <FancyDiv>
+//           <React.Suspense fallback={<em>Loading...</em>}>
+//             <Router>
+//               <Dynamic path="dynamic" />
+//               <Routes path="*" />
+//             </Router>
+//           </React.Suspense>
+//         </FancyDiv>
+//       </div>
+//     </Root>
+//   );
+// }
+
+// export default App;

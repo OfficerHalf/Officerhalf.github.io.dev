@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react';
 import { BlogPost } from '../../../types/cms';
-import { Link } from 'react-router-dom';
+import { Link } from '@reach/router';
 import { parsePostDate } from '../../util/cms';
 import { jsx, css } from '@emotion/core';
 import { theme } from '../../util/theme';

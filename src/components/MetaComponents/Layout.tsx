@@ -1,6 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+// import { Helmet } from 'react-helmet-async';
 import { Header } from '../Navigation/Header';
 import { css, Global } from '@emotion/core';
 import theme from '../../util/theme';
@@ -16,12 +15,9 @@ const layoutGlobal = css`
 export const Layout: React.FC = props => {
   return (
     <div>
-      <Helmet>
-        <title>Nathan Smith</title>
-      </Helmet>
       <Global styles={layoutGlobal} />
       <Header />
-      <Outlet />
+      {props.children}
     </div>
   );
 };

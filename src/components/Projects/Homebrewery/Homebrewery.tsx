@@ -87,3 +87,5 @@ export const Homebrewery: React.FC = props => {
     </div>
   );
 };
+
+export default Homebrewery;

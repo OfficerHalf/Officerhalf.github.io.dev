@@ -2,7 +2,7 @@
 import React from 'react';
 import { Tag } from '../Icons';
 import { KeyValuePair } from '../../../types/cms';
-import { Link } from 'react-router-dom';
+import { Link } from '@reach/router';
 import { routes } from '../../util/routes';
 import { css, jsx } from '@emotion/core';
 import { theme } from '../../util/theme';

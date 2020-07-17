@@ -4,7 +4,7 @@ import { MenuItem } from '../../../types/nav';
 import { css, jsx } from '@emotion/core';
 import { HorizontalItem } from './HorizontalItem';
 import { SearchBox } from './SearchBox';
-import { useNavigate } from 'react-router';
+import { useNavigate } from '@reach/router';
 import { routes } from '../../util/routes';
 
 interface HorizontalProps {
@@ -16,7 +16,7 @@ export const Horizontal: React.FC<HorizontalProps> = props => {
   const navigate = useNavigate();
   return (
     <Fragment>
-      <SearchBox onEnter={query => navigate(routes.blog.search.link(query))} maxWidth="250px" />
+      {/* <SearchBox onEnter={query => navigate(routes.blog.search.link(query))} maxWidth="250px" /> */}
       <ul
         css={css`
           display: flex;

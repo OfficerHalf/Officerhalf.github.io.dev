@@ -3,7 +3,7 @@ import { PostList } from '../PostList';
 import { searchPosts } from '../../../util/cms';
 import { BlogPost } from '../../../../types/cms';
 import queryString from 'query-string';
-import { useLocation } from 'react-router';
+import { useLocation } from '@reach/router';
 
 export const Search: React.FC = props => {
   const [posts, setPosts] = React.useState<BlogPost[]>();
@@ -22,3 +22,5 @@ export const Search: React.FC = props => {
 
   return <div>{posts && <PostList posts={posts} />}</div>;
 };
+
+export default Search;

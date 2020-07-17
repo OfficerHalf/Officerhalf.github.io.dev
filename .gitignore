@@ -10,6 +10,11 @@
 
 # production
 /build
+/dist
+/artifacts
+
+# dev
+/tmp
 
 # misc
 .DS_Store

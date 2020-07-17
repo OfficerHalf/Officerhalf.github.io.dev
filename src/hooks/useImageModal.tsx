@@ -2,7 +2,7 @@ import React from 'react';
 import { ImageModal } from '../components/Common/ImageModal';
 import { useMedia } from 'react-media';
 import { theme } from '../util/theme';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from '@reach/router';
 
 const { queries } = theme;
 
