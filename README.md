@@ -1,21 +1,14 @@
-# React-Static - TypeScript Template
+# Nathan's Dev Site
 
-To use this template, run `react-static create` and use the `typescript` template.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/983e83bc-7cd6-4d5c-9d09-69c9ab0db924/deploy-status)](https://app.netlify.com/sites/officerhalf/deploys)
 
-## Path Aliases for Absolute Imports
+This is the code for my website.
 
-`react-static-typescript-plugin` supports path aliases [since v3.1](https://github.com/react-static/react-static/pull/963#issuecomment-455596728). It has been set up in this template.
+```
+npm install
+npm run start
 
-```js
-// tsconfig.json
-{
-  // ...
-    "paths": {
-      "@components/*": ["src/components/*"]
-    },
-  // ...
-}
+or
 
-// this works in your React app
-import FancyDiv from '@components/FancyDiv'
+npm run build
 ```
