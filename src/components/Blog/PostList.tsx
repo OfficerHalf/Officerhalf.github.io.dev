@@ -4,54 +4,55 @@ import { BlogPost } from '../../../types/cms';
 import { Link } from '@reach/router';
 import { parsePostDate } from '../../util/cms';
 import { jsx, css } from '@emotion/core';
-import { theme } from '../../util/theme';
 import { routes } from '../../util/routes';
 import { Body, Small, Title } from '../Typography';
 import { TagList } from './TagList';
-
-const { space, color, typography } = theme;
-
-const postCardStyle = css`
-  max-width: 700px;
-  margin: ${space.m};
-  padding: ${space.s};
-  background-color: white;
-`;
-
-const postFeatureStyle = css`
-  display: flex;
-  align-items: center;
-  img {
-    max-width: 200px;
-    max-height: 150px;
-    margin-right: ${space.s};
-  }
-`;
-
-const titleStyle = css`
-  display: block;
-  margin: 0 0 ${space.xs} 0;
-  text-decoration: none;
-  font-size: ${typography.subheading.size};
-  font-weight: ${typography.subheading.weight};
-  &,
-  &:focus,
-  &:visited,
-  &:active {
-    color: ${color.primary};
-  }
-`;
-
-const dateStyle = css`
-  margin-bottom: ${space.sm};
-`;
+import { useTheme } from 'emotion-theming';
+import { EmotionTheme, staticTheme } from '../../util/theme';
 
 interface PostListProps {
   posts: BlogPost[];
 }
 
+const { space, typography } = staticTheme;
+
 export const PostList: React.FC<PostListProps> = props => {
   const { posts } = props;
+  const { background, primary } = useTheme<EmotionTheme>();
+  const postCardStyle = css`
+    max-width: 700px;
+    margin: ${space.m};
+    padding: ${space.s};
+    background-color: ${background.background};
+  `;
+
+  const postFeatureStyle = css`
+    display: flex;
+    align-items: center;
+    img {
+      max-width: 200px;
+      max-height: 150px;
+      margin-right: ${space.s};
+    }
+  `;
+
+  const titleStyle = css`
+    display: block;
+    margin: 0 0 ${space.xs} 0;
+    text-decoration: none;
+    font-size: ${typography.subheading.size};
+    font-weight: ${typography.subheading.weight};
+    &,
+    &:focus,
+    &:visited,
+    &:active {
+      color: ${primary.main};
+    }
+  `;
+
+  const dateStyle = css`
+    margin-bottom: ${space.sm};
+  `;
   return (
     <div>
       {posts.length === 0 && (
