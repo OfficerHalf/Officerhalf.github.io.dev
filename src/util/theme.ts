@@ -4,36 +4,36 @@ import color from 'color';
 // Colors
 // Light Theme Text
 const darkText = '#000000';
-const darkPrimaryText = color(darkText).alpha(0.87).hex();
-const darkAccentText = color(darkPrimaryText).alpha(0.54).hex();
-const darkDisabledText = color(darkPrimaryText).alpha(0.38).hex();
+const darkPrimaryText = color(darkText).alpha(0.87).string();
+const darkAccentText = color(darkPrimaryText).alpha(0.54).string();
+const darkDisabledText = color(darkPrimaryText).alpha(0.38).string();
 
 // Dark Theme Text
 const lightText = '#ffffff';
 const lightPrimaryText = lightText;
-const lightAccentText = color(lightPrimaryText).alpha(0.7).hex();
-const lightDisabledText = color(lightPrimaryText).alpha(0.5).hex();
+const lightAccentText = color(lightPrimaryText).alpha(0.7).string();
+const lightDisabledText = color(lightPrimaryText).alpha(0.5).string();
 
 // Light Theme Background
 const lightBackground = '#fafafa';
-const lightBackground0 = color(lightBackground).lighten(0.05).hex();
-const lightBackground5 = color(lightBackground).darken(0.05).hex();
-const lightBackground10 = color(lightBackground).darken(0.1).hex();
-const lightBackground20 = color(lightBackground).darken(0.2).hex();
-const lightBackground30 = color(lightBackground).darken(0.3).hex();
+const lightBackground0 = color(lightBackground).lighten(0.05).string();
+const lightBackground5 = color(lightBackground).darken(0.05).string();
+const lightBackground10 = color(lightBackground).darken(0.1).string();
+const lightBackground20 = color(lightBackground).darken(0.2).string();
+const lightBackground30 = color(lightBackground).darken(0.3).string();
 
 // Dark Theme Background
 const darkBackground = '#2c2c2c';
-const darkBackground0 = color(darkBackground).darken(0.05).hex();
-const darkBackground5 = color(darkBackground).lighten(0.05).hex();
-const darkBackground10 = color(darkBackground).lighten(0.2).hex();
-const darkBackground20 = color(darkBackground).lighten(0.3).hex();
-const darkBackground30 = color(darkBackground).lighten(0.4).hex();
+const darkBackground0 = color(darkBackground).darken(0.05).string();
+const darkBackground5 = color(darkBackground).lighten(0.05).string();
+const darkBackground10 = color(darkBackground).lighten(0.2).string();
+const darkBackground20 = color(darkBackground).lighten(0.3).string();
+const darkBackground30 = color(darkBackground).lighten(0.4).string();
 
 // Primary Color
 const primaryMain = '#377771';
 const primaryMainContrast = lightPrimaryText;
-const primaryLighter = color(primaryMain).lighten(0.6).desaturate(0.2).hex();
+const primaryLighter = color(primaryMain).lighten(0.6).desaturate(0.2).string();
 const primaryLighterContrast = darkPrimaryText;
 const primaryDarker = '#235a54';
 const primaryDarkerContrast = darkPrimaryText;
