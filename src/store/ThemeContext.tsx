@@ -2,6 +2,7 @@ import React from 'react';
 import { darkTheme, lightTheme } from '../util/theme';
 import { NewTheme } from '../../types/theme';
 import { usePrefersDarkTheme } from '../hooks/usePrefersDarkTheme';
+import { start } from 'repl';
 
 interface Context {
   dark: boolean;
@@ -26,19 +27,22 @@ if (typeof window !== 'undefined') {
 export const ThemeContextProvider: React.FC = props => {
   const preferDark = usePrefersDarkTheme();
   const savedTheme: string | null = localStorage ? localStorage.getItem('theme') : null;
-  const startingTheme =
-    savedTheme !== null && savedTheme === 'dark'
-      ? darkTheme
-      : savedTheme !== null && savedTheme === 'light'
-      ? lightTheme
-      : preferDark
-      ? darkTheme
-      : lightTheme;
+  const startingTheme = React.useMemo(
+    () =>
+      savedTheme !== null && savedTheme === 'dark'
+        ? darkTheme
+        : savedTheme !== null && savedTheme === 'light'
+        ? lightTheme
+        : preferDark
+        ? darkTheme
+        : lightTheme,
+    [preferDark, savedTheme]
+  );
   const [theme, _setTheme] = React.useState<NewTheme>(startingTheme);
 
   React.useEffect(() => {
-    _setTheme(preferDark ? darkTheme : lightTheme);
-  }, [preferDark]);
+    _setTheme(startingTheme);
+  }, [startingTheme]);
 
   const setTheme = React.useCallback((theme: 'dark' | 'light') => {
     if (theme === 'dark') {
