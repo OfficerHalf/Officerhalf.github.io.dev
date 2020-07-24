@@ -12,8 +12,18 @@ type ToggleSwitchProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLI
 
 export const ToggleSwitch = React.forwardRef<HTMLInputElement, ToggleSwitchProps>((props, ref) => {
   const { className, style, checked, ...rest } = props;
+  const [toggle, setToggle] = React.useState<0 | 1>(0);
   const { theme, dark } = React.useContext(ThemeContext);
   const { primary, background } = theme;
+
+  React.useLayoutEffect(() => {
+    if (checked) {
+      setToggle(1);
+    } else {
+      setToggle(0);
+    }
+  }, [checked]);
+
   return (
     <label
       css={css`
@@ -42,8 +52,8 @@ export const ToggleSwitch = React.forwardRef<HTMLInputElement, ToggleSwitchProps
         css={css`
           display: inline-block;
           opacity: 0;
-          flex-grow: ${checked ? 1 : 0};
-          flex-shrink: ${checked ? 0 : 1};
+          flex-grow: ${toggle};
+          flex-shrink: ${toggle === 0 ? 1 : 0};
           transition: flex-grow 0.2s, flex-shrink 0.2s;
         `}
       />
