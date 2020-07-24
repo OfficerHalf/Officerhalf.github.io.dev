@@ -35,10 +35,13 @@ export const Drawer: React.FC<DrawerProps> = props => {
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.2);
-    display: none;
     overflow: hidden;
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+    pointer-events: none;
     &.open {
-      display: block;
+      pointer-events: initial;
+      opacity: 1;
     }
     .content {
       width: 75%;
