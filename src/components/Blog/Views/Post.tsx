@@ -13,8 +13,9 @@ import { useRouteData } from 'react-static';
 import { PostRouteData } from '../../../../types/static';
 import { staticTheme } from '../../../util/theme';
 import { ThemeContext } from '../../../store/ThemeContext';
+import { useMedia } from 'react-media';
 
-const { space } = staticTheme;
+const { space, queries } = staticTheme;
 
 const wrapperStyle = css`
   margin-bottom: ${space.m};
@@ -27,6 +28,7 @@ export const Post: React.FC = props => {
   const { post, next, previous } = useRouteData<PostRouteData>();
   const { theme } = React.useContext(ThemeContext);
   const { textColor } = theme;
+  const breakpoints = useMedia({ queries });
   const bodyRef = React.useRef<HTMLDivElement>(null);
   usePrismjs(bodyRef, ['line-numbers']);
   const imageOutlet = useImageModal(bodyRef);
@@ -53,7 +55,16 @@ export const Post: React.FC = props => {
   const category = post && post.categories.length > 0 ? post.categories[0] : undefined;
 
   return (
-    <div css={wrapperStyle}>
+    <div
+      css={css`
+        ${wrapperStyle};
+        ${!breakpoints['9']
+          ? css`
+              margin-left: ${space.sm};
+              margin-right: ${space.sm};
+            `
+          : undefined};
+      `}>
       <Fragment>
         <Helmet>
           <title>{`Nathan Smith - ${post.title}`}</title>
