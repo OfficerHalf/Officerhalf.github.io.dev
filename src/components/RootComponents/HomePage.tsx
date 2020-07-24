@@ -2,7 +2,7 @@
 import React from 'react';
 import { jsx } from '@emotion/core';
 import { PostList } from '../Blog/PostList';
-import { BlogRouteData } from 'types/static';
+import { BlogRouteData } from '../../../types/static';
 import { useRouteData } from 'react-static';
 
 export const HomePage: React.FC = props => {

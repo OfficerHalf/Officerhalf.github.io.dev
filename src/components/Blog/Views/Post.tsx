@@ -11,7 +11,7 @@ import { Small, Headline, Body } from '../../Typography';
 import { Helmet } from 'react-helmet-async';
 import { useImageModal } from '../../../hooks/useImageModal';
 import { useRouteData } from 'react-static';
-import { PostRouteData } from 'types/static';
+import { PostRouteData } from '../../../../types/static';
 
 const { space, color } = theme;
 

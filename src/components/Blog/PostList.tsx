@@ -7,8 +7,8 @@ import { jsx, css } from '@emotion/core';
 import { routes } from '../../util/routes';
 import { Body, Small, Title } from '../Typography';
 import { TagList } from './TagList';
-import { useTheme } from 'emotion-theming';
-import { EmotionTheme, staticTheme } from '../../util/theme';
+import { staticTheme } from '../../util/theme';
+import { ThemeContext } from '../../store/ThemeContext';
 
 interface PostListProps {
   posts: BlogPost[];
@@ -18,7 +18,8 @@ const { space, typography } = staticTheme;
 
 export const PostList: React.FC<PostListProps> = props => {
   const { posts } = props;
-  const { background, primary } = useTheme<EmotionTheme>();
+  const { theme } = React.useContext(ThemeContext);
+  const { background, primary } = theme;
   const postCardStyle = css`
     max-width: 700px;
     margin: ${space.m};
