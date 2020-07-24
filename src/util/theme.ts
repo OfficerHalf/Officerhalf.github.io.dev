@@ -27,14 +27,14 @@ const lightBackground30 = color(lightBackground).darken(0.3).hex();
 const darkBackground = '#2c2c2c';
 const darkBackground0 = color(darkBackground).darken(0.05).hex();
 const darkBackground5 = color(darkBackground).lighten(0.05).hex();
-const darkBackground10 = color(darkBackground).lighten(0.1).hex();
-const darkBackground20 = color(darkBackground).lighten(0.2).hex();
-const darkBackground30 = color(darkBackground).lighten(0.3).hex();
+const darkBackground10 = color(darkBackground).lighten(0.2).hex();
+const darkBackground20 = color(darkBackground).lighten(0.3).hex();
+const darkBackground30 = color(darkBackground).lighten(0.4).hex();
 
 // Primary Color
 const primaryMain = '#377771';
 const primaryMainContrast = lightPrimaryText;
-const primaryLighter = '#c3d6d4';
+const primaryLighter = color(primaryMain).lighten(0.6).desaturate(0.2).hex();
 const primaryLighterContrast = darkPrimaryText;
 const primaryDarker = '#235a54';
 const primaryDarkerContrast = darkPrimaryText;

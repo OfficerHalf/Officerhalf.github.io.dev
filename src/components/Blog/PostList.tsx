@@ -18,13 +18,13 @@ const { space, typography } = staticTheme;
 
 export const PostList: React.FC<PostListProps> = props => {
   const { posts } = props;
-  const { theme } = React.useContext(ThemeContext);
+  const { theme, dark } = React.useContext(ThemeContext);
   const { background, primary } = theme;
   const postCardStyle = css`
     max-width: 700px;
     margin: ${space.m};
     padding: ${space.s};
-    background-color: ${background.background};
+    background-color: ${dark ? background.background10 : background.background};
   `;
 
   const postFeatureStyle = css`
@@ -47,7 +47,7 @@ export const PostList: React.FC<PostListProps> = props => {
     &:focus,
     &:visited,
     &:active {
-      color: ${primary.main};
+      color: ${dark ? primary.lighter : primary.main};
     }
   `;
 

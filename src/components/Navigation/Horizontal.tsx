@@ -3,7 +3,6 @@ import React, { Fragment } from 'react';
 import { MenuItem } from '../../../types/nav';
 import { css, jsx } from '@emotion/core';
 import { HorizontalItem } from './HorizontalItem';
-import { ThemeContext } from '../../store/ThemeContext';
 
 interface HorizontalProps {
   items: MenuItem[];
@@ -11,12 +10,8 @@ interface HorizontalProps {
 
 export const Horizontal: React.FC<HorizontalProps> = props => {
   const { items } = props;
-  const { toggleTheme } = React.useContext(ThemeContext);
   return (
     <Fragment>
-      <button type="button" onClick={toggleTheme}>
-        Toggle Theme
-      </button>
       <ul
         css={css`
           display: flex;

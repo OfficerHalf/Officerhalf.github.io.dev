@@ -8,15 +8,15 @@ import { staticTheme } from '../../util/theme';
 const { typography, space } = staticTheme;
 
 export const Layout: React.FC = props => {
-  const { theme } = React.useContext(ThemeContext);
-  const { textColor, background } = theme;
+  const { theme, dark } = React.useContext(ThemeContext);
+  const { textColor, background, primary } = theme;
   const globalStyles = css`
     html {
       box-sizing: border-box;
       color: ${textColor.primaryText};
       font-family: ${typography.fontFamily};
       font-size: ${typography.baseFontSize};
-      background-color: ${background.background10};
+      background-color: ${background.background5};
     }
     h1,
     h2,
@@ -65,6 +65,15 @@ export const Layout: React.FC = props => {
         padding-left: ${space.xs};
         padding-right: ${space.xs};
         border-radius: ${space.s};
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: ${dark ? primary.lighter : primary.main};
+      &:hover,
+      &:active {
+        text-decoration: underline;
       }
     }
 
