@@ -3,10 +3,11 @@ import React from 'react';
 import { Search, Close } from '../Icons';
 import { useOnClickOutside } from 'the-captains-hooks';
 import { css, jsx } from '@emotion/core';
-import { theme } from '../../util/theme';
 import { CSSTransition } from 'react-transition-group';
+import { staticTheme } from '../../util/theme';
+import { ThemeContext } from '../../store/ThemeContext';
 
-const { space, color } = theme;
+const { space } = staticTheme;
 
 interface SearchBoxProps {
   onEnter: (value: string) => void;
@@ -48,21 +49,6 @@ const inputWrapperStyle = css`
   }
 `;
 
-const inputWrapperDrawer = css`
-  &.enter-active {
-    border: 2px solid ${color.accent};
-  }
-  &.enter-done {
-    border: 2px solid ${color.accent};
-  }
-  &.exit {
-    border: 2px solid ${color.accent};
-  }
-  &.exit-active {
-    border: 2px solid ${color.accent};
-  }
-`;
-
 const wrapperStyle = css`
   height: 32px;
   display: flex;
@@ -72,11 +58,28 @@ const wrapperStyle = css`
 `;
 
 export const SearchBox: React.FC<SearchBoxProps> = props => {
-  const { onEnter, fill = color.background, border = false, maxWidth } = props;
+  const { theme } = React.useContext(ThemeContext);
+  const { background, accent } = theme;
+  const { onEnter, fill = background.background, border = false, maxWidth } = props;
   const [showInput, setShowInput] = React.useState<boolean>(false);
   const searchBoxRef = React.useRef<HTMLDivElement>(null);
   const inputWrapperRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
+
+  const inputWrapperDrawer = css`
+    &.enter-active {
+      border: 2px solid ${accent.main};
+    }
+    &.enter-done {
+      border: 2px solid ${accent.main};
+    }
+    &.exit {
+      border: 2px solid ${accent.main};
+    }
+    &.exit-active {
+      border: 2px solid ${accent.main};
+    }
+  `;
 
   useOnClickOutside(searchBoxRef, () => setShowInput(false));
   React.useEffect(() => {

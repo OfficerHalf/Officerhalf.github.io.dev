@@ -1,5 +1,4 @@
-import React from 'react';
-import { Theme, NewTheme, ColorTheme, TypographyTheme, NewThemeStatic } from '../../types/theme';
+import { ColorTheme, TypographyTheme, NewThemeStatic, Theme } from '../../types/theme';
 import color from 'color';
 
 // Colors
@@ -184,29 +183,6 @@ const typographyTheme: TypographyTheme = {
   }
 };
 
-export const theme: Theme = {
-  color: {
-    primary: '#377771',
-    accent: '#4CE0B3',
-    text: '#333',
-    mutedText: '#707070',
-    lightGray: '#999999',
-    background: '#e7ecef'
-  },
-  space,
-  typography: {
-    ...typographyTheme,
-    googleFonts: [
-      {
-        name: 'Lato',
-        styles: ['300', '400', '700']
-      }
-    ]
-  },
-  elevation: elevationTheme,
-  queries
-};
-
 const accent: ColorTheme = {
   main: accentMain,
   darker: accentDarker,
@@ -229,7 +205,7 @@ const primary: ColorTheme = {
   }
 };
 
-const newElevation = {
+const elevation = {
   '0': elevationTheme['0'],
   '1': elevationTheme['6'],
   '2': elevationTheme['12'],
@@ -239,12 +215,12 @@ const newElevation = {
 
 export const staticTheme: NewThemeStatic = {
   queries,
-  elevation: newElevation,
+  elevation,
   space,
   typography: typographyTheme
 };
 
-export const lightTheme: NewTheme = {
+export const lightTheme: Theme = {
   dark: false,
   textColor: {
     text: darkText,
@@ -264,7 +240,7 @@ export const lightTheme: NewTheme = {
   primary
 };
 
-export const darkTheme: NewTheme = {
+export const darkTheme: Theme = {
   dark: true,
   textColor: {
     text: lightText,
@@ -283,7 +259,3 @@ export const darkTheme: NewTheme = {
   accent,
   primary
 };
-
-export type EmotionTheme = NewTheme & { setTheme: React.Dispatch<React.SetStateAction<NewTheme>> };
-
-export default theme;

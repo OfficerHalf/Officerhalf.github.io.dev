@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/core';
-import { theme } from '../../../util/theme';
+import { staticTheme } from '../../../util/theme';
 
-const { space } = theme;
+const { space } = staticTheme;
 
 const maxImageSize = '400px';
 

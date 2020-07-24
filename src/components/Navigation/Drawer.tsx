@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/core';
-import { Portal } from '../Common/Portal';
 import { CSSTransition } from 'react-transition-group';
 import { MenuItem } from '../../../types/nav';
 import { Close, Adjust } from '../Icons';

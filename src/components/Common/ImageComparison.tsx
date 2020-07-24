@@ -2,7 +2,10 @@
 import * as React from 'react';
 import { jsx, css } from '@emotion/core';
 import { ChevronRight, ChevronLeft } from '../Icons';
-import { theme } from '../../util/theme';
+import { ThemeContext } from '../../store/ThemeContext';
+import { staticTheme } from '../../util/theme';
+
+const { space } = staticTheme;
 
 interface ImageComparisonProps {
   width?: number;
@@ -59,6 +62,7 @@ const comparisonWrapperStyle = css`
 `;
 
 export const ImageComparison: React.FC<ImageComparisonProps> = props => {
+  const { theme } = React.useContext(ThemeContext);
   const {
     width = 700,
     height = 500,
@@ -66,7 +70,7 @@ export const ImageComparison: React.FC<ImageComparisonProps> = props => {
     imageRightSrc,
     labelLeft = '',
     labelRight = '',
-    dragHandleColor = theme.color.accent,
+    dragHandleColor = theme.primary.lighter,
     dragHandleRadius = 40
   } = props;
   const dragRef = React.useRef<HTMLDivElement>(null);
@@ -205,13 +209,13 @@ export const ImageComparison: React.FC<ImageComparisonProps> = props => {
           <ChevronLeft
             css={css`
               fill: white;
-              width: ${theme.space.xl};
+              width: ${space.xl};
             `}
           />
           <ChevronRight
             css={css`
               fill: white;
-              width: ${theme.space.xl};
+              width: ${space.xl};
             `}
           />
         </div>

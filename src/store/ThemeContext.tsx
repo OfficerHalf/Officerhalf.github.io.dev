@@ -1,12 +1,11 @@
 import React from 'react';
 import { darkTheme, lightTheme } from '../util/theme';
-import { NewTheme } from '../../types/theme';
+import { Theme } from '../../types/theme';
 import { usePrefersDarkTheme } from '../hooks/usePrefersDarkTheme';
-import { start } from 'repl';
 
 interface Context {
   dark: boolean;
-  theme: NewTheme;
+  theme: Theme;
   setTheme: (theme: 'dark' | 'light') => void;
   toggleTheme: () => void;
 }
@@ -38,7 +37,7 @@ export const ThemeContextProvider: React.FC = props => {
         : lightTheme,
     [preferDark, savedTheme]
   );
-  const [theme, _setTheme] = React.useState<NewTheme>(startingTheme);
+  const [theme, _setTheme] = React.useState<Theme>(startingTheme);
 
   React.useEffect(() => {
     _setTheme(startingTheme);
