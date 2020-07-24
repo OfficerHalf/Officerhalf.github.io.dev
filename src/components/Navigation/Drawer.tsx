@@ -8,6 +8,7 @@ import { staticTheme } from '../../util/theme';
 import { DrawerItem } from './DrawerItem';
 import { ToggleSwitch } from '../Common/ToggleSwitch';
 import { ThemeContext } from '../../store/ThemeContext';
+import { Portal } from '../Common/Portal';
 
 const { space, elevation } = staticTheme;
 
@@ -128,29 +129,31 @@ export const Drawer: React.FC<DrawerProps> = props => {
   const drawerRef = React.useRef<HTMLDivElement>(null);
 
   return (
-    <CSSTransition in={open} appear timeout={300} nodeRef={drawerRef}>
-      <div ref={drawerRef} className="shade" css={drawerStyle} onClick={onClose}>
-        <div className="content" {...rest} onClick={e => e.stopPropagation()}>
-          <div css={closeContainerStyle}>
-            <Close css={closeStyle} onClick={onClose} />
+    <Portal>
+      <CSSTransition in={open} appear timeout={300} nodeRef={drawerRef}>
+        <div ref={drawerRef} className="shade" css={drawerStyle} onClick={onClose}>
+          <div className="content" {...rest} onClick={e => e.stopPropagation()}>
+            <div css={closeContainerStyle}>
+              <Close css={closeStyle} onClick={onClose} />
+            </div>
+            <div css={closeContainerStyle}>
+              <Adjust
+                css={css`
+                  height: ${space.l};
+                  width: ${space.l};
+                  margin-right: ${space.s};
+                  fill: ${dark ? primary.lighter : background.background20};
+                  transform: rotate(${dark ? '0deg' : '180deg'});
+                `}
+              />
+              <ToggleSwitch checked={dark} onChange={handleThemeToggle} />
+            </div>
+            {items.map(i => (
+              <DrawerItem key={i.id || i.text} {...i} onClose={onClose} />
+            ))}
           </div>
-          <div css={closeContainerStyle}>
-            <Adjust
-              css={css`
-                height: ${space.l};
-                width: ${space.l};
-                margin-right: ${space.s};
-                fill: ${dark ? primary.lighter : background.background20};
-                transform: rotate(${dark ? '0deg' : '180deg'});
-              `}
-            />
-            <ToggleSwitch checked={dark} onChange={handleThemeToggle} />
-          </div>
-          {items.map(i => (
-            <DrawerItem key={i.id || i.text} {...i} onClose={onClose} />
-          ))}
         </div>
-      </div>
-    </CSSTransition>
+      </CSSTransition>
+    </Portal>
   );
 };
