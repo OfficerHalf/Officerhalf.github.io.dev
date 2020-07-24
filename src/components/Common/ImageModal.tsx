@@ -2,11 +2,12 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { Fragment } from 'react';
 import { css, jsx } from '@emotion/core';
-import { theme } from '../../util/theme';
 import { useOnClickOutside } from 'the-captains-hooks';
 import { Portal } from './Portal';
+import { staticTheme } from '../../util/theme';
+import { ThemeContext } from '../../store/ThemeContext';
 
-const { color, space } = theme;
+const { space } = staticTheme;
 
 const modalShadeStyle = css`
   width: 100vw;
@@ -29,6 +30,7 @@ interface ImageModalProps {
 
 export const ImageModal: React.FC<ImageModalProps> = props => {
   const { image, showModal, closeModal } = props;
+  const { dark, theme } = React.useContext(ThemeContext);
   const fullSizeRef = React.useRef<HTMLDivElement>(null);
   useOnClickOutside(fullSizeRef, closeModal);
 
@@ -64,7 +66,7 @@ export const ImageModal: React.FC<ImageModalProps> = props => {
               <span
                 css={css`
                   margin-top: ${space.m};
-                  color: ${color.background};
+                  color: ${dark ? theme.textColor.primaryText : theme.background.background};
                 `}>
                 {image.current.alt && image.current.alt !== 'undefined' && image.current.alt}
               </span>

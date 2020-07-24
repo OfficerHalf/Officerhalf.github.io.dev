@@ -4,16 +4,17 @@ import { usePrismjs } from '../../../hooks/usePrismjs';
 import { Link } from '@reach/router';
 import { parsePostDate } from '../../../util/cms';
 import { css, jsx } from '@emotion/core';
-import { theme } from '../../../util/theme';
 import { routes } from '../../../util/routes';
 import { Tag } from '../../Icons/Tag';
 import { Small, Headline, Body } from '../../Typography';
 import { Helmet } from 'react-helmet-async';
 import { useImageModal } from '../../../hooks/useImageModal';
 import { useRouteData } from 'react-static';
-import { PostRouteData } from 'types/static';
+import { PostRouteData } from '../../../../types/static';
+import { staticTheme } from '../../../util/theme';
+import { ThemeContext } from '../../../store/ThemeContext';
 
-const { space, color } = theme;
+const { space } = staticTheme;
 
 const wrapperStyle = css`
   margin-bottom: ${space.m};
@@ -22,30 +23,32 @@ const wrapperStyle = css`
   margin-right: auto;
 `;
 
-const tagStyle = css`
-  display: flex;
-  margin-top: ${space.sm};
-  margin-bottom: ${space.xs};
-  .tag-icon {
-    width: ${space.m};
-    height: ${space.m};
-    fill: ${color.lightGray};
-  }
-  .tag-link {
-    color: ${color.mutedText};
-    text-decoration: none;
-    margin-left: ${space.xs};
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-`;
-
 export const Post: React.FC = props => {
   const { post, next, previous } = useRouteData<PostRouteData>();
+  const { theme } = React.useContext(ThemeContext);
+  const { textColor } = theme;
   const bodyRef = React.useRef<HTMLDivElement>(null);
   usePrismjs(bodyRef, ['line-numbers']);
   const imageOutlet = useImageModal(bodyRef);
+
+  const tagStyle = css`
+    display: flex;
+    margin-top: ${space.sm};
+    margin-bottom: ${space.xs};
+    .tag-icon {
+      width: ${space.m};
+      height: ${space.m};
+      fill: ${textColor.accentText};
+    }
+    .tag-link {
+      color: ${textColor.accentText};
+      text-decoration: none;
+      margin-left: ${space.xs};
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  `;
 
   const category = post && post.categories.length > 0 ? post.categories[0] : undefined;
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { ImageModal } from '../components/Common/ImageModal';
 import { useMedia } from 'react-media';
-import { theme } from '../util/theme';
 import { useLocation } from '@reach/router';
+import { staticTheme } from '../util/theme';
 
-const { queries } = theme;
+const { queries } = staticTheme;
 
 export function useImageModal<T extends HTMLElement>(target: React.RefObject<T>) {
   const [showModal, setShowModal] = React.useState<boolean>(false);

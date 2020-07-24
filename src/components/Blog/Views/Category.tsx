@@ -1,7 +1,7 @@
 import React from 'react';
 import { PostList } from '../PostList';
 import { useRouteData } from 'react-static';
-import { CategoryRouteData } from 'types/static';
+import { CategoryRouteData } from '../../../../types/static';
 
 export const Category: React.FC = props => {
   const { posts } = useRouteData<CategoryRouteData>();

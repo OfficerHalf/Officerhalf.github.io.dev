@@ -3,10 +3,10 @@ import React from 'react';
 import { jsx, css } from '@emotion/core';
 import './previewSpecific.css';
 import './phb.css';
-import theme from '../../../util/theme';
 import { useMedia } from 'react-media';
+import { staticTheme } from '../../../util/theme';
 
-const { space, queries } = theme;
+const { space, queries } = staticTheme;
 
 export const Homebrewery: React.FC = props => {
   const breakpoints = useMedia({ queries });

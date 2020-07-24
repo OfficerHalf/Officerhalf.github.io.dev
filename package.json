@@ -16,6 +16,7 @@
     "axios": "^0.19.0",
     "buttercms": "^1.2.3",
     "classnames": "^2.2.6",
+    "color": "^3.1.2",
     "emotion": "^10.0.27",
     "emotion-theming": "^10.0.27",
     "normalize.css": "^8.0.1",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@types/classnames": "^2.2.10",
+    "@types/color": "^3.0.1",
     "@types/node": "^12.7.2",
     "@types/prismjs": "^1.16.1",
     "@types/reach__router": "^1.2",

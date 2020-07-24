@@ -2,11 +2,11 @@
 import React from 'react';
 import { MenuItem } from '../../../types/nav';
 import { css, jsx } from '@emotion/core';
-import { theme } from '../../util/theme';
 import { useNavigate } from '@reach/router';
 import { Dropdown } from '../Common/Dropdown';
+import { staticTheme } from '../../util/theme';
 
-const { typography, space } = theme;
+const { typography, space } = staticTheme;
 
 const horizontalItemStyle = css`
   font-size: ${typography.title.size};
@@ -31,7 +31,7 @@ export const HorizontalItem: React.FC<MenuItem> = props => {
     (event: React.MouseEvent) => {
       if (href || onClick || to) {
         event.persist();
-        if (href) {
+        if (href && typeof window !== 'undefined') {
           window.location.href = href;
         }
         if (onClick) {

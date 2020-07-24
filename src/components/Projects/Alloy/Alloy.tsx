@@ -2,10 +2,10 @@
 import * as React from 'react';
 import { ImageComparison } from '../../Common/ImageComparison';
 import { css, jsx } from '@emotion/core';
-import { theme } from '../../../util/theme';
 import { useMedia } from 'react-media';
+import { staticTheme } from '../../../util/theme';
 
-const { space, queries } = theme;
+const { space, queries } = staticTheme;
 
 export const Alloy: React.FC = props => {
   const breakpoint = useMedia({ queries });
