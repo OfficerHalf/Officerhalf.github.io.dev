@@ -97,7 +97,6 @@ export const Drawer: React.FC<DrawerProps> = props => {
     width: 100%;
     position: fixed;
     top: 0;
-    left: 0;
     background-color: rgba(0, 0, 0, 0.2);
     ${drawerTransitionStyle};
     .content {
