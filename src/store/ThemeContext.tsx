@@ -17,9 +17,15 @@ export const ThemeContext = React.createContext<Context>({
   toggleTheme: () => {}
 });
 
+let localStorage: Storage | null = null;
+
+if (typeof window !== 'undefined') {
+  localStorage = window.localStorage;
+}
+
 export const ThemeContextProvider: React.FC = props => {
   const preferDark = usePrefersDarkTheme();
-  const savedTheme = window.localStorage.getItem('theme');
+  const savedTheme: string | null = localStorage ? localStorage.getItem('theme') : null;
   const startingTheme =
     savedTheme !== null && savedTheme === 'dark'
       ? darkTheme
@@ -37,20 +43,20 @@ export const ThemeContextProvider: React.FC = props => {
   const setTheme = React.useCallback((theme: 'dark' | 'light') => {
     if (theme === 'dark') {
       _setTheme(darkTheme);
-      window.localStorage.setItem('theme', 'dark');
+      localStorage && localStorage.setItem('theme', 'dark');
     } else {
       _setTheme(lightTheme);
-      window.localStorage.setItem('theme', 'light');
+      localStorage && localStorage.setItem('theme', 'light');
     }
   }, []);
 
   const toggleTheme = React.useCallback(() => {
     if (theme === darkTheme) {
-      window.localStorage.setItem('theme', 'light');
+      localStorage && localStorage.setItem('theme', 'light');
       _setTheme(lightTheme);
     } else {
       _setTheme(darkTheme);
-      window.localStorage.setItem('theme', 'dark');
+      localStorage && localStorage.setItem('theme', 'dark');
     }
   }, [theme]);
 
