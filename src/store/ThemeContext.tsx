@@ -39,7 +39,7 @@ export const ThemeContextProvider: React.FC = props => {
   );
   const [theme, _setTheme] = React.useState<Theme>(startingTheme);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     _setTheme(startingTheme);
   }, [startingTheme]);
 
