@@ -9,10 +9,8 @@ import { MenuItem } from '../../../types/nav';
 import { useMedia } from 'react-media';
 import { Horizontal } from './Horizontal';
 import { prefetch } from 'react-static';
-import { ToggleSwitch } from '../Common/ToggleSwitch';
 import { staticTheme } from '../../util/theme';
 import { ThemeContext } from '../../store/ThemeContext';
-import { LightBulb } from '../Icons/LightBulb';
 
 const { space, typography, queries } = staticTheme;
 
@@ -20,8 +18,8 @@ export const Header: React.FC = props => {
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false);
   const breakpoints = useMedia({ queries });
-  const { theme, toggleTheme, dark } = React.useContext(ThemeContext);
-  const { primary, background } = theme;
+  const { theme } = React.useContext(ThemeContext);
+  const { primary } = theme;
 
   const headerStyles = css`
     background-color: ${primary.main};
@@ -101,20 +99,6 @@ export const Header: React.FC = props => {
         <span>Nathan Smith</span>
       </Link>
       <div className="spacer" />
-      <div
-        css={css`
-          display: flex;
-        `}>
-        <LightBulb
-          css={css`
-            height: ${space.l};
-            width: ${space.l};
-            margin-right: ${space.s};
-            fill: ${dark ? background.background : background.background20};
-          `}
-        />
-        <ToggleSwitch checked={dark} onChange={toggleTheme} />
-      </div>
       {!breakpoints[5] && <Menu css={menuStyle} onClick={() => setDrawerOpen(true)} />}
       {!breakpoints[5] && <Drawer open={drawerOpen} items={menuItems} onClose={() => setDrawerOpen(false)} />}
       {breakpoints[5] && <Horizontal items={menuItems} />}
