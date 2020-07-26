@@ -67,6 +67,25 @@ const queries = {
   '12': '(min-width: 1200px)'
 };
 
+const breakpoints = [576, 768, 992, 1200];
+
+const oldQueries = {
+  '5': `(min-width: ${breakpoints[0]}px)`,
+  '7': `(min-width: ${breakpoints[1]}px)`,
+  '9': `(min-width: ${breakpoints[2]}px)`,
+  '12': `(min-width: ${breakpoints[3]}px)`
+};
+
+export const newQueries = {
+  m: oldQueries,
+  e: {
+    '5': `@media ${oldQueries['5']}`,
+    '7': `@media ${oldQueries['7']}`,
+    '9': `@media ${oldQueries['9']}`,
+    '12': `@media ${oldQueries['12']}`
+  }
+};
+
 const elevationTheme = {
   '0': 'none',
   '1': `0px 1px 3px 0px rgba(0, 0, 0, 0.2),

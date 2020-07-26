@@ -3,6 +3,7 @@ import React from 'react';
 import { jsx, css } from '@emotion/core';
 import { staticTheme } from '../../util/theme';
 import { ThemeContext } from '../../store/ThemeContext';
+import cx from 'classnames';
 
 const { space } = staticTheme;
 
@@ -12,17 +13,8 @@ type ToggleSwitchProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLI
 
 export const ToggleSwitch = React.forwardRef<HTMLInputElement, ToggleSwitchProps>((props, ref) => {
   const { className, style, checked, ...rest } = props;
-  const [toggle, setToggle] = React.useState<0 | 1>(0);
   const { theme, dark } = React.useContext(ThemeContext);
   const { primary, background } = theme;
-
-  React.useLayoutEffect(() => {
-    if (checked) {
-      setToggle(1);
-    } else {
-      setToggle(0);
-    }
-  }, [checked]);
 
   return (
     <label
@@ -52,10 +44,15 @@ export const ToggleSwitch = React.forwardRef<HTMLInputElement, ToggleSwitchProps
         css={css`
           display: inline-block;
           opacity: 0;
-          flex-grow: ${toggle};
-          flex-shrink: ${toggle === 0 ? 1 : 0};
           transition: flex-grow 0.2s, flex-shrink 0.2s;
+          flex-grow: 0;
+          flex-shrink: 1;
+          &.on {
+            flex-grow: 1;
+            flex-shrink: 0;
+          }
         `}
+        className={cx({ on: checked })}
       />
       <span
         css={css`
