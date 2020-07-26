@@ -11,24 +11,26 @@ import { Helmet } from 'react-helmet-async';
 import { useImageModal } from '../../../hooks/useImageModal';
 import { useRouteData } from 'react-static';
 import { PostRouteData } from '../../../../types/static';
-import { staticTheme } from '../../../util/theme';
+import { staticTheme, newQueries } from '../../../util/theme';
 import { ThemeContext } from '../../../store/ThemeContext';
-import { useMedia } from 'react-media';
 
-const { space, queries } = staticTheme;
+const { space } = staticTheme;
 
 const wrapperStyle = css`
   margin-bottom: ${space.m};
   max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: ${space.sm};
+  margin-right: ${space.sm};
+  ${newQueries.e['9']} {
+    margin-left: auto;
+    margin-right: auto;
+  }
 `;
 
 export const Post: React.FC = props => {
   const { post, next, previous } = useRouteData<PostRouteData>();
   const { theme } = React.useContext(ThemeContext);
   const { textColor } = theme;
-  const breakpoints = useMedia({ queries });
   const bodyRef = React.useRef<HTMLDivElement>(null);
   usePrismjs(bodyRef, ['line-numbers']);
   const imageOutlet = useImageModal(bodyRef);
@@ -55,16 +57,7 @@ export const Post: React.FC = props => {
   const category = post && post.categories.length > 0 ? post.categories[0] : undefined;
 
   return (
-    <div
-      css={css`
-        ${wrapperStyle};
-        ${!breakpoints['9']
-          ? css`
-              margin-left: ${space.sm};
-              margin-right: ${space.sm};
-            `
-          : undefined};
-      `}>
+    <div css={wrapperStyle}>
       <Fragment>
         <Helmet>
           <title>{`Nathan Smith - ${post.title}`}</title>

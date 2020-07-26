@@ -156,7 +156,7 @@ const config /*: ReactStaticConfig*/ = {
   },
   plugins: [
     'react-static-plugin-typescript',
-    // 'react-static-plugin-emotion',
+    'react-static-plugin-emotion',
     'react-static-plugin-sass',
     'react-static-plugin-reach-router',
     require.resolve('react-static-plugin-sitemap')

@@ -3,14 +3,11 @@ import React from 'react';
 import { jsx, css } from '@emotion/core';
 import './previewSpecific.css';
 import './phb.css';
-import { useMedia } from 'react-media';
-import { staticTheme } from '../../../util/theme';
+import { staticTheme, newQueries } from '../../../util/theme';
 
-const { space, queries } = staticTheme;
+const { space } = staticTheme;
 
 export const Homebrewery: React.FC = props => {
-  const breakpoints = useMedia({ queries });
-
   return (
     <div
       css={css`
@@ -18,7 +15,13 @@ export const Homebrewery: React.FC = props => {
         min-height: calc(100vh - 56px);
         display: flex;
         justify-content: center;
-        padding: ${breakpoints[7] ? space.xxl : breakpoints[9] ? space.xxxl : 0};
+        padding: 0;
+        ${newQueries.e['7']} {
+          padding: ${space.xxl};
+        }
+        ${newQueries.e['9']} {
+          padding: ${space.xxxl};
+        }
       `}>
       <div
         className="phb"

@@ -9,7 +9,7 @@ import { MenuItem } from '../../../types/nav';
 import { useMedia } from 'react-media';
 import { Horizontal } from './Horizontal';
 import { prefetch } from 'react-static';
-import { staticTheme } from '../../util/theme';
+import { staticTheme, newQueries } from '../../util/theme';
 import { ThemeContext } from '../../store/ThemeContext';
 
 const { space, typography, queries } = staticTheme;
@@ -54,6 +54,9 @@ export const Header: React.FC = props => {
     height: ${space.l};
     fill: ${primary.contrast.main};
     cursor: pointer;
+    ${newQueries.e['5']} {
+      display: none;
+    }
   `;
 
   React.useEffect(() => {
@@ -100,8 +103,29 @@ export const Header: React.FC = props => {
       </Link>
       <div className="spacer" />
       {!breakpoints[5] && <Menu css={menuStyle} onClick={() => setDrawerOpen(true)} />}
-      {!breakpoints[5] && <Drawer open={drawerOpen} items={menuItems} onClose={() => setDrawerOpen(false)} />}
-      {breakpoints[5] && <Horizontal items={menuItems} />}
+      {!breakpoints[5] && (
+        <Drawer
+          css={css`
+            ${newQueries.e['5']} {
+              display: none;
+            }
+          `}
+          open={drawerOpen}
+          items={menuItems}
+          onClose={() => setDrawerOpen(false)}
+        />
+      )}
+      {breakpoints[5] && (
+        <Horizontal
+          css={css`
+            display: none;
+            ${newQueries.e['5']} {
+              display: block;
+            }
+          `}
+          items={menuItems}
+        />
+      )}
     </header>
   );
 };
