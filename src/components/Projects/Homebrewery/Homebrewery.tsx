@@ -4,14 +4,17 @@ import { jsx, css } from '@emotion/core';
 import './previewSpecific.css';
 import './phb.css';
 import { staticTheme, newQueries } from '../../../util/theme';
+import { ThemeContext } from '../../../store/ThemeContext';
 
 const { space } = staticTheme;
 
 export const Homebrewery: React.FC = props => {
+  const { theme } = React.useContext(ThemeContext);
+  const { background } = theme;
   return (
     <div
       css={css`
-        background-color: white;
+        background-color: ${background.background};
         min-height: calc(100vh - 56px);
         display: flex;
         justify-content: center;
