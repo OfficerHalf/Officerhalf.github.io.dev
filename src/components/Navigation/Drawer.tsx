@@ -78,7 +78,7 @@ export const Drawer: React.FC<DrawerProps> = props => {
   return (
     <Portal>
       <div ref={drawerRef} className={cx('shade', { open })} css={drawerStyle} onClick={onClose}>
-        <div className={cx('content', { show })} {...rest} onClick={e => e.stopPropagation()}>
+        <div className={cx('content', { show })} onClick={e => e.stopPropagation()}>
           <div css={closeContainerStyle}>
             <Close css={closeStyle} onClick={onClose} />
           </div>
