@@ -149,6 +149,14 @@ const config /*: ReactStaticConfig*/ = {
       { path: routes.project.alloy.base, template: 'src/components/Projects/Alloy/Alloy' },
       { path: routes.project.homebrewery.base, template: 'src/components/Projects/Homebrewery/Homebrewery' },
       {
+        path: 'dnd',
+        template: 'src/components/RootComponents/DnDTools',
+        children: [
+          { path: 'randomLoot', template: 'src/components/DnDTools/RandomLoot' },
+          { path: 'conditions', template: 'src/components/DnDTools/Conditions' }
+        ]
+      },
+      {
         path: '404',
         template: 'src/components/RootComponents/404.tsx'
       }
