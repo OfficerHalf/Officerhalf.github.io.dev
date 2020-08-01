@@ -55,6 +55,7 @@ export const Layout: React.FC = props => {
       line-height: ${typography.leading.lineHeight};
       margin-bottom: ${typography.leading.marginBottom!};
     }
+    /* Body Text */
     p {
       font-size: ${typography.body.size};
       font-weight: ${typography.body.weight};
@@ -80,6 +81,7 @@ export const Layout: React.FC = props => {
     ol > li,
     ul > li {
       margin-bottom: ${space.s};
+      line-height: ${typography.body.lineHeight};
     }
 
     *,

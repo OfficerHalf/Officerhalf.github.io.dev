@@ -4,6 +4,7 @@ import { Router } from '@reach/router';
 import { Layout } from './Layout';
 import { HelmetProvider } from 'react-helmet-async';
 import '../../normalize.css';
+import '../../base.css';
 import { ThemeContextProvider } from '../../store/ThemeContext';
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
