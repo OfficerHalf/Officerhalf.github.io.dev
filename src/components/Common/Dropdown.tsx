@@ -5,18 +5,14 @@ import { css, jsx } from '@emotion/core';
 import { Leading } from '../Typography';
 import { MenuItem } from '../../../types/nav';
 import { ThemeContext } from '../../store/ThemeContext';
-import { staticTheme } from '../../util/theme';
 
 interface DropdownContentProps {
   options: MenuItem[];
 }
 
-const { elevation, space } = staticTheme;
-
 const DropdownContent: React.FC<DropdownContentProps> = props => {
   const { options } = props;
-  const { theme, dark } = React.useContext(ThemeContext);
-  const { primary, textColor, background } = theme;
+  const { elevation, primary, textColor, background, space, dark } = React.useContext(ThemeContext);
 
   const listStyle = css`
     display: block;
@@ -63,8 +59,7 @@ type DropdownProps = Omit<TippyProps & DropdownContentProps, 'content'>;
 
 export const Dropdown: React.FC<DropdownProps> = props => {
   const { options, interactive = true, ...rest } = props;
-  const { theme, dark } = React.useContext(ThemeContext);
-  const { background } = theme;
+  const { background, dark } = React.useContext(ThemeContext);
 
   const tipStyle = css`
     &[data-animation='fade'][data-state='hidden'] {

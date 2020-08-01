@@ -9,17 +9,13 @@ import { MenuItem } from '../../../types/nav';
 import { useMedia } from 'react-media';
 import { Horizontal } from './Horizontal';
 import { prefetch } from 'react-static';
-import { staticTheme, newQueries } from '../../util/theme';
 import { ThemeContext } from '../../store/ThemeContext';
-
-const { space, typography, queries } = staticTheme;
 
 export const Header: React.FC = props => {
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false);
-  const breakpoints = useMedia({ queries });
-  const { theme } = React.useContext(ThemeContext);
-  const { primary } = theme;
+  const { primary, space, typography, queries } = React.useContext(ThemeContext);
+  const breakpoints = useMedia({ queries: queries.m });
 
   const headerStyles = css`
     background-color: ${primary.main};
@@ -54,7 +50,7 @@ export const Header: React.FC = props => {
     height: ${space.l};
     fill: ${primary.contrast.main};
     cursor: pointer;
-    ${newQueries.e['5']} {
+    ${queries.e['5']} {
       display: none;
     }
   `;
@@ -106,7 +102,7 @@ export const Header: React.FC = props => {
       {!breakpoints[5] && (
         <Drawer
           css={css`
-            ${newQueries.e['5']} {
+            ${queries.e['5']} {
               display: none;
             }
           `}
@@ -119,7 +115,7 @@ export const Header: React.FC = props => {
         <Horizontal
           css={css`
             display: none;
-            ${newQueries.e['5']} {
+            ${queries.e['5']} {
               display: block;
             }
           `}

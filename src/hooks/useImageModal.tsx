@@ -2,11 +2,10 @@ import React from 'react';
 import { ImageModal } from '../components/Common/ImageModal';
 import { useMedia } from 'react-media';
 import { useLocation } from '@reach/router';
-import { staticTheme } from '../util/theme';
-
-const { queries } = staticTheme;
+import { ThemeContext } from '../store/ThemeContext';
 
 export function useImageModal<T extends HTMLElement>(target: React.RefObject<T>) {
+  const { queries } = React.useContext(ThemeContext);
   const [showModal, setShowModal] = React.useState<boolean>(false);
   const openModal = React.useCallback((event: MouseEvent) => {
     currentImage.current = event.target as HTMLImageElement;
@@ -14,7 +13,7 @@ export function useImageModal<T extends HTMLElement>(target: React.RefObject<T>)
   }, []);
   const closeModal = React.useCallback(() => setShowModal(false), []);
   const currentImage = React.useRef<HTMLImageElement>();
-  const breakpoints = useMedia({ queries });
+  const breakpoints = useMedia({ queries: queries.m });
   const { pathname } = useLocation();
 
   const maxWidth = breakpoints[9] ? '900px' : '100%';

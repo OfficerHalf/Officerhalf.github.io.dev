@@ -4,17 +4,7 @@ import { MenuItem } from '../../../types/nav';
 import { css, jsx } from '@emotion/core';
 import { useNavigate } from '@reach/router';
 import { Dropdown } from '../Common/Dropdown';
-import { staticTheme } from '../../util/theme';
-
-const { typography, space } = staticTheme;
-
-const horizontalItemStyle = css`
-  font-size: ${typography.title.size};
-  display: block;
-  margin: 0;
-  margin-left: ${space.l};
-  cursor: pointer;
-`;
+import { ThemeContext } from '../../store/ThemeContext';
 
 const noChildrenStyle = css`
   &:hover {
@@ -26,6 +16,15 @@ export const HorizontalItem: React.FC<MenuItem> = props => {
   const { text, childItems, href, onClick, to } = props;
   const navigate = useNavigate();
   const hasChildren = React.useMemo(() => childItems !== undefined && childItems.length !== 0, [childItems]);
+  const { typography, space } = React.useContext(ThemeContext);
+
+  const horizontalItemStyle = css`
+    font-size: ${typography.title.size};
+    display: block;
+    margin: 0;
+    margin-left: ${space.l};
+    cursor: pointer;
+  `;
 
   const _onClick = React.useCallback(
     (event: React.MouseEvent) => {

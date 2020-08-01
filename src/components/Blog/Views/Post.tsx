@@ -11,29 +11,31 @@ import { Helmet } from 'react-helmet-async';
 import { useImageModal } from '../../../hooks/useImageModal';
 import { useRouteData } from 'react-static';
 import { PostRouteData } from '../../../../types/static';
-import { staticTheme, newQueries } from '../../../util/theme';
 import { ThemeContext } from '../../../store/ThemeContext';
-
-const { space } = staticTheme;
-
-const wrapperStyle = css`
-  margin-bottom: ${space.m};
-  max-width: 900px;
-  margin-left: ${space.sm};
-  margin-right: ${space.sm};
-  ${newQueries.e['9']} {
-    margin-left: auto;
-    margin-right: auto;
-  }
-`;
 
 export const Post: React.FC = props => {
   const { post, next, previous } = useRouteData<PostRouteData>();
-  const { theme } = React.useContext(ThemeContext);
-  const { textColor } = theme;
+  const { space, queries, textColor } = React.useContext(ThemeContext);
   const bodyRef = React.useRef<HTMLDivElement>(null);
   usePrismjs(bodyRef, ['line-numbers']);
   const imageOutlet = useImageModal(bodyRef);
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0 });
+    }
+  }, []);
+
+  const wrapperStyle = css`
+    margin-bottom: ${space.m};
+    max-width: 900px;
+    margin-left: ${space.sm};
+    margin-right: ${space.sm};
+    ${queries.e['9']} {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  `;
 
   const tagStyle = css`
     display: flex;

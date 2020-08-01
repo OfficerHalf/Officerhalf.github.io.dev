@@ -3,12 +3,11 @@ import * as React from 'react';
 import { ImageComparison } from '../../Common/ImageComparison';
 import { css, jsx } from '@emotion/core';
 import { useMedia } from 'react-media';
-import { staticTheme } from '../../../util/theme';
-
-const { space, queries } = staticTheme;
+import { ThemeContext } from '../../../store/ThemeContext';
 
 export const Alloy: React.FC = props => {
-  const breakpoint = useMedia({ queries });
+  const { space, queries } = React.useContext(ThemeContext);
+  const breakpoint = useMedia({ queries: queries.m });
   return (
     <div
       css={css`

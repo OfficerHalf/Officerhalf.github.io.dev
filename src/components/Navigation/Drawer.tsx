@@ -3,14 +3,11 @@ import React from 'react';
 import { css, jsx } from '@emotion/core';
 import { MenuItem } from '../../../types/nav';
 import { Close, Adjust } from '../Icons';
-import { staticTheme } from '../../util/theme';
 import { DrawerItem } from './DrawerItem';
 import { ToggleSwitch } from '../Common/ToggleSwitch';
 import { ThemeContext } from '../../store/ThemeContext';
 import { Portal } from '../Common/Portal';
 import cx from 'classnames';
-
-const { space, elevation } = staticTheme;
 
 interface DrawerProps {
   open: boolean;
@@ -19,10 +16,9 @@ interface DrawerProps {
 }
 
 export const Drawer: React.FC<DrawerProps> = props => {
-  const { open, onClose, items, ...rest } = props;
+  const { open, onClose, items } = props;
   const [show, setShow] = React.useState<boolean>(open);
-  const { dark, theme, toggleTheme } = React.useContext(ThemeContext);
-  const { textColor, background, primary } = theme;
+  const { dark, textColor, primary, background, space, elevation, toggleTheme } = React.useContext(ThemeContext);
 
   React.useEffect(() => {
     setShow(open);

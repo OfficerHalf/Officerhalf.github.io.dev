@@ -1,4 +1,4 @@
-import { ColorTheme, TypographyTheme, NewThemeStatic, Theme } from '../../types/theme';
+import { ColorTheme, TypographyTheme, Theme } from '../../types/theme';
 import color from 'color';
 
 // Colors
@@ -60,29 +60,22 @@ const space = {
   xxxl: '96px'
 };
 
-const queries = {
-  '5': '(min-width: 576px)',
-  '7': '(min-width: 768px)',
-  '9': '(min-width: 992px)',
-  '12': '(min-width: 1200px)'
-};
-
 const breakpoints = [576, 768, 992, 1200];
 
-const oldQueries = {
+const reactMediaQueries = {
   '5': `(min-width: ${breakpoints[0]}px)`,
   '7': `(min-width: ${breakpoints[1]}px)`,
   '9': `(min-width: ${breakpoints[2]}px)`,
   '12': `(min-width: ${breakpoints[3]}px)`
 };
 
-export const newQueries = {
-  m: oldQueries,
+const queries = {
+  m: reactMediaQueries,
   e: {
-    '5': `@media ${oldQueries['5']}`,
-    '7': `@media ${oldQueries['7']}`,
-    '9': `@media ${oldQueries['9']}`,
-    '12': `@media ${oldQueries['12']}`
+    '5': `@media ${reactMediaQueries['5']}`,
+    '7': `@media ${reactMediaQueries['7']}`,
+    '9': `@media ${reactMediaQueries['9']}`,
+    '12': `@media ${reactMediaQueries['12']}`
   }
 };
 
@@ -232,7 +225,7 @@ const elevation = {
   '4': elevationTheme['24']
 };
 
-export const staticTheme: NewThemeStatic = {
+const staticTheme = {
   queries,
   elevation,
   space,
@@ -240,6 +233,7 @@ export const staticTheme: NewThemeStatic = {
 };
 
 export const lightTheme: Theme = {
+  ...staticTheme,
   dark: false,
   textColor: {
     text: darkText,
@@ -260,6 +254,7 @@ export const lightTheme: Theme = {
 };
 
 export const darkTheme: Theme = {
+  ...staticTheme,
   dark: true,
   textColor: {
     text: lightText,

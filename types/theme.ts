@@ -1,8 +1,3 @@
-interface GoogleFont {
-  name: string;
-  styles: string[];
-}
-
 interface Font {
   size: string;
   weight: string;
@@ -66,15 +61,15 @@ export interface TextColorTheme {
   disabledText: string;
 }
 
-export interface NewThemeStatic {
+export interface Theme {
+  dark: boolean;
   elevation: ElevationTheme;
   space: SpaceTheme;
   typography: TypographyTheme;
-  queries: MediaQueryTheme;
-}
-
-export interface Theme {
-  dark: boolean;
+  queries: {
+    e: MediaQueryTheme;
+    m: MediaQueryTheme;
+  };
   textColor: TextColorTheme;
   background: {
     background: string;

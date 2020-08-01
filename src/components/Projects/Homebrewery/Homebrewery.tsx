@@ -3,14 +3,10 @@ import React from 'react';
 import { jsx, css } from '@emotion/core';
 import './previewSpecific.css';
 import './phb.css';
-import { staticTheme, newQueries } from '../../../util/theme';
 import { ThemeContext } from '../../../store/ThemeContext';
 
-const { space } = staticTheme;
-
 export const Homebrewery: React.FC = props => {
-  const { theme } = React.useContext(ThemeContext);
-  const { background } = theme;
+  const { background, space, queries } = React.useContext(ThemeContext);
   return (
     <div
       css={css`
@@ -19,10 +15,10 @@ export const Homebrewery: React.FC = props => {
         display: flex;
         justify-content: center;
         padding: 0;
-        ${newQueries.e['7']} {
+        ${queries.e['7']} {
           padding: ${space.xxl};
         }
-        ${newQueries.e['9']} {
+        ${queries.e['9']} {
           padding: ${space.xxxl};
         }
       `}>

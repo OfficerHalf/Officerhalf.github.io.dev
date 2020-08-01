@@ -4,10 +4,7 @@ import { Search, Close } from '../Icons';
 import { useOnClickOutside } from 'the-captains-hooks';
 import { css, jsx } from '@emotion/core';
 import { CSSTransition } from 'react-transition-group';
-import { staticTheme } from '../../util/theme';
 import { ThemeContext } from '../../store/ThemeContext';
-
-const { space } = staticTheme;
 
 interface SearchBoxProps {
   onEnter: (value: string) => void;
@@ -15,39 +12,6 @@ interface SearchBoxProps {
   border?: boolean;
   maxWidth?: string;
 }
-
-const inputWrapperStyle = css`
-  padding: ${space.xxs};
-  display: none;
-  background-color: white;
-  height: 100%;
-  border-radius: ${space.xs};
-  margin-right: ${space.s};
-  &.enter {
-    display: flex;
-    width: 0px;
-  }
-  &.enter-active {
-    display: flex;
-    transition: width 200ms ease-in-out;
-    width: 100%;
-  }
-  &.enter-done {
-    display: flex;
-    width: 100%;
-  }
-  &.exit {
-    display: flex;
-    width: 100%;
-  }
-  &.exit-active {
-    display: flex;
-    transition: width 200ms ease-in-out;
-    width: 0px;
-  }
-  &.exit-done {
-  }
-`;
 
 const wrapperStyle = css`
   height: 32px;
@@ -58,13 +22,45 @@ const wrapperStyle = css`
 `;
 
 export const SearchBox: React.FC<SearchBoxProps> = props => {
-  const { theme } = React.useContext(ThemeContext);
-  const { background, accent } = theme;
+  const { background, accent, space } = React.useContext(ThemeContext);
   const { onEnter, fill = background.background, border = false, maxWidth } = props;
   const [showInput, setShowInput] = React.useState<boolean>(false);
   const searchBoxRef = React.useRef<HTMLDivElement>(null);
   const inputWrapperRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
+
+  const inputWrapperStyle = css`
+    padding: ${space.xxs};
+    display: none;
+    background-color: white;
+    height: 100%;
+    border-radius: ${space.xs};
+    margin-right: ${space.s};
+    &.enter {
+      display: flex;
+      width: 0px;
+    }
+    &.enter-active {
+      display: flex;
+      transition: width 200ms ease-in-out;
+      width: 100%;
+    }
+    &.enter-done {
+      display: flex;
+      width: 100%;
+    }
+    &.exit {
+      display: flex;
+      width: 100%;
+    }
+    &.exit-active {
+      display: flex;
+      transition: width 200ms ease-in-out;
+      width: 0px;
+    }
+    &.exit-done {
+    }
+  `;
 
   const inputWrapperDrawer = css`
     &.enter-active {

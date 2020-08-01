@@ -3,16 +3,15 @@ import { darkTheme, lightTheme } from '../util/theme';
 import { Theme } from '../../types/theme';
 import { usePrefersDarkTheme } from '../hooks/usePrefersDarkTheme';
 
-interface Context {
+type Context = Theme & {
   dark: boolean;
-  theme: Theme;
   setTheme: (theme: 'dark' | 'light') => void;
   toggleTheme: () => void;
-}
+};
 
 export const ThemeContext = React.createContext<Context>({
+  ...lightTheme,
   dark: false,
-  theme: lightTheme,
   setTheme: () => {},
   toggleTheme: () => {}
 });
@@ -67,5 +66,7 @@ export const ThemeContextProvider: React.FC = props => {
     return theme === darkTheme;
   }, [theme]);
 
-  return <ThemeContext.Provider value={{ dark, setTheme, theme, toggleTheme }}>{props.children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={{ ...theme, dark, setTheme, toggleTheme }}>{props.children}</ThemeContext.Provider>
+  );
 };

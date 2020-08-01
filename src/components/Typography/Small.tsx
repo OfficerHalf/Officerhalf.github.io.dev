@@ -2,9 +2,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { jsx, css } from '@emotion/core';
-import { staticTheme } from '../../util/theme';
-
-const { typography } = staticTheme;
+import { ThemeContext } from '../../store/ThemeContext';
 
 type SmallProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> & {
   muted?: boolean;
@@ -12,6 +10,7 @@ type SmallProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLParagraphElem
 
 export const Small = React.forwardRef<HTMLParagraphElement, SmallProps>((props, ref) => {
   const { muted = false, className, ...rest } = props;
+  const { typography } = React.useContext(ThemeContext);
   return (
     <p
       css={css`

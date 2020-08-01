@@ -3,10 +3,7 @@ import React, { Fragment } from 'react';
 import { MenuItem } from '../../../types/nav';
 import { css, jsx } from '@emotion/core';
 import { useNavigate } from '@reach/router';
-import { staticTheme } from '../../util/theme';
 import { ThemeContext } from '../../store/ThemeContext';
-
-const { typography, space } = staticTheme;
 
 interface DrawerItemProps {
   isChild?: boolean;
@@ -15,8 +12,7 @@ interface DrawerItemProps {
 
 export const DrawerItem: React.FC<MenuItem & DrawerItemProps> = props => {
   const { text, childItems, href, onClick, to, isChild = false, onClose } = props;
-  const { theme } = React.useContext(ThemeContext);
-  const { primary, textColor } = theme;
+  const { primary, textColor, typography, space } = React.useContext(ThemeContext);
   const navigate = useNavigate();
   const hasChildren = React.useMemo(() => childItems !== undefined && childItems.length !== 0, [childItems]);
 

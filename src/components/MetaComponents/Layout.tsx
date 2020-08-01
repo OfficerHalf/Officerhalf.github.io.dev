@@ -3,13 +3,9 @@ import { Helmet } from 'react-helmet-async';
 import { Header } from '../Navigation/Header';
 import { css, Global } from '@emotion/core';
 import { ThemeContext } from '../../store/ThemeContext';
-import { staticTheme } from '../../util/theme';
-
-const { typography, space } = staticTheme;
 
 export const Layout: React.FC = props => {
-  const { theme, dark } = React.useContext(ThemeContext);
-  const { textColor, background, primary } = theme;
+  const { textColor, background, primary, space, typography, dark } = React.useContext(ThemeContext);
   const globalStyles = css`
     html {
       box-sizing: border-box;

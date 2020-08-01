@@ -5,10 +5,7 @@ import { KeyValuePair } from '../../../types/cms';
 import { Link } from '@reach/router';
 import { routes } from '../../util/routes';
 import { css, jsx } from '@emotion/core';
-import { staticTheme } from '../../util/theme';
 import { ThemeContext } from '../../store/ThemeContext';
-
-const { space, typography } = staticTheme;
 
 interface TagListProps {
   tags?: KeyValuePair[];
@@ -19,8 +16,7 @@ export const TagList = React.forwardRef<
   TagListProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 >((props, ref) => {
   const { tags = [], ...rest } = props;
-  const { theme } = React.useContext(ThemeContext);
-  const { textColor } = theme;
+  const { textColor, space, typography } = React.useContext(ThemeContext);
   const tagIconStyle = css`
     fill: ${textColor.accentText};
     width: ${space.m};

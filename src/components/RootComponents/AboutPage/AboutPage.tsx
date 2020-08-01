@@ -1,13 +1,12 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/core';
-import { staticTheme } from '../../../util/theme';
-
-const { space } = staticTheme;
+import { ThemeContext } from '../../../store/ThemeContext';
 
 const maxImageSize = '400px';
 
 export const AboutPage: React.FC = props => {
+  const { space } = React.useContext(ThemeContext);
   return (
     <div
       css={css`

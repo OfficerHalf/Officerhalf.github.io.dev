@@ -4,7 +4,6 @@ import { MenuItem } from '../../../types/nav';
 import { css, jsx } from '@emotion/core';
 import { HorizontalItem } from './HorizontalItem';
 import { ThemeContext } from '../../store/ThemeContext';
-import { staticTheme } from '../../util/theme';
 import { Adjust } from '../Icons';
 import { ToggleSwitch } from '../Common/ToggleSwitch';
 
@@ -12,12 +11,9 @@ interface HorizontalProps {
   items: MenuItem[];
 }
 
-const { space } = staticTheme;
-
 export const Horizontal: React.FC<HorizontalProps> = props => {
   const { items } = props;
-  const { theme, toggleTheme, dark } = React.useContext(ThemeContext);
-  const { background } = theme;
+  const { background, space, toggleTheme, dark } = React.useContext(ThemeContext);
   return (
     <Fragment>
       <div
