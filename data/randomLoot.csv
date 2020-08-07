@@ -1,0 +1,34 @@
+type	name	value	description	tags
+Junk	Decomposing fish heads (1d4)	0	So that's where that smell came from�	Goblin;Joke;Gross
+Junk	Pocket sand	0	Never go anywhere without it	Goblin;Joke
+Junk	Jar of pickled toes	0	A common goblinoid delicacy	Goblin;Joke;Evil;Gross
+Weapon	Dagger	2gp	A dagger	Goblin;Bandit;Generic
+Item	Pet squirrel	0	It's suffering from a bad case of mange	Goblin;Joke
+Consumable	Skull bomb	0	Throw it and run.	Goblin;Joke;Thrown;Alchemical;Evil
+Junk	Necklace of teeth	0	The newest fashion statement	Goblin;Joke;Evil;Bandit;Gross
+Junk	Cracked porcelain doll	0	"In fine clthes, but missing its eyes"	Goblin;Joke
+Item	Peg leg	0	"""I'm gonna get that leg."" Functions as a club."	Goblin;Joke;Bandit
+Valuable	Coin purse	"1d4 gp, 2d6 sp, 3d8 cp"	Jackpot!	Generic
+Junk	Red bandanna	0	Don't have to worry about bloodstains!	Bandit;Joke
+Item	Steel lock	0	There's no key	Bandit;Generic
+Item	Playing card set	0	Some of the corners are bent.	Bandit;Generic
+Weapon	Rusted weapon	0	"It's in bad shape, -1 to damage rolls"	Bandit;Generic
+Junk	Fingerless gloves	0	Great for looking cool	Bandit;Generic
+Item	Six sided die	0	Seems to weigh more than it should	Bandit;Generic
+Valuable	Gold earrings	1d8 gp	Beautiful	Generic;Bandit
+Item	Double sided coin	0	It has two faces	Generic;Bandit
+Consumable	Vial of acid	2gp	"On a hit, the target takes 2d6 acid damage"	Generic;Consumable;Thrown;Alchemical
+Valuable	Wooden box of coins	"2d6 gp, 3d8 sp, 4d12 cp"	Jackpot!	Generic;Bandit
+Valuable	"A fine, leather gem pouch"	100gp	100gp worth of shiny gemstones	Generic;Bandit
+Weapon	Poison bolt	0	Crossbow bolt or arrow with a poison vial attached. DC 12 Con save or take an extra 1d4 poison damage.	Bandit;Alchemical
+Junk	Shrunken head	0	"The leathery, preserved head of a dwarf"	Evil;Magical;Gross
+Junk	Vials of blood (1d4)	0	For summoning demons	Evil;Magical;Alchemical
+Item	Crystal orb	5gp	It's a spellcasting focus	Magical
+Junk	Red ink & bone quill	0	It's probably blood. The quill is nice.	Evil
+Junk	Silk pouch	0	"Contains charcoal, incense, and quality herbs."	Generic;Magical;Alchemical
+Junk	Blood stained tome	0	Barely legible	Magical;Evil
+Junk	Black robes	5sp	They are very nice robes.	Magical;Evil
+Item	Blank scrolls (1d4)	2sp each	Some blank parchment	Magical;Alchemical;Generic
+Weapon	Skull staff	0	It's a quarterstaff with a humanoid skull at the end.	Magical;Evil
+Valuable	Black onyx stone	150gp	A gem used in the creation of undead	Magical;Evil;Generic
+Consumable	Potion of poison	100gp	"Looks, smells, and tastes like a Potion of Healing, but is actually poison. Roll for healing, but then do half as damage instead."	Alchemical;Evil

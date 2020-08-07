@@ -1,36 +1,18 @@
 import React from 'react';
 import path from 'path';
-// import { KeyValuePair } from 'types/cms';
-// import { CategoryRouteData, BlogRouteData, PostRouteData, TagRouteData } from 'types/static';
-// import { ReactStaticConfig } from 'react-static';
 import butter from 'buttercms';
-// import { AxiosResponse } from 'axios';
-// import { ButterListResponse, BlogPost, ButterRetrieveResponse, ButterListOptions } from '../../types/cms';
+import { promises } from 'fs';
+import parse from 'csv-parse/lib/sync';
 
 const ButterApi = butter('9ffd3dad4fd54423ad22bc3ce3e1a2fd6bbc9081');
 
-function postList(options /*?: ButterListOptions*/) /*: Promise<AxiosResponse<ButterListResponse<BlogPost[]>>>*/ {
-  return ButterApi.post.list(options) /*as Promise<AxiosResponse<ButterListResponse<BlogPost[]>>>*/;
+function postList(options) {
+  return ButterApi.post.list(options);
 }
 
-function getPost(slug /*: string*/) /*: Promise<AxiosResponse<ButterRetrieveResponse>>*/ {
-  return ButterApi.post.retrieve(slug) /* as Promise<AxiosResponse<ButterRetrieveResponse>>*/;
+function getPost(slug) {
+  return ButterApi.post.retrieve(slug);
 }
-
-// function searchPosts(query/*: string*/)/*: Promise<AxiosResponse<ButterListResponse<BlogPost[]>>>*/ {
-//   return ButterApi.post.search(query)/* as Promise<AxiosResponse<ButterListResponse<BlogPost[]>>>*/;
-// }
-
-// function parsePostDate(date/*: string*/)/*: string*/ {
-//   return new Date(date).toLocaleString(undefined, {
-//     year: 'numeric',
-//     month: 'long',
-//     day: 'numeric',
-//     hour: 'numeric',
-//     hour12: true,
-//     minute: 'numeric'
-//   });
-// }
 
 const routes = {
   about: 'about',
@@ -39,20 +21,16 @@ const routes = {
     base: 'blog',
     post: {
       template: '/blog/post/:slug',
-      link: (slug /*: string*/) => `/blog/post/${slug}`
+      link: slug => `/blog/post/${slug}`
     },
     category: {
       template: '/blog/category/:slug',
-      link: (slug /*: string*/) => `/blog/category/${slug}`
+      link: slug => `/blog/category/${slug}`
     },
     tag: {
       template: '/blog/tag/:slug',
-      link: (slug /*: string*/) => `/blog/tag/${slug}`
-    } /*,
-    search: {
-      template: '/blog/search',
-      link: (query: string) => queryString.stringifyUrl({ query: { search: query }, url: '/blog/search' })
-    }*/
+      link: slug => `/blog/tag/${slug}`
+    }
   },
   project: {
     base: 'project',
@@ -67,7 +45,7 @@ const routes = {
   }
 };
 
-const config /*: ReactStaticConfig*/ = {
+const config = {
   entry: path.join(__dirname, 'src', 'index.tsx'),
   Document: ({ Html, Head, Body, children }) => (
     <Html>
@@ -82,10 +60,11 @@ const config /*: ReactStaticConfig*/ = {
     </Html>
   ),
   getRoutes: async () => {
+    // Blog
     const resp = await postList();
     const posts = resp.data.data;
-    const _categories /*: Set<KeyValuePair>*/ = new Set();
-    const _tags /*: Set<KeyValuePair>*/ = new Set();
+    const _categories = new Set();
+    const _tags = new Set();
     posts.forEach(post => {
       post.categories.forEach(category => {
         _categories.add(category);
@@ -96,10 +75,11 @@ const config /*: ReactStaticConfig*/ = {
     });
     const categories = Array.from(_categories);
     const tags = Array.from(_tags);
+
     return [
       {
         path: '/',
-        getData: () /*: BlogRouteData*/ => ({
+        getData: () => ({
           posts
         }),
         template: 'src/components/RootComponents/HomePage',
@@ -107,7 +87,7 @@ const config /*: ReactStaticConfig*/ = {
           ...posts.map((post, index) => ({
             path: routes.blog.post.link(post.slug),
             template: 'src/components/Blog/Views/Post',
-            getData: () /*: PostRouteData*/ => {
+            getData: () => {
               return {
                 post: post,
                 previous:
@@ -121,7 +101,7 @@ const config /*: ReactStaticConfig*/ = {
           ...categories.map(category => ({
             path: routes.blog.category.link(category.slug),
             template: 'src/components/Blog/Views/Category',
-            getData: () /*: CategoryRouteData*/ => ({
+            getData: () => ({
               category,
               posts: posts.filter(
                 p => p.categories.findIndex(c => c.slug.toLowerCase() === category.slug.toLowerCase()) !== -1
@@ -131,7 +111,7 @@ const config /*: ReactStaticConfig*/ = {
           ...tags.map(tag => ({
             path: routes.blog.tag.link(tag.slug),
             template: 'src/components/Blog/Views/Tag',
-            getData: () /*: TagRouteData*/ => ({
+            getData: () => ({
               tag,
               posts: posts.filter(p => p.tags.findIndex(t => t.slug.toLowerCase() === tag.slug.toLowerCase()) !== -1)
             })
@@ -152,7 +132,28 @@ const config /*: ReactStaticConfig*/ = {
         path: 'dnd',
         template: 'src/components/RootComponents/DnDTools',
         children: [
-          { path: 'randomLoot', template: 'src/components/DnDTools/RandomLoot' },
+          {
+            path: 'randomLoot',
+            template: 'src/components/DnDTools/RandomLoot',
+            getData: async () => {
+              const lootString = await promises.readFile('data/randomLoot.csv', { encoding: 'utf8' });
+              const records = parse(lootString, { columns: true, delimiter: ['\t'] });
+              const _lootTags = new Set();
+              const loot = records.map(r => {
+                const tags = r.tags.split(';');
+                tags.forEach(t => _lootTags.add(t));
+                return {
+                  type: r.type,
+                  name: r.name,
+                  value: r.value,
+                  description: r.description,
+                  tags
+                };
+              });
+              const lootTags = Array.from(_lootTags);
+              return { loot, lootTags };
+            }
+          },
           { path: 'conditions', template: 'src/components/DnDTools/Conditions' }
         ]
       },
