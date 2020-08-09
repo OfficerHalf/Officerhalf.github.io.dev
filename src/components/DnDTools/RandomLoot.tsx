@@ -1,10 +1,14 @@
+/** @jsx jsx */
 import React from 'react';
+import { jsx, css } from '@emotion/core';
 import { Title, Subheading } from '../Typography';
 import { useRouteData } from 'react-static';
 import { RandomLootRouteData } from '../../../types/static';
 import { Loot } from '../../../types/dnd';
 import { LootCard } from './RandomLoot/LootCard';
 import { selectRandom } from '../../util/random';
+import { Button } from '../Common/Button';
+import { ThemeContext } from '../../store/ThemeContext';
 
 function getTaggedLoot(loot: Loot[], tags: string[]): Loot[] {
   return loot.filter(l => l.tags.some(t => tags.includes(t)));
@@ -16,6 +20,7 @@ function getTypedLoot(loot: Loot[], type: string): Loot[] {
 
 const RandomLoot: React.FC = props => {
   const { loot, lootTags, lootTypes } = useRouteData<RandomLootRouteData>();
+  const { space } = React.useContext(ThemeContext);
   const [selectedTags, setSelectedTags] = React.useState<string[]>([]);
   const [randomLoot, setRandomLoot] = React.useState<Loot[]>([]);
 
@@ -61,10 +66,13 @@ const RandomLoot: React.FC = props => {
       <div>
         <Subheading>By Type</Subheading>
         {lootTypes.map(t => (
-          <div>
-            <button key={t} type="button" onClick={randomTypeClick(t)}>
+          <div
+            css={css`
+              margin: ${space.sm};
+            `}>
+            <Button key={t} type="button" onClick={randomTypeClick(t)}>
               {t}
-            </button>
+            </Button>
           </div>
         ))}
       </div>
