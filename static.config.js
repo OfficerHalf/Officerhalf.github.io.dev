@@ -136,6 +136,7 @@ const config = {
             path: 'randomLoot',
             template: 'src/components/DnDTools/RandomLoot',
             getData: async () => {
+              console.log('Reading DnDData');
               const workbook = XLSX.readFile('data/DnDData.xlsx');
               const lootSheet = workbook.Sheets['Loot'];
               const records = XLSX.utils.sheet_to_json(lootSheet);
@@ -155,6 +156,7 @@ const config = {
                   source: r.source
                 };
               });
+              console.log(`Got ${loot.length} records.`);
               return { loot, lootTags: Array.from(_lootTags), lootTypes: Array.from(_lootTypes) };
             }
           },
