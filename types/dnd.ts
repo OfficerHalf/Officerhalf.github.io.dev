@@ -17,4 +17,6 @@ export interface Loot {
   value: string;
   description: string;
   tags: string[];
+  minCR: number;
+  source: string;
 }

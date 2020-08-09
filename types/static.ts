@@ -23,5 +23,6 @@ export interface PostRouteData {
 
 export interface RandomLootRouteData {
   lootTags: string[];
+  lootTypes: string[];
   loot: Loot[];
 }

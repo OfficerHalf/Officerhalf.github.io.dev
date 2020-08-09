@@ -2,7 +2,7 @@ import React from 'react';
 import path from 'path';
 import butter from 'buttercms';
 import { promises } from 'fs';
-import parse from 'csv-parse/lib/sync';
+import XLSX from 'xlsx';
 
 const ButterApi = butter('9ffd3dad4fd54423ad22bc3ce3e1a2fd6bbc9081');
 
@@ -136,22 +136,26 @@ const config = {
             path: 'randomLoot',
             template: 'src/components/DnDTools/RandomLoot',
             getData: async () => {
-              const lootString = await promises.readFile('data/randomLoot.csv', { encoding: 'utf8' });
-              const records = parse(lootString, { columns: true, delimiter: ['\t'] });
+              const workbook = XLSX.readFile('data/DnDData.xlsx');
+              const lootSheet = workbook.Sheets['Loot'];
+              const records = XLSX.utils.sheet_to_json(lootSheet);
               const _lootTags = new Set();
+              const _lootTypes = new Set();
               const loot = records.map(r => {
                 const tags = r.tags.split(';');
                 tags.forEach(t => _lootTags.add(t));
+                _lootTypes.add(r.type);
                 return {
                   type: r.type,
                   name: r.name,
                   value: r.value,
                   description: r.description,
-                  tags
+                  tags,
+                  minCR: r.minCR,
+                  source: r.source
                 };
               });
-              const lootTags = Array.from(_lootTags);
-              return { loot, lootTags };
+              return { loot, lootTags: Array.from(_lootTags), lootTypes: Array.from(_lootTypes) };
             }
           },
           { path: 'conditions', template: 'src/components/DnDTools/Conditions' }
