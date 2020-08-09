@@ -133,7 +133,7 @@ const config = {
         template: 'src/components/RootComponents/DnDTools',
         children: [
           {
-            path: 'randomLoot',
+            path: 'randomloot',
             template: 'src/components/DnDTools/RandomLoot',
             getData: async () => {
               console.log('Reading DnDData');
