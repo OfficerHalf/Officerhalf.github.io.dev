@@ -10,6 +10,7 @@
     "serve": "serve dist -p 3000 -s"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^1.0.0",
     "@emotion/core": "^10.0.28",
     "@reach/router": "^1.2.1",
     "@tippyjs/react": "^4.1.0",
