@@ -78,6 +78,12 @@ export interface Theme {
     background10: string;
     background20: string;
     background30: string;
+    background40: string;
+    background50: string;
+    background60: string;
+    background70: string;
+    background80: string;
+    background90: string;
   };
   primary: ColorTheme;
   accent: ColorTheme;
