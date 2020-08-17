@@ -1,17 +1,21 @@
 import React from 'react';
 import { RouteComponentProps } from '@reach/router';
 import { SearchPokemon } from './SearchPokemon';
-import { IdPokemon, Pokemon } from '../../../types/pokemon';
+import { IdPokemon, Pokemon, RandomizerRunFile, RandomizerSettings } from '../../../types/pokemon';
 import { ActionMeta } from 'react-select';
 import { getOne } from '../../util/pokemon';
 import { Button } from '../Common/Button';
 import { selectRandom } from '../../util/random';
-import firebase from 'firebase';
 import { useGithubToken } from '../../hooks/useGithubToken';
-// import axios from 'axios';
+import axios from 'axios';
+import { createJsonGist, getGistByFileName, GistFile, updateJsonGist } from '../../util/github';
+import slugify from 'slugify';
+
+export const RandomizerSettingsFileName = '.pokemonRandomizerSettings.json';
 
 export const Randomizer: React.FC<RouteComponentProps> = props => {
-  const doGetToken = useGithubToken();
+  const getToken = useGithubToken();
+  const [teamName, setTeamName] = React.useState<string>('Default');
   const [available, setAvailable] = React.useState<Pokemon[]>([]);
   const [randomTeam, setRandomTeam] = React.useState<Pokemon[]>([]);
 
@@ -24,33 +28,39 @@ export const Randomizer: React.FC<RouteComponentProps> = props => {
     setRandomTeam(selectRandom(available, Math.min(6, available.length)));
   }, [available]);
 
-  const getToken = React.useCallback(async () => {
-    const token = await doGetToken();
-    console.log(token);
-  }, [doGetToken]);
-
-  // const consent = React.useCallback(async () => {
-  //   await getAccessTokenWithPopup({ scope: 'gist' });
-  // }, [getAccessTokenWithPopup]);
-
-  // const getToken = React.useCallback(async () => {
-  //   const claims = await getIdTokenClaims();
-  //   console.log(claims);
-  //   const token = await getAccessTokenSilently({ scope: 'user gist' });
-  //   console.log(token);
-  //   const resp = await axios.get('https://api.github.com/graphql', {
-  //     headers: { Authorization: `Bearer ${token}` }
-  //   });
-  //   console.log(resp);
-  // }, [getAccessTokenSilently, getIdTokenClaims]);
-
-  // const handleLogout = React.useCallback(() => {
-  //   logout();
-  // }, [logout]);
+  const saveTeam = React.useCallback(async () => {
+    const token = await getToken();
+    const existingGist = await getGistByFileName(token, RandomizerSettingsFileName);
+    const teamSlug = slugify(teamName);
+    const runFile: RandomizerRunFile = {
+      name: teamName,
+      pokemon: available,
+      team: randomTeam
+    };
+    const gistFile: GistFile = {
+      fileName: `${teamSlug}.json`,
+      content: runFile
+    };
+    const settings: RandomizerSettings = {
+      lastSelectedRun: teamSlug
+    };
+    const settingsFile: GistFile = {
+      content: settings,
+      fileName: RandomizerSettingsFileName
+    };
+    if (existingGist) {
+      await updateJsonGist(token, existingGist.id, [gistFile, settingsFile]);
+    } else {
+      await createJsonGist(token, [gistFile, settingsFile]);
+    }
+  }, [available, getToken, randomTeam, teamName]);
 
   return (
     <div>
       this is the randomizer <SearchPokemon onChange={onChange} />
+      <div>
+        <input type="text" value={teamName} onChange={e => setTeamName(e.target.value)} />
+      </div>
       <div>{`Pokemon available: ${available.length}`}</div>
       <div>
         <Button onClick={randomize}>Random Team</Button>
@@ -60,9 +70,7 @@ export const Randomizer: React.FC<RouteComponentProps> = props => {
           ))}
         </div>
       </div>
-      {/* <Button onClick={consent}>Consent</Button> */}
-      <Button onClick={getToken}>Get Token</Button>
-      {/* <Button onClick={handleLogout}>Logout</Button> */}
+      <Button onClick={saveTeam}>Save Team</Button>
     </div>
   );
 };

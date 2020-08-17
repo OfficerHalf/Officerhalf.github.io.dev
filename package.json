@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@emotion/core": "^10.0.28",
+    "@octokit/rest": "^18.0.3",
     "@reach/router": "^1.2.1",
     "@react-firebase/auth": "^0.2.10",
     "@tippyjs/react": "^4.1.0",
@@ -36,6 +37,7 @@
     "react-static-plugin-source-filesystem": "^7.2.0",
     "react-static-plugin-typescript": "^7.2.0",
     "react-transition-group": "^4.4.1",
+    "slugify": "^1.4.5",
     "the-captains-hooks": "0.0.8",
     "tippy.js": "^6.2.5"
   },

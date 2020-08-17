@@ -33,3 +33,13 @@ export interface Pokemon {
   };
   types: PokemonType[];
 }
+
+export interface RandomizerSettings {
+  lastSelectedRun: string;
+}
+
+export interface RandomizerRunFile {
+  name: string;
+  pokemon: Pokemon[];
+  team: Pokemon[];
+}

@@ -35,7 +35,19 @@ export async function listAll() {
 export async function getOne(id: number) {
   if (!pokemon[id]) {
     const pokemonResponse = await axios.get<Pokemon>(`${endpoint}/${id}`);
-    pokemon[id] = pokemonResponse.data;
+
+    // This object has tons of extra properties we don't want
+    const big = pokemonResponse.data;
+    pokemon[id] = {
+      id: big.id,
+      is_default: big.is_default,
+      name: big.name,
+      sprites: {
+        front_default: big.sprites.front_default,
+        front_shiny: big.sprites.front_shiny
+      },
+      types: big.types
+    };
     return pokemon[id];
   } else {
     return Promise.resolve(pokemon[id]);
