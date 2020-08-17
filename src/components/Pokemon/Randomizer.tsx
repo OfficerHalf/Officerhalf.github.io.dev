@@ -7,10 +7,11 @@ import { getOne } from '../../util/pokemon';
 import { Button } from '../Common/Button';
 import { selectRandom } from '../../util/random';
 import firebase from 'firebase';
+import { useGithubToken } from '../../hooks/useGithubToken';
 // import axios from 'axios';
 
 export const Randomizer: React.FC<RouteComponentProps> = props => {
-  // const { user, getAccessTokenSilently, getAccessTokenWithPopup, logout, getIdTokenClaims } = useAuth0();
+  const doGetToken = useGithubToken();
   const [available, setAvailable] = React.useState<Pokemon[]>([]);
   const [randomTeam, setRandomTeam] = React.useState<Pokemon[]>([]);
 
@@ -23,9 +24,10 @@ export const Randomizer: React.FC<RouteComponentProps> = props => {
     setRandomTeam(selectRandom(available, Math.min(6, available.length)));
   }, [available]);
 
-  const getToken = React.useCallback(() => {
-    firebase.auth().signOut();
-  }, []);
+  const getToken = React.useCallback(async () => {
+    const token = await doGetToken();
+    console.log(token);
+  }, [doGetToken]);
 
   // const consent = React.useCallback(async () => {
   //   await getAccessTokenWithPopup({ scope: 'gist' });
