@@ -28,6 +28,17 @@ export const Randomizer: React.FC<RouteComponentProps> = props => {
     setRandomTeam(selectRandom(available, Math.min(6, available.length)));
   }, [available]);
 
+  const loadTeam = React.useCallback(async (teamName: string) => {
+    const token = await getToken();
+    const existingGist = await getGistByFileName(token, RandomizerSettingsFileName);
+    if (existingGist) {
+      const files = Object.keys(existingGist.files);
+      const teamFileName = files.find(name => {
+        const gistFile = existingGist.files[name];
+      });
+    }
+  }, []);
+
   const saveTeam = React.useCallback(async () => {
     const token = await getToken();
     const existingGist = await getGistByFileName(token, RandomizerSettingsFileName);
