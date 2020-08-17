@@ -6,11 +6,11 @@ import { ActionMeta } from 'react-select';
 import { getOne } from '../../util/pokemon';
 import { Button } from '../Common/Button';
 import { selectRandom } from '../../util/random';
-import { useAuth0 } from '@auth0/auth0-react';
-import axios from 'axios';
+import firebase from 'firebase';
+// import axios from 'axios';
 
 export const Randomizer: React.FC<RouteComponentProps> = props => {
-  const { user, getAccessTokenSilently, getAccessTokenWithPopup, logout, getIdTokenClaims } = useAuth0();
+  // const { user, getAccessTokenSilently, getAccessTokenWithPopup, logout, getIdTokenClaims } = useAuth0();
   const [available, setAvailable] = React.useState<Pokemon[]>([]);
   const [randomTeam, setRandomTeam] = React.useState<Pokemon[]>([]);
 
@@ -23,24 +23,28 @@ export const Randomizer: React.FC<RouteComponentProps> = props => {
     setRandomTeam(selectRandom(available, Math.min(6, available.length)));
   }, [available]);
 
-  const consent = React.useCallback(async () => {
-    await getAccessTokenWithPopup({ scope: 'gist' });
-  }, [getAccessTokenWithPopup]);
+  const getToken = React.useCallback(() => {
+    firebase.auth().signOut();
+  }, []);
 
-  const getToken = React.useCallback(async () => {
-    const claims = await getIdTokenClaims();
-    console.log(claims);
-    const token = await getAccessTokenSilently();
-    console.log(token);
-    const resp = await axios.get('https://api.github.com/gists', {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-    console.log(resp);
-  }, [getAccessTokenSilently, getIdTokenClaims]);
+  // const consent = React.useCallback(async () => {
+  //   await getAccessTokenWithPopup({ scope: 'gist' });
+  // }, [getAccessTokenWithPopup]);
 
-  const handleLogout = React.useCallback(() => {
-    logout();
-  }, [logout]);
+  // const getToken = React.useCallback(async () => {
+  //   const claims = await getIdTokenClaims();
+  //   console.log(claims);
+  //   const token = await getAccessTokenSilently({ scope: 'user gist' });
+  //   console.log(token);
+  //   const resp = await axios.get('https://api.github.com/graphql', {
+  //     headers: { Authorization: `Bearer ${token}` }
+  //   });
+  //   console.log(resp);
+  // }, [getAccessTokenSilently, getIdTokenClaims]);
+
+  // const handleLogout = React.useCallback(() => {
+  //   logout();
+  // }, [logout]);
 
   return (
     <div>
@@ -54,9 +58,9 @@ export const Randomizer: React.FC<RouteComponentProps> = props => {
           ))}
         </div>
       </div>
-      <Button onClick={consent}>Consent</Button>
+      {/* <Button onClick={consent}>Consent</Button> */}
       <Button onClick={getToken}>Get Token</Button>
-      <Button onClick={handleLogout}>Logout</Button>
+      {/* <Button onClick={handleLogout}>Logout</Button> */}
     </div>
   );
 };

@@ -7,23 +7,26 @@ import '../../normalize.css';
 import '../../base.css';
 import { ThemeContextProvider } from '../../store/ThemeContext';
 import { Pokemon } from '../RootComponents/Pokemon';
-import { Auth0Provider } from '@auth0/auth0-react';
+import firebase from 'firebase/app';
+import { FirebaseAuthProvider } from '@react-firebase/auth';
 
 // Do not prefetch dynamic routes
 addPrefetchExcludes(['pokemon']);
 
-const authConstants = {
-  domain: 'officerhalf.us.auth0.com',
-  clientId: '1WfQDQheEeHNIlsbqd0ilZXmQ3XCTkVo'
+const config = {
+  apiKey: 'AIzaSyAIDL1KUZXISaFjqF3Dq1HfH50CVexhb2o',
+  authDomain: 'poke-randomizer.firebaseapp.com',
+  databaseURL: 'https://poke-randomizer.firebaseio.com',
+  projectId: 'poke-randomizer',
+  storageBucket: 'poke-randomizer.appspot.com',
+  messagingSenderId: '276127784869',
+  appId: '1:276127784869:web:e29e8925c191d22289d24c'
 };
 
 export const App: React.FC = props => {
   return (
     <Root>
-      <Auth0Provider
-        domain={authConstants.domain}
-        clientId={authConstants.clientId}
-        redirectUri={window.location.origin}>
+      <FirebaseAuthProvider firebase={firebase} {...config}>
         <HelmetProvider>
           <ThemeContextProvider>
             <Layout>
@@ -36,7 +39,7 @@ export const App: React.FC = props => {
             </Layout>
           </ThemeContextProvider>
         </HelmetProvider>
-      </Auth0Provider>
+      </FirebaseAuthProvider>
     </Root>
   );
 };
