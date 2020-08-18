@@ -41,7 +41,14 @@ export async function getGistByFileName(token: string, fileName: string) {
     const fileNames = Object.keys(g.files);
     return fileNames.some(name => name === fileName);
   });
-  return gist;
+  if (gist && gist.id) {
+    const octokit = new Octokit({ auth: token });
+    const resp = await octokit.gists.get({ gist_id: gist.id });
+    if (resp.status >= 200 && resp.status <= 299) {
+      return resp.data;
+    }
+  }
+  return null;
 }
 
 export async function createJsonGist(token: string, files: GistFile[], description?: string) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActionMeta, Theme, ValueType } from 'react-select';
+import { ActionMeta, Theme } from 'react-select';
 import AsyncSelect from 'react-select/async';
 import { ThemeConfig } from 'react-select/src/theme';
 import { IdPokemon } from '../../../types/pokemon';

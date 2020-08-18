@@ -1,8 +1,38 @@
 import axios from 'axios';
-import { IdPokemon, PokemonListResponse, Pokemon } from '../../types/pokemon';
+import { IdPokemon, PokemonListResponse, Pokemon, PokemonSpecies, ApiPokemon } from '../../types/pokemon';
+import { v4 as GUID } from 'uuid';
 
-const endpoint = 'https://pokeapi.co/api/v2/pokemon';
+export enum PokemonForm {
+  Default = 'default',
+  Alolan = 'alola',
+  Galarian = 'galar'
+}
+
+const pokemonEndpoint = 'https://pokeapi.co/api/v2/pokemon';
+const speciesEndpoint = 'https://pokeapi.co/api/v2/pokemon-species';
 const highestPokedexNumber = 893;
+
+export const typeColors = {
+  normal: '#A8A878',
+  fire: '#F08030',
+  fighting: '#C03028',
+  water: '#6890F0',
+  grass: '#78C850',
+  poison: '#A040A0',
+  electric: '#F8D030',
+  ground: '#E0C068',
+  rock: '#B8A038',
+  bug: '#A8B820',
+  dragon: '#7038F8',
+  ghost: '#705898',
+  dark: '#705848',
+  fairy: '#EE99AC',
+  steel: '#B8B8D0',
+  psychic: '#F85888',
+  ice: '#98D8D8',
+  flying: '#A890F0'
+};
+
 let pokemonList: IdPokemon[] = [];
 const pokemon: { [key: number]: Pokemon } = {};
 
@@ -14,9 +44,9 @@ function toTitleCase(input: string) {
 
 export async function listAll() {
   if (pokemonList.length === 0) {
-    const countResponse = await axios.get<PokemonListResponse>(endpoint, { params: { limit: 1 } });
+    const countResponse = await axios.get<PokemonListResponse>(pokemonEndpoint, { params: { limit: 1 } });
     const count = countResponse.data.count;
-    const listResponse = await axios.get<PokemonListResponse>(endpoint, { params: { limit: count } });
+    const listResponse = await axios.get<PokemonListResponse>(pokemonEndpoint, { params: { limit: count } });
 
     // Filter out forms and specials
     pokemonList = listResponse.data.results
@@ -34,19 +64,28 @@ export async function listAll() {
 
 export async function getOne(id: number) {
   if (!pokemon[id]) {
-    const pokemonResponse = await axios.get<Pokemon>(`${endpoint}/${id}`);
+    const pokemonResponse = await axios.get<ApiPokemon>(`${pokemonEndpoint}/${id}`);
+    // const speciesResponse = await axios.get<PokemonSpecies>(pokemonResponse.data.species.url);
 
-    // This object has tons of extra properties we don't want
-    const big = pokemonResponse.data;
+    // Combine these into a useful object without tons of extra properties we don't want
+    const apiPokemon = pokemonResponse.data;
+    // const apiSpecies = speciesResponse.data;
+
     pokemon[id] = {
-      id: big.id,
-      is_default: big.is_default,
-      name: big.name,
+      id: apiPokemon.id,
+      runId: GUID(),
+      name: apiPokemon.name,
       sprites: {
-        front_default: big.sprites.front_default,
-        front_shiny: big.sprites.front_shiny
+        front_default: apiPokemon.sprites.front_default,
+        front_shiny: apiPokemon.sprites.front_shiny
       },
-      types: big.types
+      types: apiPokemon.types,
+      shiny: false,
+      variety: apiPokemon.name.endsWith(`-${PokemonForm.Alolan}`)
+        ? PokemonForm.Alolan
+        : apiPokemon.name.endsWith(`-${PokemonForm.Galarian}`)
+        ? PokemonForm.Galarian
+        : PokemonForm.Default
     };
     return pokemon[id];
   } else {

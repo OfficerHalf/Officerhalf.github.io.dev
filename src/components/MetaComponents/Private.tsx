@@ -3,6 +3,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import firebase from 'firebase';
 import { Button } from '../Common/Button';
 import { GithubTokenContext } from '../../store/GithubTokenContext';
+import { Progress } from '../Common/Progress';
 
 const githubProvider = new firebase.auth.GithubAuthProvider();
 githubProvider.addScope('gist');
@@ -17,25 +18,5 @@ export const Private: React.FC = props => {
     setToken(token);
   }, [setToken]);
 
-  return <>{loading ? <div>Loading...</div> : user ? props.children : <Button onClick={signIn}>Log In</Button>}</>;
-
-  // return (
-  //   <FirebaseAuthConsumer>
-  //     {({ isSignedIn, user, providerId }) => {
-  //       if (isSignedIn) {
-  //         firebase
-  //           .auth()
-  //           .getRedirectResult()
-  //           .then(result => {
-  //             console.log(result);
-  //           });
-  //       }
-  //       return isSignedIn ? props.children : <button onClick={signIn}>sign in</button>;
-  //     }}
-  //   </FirebaseAuthConsumer>
-  // );
-  // if (!isAuthenticated && !isLoading) {
-  //   loginWithRedirect({ scope: 'user gist' });
-  // }
-  // return <>{isAuthenticated ? props.children : undefined}</>;
+  return <>{loading ? <Progress /> : user ? props.children : <Button onClick={signIn}>Log In</Button>}</>;
 };
