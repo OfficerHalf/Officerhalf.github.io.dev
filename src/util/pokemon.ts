@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { IdPokemon, PokemonListResponse, Pokemon, PokemonSpecies, ApiPokemon } from '../../types/pokemon';
 import { v4 as GUID } from 'uuid';
+import color from 'color';
 
 export enum PokemonForm {
   Default = 'default',
@@ -12,7 +13,11 @@ const pokemonEndpoint = 'https://pokeapi.co/api/v2/pokemon';
 const speciesEndpoint = 'https://pokeapi.co/api/v2/pokemon-species';
 const highestPokedexNumber = 893;
 
-export const typeColors = {
+interface TypeColorMap {
+  [type: string]: string;
+}
+
+export const typeColors: TypeColorMap = {
   normal: '#A8A878',
   fire: '#F08030',
   fighting: '#C03028',
@@ -36,7 +41,7 @@ export const typeColors = {
 let pokemonList: IdPokemon[] = [];
 const pokemon: { [key: number]: Pokemon } = {};
 
-function toTitleCase(input: string) {
+export function toTitleCase(input: string) {
   return input.replace(/\w\S*/g, function (txt) {
     return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
   });
@@ -55,7 +60,6 @@ export async function listAll() {
         return { name: toTitleCase(p.name), id };
       })
       .filter(p => p.id >= 1 && p.id <= highestPokedexNumber);
-
     return pokemonList;
   } else {
     return Promise.resolve(pokemonList);

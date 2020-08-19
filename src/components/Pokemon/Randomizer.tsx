@@ -17,6 +17,7 @@ export const Randomizer: React.FC<RouteComponentProps> = props => {
   const [teamName, setTeamName] = React.useState<string>('Default');
   const [available, setAvailable] = React.useState<Pokemon[]>([]);
   const [randomTeam, setRandomTeam] = React.useState<Pokemon[]>([]);
+  const [saving, setSaving] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     if (!run) {
@@ -41,10 +42,21 @@ export const Randomizer: React.FC<RouteComponentProps> = props => {
     setRandomTeam(selectRandom(available, Math.min(6, available.length)));
   }, [available]);
 
+  const update = React.useCallback(
+    async (updatedRun: RandomizerRunFile) => {
+      setRun(updatedRun);
+      setSaving(true);
+      await saveRun(updatedRun);
+      setSaving(false);
+    },
+    [saveRun]
+  );
+
   return (
     <div>
       {!run && <Progress />}
-      {run && <RunInfo run={run} />}
+      {saving && <div>SAVING</div>}
+      {run && <RunInfo run={run} updateRun={update} />}
     </div>
   );
 };
