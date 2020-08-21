@@ -13,6 +13,7 @@ import { Button } from '../Common/Button';
 import { Modal } from '../Common/Modal';
 import { Tooltip } from '../Common/Tooltip';
 import { SavingStatus } from './SavingStatus';
+import { RandomTeamModal } from './RandomTeamModal';
 
 interface RunInfoProps {
   run: RandomizerRunFile;
@@ -27,6 +28,7 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
   const [editingName, setEditingName] = React.useState<boolean>(false);
   const [runName, setRunName] = React.useState<string>(run.name);
   const [showConfirm, setShowConfirm] = React.useState<boolean>(false);
+  const [showRandomTeam, setShowRandomTeam] = React.useState<boolean>(false);
   const runNameInputRef = React.useRef<HTMLInputElement>(null);
 
   const iconStyle = css`
@@ -173,7 +175,7 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
             flex-grow: 1;
           `}
         />
-        <Button>Random Team</Button>
+        <Button onClick={() => setShowRandomTeam(true)}>Random Team</Button>
       </div>
       <SearchPokemon onChange={addPokemon} placeholder="Caught a pokemon..." />
       {run.pokemon.map(p => (
@@ -184,6 +186,7 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
           updatePokemon={updatePokemon(p.runId)}
         />
       ))}
+      <RandomTeamModal open={showRandomTeam} onClose={() => setShowRandomTeam(false)} run={run} updateRun={updateRun} />
       <Modal open={showConfirm} onClose={() => setShowConfirm(false)} title="Confirm delete">
         Are you sure you want to delete this run? This cannot be undone.
         <div

@@ -6,6 +6,7 @@ import { Modal } from '../Common/Modal';
 import { getEvolutions } from '../../util/pokemon';
 import { Progress } from '../Common/Progress';
 import { EvolutionCard } from './EvolutionCard';
+import { Body } from '../Typography';
 
 interface EvolutionModalProps {
   pokemon: Pokemon;
@@ -55,6 +56,7 @@ export const EvolutionModal: React.FC<EvolutionModalProps> = props => {
       )}
       {!loading && (
         <div>
+          {evolutions.length === 0 && <Body>Sorry, couldn't find any evolutions for this pokemon.</Body>}
           {evolutions.map(e => (
             <EvolutionCard pokemon={e} selectPokemon={selectPokemon(e)} />
           ))}
