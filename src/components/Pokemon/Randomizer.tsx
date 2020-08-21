@@ -3,24 +3,24 @@ import React, { Fragment } from 'react';
 import { css, jsx } from '@emotion/core';
 import { RouteComponentProps } from '@reach/router';
 import CreatableSelect from 'react-select/creatable';
-import { IdPokemon, Pokemon, RandomizerRunFile } from '../../../types/pokemon';
-import { ActionMeta } from 'react-select';
-import { getOne } from '../../util/pokemon';
-import { selectRandom } from '../../util/random';
+import { RandomizerRunFile } from '../../../types/pokemon';
 import firebase from 'firebase';
 import { useGistStorage } from '../../hooks/useGistStorage';
 import { Progress } from '../Common/Progress';
 import { RunInfo } from './RunInfo';
 import { ThemeContext } from '../../store/ThemeContext';
+import { Button } from '../Common/Button';
 
 export const Randomizer: React.FC<RouteComponentProps> = props => {
   const { loadRun, saveRun, runs, deleteRun } = useGistStorage();
   const { space } = React.useContext(ThemeContext);
   const [run, setRun] = React.useState<RandomizerRunFile>();
   const [loadingRun, setLoadingRun] = React.useState<boolean>(false);
-  const [available, setAvailable] = React.useState<Pokemon[]>([]);
-  const [randomTeam, setRandomTeam] = React.useState<Pokemon[]>([]);
   const [saving, setSaving] = React.useState<boolean>(false);
+
+  const logOut = React.useCallback(() => {
+    firebase.auth().signOut();
+  }, []);
 
   React.useEffect(() => {
     if (!run) {
@@ -31,10 +31,6 @@ export const Randomizer: React.FC<RouteComponentProps> = props => {
       effect();
     }
   }, [loadRun, run]);
-
-  const randomize = React.useCallback(() => {
-    setRandomTeam(selectRandom(available, Math.min(6, available.length)));
-  }, [available]);
 
   const onSelectRun = React.useCallback(
     async (value: { label: string; value: string }) => {
@@ -88,6 +84,7 @@ export const Randomizer: React.FC<RouteComponentProps> = props => {
           <RunInfo saving={saving} deleteRun={doDeleteRun} run={run} updateRun={update} />
         </Fragment>
       )}
+      <Button onClick={logOut}>Sign Out</Button>
     </div>
   );
 };

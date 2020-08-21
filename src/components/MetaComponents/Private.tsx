@@ -13,10 +13,19 @@ export const Private: React.FC = props => {
   const { setToken } = React.useContext(GithubTokenContext);
 
   const signIn = React.useCallback(async () => {
-    const result = await firebase.auth().signInWithPopup(githubProvider);
-    const token: string = (result.credential as any).accessToken;
-    setToken(token);
-  }, [setToken]);
+    await firebase.auth().signInWithRedirect(githubProvider);
+  }, []);
+
+  React.useEffect(() => {
+    const effect = async () => {
+      if (!loading) {
+        const result = await firebase.auth().getRedirectResult();
+        const token: string = (result.credential as any).accessToken;
+        setToken(token);
+      }
+    };
+    effect();
+  }, [loading, setToken]);
 
   return <>{loading ? <Progress /> : user ? props.children : <Button onClick={signIn}>Log In</Button>}</>;
 };
