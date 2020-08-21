@@ -19,16 +19,20 @@ export const EvolutionModal: React.FC<EvolutionModalProps> = props => {
   const { pokemon, updatePokemon, open, onClose } = props;
   const [evolutions, setEvolutions] = React.useState<Pokemon[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
+  const initialized = React.useRef<boolean>(false);
 
   React.useEffect(() => {
     const effect = async () => {
+      initialized.current = true;
       setLoading(true);
       const evolutions = await getEvolutions(pokemon);
       setEvolutions(evolutions);
       setLoading(false);
     };
-    effect();
-  }, [pokemon]);
+    if (open && !initialized.current) {
+      effect();
+    }
+  }, [open, pokemon]);
 
   const selectPokemon = React.useCallback(
     (evolution: Pokemon) => () => {

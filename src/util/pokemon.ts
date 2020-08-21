@@ -108,8 +108,15 @@ export async function getOne(id: number) {
 
 export async function getEvolutions(pokemon: Pokemon): Promise<Pokemon[]> {
   // Get pokemon species
+  if (!pokemon.species || !pokemon.species.url) {
+    return [];
+  }
   const speciesResponse = await axios.get<PokemonSpecies>(pokemon.species.url);
+
   // Get evolution chain
+  if (!speciesResponse.data.evolution_chain || !speciesResponse.data.evolution_chain.url) {
+    return [];
+  }
   const evolutionChainResponse = await axios.get<PokemonEvolutionChain>(speciesResponse.data.evolution_chain.url);
   // Find this pokemon species in the chain
   const thisPokemonsEvolutionChain = searchEvolution(speciesResponse.data.name, evolutionChainResponse.data.chain);
