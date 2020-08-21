@@ -1,7 +1,7 @@
 import React from 'react';
-import slugify from 'slugify';
+import { v4 } from 'uuid';
 import { RandomizerRunCollection, RandomizerRunFile, RandomizerSettings } from '../../types/pokemon';
-import { createJsonGist, getGistByFileName, GistFile, updateJsonGist } from '../util/github';
+import { createJsonGist, deleteGistFile, getGistByFileName, GistFile, updateJsonGist } from '../util/github';
 import { useGithubToken } from './useGithubToken';
 
 export const RandomizerSettingsFileName = '.pokemonRandomizerSettings.json';
@@ -18,7 +18,10 @@ export function useGistStorage() {
     fileNames.forEach(f => {
       const content: string = gist.files[f].content;
       if (f !== RandomizerSettingsFileName) {
-        runFiles.push(JSON.parse(content));
+        const jsonContent: RandomizerRunFile = JSON.parse(content);
+        if (jsonContent && jsonContent.name && jsonContent.id && jsonContent.pokemon && jsonContent.team) {
+          runFiles.push(JSON.parse(content));
+        }
       } else {
         settingsFile = JSON.parse(content);
       }
@@ -33,7 +36,7 @@ export function useGistStorage() {
   const loadRun = React.useCallback(
     async (runName?: string) => {
       // Create an empty default run
-      let run: RandomizerRunFile = { name: 'Randomizer', pokemon: [], team: [] };
+      let run: RandomizerRunFile = { name: runName || 'Randomizer', pokemon: [], team: [], id: v4() };
       // Search in memory first
       if (runs.runs.length !== 0 && runName) {
         const cached = runs.runs.find(r => r.name === runName);
@@ -56,6 +59,8 @@ export function useGistStorage() {
           const lastRun = runFiles.find(r => r.name === settingsFile.lastSelectedRun);
           if (lastRun) {
             run = lastRun;
+          } else if (runFiles.length > 0) {
+            run = runFiles[0];
           }
         }
       }
@@ -80,9 +85,8 @@ export function useGistStorage() {
       }
 
       // Create the updated files
-      const runSlug = slugify(run.name);
       const gistFile: GistFile = {
-        fileName: `${runSlug}.json`,
+        filename: `${run.id}.json`,
         content: run
       };
       const settings: RandomizerSettings = {
@@ -90,7 +94,7 @@ export function useGistStorage() {
       };
       const settingsFile: GistFile = {
         content: settings,
-        fileName: RandomizerSettingsFileName
+        filename: RandomizerSettingsFileName
       };
 
       // Create/update the gist
@@ -98,11 +102,31 @@ export function useGistStorage() {
       if (gistId !== '') {
         await updateJsonGist(token, gistId, [gistFile, settingsFile]);
       } else {
-        await createJsonGist(token, [gistFile, settingsFile]);
+        const id = await createJsonGist(token, [gistFile, settingsFile]);
+        const newRuns = { ...runs };
+        newRuns.gistId = id;
+        setRuns(newRuns);
       }
     },
-    [getToken, runs.gistId]
+    [getToken, runs]
   );
 
-  return { loadRun, saveRun };
+  // Delete
+  const deleteRun = React.useCallback(
+    async (run: RandomizerRunFile) => {
+      const runIndex = runs.runs.findIndex(r => r.name === run.name);
+      let gistId = runs.gistId;
+      if (gistId !== '') {
+        // Update the gist
+        const token = await getToken();
+        await deleteGistFile(token, gistId, `${run.id}.json`);
+        const newRuns = [...runs.runs];
+        newRuns.splice(runIndex, 1);
+        setRuns({ gistId: runs.gistId, runs: newRuns });
+      }
+    },
+    [getToken, runs.gistId, runs.runs]
+  );
+
+  return { loadRun, saveRun, deleteRun, runs };
 }

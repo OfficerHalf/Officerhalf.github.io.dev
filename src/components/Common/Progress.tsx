@@ -59,13 +59,16 @@ const progressStyle = css`
   }
 `;
 
-export const Progress: React.FC = props => {
+export const Progress = React.forwardRef<
+  HTMLDivElement,
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+>((props, ref) => {
   return (
-    <div css={progressStyle}>
+    <div ref={ref} css={progressStyle} {...props}>
       <div />
       <div />
       <div />
       <div />
     </div>
   );
-};
+});

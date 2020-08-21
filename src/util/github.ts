@@ -1,13 +1,14 @@
 import { Octokit } from '@octokit/rest';
 
 export interface GistFile {
-  fileName: string;
+  filename: string;
   content: object;
 }
 
 interface GistFileCollection {
   [fileName: string]: {
     content: string;
+    filename?: string;
   };
 }
 
@@ -38,8 +39,8 @@ export async function getGists(token: string) {
 export async function getGistByFileName(token: string, fileName: string) {
   const gists = await getGists(token);
   const gist = gists.find(g => {
-    const fileNames = Object.keys(g.files);
-    return fileNames.some(name => name === fileName);
+    const filenames = Object.keys(g.files);
+    return filenames.some(name => name === fileName);
   });
   if (gist && gist.id) {
     const octokit = new Octokit({ auth: token });
@@ -55,7 +56,7 @@ export async function createJsonGist(token: string, files: GistFile[], descripti
   const octokit = new Octokit({ auth: token });
   const createFiles: GistFileCollection = {};
   files.forEach(f => {
-    createFiles[f.fileName] = {
+    createFiles[f.filename] = {
       content: JSON.stringify(f.content)
     };
   });
@@ -68,11 +69,20 @@ export async function updateJsonGist(token: string, gistId: string, files: GistF
   const octokit = new Octokit({ auth: token });
   const updateFiles: GistFileCollection = {};
   files.forEach(f => {
-    updateFiles[f.fileName] = {
+    updateFiles[f.filename] = {
       content: JSON.stringify(f.content)
     };
   });
 
   const resp = await octokit.gists.update({ gist_id: gistId, files: updateFiles as any, description });
+  return resp;
+}
+
+export async function deleteGistFile(token: string, gistId: string, filename: string) {
+  const octokit = new Octokit({ auth: token });
+  const updateFiles: any = {};
+  updateFiles[filename] = null;
+
+  const resp = await octokit.gists.update({ gist_id: gistId, files: updateFiles });
   return resp;
 }

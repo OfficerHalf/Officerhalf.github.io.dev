@@ -35,6 +35,19 @@ export interface PokemonSpecies {
   name: string;
   color: Rel;
   varieties: PokemonSpeciesVariety[];
+  evolution_chain: {
+    url: string;
+  };
+}
+
+export interface PokemonEvolution {
+  evolves_to: PokemonEvolution[];
+  species: Rel;
+}
+
+export interface PokemonEvolutionChain {
+  id: number;
+  chain: PokemonEvolution;
 }
 
 export interface ApiPokemon {
@@ -61,6 +74,7 @@ export interface Pokemon {
     front_default: string | null;
     front_shiny: string | null;
   };
+  species: Rel;
 }
 
 export interface RandomizerSettings {
@@ -68,6 +82,7 @@ export interface RandomizerSettings {
 }
 
 export interface RandomizerRunFile {
+  id: string;
   name: string;
   pokemon: Pokemon[];
   team: Pokemon[];

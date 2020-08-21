@@ -5,6 +5,7 @@ export { ChevronRight } from './ChevronRight';
 export { Close } from './Close';
 export { EditPencil } from './EditPencil';
 export { LightBulb } from './LightBulb';
+export { LoadBalancer } from './LoadBalancer';
 export { Menu } from './Menu';
 export { Search } from './Search';
 export { Tag } from './Tag';

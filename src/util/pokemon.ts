@@ -1,5 +1,13 @@
-import axios from 'axios';
-import { IdPokemon, PokemonListResponse, Pokemon, PokemonSpecies, ApiPokemon } from '../../types/pokemon';
+import axios, { AxiosResponse } from 'axios';
+import {
+  IdPokemon,
+  PokemonListResponse,
+  Pokemon,
+  PokemonSpecies,
+  ApiPokemon,
+  PokemonEvolutionChain,
+  PokemonEvolution
+} from '../../types/pokemon';
 import { v4 as GUID } from 'uuid';
 import color from 'color';
 
@@ -89,10 +97,58 @@ export async function getOne(id: number) {
         ? PokemonForm.Alolan
         : apiPokemon.name.endsWith(`-${PokemonForm.Galarian}`)
         ? PokemonForm.Galarian
-        : PokemonForm.Default
+        : PokemonForm.Default,
+      species: apiPokemon.species
     };
     return pokemon[id];
   } else {
     return Promise.resolve(pokemon[id]);
   }
+}
+
+export async function getEvolutions(pokemon: Pokemon): Promise<Pokemon[]> {
+  // Get pokemon species
+  const speciesResponse = await axios.get<PokemonSpecies>(pokemon.species.url);
+  // Get evolution chain
+  const evolutionChainResponse = await axios.get<PokemonEvolutionChain>(speciesResponse.data.evolution_chain.url);
+  // Find this pokemon species in the chain
+  const thisPokemonsEvolutionChain = searchEvolution(speciesResponse.data.name, evolutionChainResponse.data.chain);
+  // Get evolved pokemon species
+  if (thisPokemonsEvolutionChain && thisPokemonsEvolutionChain.evolves_to.length > 0) {
+    const evolvedSpecies: PokemonSpecies[] = [];
+    for (let i = 0; i < thisPokemonsEvolutionChain.evolves_to.length; i++) {
+      const evolution = thisPokemonsEvolutionChain.evolves_to[i];
+      const species = await axios.get<PokemonSpecies>(evolution.species.url);
+      evolvedSpecies.push(species.data);
+    }
+
+    // Get evolved pokemon
+    const evolvedPokemon: Pokemon[] = [];
+    for (let i = 0; i < evolvedSpecies.length; i++) {
+      const species = evolvedSpecies[i];
+      // Find default variety
+      const defaultVariety = species.varieties.find(s => s.is_default);
+      const id = parseInt(defaultVariety.pokemon.url.split('/')[6]);
+      evolvedPokemon.push(await getOne(id));
+    }
+
+    return evolvedPokemon;
+  }
+  return [];
+}
+
+function searchEvolution(targetSpecies: string, evolution: PokemonEvolution): PokemonEvolution | null {
+  if (evolution.species.name === targetSpecies) {
+    return evolution;
+  } else if (evolution.evolves_to.length === 0) {
+    return null;
+  } else {
+    for (let i = 0; i < evolution.evolves_to.length; i++) {
+      const result = searchEvolution(targetSpecies, evolution.evolves_to[i]);
+      if (result) {
+        return result;
+      }
+    }
+  }
+  return null;
 }

@@ -6,12 +6,15 @@ import { css, jsx } from '@emotion/core';
 import { toTitleCase, typeColors } from '../../util/pokemon';
 import { Small, Subheading } from '../Typography';
 import { ThemeContext } from '../../store/ThemeContext';
-import { Trash, EditPencil, Checkmark, Close } from '../Icons';
+import { Trash, EditPencil, Checkmark, Close, LoadBalancer } from '../Icons';
 import { TransparentInput } from '../Common/TransparentInput';
+import { Tooltip } from '../Common/Tooltip';
+import { EvolutionModal } from './EvolutionModal';
 
 interface PokemonCardProps {
   pokemon: Pokemon;
   updatePokemon: (updated: Pokemon) => void;
+  removePokemon: () => void;
 }
 
 const typeContainerStyle = css`
@@ -22,10 +25,11 @@ const typeContainerStyle = css`
 `;
 
 export const PokemonCard: React.FC<PokemonCardProps> = props => {
-  const { pokemon, updatePokemon } = props;
+  const { pokemon, updatePokemon, removePokemon } = props;
   const { space, textColor, typography } = React.useContext(ThemeContext);
   const [editing, setEditing] = React.useState<boolean>(false);
   const [nickname, setNickname] = React.useState<string>(pokemon.nickname);
+  const [showEvolveModal, setShowEvolveModal] = React.useState<boolean>(false);
   const nicknameInputRef = React.useRef<HTMLInputElement>(null);
 
   const typeTextStyle = css`
@@ -151,14 +155,25 @@ export const PokemonCard: React.FC<PokemonCardProps> = props => {
       />
       {editing && (
         <Fragment>
-          <Checkmark css={iconStyle} onClick={save} />
-          <Close css={iconStyle} onClick={() => setEditing(false)} />
+          <Tooltip text="Save">
+            <Checkmark css={iconStyle} onClick={save} />
+          </Tooltip>
+          <Tooltip text="Cancel">
+            <Close css={iconStyle} onClick={() => setEditing(false)} />
+          </Tooltip>
         </Fragment>
       )}
       {!editing && (
         <Fragment>
-          <EditPencil css={iconStyle} onClick={edit} />
-          <Trash css={iconStyle} />
+          <Tooltip text="Edit nickname">
+            <EditPencil css={iconStyle} onClick={edit} />
+          </Tooltip>
+          <Tooltip text="Evolve">
+            <LoadBalancer css={iconStyle} onClick={() => setShowEvolveModal(true)} />
+          </Tooltip>
+          <Tooltip text="Release">
+            <Trash css={iconStyle} onClick={removePokemon} />
+          </Tooltip>
         </Fragment>
       )}
       {pokemon.types.length === 2 && (
@@ -193,6 +208,12 @@ export const PokemonCard: React.FC<PokemonCardProps> = props => {
           <Small css={typeTextStyle}>{pokemon.types[0].type.name}</Small>
         </div>
       )}
+      <EvolutionModal
+        pokemon={pokemon}
+        open={showEvolveModal}
+        onClose={() => setShowEvolveModal(false)}
+        updatePokemon={updatePokemon}
+      />
     </div>
   );
 };
