@@ -91,6 +91,17 @@ export const PokemonCard: React.FC<PokemonCardProps> = props => {
     return background;
   }, [pokemon.types]);
 
+  const editingKeyDown = React.useCallback(
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === 'Enter') {
+        save();
+      } else if (event.key === 'Escape') {
+        setEditing(false);
+      }
+    },
+    [save]
+  );
+
   return (
     <div
       css={css`
@@ -134,6 +145,7 @@ export const PokemonCard: React.FC<PokemonCardProps> = props => {
             placeholder="Nickname"
             value={nickname}
             onChange={nicknameChange}
+            onKeyDown={editingKeyDown}
           />
         )}
         {!editing && (
@@ -160,16 +172,6 @@ export const PokemonCard: React.FC<PokemonCardProps> = props => {
           flex-grow: 1;
         `}
       />
-      {editing && (
-        <Fragment>
-          <Tooltip text="Save">
-            <Checkmark css={iconStyle} onClick={save} />
-          </Tooltip>
-          <Tooltip text="Cancel">
-            <Close css={iconStyle} onClick={() => setEditing(false)} />
-          </Tooltip>
-        </Fragment>
-      )}
       {!editing && (
         <Fragment>
           <Tooltip text="Edit nickname">

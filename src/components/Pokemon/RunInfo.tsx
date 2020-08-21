@@ -108,6 +108,17 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
     setShowConfirm(false);
   }, [deleteRun]);
 
+  const editingKeyDown = React.useCallback(
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === 'Enter') {
+        saveName();
+      } else if (event.key === 'Escape') {
+        setEditingName(false);
+      }
+    },
+    [saveName]
+  );
+
   return (
     <div>
       <div
@@ -140,23 +151,16 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
           </Fragment>
         )}
         {editingName && (
-          <Fragment>
-            <TransparentInput
-              css={css`
-                margin-right: ${space.s};
-                font-size: ${typography.headline.size};
-              `}
-              ref={runNameInputRef}
-              onChange={nameChange}
-              value={runName}
-            />
-            <Tooltip text="Save">
-              <Checkmark css={iconStyle} onClick={saveName} />
-            </Tooltip>
-            <Tooltip text="Cancel">
-              <Close css={iconStyle} onClick={() => setEditingName(false)} />
-            </Tooltip>
-          </Fragment>
+          <TransparentInput
+            css={css`
+              margin-right: ${space.s};
+              font-size: ${typography.headline.size};
+            `}
+            ref={runNameInputRef}
+            onChange={nameChange}
+            onKeyDown={editingKeyDown}
+            value={runName}
+          />
         )}
       </div>
       <div
