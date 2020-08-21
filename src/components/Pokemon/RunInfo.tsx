@@ -159,6 +159,7 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
             ref={runNameInputRef}
             onChange={nameChange}
             onKeyDown={editingKeyDown}
+            onBlur={() => setEditingName(false)}
             value={runName}
           />
         )}

@@ -146,6 +146,7 @@ export const PokemonCard: React.FC<PokemonCardProps> = props => {
             value={nickname}
             onChange={nicknameChange}
             onKeyDown={editingKeyDown}
+            onBlur={() => setEditing(false)}
           />
         )}
         {!editing && (
