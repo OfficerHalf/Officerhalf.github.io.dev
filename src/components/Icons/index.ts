@@ -1,8 +1,14 @@
 export { Adjust } from './Adjust';
+export { Block } from './Block';
+export { Checkmark } from './Checkmark';
 export { ChevronLeft } from './ChevronLeft';
 export { ChevronRight } from './ChevronRight';
 export { Close } from './Close';
+export { EditPencil } from './EditPencil';
+export { Heart } from './Heart';
 export { LightBulb } from './LightBulb';
+export { LoadBalancer } from './LoadBalancer';
 export { Menu } from './Menu';
 export { Search } from './Search';
 export { Tag } from './Tag';
+export { Trash } from './Trash';

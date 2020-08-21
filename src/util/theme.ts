@@ -21,6 +21,7 @@ const lightBackground5 = color(lightBackground).darken(0.05).string();
 const lightBackground10 = color(lightBackground).darken(0.1).string();
 const lightBackground20 = color(lightBackground).darken(0.2).string();
 const lightBackground30 = color(lightBackground).darken(0.3).string();
+const lightBackground40 = color(lightBackground).darken(0.4).string();
 
 // Dark Theme Background
 const darkBackground = '#2c2c2c';
@@ -29,6 +30,7 @@ const darkBackground5 = color(darkBackground).lighten(0.05).string();
 const darkBackground10 = color(darkBackground).lighten(0.2).string();
 const darkBackground20 = color(darkBackground).lighten(0.3).string();
 const darkBackground30 = color(darkBackground).lighten(0.4).string();
+const darkBackground40 = color(darkBackground).lighten(1).string();
 
 // Primary Color
 const primaryMain = '#377771';
@@ -247,7 +249,13 @@ export const lightTheme: Theme = {
     background5: lightBackground5,
     background10: lightBackground10,
     background20: lightBackground20,
-    background30: lightBackground30
+    background30: lightBackground30,
+    background40: lightBackground40,
+    background50: darkBackground40,
+    background60: darkBackground30,
+    background70: darkBackground20,
+    background80: darkBackground10,
+    background90: darkBackground
   },
   accent,
   primary
@@ -268,7 +276,13 @@ export const darkTheme: Theme = {
     background5: darkBackground5,
     background10: darkBackground10,
     background20: darkBackground20,
-    background30: darkBackground30
+    background30: darkBackground30,
+    background40: darkBackground40,
+    background50: lightBackground40,
+    background60: lightBackground30,
+    background70: lightBackground20,
+    background80: lightBackground10,
+    background90: lightBackground
   },
   accent,
   primary
