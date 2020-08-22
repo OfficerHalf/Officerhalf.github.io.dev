@@ -2,7 +2,7 @@
 import React, { Fragment } from 'react';
 import { css, jsx } from '@emotion/core';
 import { IdPokemon, Pokemon, RandomizerRunFile } from '../../../types/pokemon';
-import { Checkmark, Close, EditPencil, Trash } from '../Icons';
+import { Cog, EditPencil, Trash } from '../Icons';
 import { Subheading, Headline } from '../Typography';
 import { PokemonCard } from './PokemonCard';
 import { ThemeContext } from '../../store/ThemeContext';
@@ -14,6 +14,7 @@ import { Modal } from '../Common/Modal';
 import { Tooltip } from '../Common/Tooltip';
 import { SavingStatus } from './SavingStatus';
 import { RandomTeamModal } from './RandomTeamModal';
+import { SettingsModal } from './SettingsModal';
 
 interface RunInfoProps {
   run: RandomizerRunFile;
@@ -29,6 +30,7 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
   const [runName, setRunName] = React.useState<string>(run.name);
   const [showConfirm, setShowConfirm] = React.useState<boolean>(false);
   const [showRandomTeam, setShowRandomTeam] = React.useState<boolean>(false);
+  const [showSettingsModal, setShowSettingsModal] = React.useState<boolean>(false);
   const runNameInputRef = React.useRef<HTMLInputElement>(null);
 
   const iconStyle = css`
@@ -139,6 +141,9 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
             <Tooltip text="Rename">
               <EditPencil css={iconStyle} onClick={editName} />
             </Tooltip>
+            <Tooltip text="Settings">
+              <Cog css={iconStyle} onClick={() => setShowSettingsModal(true)} />
+            </Tooltip>
             <Tooltip text="Delete">
               <Trash css={iconStyle} onClick={() => setShowConfirm(true)} />
             </Tooltip>
@@ -192,6 +197,12 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
         />
       ))}
       <RandomTeamModal open={showRandomTeam} onClose={() => setShowRandomTeam(false)} run={run} updateRun={updateRun} />
+      <SettingsModal
+        open={showSettingsModal}
+        onClose={() => setShowSettingsModal(false)}
+        run={run}
+        updateRun={updateRun}
+      />
       <Modal open={showConfirm} onClose={() => setShowConfirm(false)} title="Confirm delete">
         Are you sure you want to delete this run? This cannot be undone.
         <div

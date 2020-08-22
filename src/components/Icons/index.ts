@@ -4,6 +4,7 @@ export { Checkmark } from './Checkmark';
 export { ChevronLeft } from './ChevronLeft';
 export { ChevronRight } from './ChevronRight';
 export { Close } from './Close';
+export { Cog } from './Cog';
 export { EditPencil } from './EditPencil';
 export { Heart } from './Heart';
 export { LightBulb } from './LightBulb';

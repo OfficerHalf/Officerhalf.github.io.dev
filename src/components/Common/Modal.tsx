@@ -15,9 +15,12 @@ interface ModalProps {
   animationTimeoutMs?: number;
 }
 
-export const Modal: React.FC<ModalProps> = props => {
+export const Modal = React.forwardRef<
+  HTMLDivElement,
+  ModalProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+>((props, ref) => {
   const { background, elevation, space, textColor } = React.useContext(ThemeContext);
-  const { title, onClose, open, animationTimeoutMs = 300 } = props;
+  const { title, onClose, open, animationTimeoutMs = 300, className, ...rest } = props;
 
   const iconStyle = css`
     width: ${space.l};
@@ -46,6 +49,7 @@ export const Modal: React.FC<ModalProps> = props => {
         `}
         className={cx({ open })}>
         <div
+          ref={ref}
           css={css`
             background-color: ${background.background};
             box-shadow: ${elevation[2]};
@@ -56,7 +60,8 @@ export const Modal: React.FC<ModalProps> = props => {
               transform: translateY(0px);
             }
           `}
-          className={cx({ open })}>
+          {...rest}
+          className={cx({ open }, className)}>
           <div
             css={css`
               display: flex;
@@ -77,4 +82,4 @@ export const Modal: React.FC<ModalProps> = props => {
       </Shade>
     </Portal>
   );
-};
+});

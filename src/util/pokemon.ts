@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import {
   IdPokemon,
   PokemonListResponse,
@@ -9,7 +9,6 @@ import {
   PokemonEvolution
 } from '../../types/pokemon';
 import { v4 as GUID } from 'uuid';
-import color from 'color';
 
 export enum PokemonForm {
   Default = 'default',
@@ -18,7 +17,6 @@ export enum PokemonForm {
 }
 
 const pokemonEndpoint = 'https://pokeapi.co/api/v2/pokemon';
-const speciesEndpoint = 'https://pokeapi.co/api/v2/pokemon-species';
 const highestPokedexNumber = 893;
 
 interface TypeColorMap {
@@ -47,7 +45,7 @@ export const typeColors: TypeColorMap = {
 };
 
 let pokemonList: IdPokemon[] = [];
-const pokemon: { [key: number]: Pokemon } = {};
+let pokemon: { [key: number]: Pokemon } = {};
 
 export function toTitleCase(input: string) {
   return input.replace(/\w\S*/g, function (txt) {
@@ -74,8 +72,8 @@ export async function listAll() {
   }
 }
 
-export async function getOne(id: number) {
-  if (!pokemon[id]) {
+export async function getOne(id: number, ignoreCache: boolean = false) {
+  if (!pokemon[id] || ignoreCache) {
     const pokemonResponse = await axios.get<ApiPokemon>(`${pokemonEndpoint}/${id}`);
     // const speciesResponse = await axios.get<PokemonSpecies>(pokemonResponse.data.species.url);
 

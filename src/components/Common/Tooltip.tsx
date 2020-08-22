@@ -87,6 +87,7 @@ export const Tooltip: React.FC<TooltipProps> = props => {
   return (
     <Tippy
       css={tipStyle}
+      hideOnClick
       content={
         <Body
           css={css`

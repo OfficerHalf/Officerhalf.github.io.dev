@@ -80,6 +80,12 @@ export const Layout: React.FC = props => {
       line-height: ${typography.body.lineHeight};
     }
 
+    hr {
+      border-color: ${background.background30};
+      border-style: solid;
+      background-color: ${background.background30};
+    }
+
     *,
     *:before,
     *:after {

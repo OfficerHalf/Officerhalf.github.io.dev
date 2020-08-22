@@ -6,7 +6,7 @@ import { css, jsx } from '@emotion/core';
 import { toTitleCase, typeColors } from '../../util/pokemon';
 import { Small, Subheading } from '../Typography';
 import { ThemeContext } from '../../store/ThemeContext';
-import { Trash, EditPencil, Checkmark, Close, LoadBalancer } from '../Icons';
+import { Trash, EditPencil, LoadBalancer } from '../Icons';
 import { TransparentInput } from '../Common/TransparentInput';
 import { Tooltip } from '../Common/Tooltip';
 import { EvolutionModal } from './EvolutionModal';
@@ -74,8 +74,6 @@ export const PokemonCard: React.FC<PokemonCardProps> = props => {
   const nicknameChange = React.useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(event.target.value);
   }, []);
-
-  console.log(pokemon);
 
   const sprite =
     pokemon.shiny && pokemon.sprites.front_shiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default;
