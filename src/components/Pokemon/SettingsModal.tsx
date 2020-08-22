@@ -19,7 +19,7 @@ interface SettingsModalProps {
 
 export const SettingsModal: React.FC<SettingsModalProps> = props => {
   const { open, run, onClose, updateRun } = props;
-  const { background, space } = React.useContext(ThemeContext);
+  const { space } = React.useContext(ThemeContext);
   const [refreshing, setRefreshing] = React.useState<boolean>(false);
   const [refreshCount, setRefreshCount] = React.useState<number>(0);
 
@@ -68,7 +68,13 @@ export const SettingsModal: React.FC<SettingsModalProps> = props => {
   `;
 
   return (
-    <Modal title="Settings" open={open} onClose={onClose}>
+    <Modal
+      css={css`
+        max-width: 600px;
+      `}
+      title="Settings"
+      open={open}
+      onClose={onClose}>
       {!refreshing && (
         <Fragment>
           <div css={settingsSectionStyle}>

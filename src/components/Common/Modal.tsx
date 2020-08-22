@@ -51,6 +51,8 @@ export const Modal = React.forwardRef<
         <div
           ref={ref}
           css={css`
+            border-radius: ${space.s};
+            margin: ${space.s};
             background-color: ${background.background};
             box-shadow: ${elevation[2]};
             padding: ${space.l};

@@ -108,9 +108,8 @@ export const PokemonCard: React.FC<PokemonCardProps> = props => {
         display: flex;
         align-items: center;
         border-radius: ${space.s};
-        margin: ${space.s};
+        margin: ${space.s} 0;
         padding: 0 ${space.s};
-        max-width: 575px;
       `}>
       {sprite && (
         <img

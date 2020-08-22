@@ -127,17 +127,10 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
         css={css`
           display: flex;
           height: 52px;
-          margin-left: ${space.s};
-          max-width: 575px;
         `}>
         {!editingName && (
           <Fragment>
-            <Headline
-              css={css`
-                margin-right: ${space.s};
-              `}>
-              {run.name}
-            </Headline>
+            <Headline>{run.name}</Headline>
             <Tooltip text="Rename">
               <EditPencil css={iconStyle} onClick={editName} />
             </Tooltip>
@@ -158,7 +151,6 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
         {editingName && (
           <TransparentInput
             css={css`
-              margin-right: ${space.s};
               font-size: ${typography.headline.size};
             `}
             ref={runNameInputRef}
@@ -171,9 +163,7 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
       </div>
       <div
         css={css`
-          margin-left: ${space.s};
           display: flex;
-          max-width: 575px;
           align-items: center;
         `}>
         <Subheading
@@ -212,12 +202,7 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
             margin-top: ${space.m};
           `}>
           <Button onClick={doDeleteRun}>Delete</Button>
-          <Button
-            styleType="hollow"
-            css={css`
-              margin-left: ${space.s};
-            `}
-            onClick={() => setShowConfirm(false)}>
+          <Button styleType="hollow" onClick={() => setShowConfirm(false)}>
             Cancel
           </Button>
         </div>

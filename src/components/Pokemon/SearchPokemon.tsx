@@ -34,8 +34,7 @@ export const SearchPokemon: React.FC<SearchPokemonProps> = props => {
       theme={selectTheme}
       placeholder={placeholder}
       css={css`
-        margin: ${space.s};
-        max-width: 575px;
+        margin: ${space.s} 0;
       `}
     />
   );
