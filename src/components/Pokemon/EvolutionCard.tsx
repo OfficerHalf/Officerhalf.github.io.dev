@@ -28,12 +28,17 @@ export const EvolutionCard: React.FC<EvolutionCardProps> = props => {
 
   const sprite =
     pokemon.shiny && pokemon.sprites.front_shiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default;
-  const background =
-    pokemon.types.length === 2
-      ? `linear-gradient(to right, ${typeColors[pokemon.types[0].type.name]} 0%, ${
-          typeColors[pokemon.types[0].type.name]
-        } 50%, ${typeColors[pokemon.types[1].type.name]} 50%, ${typeColors[pokemon.types[1].type.name]} 100%)`
-      : `${typeColors[pokemon.types[0].type.name]}`;
+  const background = React.useMemo(() => {
+    let background: string = typeColors['normal'];
+    if (pokemon.types && pokemon.types.length === 2) {
+      background = `linear-gradient(to right, ${typeColors[pokemon.types[0].type.name]} 0%, ${
+        typeColors[pokemon.types[0].type.name]
+      } 50%, ${typeColors[pokemon.types[1].type.name]} 50%, ${typeColors[pokemon.types[1].type.name]} 100%)`;
+    } else if (pokemon.types && pokemon.types.length === 1) {
+      background = typeColors[pokemon.types[0].type.name];
+    }
+    return background;
+  }, [pokemon.types]);
 
   return (
     <div
