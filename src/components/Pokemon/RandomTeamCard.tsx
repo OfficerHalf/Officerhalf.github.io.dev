@@ -86,7 +86,7 @@ export const RandomTeamCard: React.FC<RandomTeamCardProps> = props => {
           css={css`
             margin: 0;
           `}>
-          {toTitleCase(pokemon.name)}
+          {pokemon.nickname ? pokemon.nickname : toTitleCase(pokemon.name)}
         </Subheading>
       </div>
       <div
