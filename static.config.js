@@ -68,6 +68,9 @@ const config = {
       <Body>{children}</Body>
     </Html>
   ),
+  getSiteData: async () => {
+    return await loadPokemonData();
+  },
   getRoutes: async () => {
     // Blog
     const resp = await postList();

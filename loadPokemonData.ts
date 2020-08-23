@@ -7,8 +7,8 @@ async function main() {
   const allPokemon = await listAll();
 
   // Get all pokemon + species
-  const pokemonCollection: { [id: number]: Pokemon } = {};
-  const speciesCollection: { [id: number]: PokemonSpecies } = {};
+  const pokemonCollection: { [id: string]: Pokemon } = {};
+  const speciesCollection: { [id: string]: PokemonSpecies } = {};
 
   for (let i = 0; i < allPokemon.length; i++) {
     const id = getIdFromRel(allPokemon[i]);

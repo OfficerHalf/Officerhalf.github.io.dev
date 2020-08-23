@@ -39,8 +39,13 @@ export const typeColors: TypeColorMap = {
 };
 
 let pokemonResponse: PokemonListResponse = { count: 0, next: null, previous: null, results: [] };
-let pokemon: { [key: number]: Pokemon } = {};
-let species: { [key: number]: PokemonSpecies } = {};
+let pokemon: { [key: string]: Pokemon } = {};
+let species: { [key: string]: PokemonSpecies } = {};
+
+export function getDefaultPokemonId(species: PokemonSpecies): number {
+  const defaultSpecies = species.varieties.find(s => s.is_default);
+  return getIdFromRel(defaultSpecies.pokemon);
+}
 
 export function getIdFromRel(rel: Rel): number {
   const parts = rel.url.split('/');
@@ -59,7 +64,6 @@ export function toTitleCase(input: string) {
 }
 
 export async function listAll() {
-  console.log('Get All');
   if (pokemonResponse.count === 0) {
     const countResponse = await axios.get<PokemonListResponse>(pokemonEndpoint, { params: { limit: 1 } });
     const count = countResponse.data.count;
@@ -76,7 +80,6 @@ export async function getOne(
   id: number,
   ignoreCache: boolean = false
 ): Promise<{ pokemon: Pokemon; species: PokemonSpecies }> {
-  console.log('Get One');
   if (!pokemon[id] || ignoreCache) {
     const pokemonResponse = await axios.get<PokemonResponse>(`${pokemonEndpoint}/${id}`);
     const speciesResponse = await axios.get<PokemonSpeciesResponse>(pokemonResponse.data.species.url);

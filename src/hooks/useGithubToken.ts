@@ -11,7 +11,6 @@ export function useGithubToken() {
   const getToken = React.useCallback(async () => {
     if (token === '') {
       const result = await firebase.auth().signInWithPopup(githubProvider);
-      console.log(result);
       const newToken: string = (result.credential as any).accessToken;
       setToken(newToken);
       return newToken;

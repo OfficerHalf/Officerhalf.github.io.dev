@@ -6,10 +6,12 @@ import { css, jsx } from '@emotion/core';
 import { toTitleCase, typeColors } from '../../util/pokemon';
 import { Small, Subheading } from '../Typography';
 import { ThemeContext } from '../../store/ThemeContext';
-import { Trash, EditPencil, LoadBalancer } from '../Icons';
+import { EditPencil, LoadBalancer, Cog } from '../Icons';
 import { TransparentInput } from '../Common/TransparentInput';
 import { Tooltip } from '../Common/Tooltip';
 import { EvolutionModal } from './EvolutionModal';
+import { PokemonSettingsModal } from './PokemonSettingsModal';
+import { usePokemonSprite } from '../../hooks/usePokemonSprite';
 
 interface PokemonCardProps {
   pokemon: Pokemon;
@@ -30,7 +32,19 @@ export const PokemonCard: React.FC<PokemonCardProps> = props => {
   const [editing, setEditing] = React.useState<boolean>(false);
   const [nickname, setNickname] = React.useState<string>(pokemon.nickname);
   const [showEvolveModal, setShowEvolveModal] = React.useState<boolean>(false);
+  const [showSettingsModal, setShowSettingsModal] = React.useState<boolean>(false);
   const nicknameInputRef = React.useRef<HTMLInputElement>(null);
+
+  const pokemonDisplayName = React.useMemo(() => {
+    const nameParts = pokemon.name.split('-');
+    if (nameParts.length === 1) {
+      return toTitleCase(pokemon.name);
+    } else {
+      const mainName = nameParts[0];
+      nameParts.splice(0, 1);
+      return toTitleCase(`${mainName} (${nameParts.join(' ')})`);
+    }
+  }, [pokemon.name]);
 
   const typeTextStyle = css`
     text-transform: uppercase;
@@ -75,8 +89,7 @@ export const PokemonCard: React.FC<PokemonCardProps> = props => {
     setNickname(event.target.value);
   }, []);
 
-  const sprite =
-    pokemon.shiny && pokemon.sprites.front_shiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default;
+  const sprite = usePokemonSprite(pokemon);
   const background = React.useMemo(() => {
     let background: string = typeColors['normal'];
     if (pokemon.types && pokemon.types.length === 2) {
@@ -152,14 +165,14 @@ export const PokemonCard: React.FC<PokemonCardProps> = props => {
               css={css`
                 margin: 0;
               `}>
-              {pokemon.nickname ? pokemon.nickname : toTitleCase(pokemon.name)}
+              {pokemon.nickname ? pokemon.nickname : pokemonDisplayName}
             </Subheading>
             {pokemon.nickname && (
               <Small
                 css={css`
                   margin: 0;
                 `}>
-                {toTitleCase(pokemon.name)}
+                {pokemonDisplayName}
               </Small>
             )}
           </Fragment>
@@ -178,8 +191,8 @@ export const PokemonCard: React.FC<PokemonCardProps> = props => {
           <Tooltip text="Evolve">
             <LoadBalancer css={iconStyle} onClick={() => setShowEvolveModal(true)} />
           </Tooltip>
-          <Tooltip text="Release">
-            <Trash css={iconStyle} onClick={removePokemon} />
+          <Tooltip text="Settings">
+            <Cog css={iconStyle} onClick={() => setShowSettingsModal(true)} />
           </Tooltip>
         </Fragment>
       )}
@@ -220,6 +233,13 @@ export const PokemonCard: React.FC<PokemonCardProps> = props => {
         open={showEvolveModal}
         onClose={() => setShowEvolveModal(false)}
         updatePokemon={updatePokemon}
+      />
+      <PokemonSettingsModal
+        pokemon={pokemon}
+        open={showSettingsModal}
+        onClose={() => setShowSettingsModal(false)}
+        updatePokemon={updatePokemon}
+        removePokemon={removePokemon}
       />
     </div>
   );
