@@ -46,7 +46,7 @@ export function getIdFromRel(rel: Rel): number {
   const parts = rel.url.split('/');
   // find id
   for (let i = parts.length - 1; i >= 0; i--) {
-    if (parts[i] !== '/') {
+    if (parts[i] !== '') {
       return parseInt(parts[i]);
     }
   }
@@ -59,6 +59,7 @@ export function toTitleCase(input: string) {
 }
 
 export async function listAll() {
+  console.log('Get All');
   if (pokemonResponse.count === 0) {
     const countResponse = await axios.get<PokemonListResponse>(pokemonEndpoint, { params: { limit: 1 } });
     const count = countResponse.data.count;
@@ -75,6 +76,7 @@ export async function getOne(
   id: number,
   ignoreCache: boolean = false
 ): Promise<{ pokemon: Pokemon; species: PokemonSpecies }> {
+  console.log('Get One');
   if (!pokemon[id] || ignoreCache) {
     const pokemonResponse = await axios.get<PokemonResponse>(`${pokemonEndpoint}/${id}`);
     const speciesResponse = await axios.get<PokemonSpeciesResponse>(pokemonResponse.data.species.url);

@@ -11,13 +11,17 @@ async function main() {
   const speciesCollection: { [id: number]: PokemonSpecies } = {};
 
   for (let i = 0; i < allPokemon.length; i++) {
-    const { pokemon, species } = await getOne(getIdFromRel(allPokemon[i]));
+    const id = getIdFromRel(allPokemon[i]);
+    const { pokemon, species } = await getOne(id);
     pokemonCollection[pokemon.id] = pokemon;
     speciesCollection[species.id] = species;
   }
 
   // Write to file
-  await promises.writeFile('./data/Pokemon.json', { pokemon: pokemonCollection, species: speciesCollection });
+  await promises.writeFile(
+    './data/Pokemon.json',
+    JSON.stringify({ pokemon: pokemonCollection, species: speciesCollection })
+  );
 }
 
 main();

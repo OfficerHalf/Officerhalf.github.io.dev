@@ -6,6 +6,15 @@ import XLSX from 'xlsx';
 
 const ButterApi = butter('9ffd3dad4fd54423ad22bc3ce3e1a2fd6bbc9081');
 
+// Get all pokemon + species
+// const pokemonCollection: { [id: number]: Pokemon } = {};
+// const speciesCollection: { [id: number]: PokemonSpecies } = {};
+
+async function loadPokemonData() {
+  const pokemonContent = await promises.readFile('./data/Pokemon.json', { encoding: 'utf8' });
+  return JSON.parse(pokemonContent);
+}
+
 function postList(options) {
   return ButterApi.post.list(options);
 }
