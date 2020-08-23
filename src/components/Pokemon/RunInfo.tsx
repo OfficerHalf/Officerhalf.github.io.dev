@@ -1,20 +1,22 @@
 /** @jsx jsx */
 import React, { Fragment } from 'react';
 import { css, jsx } from '@emotion/core';
-import { IdPokemon, Pokemon, RandomizerRunFile } from '../../../types/pokemon';
+import { v4 as GUID } from 'uuid';
+import { Pokemon, PokemonData, PokemonSpecies, RandomizerRunFile } from '../../../types/pokemon';
 import { Cog, EditPencil, Trash } from '../Icons';
 import { Subheading, Headline } from '../Typography';
 import { PokemonCard } from './PokemonCard';
 import { ThemeContext } from '../../store/ThemeContext';
 import { TransparentInput } from '../Common/TransparentInput';
 import { SearchPokemon } from './SearchPokemon';
-import { getOne } from '../../util/pokemon';
+import { getDefaultPokemonId } from '../../util/pokemon';
 import { Button } from '../Common/Button';
 import { Modal } from '../Common/Modal';
 import { Tooltip } from '../Common/Tooltip';
 import { SavingStatus } from './SavingStatus';
 import { RandomTeamModal } from './RandomTeamModal';
 import { SettingsModal } from './SettingsModal';
+import { useSiteData } from 'react-static';
 
 interface RunInfoProps {
   run: RandomizerRunFile;
@@ -25,6 +27,7 @@ interface RunInfoProps {
 
 export const RunInfo: React.FC<RunInfoProps> = props => {
   const { run, updateRun, deleteRun, saving } = props;
+  const pokemonData = useSiteData<PokemonData>();
   const { space, textColor, typography } = React.useContext(ThemeContext);
   const [editingName, setEditingName] = React.useState<boolean>(false);
   const [runName, setRunName] = React.useState<string>(run.name);
@@ -70,13 +73,20 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
   const updatePokemon = React.useCallback(
     (runId: string) => (updated: Pokemon) => {
       const newPokemon = [...run.pokemon];
+      const newTeam = [...run.team];
       const replaceIndex = newPokemon.findIndex(p => p.runId === runId);
+      const teamReplaceIndex = newTeam.findIndex(p => p.runId === runId);
+
+      const newRun = { ...run };
       if (replaceIndex !== -1) {
         newPokemon[replaceIndex] = updated;
+        if (teamReplaceIndex !== -1) {
+          newTeam[teamReplaceIndex] = updated;
+          newRun.team = newTeam;
+        }
       } else {
         newPokemon.push(updated);
       }
-      const newRun = { ...run };
       newRun.pokemon = newPokemon;
       updateRun(newRun);
     },
@@ -84,21 +94,30 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
   );
 
   const addPokemon = React.useCallback(
-    async (value: IdPokemon) => {
-      const pokemon = await getOne(value.id);
+    async (species: PokemonSpecies) => {
+      const pokemon = pokemonData.pokemon[getDefaultPokemonId(species)];
+      pokemon.runId = GUID();
       updatePokemon(pokemon.runId)(pokemon);
     },
-    [updatePokemon]
+    [pokemonData.pokemon, updatePokemon]
   );
 
   const removePokemon = React.useCallback(
     (runId: string) => () => {
       const newPokemon = [...run.pokemon];
+      const newTeam = [...run.team];
       const removeIndex = newPokemon.findIndex(p => p.runId === runId);
-      if (removeIndex !== -1) {
-        newPokemon.splice(removeIndex, 1);
+      const teamRemoveIndex = newTeam.findIndex(p => p.runId === runId);
+      if (removeIndex !== -1 || teamRemoveIndex !== -1) {
         const newRun = { ...run };
-        newRun.pokemon = newPokemon;
+        if (removeIndex !== -1) {
+          newPokemon.splice(removeIndex, 1);
+          newRun.pokemon = newPokemon;
+        }
+        if (teamRemoveIndex !== -1) {
+          newTeam.splice(teamRemoveIndex, 1);
+          newRun.team = newTeam;
+        }
         updateRun(newRun);
       }
     },

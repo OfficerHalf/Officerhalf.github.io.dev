@@ -7,6 +7,7 @@ import { Subheading } from '../Typography';
 import { ThemeContext } from '../../store/ThemeContext';
 import { Checkmark } from '../Icons';
 import { Tooltip } from '../Common/Tooltip';
+import { usePokemonSprite } from '../../hooks/usePokemonSprite';
 
 interface EvolutionCardProps {
   pokemon: Pokemon;
@@ -26,8 +27,7 @@ export const EvolutionCard: React.FC<EvolutionCardProps> = props => {
     }
   `;
 
-  const sprite =
-    pokemon.shiny && pokemon.sprites.front_shiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default;
+  const sprite = usePokemonSprite(pokemon);
   const background = React.useMemo(() => {
     let background: string = typeColors['normal'];
     if (pokemon.types && pokemon.types.length === 2) {

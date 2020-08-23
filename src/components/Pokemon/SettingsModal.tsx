@@ -30,11 +30,10 @@ export const SettingsModal: React.FC<SettingsModalProps> = props => {
     setRefreshCount(0);
     // Refresh each pokemon
     for (let i = 0; i < newPokemon.length; i++) {
-      const pokemon = await getOne(newPokemon[i].id, true);
+      const pokemon = (await getOne(newPokemon[i].id, true)).pokemon;
       pokemon.nickname = newPokemon[i].nickname;
       pokemon.shiny = newPokemon[i].shiny;
       pokemon.runId = newPokemon[i].runId;
-      pokemon.variety = newPokemon[i].variety;
       newPokemon[i] = pokemon;
 
       // Make sure the team is up to date as well

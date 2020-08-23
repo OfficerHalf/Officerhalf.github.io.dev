@@ -2,32 +2,37 @@
 import React from 'react';
 import { css, jsx } from '@emotion/core';
 import { ActionMeta } from 'react-select';
-import AsyncSelect from 'react-select/async';
-import { IdPokemon } from '../../../types/pokemon';
+import Select from 'react-select';
 import { ThemeContext } from '../../store/ThemeContext';
-import { listAll } from '../../util/pokemon';
+import { toTitleCase } from '../../util/pokemon';
 import { useSelectTheme } from '../../hooks/useSelectTheme';
+import { PokemonData, PokemonSpecies } from '../../../types/pokemon';
+import { useSiteData } from 'react-static';
 
 interface SearchPokemonProps {
-  onChange?: (value: IdPokemon, meta: ActionMeta<IdPokemon>) => void;
+  onChange?: (value: PokemonSpecies, meta: ActionMeta<PokemonSpecies>) => void;
   placeholder?: string;
 }
 
 export const SearchPokemon: React.FC<SearchPokemonProps> = props => {
   const { onChange, placeholder } = props;
   const { space } = React.useContext(ThemeContext);
+  const pokemonData = useSiteData<PokemonData>();
+  const species = React.useMemo(() => {
+    const species: PokemonSpecies[] = [];
+    const speciesIds = Object.keys(pokemonData.species);
+    speciesIds.forEach(id => {
+      species.push(pokemonData.species[id]);
+    });
+    return species;
+  }, [pokemonData.species]);
   const selectTheme = useSelectTheme();
-  const getLabel = React.useCallback((pokemon: IdPokemon) => `${pokemon.id} - ${pokemon.name}`, []);
-  const getValue = React.useCallback((pokemon: IdPokemon) => pokemon.id.toString(), []);
-  const loadOptions = React.useCallback(async (inputValue: string) => {
-    const list = await listAll();
-    return list.filter(p => p.name.toLowerCase().includes(inputValue.toLowerCase()));
-  }, []);
+  const getLabel = React.useCallback((pokemon: PokemonSpecies) => `${pokemon.id} - ${toTitleCase(pokemon.name)}`, []);
+  const getValue = React.useCallback((pokemon: PokemonSpecies) => pokemon.id.toString(), []);
 
   return (
-    <AsyncSelect<IdPokemon>
+    <Select<PokemonSpecies>
       controlShouldRenderValue={false}
-      loadOptions={loadOptions}
       getOptionLabel={getLabel}
       getOptionValue={getValue}
       onChange={onChange}
@@ -36,6 +41,7 @@ export const SearchPokemon: React.FC<SearchPokemonProps> = props => {
       css={css`
         margin: ${space.s} 0;
       `}
+      options={species}
     />
   );
 };

@@ -8,6 +8,7 @@ import { Subheading } from '../Typography';
 import { ThemeContext } from '../../store/ThemeContext';
 import { Block, Heart } from '../Icons';
 import { Tooltip } from '../Common/Tooltip';
+import { usePokemonSprite } from '../../hooks/usePokemonSprite';
 
 interface RandomTeamCardProps {
   pokemon: Pokemon;
@@ -28,8 +29,7 @@ export const RandomTeamCard: React.FC<RandomTeamCardProps> = props => {
     }
   `;
 
-  const sprite =
-    pokemon.shiny && pokemon.sprites.front_shiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default;
+  const sprite = usePokemonSprite(pokemon);
   const background = React.useMemo(() => {
     let background: string = typeColors['normal'];
     if (pokemon.types && pokemon.types.length === 2) {
