@@ -1,23 +1,17 @@
 import axios from 'axios';
 import {
-  IdPokemon,
+  PokemonResponse,
+  EvolutionChainResponse,
   PokemonListResponse,
   Pokemon,
   PokemonSpecies,
-  ApiPokemon,
-  PokemonEvolutionChain,
-  PokemonEvolution
+  PokemonEvolution,
+  Rel,
+  PokemonSpeciesResponse
 } from '../../types/pokemon';
 import { v4 as GUID } from 'uuid';
 
-export enum PokemonForm {
-  Default = 'default',
-  Alolan = 'alola',
-  Galarian = 'galar'
-}
-
 const pokemonEndpoint = 'https://pokeapi.co/api/v2/pokemon';
-const highestPokedexNumber = 893;
 
 interface TypeColorMap {
   [type: string]: string;
@@ -44,8 +38,19 @@ export const typeColors: TypeColorMap = {
   flying: '#A890F0'
 };
 
-let pokemonList: IdPokemon[] = [];
+let pokemonResponse: PokemonListResponse = { count: 0, next: null, previous: null, results: [] };
 let pokemon: { [key: number]: Pokemon } = {};
+let species: { [key: number]: PokemonSpecies } = {};
+
+export function getIdFromRel(rel: Rel): number {
+  const parts = rel.url.split('/');
+  // find id
+  for (let i = parts.length - 1; i >= 0; i--) {
+    if (parts[i] !== '/') {
+      return parseInt(parts[i]);
+    }
+  }
+}
 
 export function toTitleCase(input: string) {
   return input.replace(/\w\S*/g, function (txt) {
@@ -54,32 +59,36 @@ export function toTitleCase(input: string) {
 }
 
 export async function listAll() {
-  if (pokemonList.length === 0) {
+  if (pokemonResponse.count === 0) {
     const countResponse = await axios.get<PokemonListResponse>(pokemonEndpoint, { params: { limit: 1 } });
     const count = countResponse.data.count;
-    const listResponse = await axios.get<PokemonListResponse>(pokemonEndpoint, { params: { limit: count } });
+    const resp = await axios.get<PokemonListResponse>(pokemonEndpoint, { params: { limit: count } });
 
-    // Filter out forms and specials
-    pokemonList = listResponse.data.results
-      .map(p => {
-        const id = parseInt(p.url.split('/')[6]);
-        return { name: toTitleCase(p.name), id };
-      })
-      .filter(p => p.id >= 1 && p.id <= highestPokedexNumber);
-    return pokemonList;
+    pokemonResponse = resp.data;
+    return pokemonResponse.results;
   } else {
-    return Promise.resolve(pokemonList);
+    return Promise.resolve(pokemonResponse.results);
   }
 }
 
-export async function getOne(id: number, ignoreCache: boolean = false) {
+export async function getOne(
+  id: number,
+  ignoreCache: boolean = false
+): Promise<{ pokemon: Pokemon; species: PokemonSpecies }> {
   if (!pokemon[id] || ignoreCache) {
-    const pokemonResponse = await axios.get<ApiPokemon>(`${pokemonEndpoint}/${id}`);
-    // const speciesResponse = await axios.get<PokemonSpecies>(pokemonResponse.data.species.url);
+    const pokemonResponse = await axios.get<PokemonResponse>(`${pokemonEndpoint}/${id}`);
+    const speciesResponse = await axios.get<PokemonSpeciesResponse>(pokemonResponse.data.species.url);
 
     // Combine these into a useful object without tons of extra properties we don't want
     const apiPokemon = pokemonResponse.data;
-    // const apiSpecies = speciesResponse.data;
+    const apiSpecies = speciesResponse.data;
+
+    species[apiSpecies.id] = {
+      name: apiSpecies.name,
+      evolution_chain: apiSpecies.evolution_chain,
+      id: apiSpecies.id,
+      varieties: apiSpecies.varieties
+    };
 
     pokemon[id] = {
       id: apiPokemon.id,
@@ -87,20 +96,19 @@ export async function getOne(id: number, ignoreCache: boolean = false) {
       name: apiPokemon.name,
       sprites: {
         front_default: apiPokemon.sprites.front_default,
-        front_shiny: apiPokemon.sprites.front_shiny
+        front_shiny: apiPokemon.sprites.front_shiny,
+        front_female: apiPokemon.sprites.front_female,
+        front_shiny_female: apiPokemon.sprites.front_shiny_female
       },
       types: apiPokemon.types,
       shiny: false,
-      variety: apiPokemon.name.endsWith(`-${PokemonForm.Alolan}`)
-        ? PokemonForm.Alolan
-        : apiPokemon.name.endsWith(`-${PokemonForm.Galarian}`)
-        ? PokemonForm.Galarian
-        : PokemonForm.Default,
       species: apiPokemon.species
     };
-    return pokemon[id];
+    return { pokemon: pokemon[id], species: species[apiSpecies.id] };
   } else {
-    return Promise.resolve(pokemon[id]);
+    const cachedPokemon = pokemon[id];
+    const cachedSpecies = species[getIdFromRel(cachedPokemon.species)];
+    return Promise.resolve({ pokemon: cachedPokemon, species: cachedSpecies });
   }
 }
 
@@ -115,7 +123,7 @@ export async function getEvolutions(pokemon: Pokemon): Promise<Pokemon[]> {
   if (!speciesResponse.data.evolution_chain || !speciesResponse.data.evolution_chain.url) {
     return [];
   }
-  const evolutionChainResponse = await axios.get<PokemonEvolutionChain>(speciesResponse.data.evolution_chain.url);
+  const evolutionChainResponse = await axios.get<EvolutionChainResponse>(speciesResponse.data.evolution_chain.url);
   // Find this pokemon species in the chain
   const thisPokemonsEvolutionChain = searchEvolution(speciesResponse.data.name, evolutionChainResponse.data.chain);
   // Get evolved pokemon species
@@ -134,7 +142,7 @@ export async function getEvolutions(pokemon: Pokemon): Promise<Pokemon[]> {
       // Find default variety
       const defaultVariety = species.varieties.find(s => s.is_default);
       const id = parseInt(defaultVariety.pokemon.url.split('/')[6]);
-      evolvedPokemon.push(await getOne(id));
+      evolvedPokemon.push((await getOne(id)).pokemon);
     }
 
     return evolvedPokemon;

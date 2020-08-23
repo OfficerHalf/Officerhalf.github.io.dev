@@ -1,14 +1,14 @@
 /** @jsx jsx */
 import React, { Fragment } from 'react';
 import { css, jsx } from '@emotion/core';
-import { IdPokemon, Pokemon, RandomizerRunFile } from '../../../types/pokemon';
+import { Pokemon, RandomizerRunFile, Rel } from '../../../types/pokemon';
 import { Cog, EditPencil, Trash } from '../Icons';
 import { Subheading, Headline } from '../Typography';
 import { PokemonCard } from './PokemonCard';
 import { ThemeContext } from '../../store/ThemeContext';
 import { TransparentInput } from '../Common/TransparentInput';
 import { SearchPokemon } from './SearchPokemon';
-import { getOne } from '../../util/pokemon';
+import { getIdFromRel, getOne } from '../../util/pokemon';
 import { Button } from '../Common/Button';
 import { Modal } from '../Common/Modal';
 import { Tooltip } from '../Common/Tooltip';
@@ -84,8 +84,8 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
   );
 
   const addPokemon = React.useCallback(
-    async (value: IdPokemon) => {
-      const pokemon = await getOne(value.id);
+    async (value: Rel) => {
+      const pokemon = (await getOne(getIdFromRel(value))).pokemon;
       updatePokemon(pokemon.runId)(pokemon);
     },
     [updatePokemon]

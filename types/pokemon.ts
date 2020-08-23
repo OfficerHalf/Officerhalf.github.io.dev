@@ -1,15 +1,10 @@
-import { PokemonForm } from '../src/util/pokemon';
-
+// Useful Types
 export interface Rel {
   name: string;
   url: string;
 }
 
-export interface IdPokemon {
-  name: string;
-  id: number;
-}
-
+// Api Response Types
 export interface PokemonListResponse {
   count: number;
   next: string | null;
@@ -17,12 +12,37 @@ export interface PokemonListResponse {
   results: Rel[];
 }
 
+export interface PokemonResponse {
+  // Primary Attributes
+  id: number;
+  is_default: boolean;
+  name: string;
+  species: Rel;
+  sprites: {
+    front_default: string | null;
+    front_female: string | null;
+    front_shiny: string | null;
+    front_shiny_female: string | null;
+  };
+  types: PokemonType[];
+  order: number | null;
+
+  // Extra stuff
+  stats: any[];
+  location_area_encounters: string;
+  moves: any[];
+  abilities: any[];
+  base_experience: number;
+  forms: Rel[];
+  game_indices: any[];
+  height: number;
+  weight: number;
+  held_items: any[];
+}
+
 export interface PokemonType {
   slot: number;
-  type: {
-    name: string;
-    url: string;
-  };
+  type: Rel;
 }
 
 export interface PokemonSpeciesVariety {
@@ -30,53 +50,70 @@ export interface PokemonSpeciesVariety {
   pokemon: Rel;
 }
 
-export interface PokemonSpecies {
+export interface PokemonSpeciesResponse {
+  // Primary attributes
   id: number;
   name: string;
-  color: Rel;
-  varieties: PokemonSpeciesVariety[];
   evolution_chain: {
     url: string;
   };
+  evolves_from_species: Rel | null;
+  forms_switchable: boolean;
+  has_gender_differences: boolean;
+  order: number;
+  varieties: PokemonSpeciesVariety[];
+
+  // Extra stuff
+  base_happiness: number;
+  capture_rate: number;
+  color: Rel;
+  egg_groups: Rel[];
+  flavor_text_entries: any[];
+  form_descriptions: any[];
+  gender_rate: number;
+  genera: any[];
+  generation: Rel;
+  growth_rate: Rel;
+  habitat: Rel;
+  hatch_counter: number;
+  is_baby: boolean;
+  is_legendary: boolean;
+  is_mythical: boolean;
+  names: any[];
+  pal_park_encounters: any[];
+  pokedex_numbers: any[];
+  shape: Rel;
 }
 
-export interface PokemonEvolution {
-  evolves_to: PokemonEvolution[];
+export interface PokemonEvolutionResponse {
+  // Primary attributes
   species: Rel;
+  evolves_to: PokemonEvolutionResponse[];
+
+  // Extra stuff
+  evolution_details: any[];
+  is_baby: boolean;
 }
 
-export interface PokemonEvolutionChain {
+export interface EvolutionChainResponse {
+  // Primary attributes
   id: number;
-  chain: PokemonEvolution;
+  chain: PokemonEvolutionResponse;
+
+  // Extra stuff
+  baby_trigger_item: null | any;
 }
 
-export interface ApiPokemon {
-  id: number;
-  is_default: boolean;
-  name: string;
-  species: Rel;
-  sprites: {
-    front_default: string | null;
-    front_shiny: string | null;
-  };
-  types: PokemonType[];
-}
-
-export interface Pokemon {
-  id: number;
-  runId: string; // so we can tell apart duplicate pokemon
-  name: string;
+// Modified types, for usability and storage
+export type Pokemon = Pick<PokemonResponse, 'id' | 'name' | 'types' | 'sprites' | 'types' | 'species'> & {
+  runId: string;
   nickname?: string;
-  types: PokemonType[];
-  variety: PokemonForm;
   shiny: boolean;
-  sprites: {
-    front_default: string | null;
-    front_shiny: string | null;
-  };
-  species: Rel;
-}
+};
+export type PokemonSpecies = Pick<PokemonSpeciesResponse, 'id' | 'name' | 'varieties' | 'evolution_chain'>;
+export type PokemonEvolution = Pick<PokemonEvolutionResponse, 'species' | 'evolves_to'>;
 
+// Storage types
 export interface RandomizerSettings {
   lastSelectedRun: string;
 }
