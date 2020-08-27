@@ -165,7 +165,7 @@ export const PokemonCard: React.FC<PokemonCardProps> = props => {
               css={css`
                 margin: 0;
               `}>
-              {pokemon.nickname ? pokemon.nickname : pokemonDisplayName}
+              {`${pokemon.nickname ? pokemon.nickname : pokemonDisplayName}${pokemon.benched ? ' (benched)' : ''}`}
             </Subheading>
             {pokemon.nickname && (
               <Small

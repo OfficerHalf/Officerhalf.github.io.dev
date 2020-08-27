@@ -24,7 +24,7 @@ export const RandomTeamModal: React.FC<RandomTeamModalProps> = props => {
 
   const getNewRandomTeam = React.useCallback(() => {
     // Filter out fainted pokemon
-    const available = pokemon.filter(p => !faintedPokemon.includes(p.runId));
+    const available = pokemon.filter(p => !faintedPokemon.includes(p.runId) && !p.benched);
 
     // If we don't have a full team, add back some fainted ones
     if (available.length < 6 && faintedPokemon.length > 0) {
@@ -42,6 +42,18 @@ export const RandomTeamModal: React.FC<RandomTeamModalProps> = props => {
     newRun.team = newTeam;
     updateRun(newRun);
   }, [faintedPokemon, pokemon, run, updateRun]);
+
+  const fillRandomTeam = React.useCallback(() => {
+    const need = 6 - team.length;
+    // Filter out current team
+    const available = pokemon.filter(p => team.findIndex(t => t.runId === p.runId) === -1);
+    const fillPokemon = selectRandom(available, need);
+
+    const newTeam = [...team, ...fillPokemon];
+    const newRun = { ...run };
+    newRun.team = newTeam;
+    updateRun(newRun);
+  }, [pokemon, run, team, updateRun]);
 
   const toggleFainted = React.useCallback(
     (newFainted: boolean, id: string) => {
@@ -75,6 +87,13 @@ export const RandomTeamModal: React.FC<RandomTeamModalProps> = props => {
           justify-content: flex-end;
           margin-top: ${space.m};
         `}>
+        <Button
+          onClick={fillRandomTeam}
+          css={css`
+            margin-right: ${space.s};
+          `}>
+          Fill Team
+        </Button>
         <Button onClick={getNewRandomTeam}>New Random Team</Button>
       </div>
     </Modal>
