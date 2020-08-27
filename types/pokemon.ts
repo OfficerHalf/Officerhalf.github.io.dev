@@ -109,6 +109,7 @@ export type Pokemon = Pick<PokemonResponse, 'id' | 'name' | 'types' | 'sprites' 
   runId: string;
   nickname?: string;
   shiny: boolean;
+  benched: boolean;
 };
 export type PokemonSpecies = Pick<PokemonSpeciesResponse, 'id' | 'name' | 'varieties' | 'evolution_chain'>;
 export type PokemonEvolution = Pick<PokemonEvolutionResponse, 'species' | 'evolves_to'>;

@@ -67,10 +67,24 @@ export const PokemonSettingsModal: React.FC<PokemonSettingsModalProps> = props =
       const newPokemon = pokemonData.pokemon[getIdFromRel(variety.pokemon)];
       newPokemon.nickname = pokemon.nickname;
       newPokemon.shiny = pokemon.shiny;
+      newPokemon.benched = pokemon.benched;
       newPokemon.runId = pokemon.runId;
       updatePokemon(newPokemon);
     },
-    [pokemon.nickname, pokemon.runId, pokemon.shiny, pokemonData.pokemon, updatePokemon]
+    [pokemon.benched, pokemon.nickname, pokemon.runId, pokemon.shiny, pokemonData.pokemon, updatePokemon]
+  );
+
+  const benchedChange = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const newPokemon = { ...pokemon };
+      if (event.target.checked) {
+        newPokemon.benched = true;
+      } else {
+        newPokemon.benched = false;
+      }
+      updatePokemon(newPokemon);
+    },
+    [pokemon, updatePokemon]
   );
 
   const shinyChange = React.useCallback(
@@ -119,6 +133,12 @@ export const PokemonSettingsModal: React.FC<PokemonSettingsModalProps> = props =
         <Body>Shiny</Body>
         <div css={spacerStyle} />
         <ToggleSwitch checked={pokemon.shiny} onChange={shinyChange} />
+      </div>
+      <hr />
+      <div css={settingsSectionStyle}>
+        <Body>Bench Pokemon. Removes this pokemon from the random pool, but not your team.</Body>
+        <div css={spacerStyle} />
+        <ToggleSwitch checked={pokemon.benched} onChange={benchedChange} />
       </div>
       <hr />
       <div css={settingsSectionStyle}>

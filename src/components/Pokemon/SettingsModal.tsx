@@ -34,6 +34,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = props => {
       pokemon.nickname = newPokemon[i].nickname;
       pokemon.shiny = newPokemon[i].shiny;
       pokemon.runId = newPokemon[i].runId;
+      pokemon.benched = newPokemon[i].benched || false;
       newPokemon[i] = pokemon;
 
       // Make sure the team is up to date as well

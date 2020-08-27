@@ -40,10 +40,11 @@ export const EvolutionModal: React.FC<EvolutionModalProps> = props => {
       newPokemon.nickname = pokemon.nickname;
       newPokemon.runId = pokemon.runId;
       newPokemon.shiny = pokemon.shiny;
+      newPokemon.benched = pokemon.benched;
       updatePokemon(newPokemon);
       onClose();
     },
-    [onClose, pokemon.nickname, pokemon.runId, pokemon.shiny, updatePokemon]
+    [onClose, pokemon.benched, pokemon.nickname, pokemon.runId, pokemon.shiny, updatePokemon]
   );
 
   return (
