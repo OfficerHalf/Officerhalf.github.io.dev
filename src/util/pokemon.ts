@@ -107,6 +107,7 @@ export async function getOne(
       },
       types: apiPokemon.types,
       shiny: false,
+      benched: false,
       species: apiPokemon.species
     };
     return { pokemon: pokemon[id], species: species[apiSpecies.id] };

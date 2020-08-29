@@ -81,7 +81,14 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
       if (replaceIndex !== -1) {
         newPokemon[replaceIndex] = updated;
         if (teamReplaceIndex !== -1) {
-          newTeam[teamReplaceIndex] = updated;
+          // Remove pokemon if it was benched
+          if (updated.benched) {
+            newTeam.splice(teamReplaceIndex, 1);
+          }
+          // Replace pokemon otherwise
+          else {
+            newTeam[teamReplaceIndex] = updated;
+          }
           newRun.team = newTeam;
         }
       } else {
@@ -140,6 +147,20 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
     [saveName]
   );
 
+  const benchedPokemon = React.useMemo(() => run.pokemon.filter(p => p.benched), [run.pokemon]);
+  const pokemonList = React.useMemo(() => {
+    const benchedPokemon: Pokemon[] = [];
+    const pokemonList = run.pokemon.filter(p => {
+      if (p.benched) {
+        benchedPokemon.push(p);
+        return false;
+      }
+      return true;
+    });
+    pokemonList.push(...benchedPokemon);
+    return pokemonList;
+  }, [run.pokemon]);
+
   return (
     <div>
       <div
@@ -188,7 +209,7 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
         <Subheading
           css={css`
             margin: 0;
-          `}>{`${run.pokemon.length} Pokemon caught`}</Subheading>
+          `}>{`${run.pokemon.length} Pokemon caught (${benchedPokemon.length} benched)`}</Subheading>
         <div
           css={css`
             flex-grow: 1;
@@ -197,7 +218,7 @@ export const RunInfo: React.FC<RunInfoProps> = props => {
         <Button onClick={() => setShowRandomTeam(true)}>Random Team</Button>
       </div>
       <SearchPokemon onChange={addPokemon} placeholder="Caught a pokemon..." />
-      {run.pokemon.map(p => (
+      {pokemonList.map(p => (
         <PokemonCard
           key={p.runId}
           pokemon={p}
