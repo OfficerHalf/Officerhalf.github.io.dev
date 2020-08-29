@@ -11,7 +11,7 @@ import {
 } from '../../types/pokemon';
 import { v4 as GUID } from 'uuid';
 
-const pokemonEndpoint = 'https://pokeapi.co/api/v2/pokemon';
+const pokemonEndpoint = 'https://staging.pokeapi.co/api/v2/pokemon';
 
 interface TypeColorMap {
   [type: string]: string;
@@ -103,7 +103,15 @@ export async function getOne(
         front_default: apiPokemon.sprites.front_default,
         front_shiny: apiPokemon.sprites.front_shiny,
         front_female: apiPokemon.sprites.front_female,
-        front_shiny_female: apiPokemon.sprites.front_shiny_female
+        front_shiny_female: apiPokemon.sprites.front_shiny_female,
+        versions: {
+          'generation-vii': {
+            icons: {
+              front_default: apiPokemon.sprites.versions['generation-vii'].icons.front_default,
+              front_female: apiPokemon.sprites.versions['generation-vii'].icons.front_female
+            }
+          }
+        }
       },
       types: apiPokemon.types,
       shiny: false,

@@ -7,6 +7,14 @@ function getSpriteFromPokemon(pokemon: Pokemon): string | null {
   return pokemon.shiny && pokemon.sprites.front_shiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default;
 }
 
+function getIconFromPokemon(pokemon: Pokemon): string | null {
+  return pokemon.sprites.versions &&
+    pokemon.sprites.versions['generation-vii'] &&
+    pokemon.sprites.versions['generation-vii'].icons
+    ? pokemon.sprites.versions['generation-vii'].icons.front_default
+    : null;
+}
+
 export function usePokemonSprite(pokemon: Pokemon): string {
   const pokemonData = useSiteData<PokemonData>();
 
@@ -24,10 +32,15 @@ export function usePokemonSprite(pokemon: Pokemon): string {
     let sprite = getSpriteFromPokemon(pokemon);
 
     // Fall back to the default variety
-    if (!sprite || (sprite === '' && !thisVariety.is_default)) {
+    if ((!sprite || sprite === '') && !thisVariety.is_default) {
       const defaultVariety = species.varieties.find(v => v.is_default === true);
       const defaultPokemon = pokemonData.pokemon[getIdFromRel(defaultVariety.pokemon)];
       sprite = getSpriteFromPokemon(defaultPokemon);
+    }
+
+    // Fall back to icon
+    if (!sprite || sprite === '') {
+      sprite = getIconFromPokemon(pokemon);
     }
 
     return sprite;

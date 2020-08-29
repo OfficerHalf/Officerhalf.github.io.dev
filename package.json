@@ -8,7 +8,7 @@
     "bundle": "react-static bundle",
     "export": "react-static export",
     "serve": "serve dist -p 3000 -s",
-    "getPokemonData": "ts-node --compiler-options \"{\\\"module\\\": \\\"commonjs\\\"}\" ./loadPokemonData.ts"
+    "get-pokemon-data": "ts-node --compiler-options \"{\\\"module\\\": \\\"commonjs\\\"}\" ./loadPokemonData.ts"
   },
   "dependencies": {
     "@emotion/core": "^10.0.28",
