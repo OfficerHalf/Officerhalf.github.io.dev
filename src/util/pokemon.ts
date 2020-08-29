@@ -11,7 +11,7 @@ import {
 } from '../../types/pokemon';
 import { v4 as GUID } from 'uuid';
 
-const pokemonEndpoint = 'https://staging.pokeapi.co/api/v2/pokemon';
+const pokemonEndpoint = 'https://pokeapi.co/api/v2/pokemon';
 
 interface TypeColorMap {
   [type: string]: string;
