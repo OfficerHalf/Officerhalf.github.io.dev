@@ -23,6 +23,14 @@ export interface PokemonResponse {
     front_female: string | null;
     front_shiny: string | null;
     front_shiny_female: string | null;
+    versions: {
+      'generation-viii': {
+        icons: {
+          front_default: string | null;
+          front_female: string | null;
+        };
+      };
+    };
   };
   types: PokemonType[];
   order: number | null;

@@ -42,7 +42,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = props => {
       if (teamIndex !== -1) {
         team[teamIndex] = pokemon;
       }
-      setRefreshCount(refreshCount + 1);
+      setRefreshCount(i + 1);
     }
 
     // Commit the update
@@ -51,7 +51,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = props => {
     updatedRun.team = team;
     updateRun(updatedRun);
     setRefreshing(false);
-  }, [refreshCount, run, updateRun]);
+  }, [run, updateRun]);
 
   const signOut = React.useCallback(() => {
     firebase.auth().signOut();
