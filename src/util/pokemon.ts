@@ -105,10 +105,10 @@ export async function getOne(
         front_female: apiPokemon.sprites.front_female,
         front_shiny_female: apiPokemon.sprites.front_shiny_female,
         versions: {
-          'generation-vii': {
+          'generation-viii': {
             icons: {
-              front_default: apiPokemon.sprites.versions['generation-vii'].icons.front_default,
-              front_female: apiPokemon.sprites.versions['generation-vii'].icons.front_female
+              front_default: apiPokemon.sprites.versions['generation-viii'].icons.front_default,
+              front_female: apiPokemon.sprites.versions['generation-viii'].icons.front_female
             }
           }
         }

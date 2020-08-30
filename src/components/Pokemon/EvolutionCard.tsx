@@ -7,7 +7,7 @@ import { Subheading } from '../Typography';
 import { ThemeContext } from '../../store/ThemeContext';
 import { Checkmark } from '../Icons';
 import { Tooltip } from '../Common/Tooltip';
-import { usePokemonSprite } from '../../hooks/usePokemonSprite';
+import { PokemonSprite } from './PokemonSprite';
 
 interface EvolutionCardProps {
   pokemon: Pokemon;
@@ -27,7 +27,6 @@ export const EvolutionCard: React.FC<EvolutionCardProps> = props => {
     }
   `;
 
-  const sprite = usePokemonSprite(pokemon);
   const background = React.useMemo(() => {
     let background: string = typeColors['normal'];
     if (pokemon.types && pokemon.types.length === 2) {
@@ -53,24 +52,13 @@ export const EvolutionCard: React.FC<EvolutionCardProps> = props => {
         max-width: 575px;
         margin: ${space.s} 0;
       `}>
-      {sprite && (
-        <img
-          css={css`
-            width: 40px;
-            max-height: 40px;
-          `}
-          src={sprite}
-          alt={pokemon.name}
-        />
-      )}
-      {!sprite && (
-        <div
-          css={css`
-            width: 40px;
-            height: 40px;
-          `}
-        />
-      )}
+      <PokemonSprite
+        css={css`
+          width: 40px;
+          height: 40px;
+        `}
+        pokemon={pokemon}
+      />
       <div
         css={css`
           margin-left: ${space.sm};

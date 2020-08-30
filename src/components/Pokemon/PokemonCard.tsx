@@ -11,7 +11,7 @@ import { TransparentInput } from '../Common/TransparentInput';
 import { Tooltip } from '../Common/Tooltip';
 import { EvolutionModal } from './EvolutionModal';
 import { PokemonSettingsModal } from './PokemonSettingsModal';
-import { usePokemonSprite } from '../../hooks/usePokemonSprite';
+import { PokemonSprite } from './PokemonSprite';
 
 interface PokemonCardProps {
   pokemon: Pokemon;
@@ -89,7 +89,6 @@ export const PokemonCard: React.FC<PokemonCardProps> = props => {
     setNickname(event.target.value);
   }, []);
 
-  const sprite = usePokemonSprite(pokemon);
   const background = React.useMemo(() => {
     let background: string = typeColors['normal'];
     if (pokemon.types && pokemon.types.length === 2) {
@@ -124,24 +123,13 @@ export const PokemonCard: React.FC<PokemonCardProps> = props => {
         margin: ${space.s} 0;
         padding: 0 ${space.s};
       `}>
-      {sprite && (
-        <img
-          css={css`
-            width: 96px;
-            max-height: 96px;
-          `}
-          src={sprite}
-          alt={pokemon.name}
-        />
-      )}
-      {!sprite && (
-        <div
-          css={css`
-            width: 96px;
-            height: 96px;
-          `}
-        />
-      )}
+      <PokemonSprite
+        css={css`
+          width: 96px;
+          height: 96px;
+        `}
+        pokemon={pokemon}
+      />
       <div
         css={css`
           margin-left: ${space.m};

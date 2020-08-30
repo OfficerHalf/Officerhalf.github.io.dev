@@ -8,7 +8,7 @@ import { Subheading } from '../Typography';
 import { ThemeContext } from '../../store/ThemeContext';
 import { Block, Heart } from '../Icons';
 import { Tooltip } from '../Common/Tooltip';
-import { usePokemonSprite } from '../../hooks/usePokemonSprite';
+import { PokemonSprite } from './PokemonSprite';
 
 interface RandomTeamCardProps {
   pokemon: Pokemon;
@@ -29,7 +29,6 @@ export const RandomTeamCard: React.FC<RandomTeamCardProps> = props => {
     }
   `;
 
-  const sprite = usePokemonSprite(pokemon);
   const background = React.useMemo(() => {
     let background: string = typeColors['normal'];
     if (pokemon.types && pokemon.types.length === 2) {
@@ -60,24 +59,13 @@ export const RandomTeamCard: React.FC<RandomTeamCardProps> = props => {
         }
       `}
       className={cx({ fainted })}>
-      {sprite && (
-        <img
-          css={css`
-            width: 40px;
-            max-height: 40px;
-          `}
-          src={sprite}
-          alt={pokemon.name}
-        />
-      )}
-      {!sprite && (
-        <div
-          css={css`
-            width: 40px;
-            height: 40px;
-          `}
-        />
-      )}
+      <PokemonSprite
+        pokemon={pokemon}
+        css={css`
+          width: 40px;
+          height: 40px;
+        `}
+      />
       <div
         css={css`
           margin-left: ${space.sm};

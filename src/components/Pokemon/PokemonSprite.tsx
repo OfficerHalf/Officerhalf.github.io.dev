@@ -1,7 +1,9 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import React from 'react';
 import { useSiteData } from 'react-static';
-import { Pokemon, PokemonData } from '../../types/pokemon';
-import { getIdFromRel } from '../util/pokemon';
+import { Pokemon, PokemonData } from '../../../types/pokemon';
+import { getIdFromRel } from '../../util/pokemon';
 
 function getSpriteFromPokemon(pokemon: Pokemon): string | null {
   return pokemon.shiny && pokemon.sprites.front_shiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default;
@@ -9,13 +11,21 @@ function getSpriteFromPokemon(pokemon: Pokemon): string | null {
 
 function getIconFromPokemon(pokemon: Pokemon): string | null {
   return pokemon.sprites.versions &&
-    pokemon.sprites.versions['generation-vii'] &&
-    pokemon.sprites.versions['generation-vii'].icons
-    ? pokemon.sprites.versions['generation-vii'].icons.front_default
+    pokemon.sprites.versions['generation-viii'] &&
+    pokemon.sprites.versions['generation-viii'].icons
+    ? pokemon.sprites.versions['generation-viii'].icons.front_default
     : null;
 }
 
-export function usePokemonSprite(pokemon: Pokemon): string {
+interface PokemonSpriteProps {
+  pokemon: Pokemon;
+}
+
+export const PokemonSprite = React.forwardRef<
+  HTMLImageElement,
+  PokemonSpriteProps & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
+>((props, ref) => {
+  const { pokemon, ...rest } = props;
   const pokemonData = useSiteData<PokemonData>();
 
   const species = React.useMemo(() => pokemonData.species[getIdFromRel(pokemon.species)], [
@@ -28,7 +38,8 @@ export function usePokemonSprite(pokemon: Pokemon): string {
     species.varieties
   ]);
 
-  const sprite: string = React.useMemo(() => {
+  const sprite = React.useMemo(() => {
+    let spriteStyle = css``;
     let sprite = getSpriteFromPokemon(pokemon);
 
     // Fall back to the default variety
@@ -41,10 +52,13 @@ export function usePokemonSprite(pokemon: Pokemon): string {
     // Fall back to icon
     if (!sprite || sprite === '') {
       sprite = getIconFromPokemon(pokemon);
+      spriteStyle = css`
+        transform: translateY(-20%);
+      `;
     }
 
-    return sprite;
-  }, [pokemon, pokemonData.pokemon, species.varieties, thisVariety.is_default]);
+    return <img ref={ref} src={sprite || undefined} alt={`${pokemon.name}-sprite`} css={spriteStyle} {...rest} />;
+  }, [pokemon, pokemonData.pokemon, ref, rest, species.varieties, thisVariety.is_default]);
 
   return sprite;
-}
+});

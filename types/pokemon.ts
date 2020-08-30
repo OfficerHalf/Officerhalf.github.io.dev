@@ -24,7 +24,7 @@ export interface PokemonResponse {
     front_shiny: string | null;
     front_shiny_female: string | null;
     versions: {
-      'generation-vii': {
+      'generation-viii': {
         icons: {
           front_default: string | null;
           front_female: string | null;
