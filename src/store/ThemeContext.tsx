@@ -17,30 +17,24 @@ export const ThemeContext = React.createContext<Context>({
 });
 
 let localStorage: Storage | null = null;
+let savedTheme: string | null = null;
 
 if (typeof window !== 'undefined') {
   localStorage = window.localStorage;
+  savedTheme = window.localStorage.getItem('theme');
 }
 
 export const ThemeContextProvider: React.FC = props => {
   const preferDark = usePrefersDarkTheme();
-  const savedTheme: string | null = localStorage ? localStorage.getItem('theme') : null;
-  const startingTheme = React.useMemo(
-    () =>
-      savedTheme !== null && savedTheme === 'dark'
-        ? darkTheme
-        : savedTheme !== null && savedTheme === 'light'
-        ? lightTheme
-        : preferDark
-        ? darkTheme
-        : lightTheme,
-    [preferDark, savedTheme]
+  const [theme, _setTheme] = React.useState<Theme>(
+    savedTheme !== null && savedTheme === 'dark'
+      ? darkTheme
+      : savedTheme !== null && savedTheme === 'light'
+      ? lightTheme
+      : preferDark
+      ? darkTheme
+      : lightTheme
   );
-  const [theme, _setTheme] = React.useState<Theme>(startingTheme);
-
-  React.useLayoutEffect(() => {
-    _setTheme(startingTheme);
-  }, [startingTheme]);
 
   const setTheme = React.useCallback((theme: 'dark' | 'light') => {
     if (theme === 'dark') {
