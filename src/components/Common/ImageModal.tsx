@@ -2,22 +2,11 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { Fragment } from 'react';
 import { css, jsx } from '@emotion/core';
+import cx from 'classnames';
 import { useOnClickOutside } from 'the-captains-hooks';
 import { Portal } from './Portal';
 import { ThemeContext } from '../../store/ThemeContext';
-
-const modalShadeStyle = css`
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  background-color: #000000cc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+import { Shade } from './Shade';
 
 interface ImageModalProps {
   image: React.MutableRefObject<HTMLImageElement | undefined>;
@@ -33,9 +22,22 @@ export const ImageModal: React.FC<ImageModalProps> = props => {
 
   return (
     <Fragment>
-      {showModal && image.current && (
-        <Portal>
-          <div css={modalShadeStyle}>
+      <Portal>
+        <Shade
+          css={css`
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 300ms;
+            &.showModal {
+              opacity: 1;
+              pointer-events: initial;
+            }
+          `}
+          className={cx({ showModal })}>
+          {image.current && (
             <div
               id="img-wrapper"
               ref={fullSizeRef}
@@ -50,8 +52,8 @@ export const ImageModal: React.FC<ImageModalProps> = props => {
               `}>
               <img
                 css={css`
-                  max-width: 100%;
-                  max-height: 100%;
+                  max-width: 90vw;
+                  max-height: 90vh;
                 `}
                 alt={image.current.alt}
                 src={image.current.src}
@@ -68,9 +70,9 @@ export const ImageModal: React.FC<ImageModalProps> = props => {
                 {image.current.alt && image.current.alt !== 'undefined' && image.current.alt}
               </span>
             </div>
-          </div>
-        </Portal>
-      )}
+          )}
+        </Shade>
+      </Portal>
     </Fragment>
   );
 };
