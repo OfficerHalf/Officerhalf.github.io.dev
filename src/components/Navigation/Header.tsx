@@ -10,9 +10,11 @@ import { useMedia } from 'react-media';
 import { Horizontal } from './Horizontal';
 import { prefetch } from 'react-static';
 import { ThemeContext } from '../../store/ThemeContext';
+import { usePageNavigate } from '../../hooks/usePageNavigate';
 
 export const Header: React.FC = props => {
   const navigate = useNavigate();
+  const hrefNavigate = usePageNavigate();
   const [drawerOpen, setDrawerOpen] = React.useState<boolean>(false);
   const { primary, space, typography, queries } = React.useContext(ThemeContext);
   const breakpoints = useMedia({ queries: queries.m });
@@ -77,6 +79,10 @@ export const Header: React.FC = props => {
           {
             text: 'Homebrewery Markdown Preview',
             onClick: () => navigate(routes.project.homebrewery.link)
+          },
+          {
+            text: 'Pokemon Randomizer',
+            onClick: () => hrefNavigate('https://nathan-smith.org/pokemon')
           }
         ]
       },
