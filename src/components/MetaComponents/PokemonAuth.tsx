@@ -7,7 +7,6 @@ import { SiteData } from '../../../types/static';
 
 export const PokemonAuth: React.FC = props => {
   const { pokemonFirebaseConfig: config } = useSiteData<SiteData>();
-  console.log(config);
   return (
     <FirebaseAuthProvider firebase={firebase} {...config}>
       <GithubTokenContextProvider>{props.children}</GithubTokenContextProvider>
