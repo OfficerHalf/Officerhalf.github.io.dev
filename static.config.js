@@ -3,6 +3,9 @@ import path from 'path';
 import butter from 'buttercms';
 import { promises } from 'fs';
 import XLSX from 'xlsx';
+import { config as dotEnv } from 'dotenv';
+
+dotEnv();
 
 const ButterApi = butter('9ffd3dad4fd54423ad22bc3ce3e1a2fd6bbc9081');
 
@@ -69,7 +72,17 @@ const config = {
     </Html>
   ),
   getSiteData: async () => {
-    return await loadPokemonData();
+    const config = { ...(await loadPokemonData()) };
+    config.pokemonFirebaseConfig = {
+      apiKey: process.env.POKEMON_FIREBASE_apiKey,
+      authDomain: process.env.POKEMON_FIREBASE_authDomain,
+      databaseURL: process.env.POKEMON_FIREBASE_databaseURL,
+      projectId: process.env.POKEMON_FIREBASE_projectId,
+      storageBucket: process.env.POKEMON_FIREBASE_storageBucket,
+      messagingSenderId: process.env.POKEMON_FIREBASE_messagingSenderId,
+      appId: process.env.POKEMON_FIREBASE_appId
+    };
+    return config;
   },
   getRoutes: async () => {
     // Blog

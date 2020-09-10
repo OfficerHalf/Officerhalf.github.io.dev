@@ -2,7 +2,7 @@
 import React, { Fragment } from 'react';
 import { css, jsx } from '@emotion/core';
 import { v4 as GUID } from 'uuid';
-import { Pokemon, PokemonData, PokemonSpecies, RandomizerRunFile } from '../../../types/pokemon';
+import { Pokemon, PokemonSpecies, RandomizerRunFile } from '../../../types/pokemon';
 import { Cog, EditPencil, Trash } from '../Icons';
 import { Subheading, Headline } from '../Typography';
 import { PokemonCard } from './PokemonCard';
@@ -17,6 +17,7 @@ import { SavingStatus } from './SavingStatus';
 import { RandomTeamModal } from './RandomTeamModal';
 import { SettingsModal } from './SettingsModal';
 import { useSiteData } from 'react-static';
+import { SiteData } from '../../../types/static';
 
 interface RunInfoProps {
   run: RandomizerRunFile;
@@ -27,7 +28,7 @@ interface RunInfoProps {
 
 export const RunInfo: React.FC<RunInfoProps> = props => {
   const { run, updateRun, deleteRun, saving } = props;
-  const pokemonData = useSiteData<PokemonData>();
+  const pokemonData = useSiteData<SiteData>();
   const { space, textColor, typography } = React.useContext(ThemeContext);
   const [editingName, setEditingName] = React.useState<boolean>(false);
   const [runName, setRunName] = React.useState<string>(run.name);

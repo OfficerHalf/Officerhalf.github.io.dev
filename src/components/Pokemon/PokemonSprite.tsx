@@ -2,7 +2,8 @@
 import { css, jsx } from '@emotion/core';
 import React from 'react';
 import { useSiteData } from 'react-static';
-import { Pokemon, PokemonData } from '../../../types/pokemon';
+import { Pokemon } from '../../../types/pokemon';
+import { SiteData } from '../../../types/static';
 import { getIdFromRel } from '../../util/pokemon';
 
 function getSpriteFromPokemon(pokemon: Pokemon): string | null {
@@ -26,7 +27,7 @@ export const PokemonSprite = React.forwardRef<
   PokemonSpriteProps & React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
 >((props, ref) => {
   const { pokemon, ...rest } = props;
-  const pokemonData = useSiteData<PokemonData>();
+  const pokemonData = useSiteData<SiteData>();
 
   const species = React.useMemo(() => pokemonData.species[getIdFromRel(pokemon.species)], [
     pokemon.species,

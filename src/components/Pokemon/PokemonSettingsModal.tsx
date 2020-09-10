@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React, { Fragment } from 'react';
 import { css, jsx } from '@emotion/core';
-import { Pokemon, PokemonData, PokemonSpeciesVariety } from '../../../types/pokemon';
+import { Pokemon, PokemonSpeciesVariety } from '../../../types/pokemon';
 import { Button } from '../Common/Button';
 import { Modal } from '../Common/Modal';
 import { Body } from '../Typography';
@@ -11,6 +11,7 @@ import { useSiteData } from 'react-static';
 import Select from 'react-select';
 import { useSelectTheme } from '../../hooks/useSelectTheme';
 import { ToggleSwitch } from '../Common/ToggleSwitch';
+import { SiteData } from '../../../types/static';
 
 interface PokemonSettingsModalProps {
   pokemon: Pokemon;
@@ -22,7 +23,7 @@ interface PokemonSettingsModalProps {
 
 export const PokemonSettingsModal: React.FC<PokemonSettingsModalProps> = props => {
   const { open, pokemon, onClose, updatePokemon, removePokemon } = props;
-  const pokemonData = useSiteData<PokemonData>();
+  const pokemonData = useSiteData<SiteData>();
   const species = React.useMemo(() => pokemonData.species[getIdFromRel(pokemon.species)], [
     pokemon.species,
     pokemonData.species

@@ -6,8 +6,9 @@ import Select from 'react-select';
 import { ThemeContext } from '../../store/ThemeContext';
 import { toTitleCase } from '../../util/pokemon';
 import { useSelectTheme } from '../../hooks/useSelectTheme';
-import { PokemonData, PokemonSpecies } from '../../../types/pokemon';
+import { PokemonSpecies } from '../../../types/pokemon';
 import { useSiteData } from 'react-static';
+import { SiteData } from '../../../types/static';
 
 interface SearchPokemonProps {
   onChange?: (value: PokemonSpecies, meta: ActionMeta<PokemonSpecies>) => void;
@@ -17,7 +18,7 @@ interface SearchPokemonProps {
 export const SearchPokemon: React.FC<SearchPokemonProps> = props => {
   const { onChange, placeholder } = props;
   const { space } = React.useContext(ThemeContext);
-  const pokemonData = useSiteData<PokemonData>();
+  const pokemonData = useSiteData<SiteData>();
   const species = React.useMemo(() => {
     const species: PokemonSpecies[] = [];
     const speciesIds = Object.keys(pokemonData.species);

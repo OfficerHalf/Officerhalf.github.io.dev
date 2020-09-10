@@ -122,12 +122,6 @@ export type Pokemon = Pick<PokemonResponse, 'id' | 'name' | 'types' | 'sprites' 
 export type PokemonSpecies = Pick<PokemonSpeciesResponse, 'id' | 'name' | 'varieties' | 'evolution_chain'>;
 export type PokemonEvolution = Pick<PokemonEvolutionResponse, 'species' | 'evolves_to'>;
 
-// Storage types
-export interface PokemonData {
-  pokemon: { [id: string]: Pokemon };
-  species: { [id: string]: PokemonSpecies };
-}
-
 export interface RandomizerSettings {
   lastSelectedRun: string;
 }
