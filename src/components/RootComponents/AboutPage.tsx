@@ -1,7 +1,9 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/core';
-import { ThemeContext } from '../../../store/ThemeContext';
+import { ThemeContext } from '../../store/ThemeContext';
+import { Link } from '@reach/router';
+import { routes } from '../../util/routes';
 
 const maxImageSize = '400px';
 
@@ -19,7 +21,8 @@ export const AboutPage: React.FC = props => {
       </p>
       <p>
         Find me on <a href="https://github.com/OfficerHalf">GitHub</a> and{' '}
-        <a href="https://www.linkedin.com/in/nathan-r-smith/">LinkedIn</a>.
+        <a href="https://www.linkedin.com/in/nathan-r-smith/">LinkedIn</a>. Here's some{' '}
+        <Link to={routes.uses}>things I use</Link>.
       </p>
       <p>Celty (the white & black girl) and Macready (the orange boy)</p>
       <div>
