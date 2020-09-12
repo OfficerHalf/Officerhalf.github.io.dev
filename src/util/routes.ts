@@ -3,6 +3,7 @@ import queryString from 'query-string';
 export const routes = {
   about: '/about',
   contact: '/contact',
+  uses: '/uses',
   blog: {
     base: '/blog',
     post: {
