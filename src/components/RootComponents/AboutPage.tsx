@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/core';
-import { ThemeContext } from '../../../store/ThemeContext';
+import { ThemeContext } from '../../store/ThemeContext';
 
 const maxImageSize = '400px';
 

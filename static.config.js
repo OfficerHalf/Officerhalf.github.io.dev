@@ -29,6 +29,7 @@ function getPost(slug) {
 const routes = {
   about: 'about',
   contact: 'contact',
+  uses: 'uses',
   blog: {
     base: 'blog',
     post: {
@@ -145,11 +146,15 @@ const config = {
       },
       {
         path: routes.about,
-        template: 'src/components/RootComponents/AboutPage/AboutPage'
+        template: 'src/components/RootComponents/AboutPage'
       },
       {
         path: routes.contact,
         template: 'src/components/RootComponents/ContactPage'
+      },
+      {
+        path: routes.uses,
+        template: 'src/components/RootComponents/Uses'
       },
       { path: routes.project.alloy.base, template: 'src/components/Projects/Alloy/Alloy' },
       { path: routes.project.homebrewery.base, template: 'src/components/Projects/Homebrewery/Homebrewery' },
