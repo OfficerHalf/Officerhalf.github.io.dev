@@ -57,19 +57,22 @@ export const Alloy: React.FC = props => {
             VS Code
           </a>
           ,{' '}
-          <a href="https://github.com/OfficerHalf/alloy-theme-prismjs" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://github.com/OfficerHalf/alloy-theme/tree/master/themes/prismjs"
+            target="_blank"
+            rel="noopener noreferrer">
             prismjs
           </a>
           ,{' '}
           <a
-            href="https://gist.github.com/OfficerHalf/15e58676b29dfde1a85a2945799e66b4"
+            href="https://github.com/OfficerHalf/alloy-theme/tree/master/themes/conemu"
             target="_blank"
             rel="noopener noreferrer">
             ConEmu
           </a>
           , and{' '}
           <a
-            href="https://gist.github.com/OfficerHalf/6b0b0803b5788aeb185415285b2c34c3"
+            href="https://github.com/OfficerHalf/alloy-theme/tree/master/themes/windows-terminal"
             target="_blank"
             rel="noopener noreferrer">
             Windows Terminal
