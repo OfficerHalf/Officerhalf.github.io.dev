@@ -4,11 +4,14 @@ import { css, jsx } from '@emotion/core';
 import { ThemeContext } from '../../store/ThemeContext';
 import { Link } from '@reach/router';
 import { routes } from '../../util/routes';
+import { useImageModal } from '../../hooks/useImageModal';
 
 const maxImageSize = '400px';
 
 export const AboutPage: React.FC = props => {
   const { space } = React.useContext(ThemeContext);
+  const imgRef = React.useRef<HTMLDivElement>();
+  const modal = useImageModal(imgRef, maxImageSize);
   return (
     <div
       css={css`
@@ -25,22 +28,11 @@ export const AboutPage: React.FC = props => {
         <Link to={routes.uses}>things I use</Link>.
       </p>
       <p>Celty (the white & black girl) and Macready (the orange boy)</p>
-      <div>
-        <img
-          css={css`
-            max-width: ${maxImageSize};
-          `}
-          alt="Celty"
-          src="/Celty.jpg"
-        />
-        <img
-          css={css`
-            max-width: ${maxImageSize};
-          `}
-          alt="Macready"
-          src="/Macready.jpg"
-        />
+      <div ref={imgRef}>
+        <img alt="Celty" src="https://i.imgur.com/ihalSMu.jpg" />
+        <img alt="Macready" src="https://i.imgur.com/hWbKoW6.jpg" />
       </div>
+      {modal}
     </div>
   );
 };

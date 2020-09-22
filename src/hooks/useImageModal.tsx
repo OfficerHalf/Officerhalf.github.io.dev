@@ -4,7 +4,7 @@ import { useMedia } from 'react-media';
 import { useLocation } from '@reach/router';
 import { ThemeContext } from '../store/ThemeContext';
 
-export function useImageModal<T extends HTMLElement>(target: React.RefObject<T>) {
+export function useImageModal<T extends HTMLElement>(target: React.RefObject<T>, maxWidthOverride?: string) {
   const { queries } = React.useContext(ThemeContext);
   const [showModal, setShowModal] = React.useState<boolean>(false);
   const openModal = React.useCallback((event: MouseEvent) => {
@@ -16,7 +16,7 @@ export function useImageModal<T extends HTMLElement>(target: React.RefObject<T>)
   const breakpoints = useMedia({ queries: queries.m });
   const { pathname } = useLocation();
 
-  const maxWidth = breakpoints[9] ? '900px' : '100%';
+  const maxWidth = maxWidthOverride ? maxWidthOverride : breakpoints[9] ? '900px' : '100%';
 
   React.useEffect(() => {
     setShowModal(false);
