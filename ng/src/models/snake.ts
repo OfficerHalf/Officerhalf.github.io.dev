@@ -1,6 +1,6 @@
 export type Board = BoardRow[];
 
-export type BoardRow = Position[];
+export type BoardRow = string[];
 export type Snake = Position[];
 
 export interface Position {

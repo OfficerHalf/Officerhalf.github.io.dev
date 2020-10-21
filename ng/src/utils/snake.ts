@@ -18,9 +18,27 @@ export function createBoard(sizeX: number, sizeY: number): Board {
   for (let y = 0; y < sizeY; y++) {
     const row: BoardRow = [];
     for (let x = 0; x < sizeX; x++) {
-      row.push({ x, y });
+      row.push('');
     }
     board.push(row);
   }
   return board;
+}
+
+/**
+ * Shuffles array in place. ES6 version
+ * @param {Array} a items An array containing the items.
+ */
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+export function randomChoice<T>(a: T[], n: number = 1): T[] {
+  const shuffled = shuffle(a);
+  return shuffled.slice(0, n);
 }
