@@ -42,3 +42,12 @@ export function randomChoice<T>(a: T[], n: number = 1): T[] {
   const shuffled = shuffle(a);
   return shuffled.slice(0, n);
 }
+
+export function oppositeDirection(currentDir: Direction, newDir: Direction): boolean {
+  return (
+    (currentDir === Direction.North && newDir === Direction.South) ||
+    (currentDir === Direction.East && newDir === Direction.West) ||
+    (currentDir === Direction.South && newDir === Direction.North) ||
+    (currentDir === Direction.West && newDir === Direction.East)
+  );
+}

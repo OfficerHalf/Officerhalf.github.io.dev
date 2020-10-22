@@ -11,32 +11,26 @@ export class SnakeComponent implements OnInit {
   board: Board;
   snake: Snake;
   direction: Direction;
+  lastDirection: Direction;
   running: number;
   xSize: number;
   ySize: number;
-  speedMs: number;
+  maxSpeedMs: number;
   minSpeedMs: number;
+  speedPercent: number;
+  speedStep: number;
   lost: boolean;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.lost = false;
-    this.xSize = 20;
-    this.ySize = 20;
-    this.speedMs = 1000;
-    this.minSpeedMs = 500;
-    this.board = createBoard(this.xSize, this.ySize);
-    const startX = Math.floor(this.xSize / 2);
-    const startY = Math.floor(this.ySize / 2);
-    this.snake = [{ x: startX, y: startY }];
-    this.board[this.snake[0].y][this.snake[0].x] = UI.snake;
-    this.placeFood();
-    this.direction = Math.floor(Math.random() * 4);
+    this.reset();
   }
 
   move() {
     // Find next position
+    this.lastDirection = this.direction;
+    const last = this.snake[this.snake.length - 1];
     const newHead = doMove(this.snake[0], this.direction);
     let grow = false;
 
@@ -44,7 +38,10 @@ export class SnakeComponent implements OnInit {
     if (newHead.x < 0 || newHead.y < 0 || newHead.x >= this.xSize || newHead.y >= this.ySize) {
       this.lost = true;
     } else if (this.board[newHead.y][newHead.x] === UI.snake) {
-      this.lost = true;
+      // make sure this isn't the end of our tail, that's okay
+      if (!(newHead.x === last.x && newHead.y === last.y)) {
+        this.lost = true;
+      }
     } else if (this.board[newHead.y][newHead.x] === UI.food) {
       grow = true;
     }
@@ -57,9 +54,14 @@ export class SnakeComponent implements OnInit {
       // Grow / move
       if (!grow) {
         const oldTail = this.snake.pop();
-        this.board[oldTail.y][oldTail.x] = '';
+        // Don't remove this if the new head is our old tail
+        if (!(oldTail.x === newHead.x && oldTail.y === newHead.y)) {
+          this.board[oldTail.y][oldTail.x] = '';
+        }
       } else {
-        this.speedMs -= 50;
+        if (this.speedPercent <= 100) {
+          this.speedPercent = Math.min(this.speedPercent + this.speedStep, 100);
+        }
         this.placeFood();
         this.start();
       }
@@ -70,13 +72,32 @@ export class SnakeComponent implements OnInit {
 
   start() {
     this.stop();
-    this.running = window.setInterval(() => this.move(), this.speedMs);
+    this.running = window.setInterval(() => this.move(), this.speed);
   }
 
   stop() {
     if (this.running) {
       window.clearInterval(this.running);
     }
+  }
+
+  reset() {
+    this.stop();
+    this.lost = false;
+    this.xSize = 20;
+    this.ySize = 20;
+    this.maxSpeedMs = 800;
+    this.minSpeedMs = 200;
+    this.speedStep = 5;
+    this.speedPercent = 0;
+    this.board = createBoard(this.xSize, this.ySize);
+    const startX = Math.floor(this.xSize / 2);
+    const startY = Math.floor(this.ySize / 2);
+    this.snake = [{ x: startX, y: startY }];
+    this.board[this.snake[0].y][this.snake[0].x] = UI.snake;
+    this.placeFood();
+    this.direction = Math.floor(Math.random() * 4);
+    this.lastDirection = (this.direction + 2) % 4;
   }
 
   placeFood(count: number = 1) {
@@ -99,30 +120,35 @@ export class SnakeComponent implements OnInit {
     switch (event.key) {
       case 'Down': // IE/Edge specific value
       case 'ArrowDown':
-        if (this.direction !== Direction.North) {
+        if (this.lastDirection !== Direction.North) {
           this.direction = Direction.South;
         }
         break;
       case 'Up': // IE/Edge specific value
       case 'ArrowUp':
-        if (this.direction !== Direction.South) {
+        if (this.lastDirection !== Direction.South) {
           this.direction = Direction.North;
         }
         break;
       case 'Left': // IE/Edge specific value
       case 'ArrowLeft':
-        if (this.direction !== Direction.East) {
+        if (this.lastDirection !== Direction.East) {
           this.direction = Direction.West;
         }
         break;
       case 'Right': // IE/Edge specific value
       case 'ArrowRight':
-        if (this.direction !== Direction.West) {
+        if (this.lastDirection !== Direction.West) {
           this.direction = Direction.East;
         }
         break;
       default:
         return;
     }
+  }
+
+  get speed(): number {
+    const step = (this.maxSpeedMs - this.minSpeedMs) / 100;
+    return this.maxSpeedMs - this.speedPercent * step;
   }
 }
