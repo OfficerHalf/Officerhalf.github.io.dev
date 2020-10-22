@@ -61,8 +61,8 @@ export class SnakeComponent implements OnInit {
           this.board[oldTail.y][oldTail.x] = '';
         }
       } else {
-        if (this.speedPercent <= 100) {
-          if (this.capSpeed) {
+        if (this.speedPercent) {
+          if (this.capSpeed === true) {
             this.speedPercent = Math.min(this.speedPercent + this.speedStep, 100);
           } else {
             this.speedPercent = this.speedPercent + this.speedStep;
