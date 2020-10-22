@@ -20,10 +20,12 @@ export class SnakeComponent implements OnInit {
   speedPercent: number;
   speedStep: number;
   lost: boolean;
+  capSpeed: boolean;
 
   constructor() {}
 
   ngOnInit(): void {
+    this.capSpeed = true;
     this.reset();
   }
 
@@ -60,7 +62,11 @@ export class SnakeComponent implements OnInit {
         }
       } else {
         if (this.speedPercent <= 100) {
-          this.speedPercent = Math.min(this.speedPercent + this.speedStep, 100);
+          if (this.capSpeed) {
+            this.speedPercent = Math.min(this.speedPercent + this.speedStep, 100);
+          } else {
+            this.speedPercent = this.speedPercent + this.speedStep;
+          }
         }
         this.placeFood();
         this.start();
@@ -72,7 +78,7 @@ export class SnakeComponent implements OnInit {
 
   start() {
     this.stop();
-    this.running = window.setInterval(() => this.move(), this.speed);
+    this.running = window.setInterval(() => this.move(), Math.max(this.speed, 5));
   }
 
   stop() {
