@@ -1,7 +1,6 @@
 <h1>Snake</h1>
 <h2 *ngIf="lost">GAME OVER</h2>
 <button (click)="start()">Start</button><button (click)="stop()">Stop</button><button (click)="reset()">Reset</button>
-<p>Direction: {{ direction }}</p>
 <p>Length: {{ snake.length }}</p>
 <p>Speed: {{ speedPercent }}%</p>
 <app-board [board]="board"></app-board>
