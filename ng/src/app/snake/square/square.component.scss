@@ -5,4 +5,10 @@ div {
     display: flex;
     justify-content: center;
     align-items: center;
+    &.snake {
+        background-color: green;
+    }
+    &.food {
+        background-color: purple;
+    }
 }
