@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Board, BoardRow, Direction, Snake, UI, Position } from 'src/models/snake';
+import { Board, Direction, Snake, UI, Position } from 'src/models/snake';
 import { createBoard, move as doMove, randomChoice } from 'src/utils/snake';
 
 @Component({
@@ -21,8 +21,6 @@ export class SnakeComponent implements OnInit {
   speedStep: number;
   lost: boolean;
   capSpeed: boolean;
-
-  constructor() {}
 
   ngOnInit(): void {
     this.capSpeed = true;
