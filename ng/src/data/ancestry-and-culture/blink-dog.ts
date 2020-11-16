@@ -1,4 +1,4 @@
-import { Ancestry, Size, Speed, AbilityType, Culture } from 'src/models/ancestry-and-culture';
+import { Ancestry, Size, Speed, AbilityType, Culture, AncestryAndCulture } from 'src/models/ancestry-and-culture';
 
 const ancestry: Ancestry = {
   id: 'ancestry:blinkDog',
@@ -68,4 +68,4 @@ const culture: Culture = {
   ]
 };
 
-export const BlinkDog = { ancestry, culture };
+export const BlinkDog: AncestryAndCulture = { ancestry, culture };

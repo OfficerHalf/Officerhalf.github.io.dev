@@ -1,3 +1,13 @@
+export interface AncestryAndCulture {
+  ancestry: Ancestry;
+  culture: Culture;
+}
+
+export interface Ref {
+  id: string;
+  name: string;
+}
+
 export enum Size {
   Small,
   Medium,

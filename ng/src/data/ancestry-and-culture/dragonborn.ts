@@ -1,4 +1,4 @@
-import { AbilityType, Ancestry, Culture, Size, Speed } from 'src/models/ancestry-and-culture';
+import { AbilityType, Ancestry, AncestryAndCulture, Culture, Size, Speed } from 'src/models/ancestry-and-culture';
 
 const ancestry: Ancestry = {
   id: 'ancestry:dragonborn',
@@ -74,4 +74,4 @@ const culture: Culture = {
   ]
 };
 
-export const Dragonborn = { ancestry, culture };
+export const Dragonborn: AncestryAndCulture = { ancestry, culture };

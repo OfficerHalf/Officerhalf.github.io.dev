@@ -1,1 +1,16 @@
-<p>ancestry works!</p>
+<form [formGroup]="form">
+  <label>
+    Ancestry
+    <select formControlName="ancestry">
+      <option *ngFor="let a of ancestries" [ngValue]="a">{{ a.name }}</option>
+    </select>
+  </label>
+  <label>
+    Culture
+    <select formControlName="culture">
+      <option *ngFor="let c of cultures" [ngValue]="c">{{ c.name }}</option>
+    </select>
+  </label>
+  <app-ancestry *ngIf="ancestry" [ancestry]="ancestry"></app-ancestry>
+  <app-culture *ngIf="culture" [culture]="culture"></app-culture>
+</form>
