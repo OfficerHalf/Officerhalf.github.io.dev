@@ -42,7 +42,8 @@ const ancestry: Ancestry = {
       description: 'Damage Resistance. You have resistance to the damage type associated with your draconic ancestry.',
       type: AbilityType.Resistance
     }
-  ]
+  ],
+  cultures: ['culture:dragonborn']
 };
 
 const culture: Culture = {
@@ -71,7 +72,8 @@ const culture: Culture = {
         'Dragonborn communities are often proud of their draconic heritage. You have advantage on any Intelligence checks to recall information about dragons.',
       type: AbilityType.Skill
     }
-  ]
+  ],
+  ancestries: ['ancestry:dragonborn']
 };
 
-export const Dragonborn: AncestryAndCulture = { ancestry, culture };
+export const Dragonborn: AncestryAndCulture = { ancestry, culture: [culture] };

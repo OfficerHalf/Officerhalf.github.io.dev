@@ -38,7 +38,8 @@ const ancestry: Ancestry = {
         'Blink dogs can teleport short distances several times a day. As a bonus action, you can magically teleport, along with any equipment you are wearing or carrying, up to 40 feet to an unoccupied space you can see. You can use this feature a number of times equal to your Wisdom modifier (a minimum of once). You regain any expended uses when you finish a short or long rest.',
       type: AbilityType.Other
     }
-  ]
+  ],
+  cultures: ['culture:blinkDog']
 };
 
 const culture: Culture = {
@@ -65,7 +66,8 @@ const culture: Culture = {
       description: 'You speak, read, and write Common and Sylvan.',
       type: AbilityType.Language
     }
-  ]
+  ],
+  ancestries: ['ancestry:blinkDog']
 };
 
-export const BlinkDog: AncestryAndCulture = { ancestry, culture };
+export const BlinkDog: AncestryAndCulture = { ancestry, culture: [culture] };

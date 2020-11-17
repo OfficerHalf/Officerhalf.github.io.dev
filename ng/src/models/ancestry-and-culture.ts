@@ -1,6 +1,6 @@
 export interface AncestryAndCulture {
   ancestry: Ancestry;
-  culture: Culture;
+  culture: Culture[];
 }
 
 export interface Ref {
@@ -35,6 +35,7 @@ export enum AbilityType {
   Language,
   Resistance,
   Skill,
+  Speed,
   Other
 }
 
@@ -67,6 +68,7 @@ export interface Ancestry {
     value: number;
   }[];
   abilities: Ability[];
+  cultures: string[];
 }
 
 export interface Culture {
@@ -76,4 +78,5 @@ export interface Culture {
   asi: AbilityScoreIncrease;
   alignment: string;
   abilities: Ability[];
+  ancestries: string[];
 }
