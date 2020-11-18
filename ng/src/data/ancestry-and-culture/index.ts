@@ -1,11 +1,17 @@
+// Imports
 import { Ability, Ancestry, AncestryAndCulture, Culture, Ref } from 'src/models/ancestry-and-culture';
 import { BlinkDog } from './blink-dog';
 import { Dragonborn } from './dragonborn';
 import { Elf } from './elf';
 import { Dwarf } from './dwarf';
 import { Gnome } from './gnome';
+import { Halfling } from './halfling';
+import { Human } from './human';
 
-const all: AncestryAndCulture[] = [BlinkDog, Dragonborn, Dwarf, Elf, Gnome];
+// Register
+const all: AncestryAndCulture[] = [BlinkDog, Dragonborn, Dwarf, Elf, Gnome, Halfling, Human];
+
+// Map
 const reducedAncestries: Ref[] = all.map(each => {
   return { id: each.ancestry.id, name: each.ancestry.name };
 });
