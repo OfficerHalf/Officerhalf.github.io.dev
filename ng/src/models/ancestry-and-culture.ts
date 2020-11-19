@@ -42,7 +42,9 @@ export enum AbilityType {
 export enum Speed {
   Walking,
   Flying,
-  Climbing
+  Climbing,
+  Swimming,
+  Burrowing
 }
 
 export interface Ancestry {
