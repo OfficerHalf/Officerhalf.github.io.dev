@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SnakeModule } from './snake/snake.module';
 import { AncestryAndCultureModule } from './ancestry-and-culture/ancestry-and-culture.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, SnakeModule, AncestryAndCultureModule],
+  imports: [BrowserModule, AppRoutingModule, SnakeModule, AncestryAndCultureModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent]
 })

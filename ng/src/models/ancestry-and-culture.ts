@@ -31,20 +31,20 @@ export interface Ability {
 }
 
 export enum AbilityType {
-  Proficiency,
-  Language,
-  Resistance,
-  Skill,
-  Speed,
-  Other
+  Proficiency = 'Proficiency',
+  Language = 'Language',
+  Resistance = 'Resistance',
+  Skill = 'Skill',
+  Speed = 'Speed',
+  Other = 'Other'
 }
 
 export enum Speed {
-  Walking,
-  Flying,
-  Climbing,
-  Swimming,
-  Burrowing
+  Walking = 'Walking',
+  Flying = 'Flying',
+  Climbing = 'Climbing',
+  Swimming = 'Swimming',
+  Burrowing = 'Burrowing'
 }
 
 export interface Ancestry {
@@ -66,9 +66,12 @@ export interface Ancestry {
     size: Size;
   };
   speed: {
-    mode: Speed;
-    value: number;
-  }[];
+    text: string;
+    modalities: {
+      mode: Speed;
+      value: number;
+    }[];
+  };
   abilities: Ability[];
   cultures: string[];
 }

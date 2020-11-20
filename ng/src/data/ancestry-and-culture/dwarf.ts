@@ -11,12 +11,15 @@ const ancestry: Ancestry = {
     adult: 50,
     old: 350
   },
-  speed: [
-    {
-      mode: Speed.Walking,
-      value: 25
-    }
-  ],
+  speed: {
+    text: 'Your base walking speed is 25 feet. Your speed is not reduced by wearing heavy armor.',
+    modalities: [
+      {
+        mode: Speed.Walking,
+        value: 25
+      }
+    ]
+  },
   size: {
     text: 'Dwarves stand between 4 and 5 feet tall and average about 150 pounds. Your size is Medium.',
     size: Size.Medium,

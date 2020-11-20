@@ -17,7 +17,7 @@ const ancestry: Ancestry = {
     height: { min: 3, max: 4 },
     weight: 40
   },
-  speed: [{ mode: Speed.Walking, value: 25 }],
+  speed: { text: 'Your base walking speed is 25 feet.', modalities: [{ mode: Speed.Walking, value: 25 }] },
   abilities: [
     {
       id: 'ancestry:gnome:ability:darkvision',

@@ -7,9 +7,10 @@ import { Dwarf } from './dwarf';
 import { Gnome } from './gnome';
 import { Halfling } from './halfling';
 import { Human } from './human';
+import { Orc } from './orc';
 
 // Register
-const all: AncestryAndCulture[] = [BlinkDog, Dragonborn, Dwarf, Elf, Gnome, Halfling, Human];
+const all: AncestryAndCulture[] = [BlinkDog, Dragonborn, Dwarf, Elf, Gnome, Halfling, Human, Orc];
 
 // Map
 const reducedAncestries: Ref[] = all.map(each => {

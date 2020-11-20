@@ -15,7 +15,10 @@ const ancestry: Ancestry = {
     text: 'Blink dogs are the size of large dogs like mastiffs. You size is Medium.',
     size: Size.Medium
   },
-  speed: [{ mode: Speed.Walking, value: 40 }],
+  speed: {
+    text: 'Blink dogs are quick on their feet. Your base walking speed is 40 feet.',
+    modalities: [{ mode: Speed.Walking, value: 40 }]
+  },
   abilities: [
     {
       id: 'ancestry:blinkDog:ability:feyCanine',

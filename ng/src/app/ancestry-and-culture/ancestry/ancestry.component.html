@@ -1,4 +1,17 @@
 <h1>{{ ancestry.name }}</h1>
 <p>{{ ancestry.description }}</p>
+<div>
+  <p><b>Age.</b> {{ ancestry.age.text }}</p>
+</div>
+<div>
+  <p><b>Size.</b> {{ ancestry.size.text }}</p>
+</div>
+<div>
+  <p><b>Speed.</b> {{ ancestry.speed.text }}</p>
+</div>
 <hr />
-<app-attribute [name]=""></app-attribute>
+<div *ngFor="let ability of ancestry.abilities">
+  <p>
+    <b>{{ ability.name }}</b> {{ ability.description }}
+  </p>
+</div>

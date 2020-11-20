@@ -19,7 +19,7 @@ const ancestry: Ancestry = {
       max: 6
     }
   },
-  speed: [{ mode: Speed.Walking, value: 30 }],
+  speed: { text: 'Your base walking speed is 30 feet.', modalities: [{ mode: Speed.Walking, value: 30 }] },
   abilities: [
     {
       id: 'ancestry:human:ability:curiosity',
