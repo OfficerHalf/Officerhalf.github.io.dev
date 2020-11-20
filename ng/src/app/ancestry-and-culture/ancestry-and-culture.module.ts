@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { AncestryAndCultureComponent } from './ancestry-and-culture.component';
 import { AncestryAndCultureService } from './ancestry-and-culture.service';
@@ -36,7 +37,8 @@ import { AbilityComponent } from './ability/ability.component';
     MatIconModule,
     MatListModule,
     MatStepperModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDividerModule
   ],
   providers: [AncestryAndCultureService]
 })

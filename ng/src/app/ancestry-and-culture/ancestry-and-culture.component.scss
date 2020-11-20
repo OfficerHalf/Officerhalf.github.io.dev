@@ -18,8 +18,12 @@
 
 .content {
   display: flex;
+  height: calc(100% - 64px);
   .content-tile {
     width: 100%;
     height: 100%;
+    .stepper {
+      height: 100%;
+    }
   }
 }

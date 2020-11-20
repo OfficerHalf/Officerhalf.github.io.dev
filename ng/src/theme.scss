@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$ancestry-and-culture-primary: mat-palette($mat-red);
+$ancestry-and-culture-accent: mat-palette($mat-indigo);
+$ancestry-and-culture-theme: mat-dark-theme(
+  (
+    color: (
+      primary: $ancestry-and-culture-primary,
+      accent: $ancestry-and-culture-accent
+    )
+  )
+);
+
+@include angular-material-theme($ancestry-and-culture-theme);
