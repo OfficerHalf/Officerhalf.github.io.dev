@@ -1,4 +1,4 @@
-import { AbilityType, Ancestry, AncestryAndCulture, Culture, Size, Speed } from 'src/models/ancestry-and-culture';
+import { AbilityType, Ancestry, AncestryAndCulture, Culture, Size, SpeedType } from 'src/models/ancestry-and-culture';
 
 const ancestry: Ancestry = {
   id: 'ancestry:human',
@@ -19,7 +19,7 @@ const ancestry: Ancestry = {
       max: 6
     }
   },
-  speed: { text: 'Your base walking speed is 30 feet.', modalities: [{ mode: Speed.Walking, value: 30 }] },
+  speed: { text: 'Your base walking speed is 30 feet.', modalities: [{ mode: SpeedType.Walking, value: 30 }] },
   abilities: [
     {
       id: 'ancestry:human:ability:curiosity',

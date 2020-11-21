@@ -1,4 +1,4 @@
-import { Ancestry, Size, Speed, AbilityType, Culture, AncestryAndCulture } from 'src/models/ancestry-and-culture';
+import { Ancestry, Size, SpeedType, AbilityType, Culture, AncestryAndCulture } from 'src/models/ancestry-and-culture';
 
 const ancestry: Ancestry = {
   id: 'ancestry:blinkDog',
@@ -17,7 +17,7 @@ const ancestry: Ancestry = {
   },
   speed: {
     text: 'Blink dogs are quick on their feet. Your base walking speed is 40 feet.',
-    modalities: [{ mode: Speed.Walking, value: 40 }]
+    modalities: [{ mode: SpeedType.Walking, value: 40 }]
   },
   abilities: [
     {

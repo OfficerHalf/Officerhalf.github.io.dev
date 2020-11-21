@@ -21,9 +21,18 @@ import { AncestryAndCultureService } from './ancestry-and-culture.service';
 import { AncestryComponent } from './ancestry/ancestry.component';
 import { CultureComponent } from './culture/culture.component';
 import { AbilityComponent } from './ability/ability.component';
+import { AncestryStepComponent } from './ancestry-step/ancestry-step.component';
+import { CultureStepComponent } from './culture-step/culture-step.component';
 
 @NgModule({
-  declarations: [AncestryAndCultureComponent, AncestryComponent, CultureComponent, AbilityComponent],
+  declarations: [
+    AncestryAndCultureComponent,
+    AncestryComponent,
+    CultureComponent,
+    AbilityComponent,
+    AncestryStepComponent,
+    CultureStepComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

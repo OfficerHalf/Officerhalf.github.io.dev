@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-ancestry-and-culture',
@@ -15,41 +16,11 @@ export class AncestryAndCultureComponent {
     shareReplay()
   );
 
-  ancestry: FormGroup = this.formBuilder.group({ ancestry: [''] });
-  culture: FormGroup = this.formBuilder.group({ culture: [''] });
+  currentStepIndex = 0;
 
-  constructor(private breakpointObserver: BreakpointObserver, private readonly formBuilder: FormBuilder) {}
+  constructor(private breakpointObserver: BreakpointObserver) {}
+
+  onSelectionChange(event: StepperSelectionEvent): void {
+    this.currentStepIndex = event.selectedIndex;
+  }
 }
-
-// import { Component, OnInit } from '@angular/core';
-// import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-// import { Ancestry, Culture, Ref } from 'src/models/ancestry-and-culture';
-// import { AncestryAndCultureService } from './ancestry-and-culture.service';
-
-// @Component({
-//   selector: 'app-ancestry-and-culture',
-//   templateUrl: './ancestry-and-culture.component.html',
-//   styleUrls: ['./ancestry-and-culture.component.scss']
-// })
-// export class AncestryAndCultureComponent implements OnInit {
-//   form: FormGroup;
-//   ancestry: FormControl;
-//   culture: FormControl;
-//   ancestries: Ref[];
-//   cultures: Ref[];
-
-//   constructor(private readonly service: AncestryAndCultureService, private readonly formBuilder: FormBuilder) {
-//     this.ancestry = this.formBuilder.control(null);
-//     this.culture = this.formBuilder.control(null);
-//     this.form = this.formBuilder.group({ ancestry: this.ancestry, culture: this.culture });
-//   }
-
-//   ngOnInit(): void {
-//     this.ancestries = this.service.getAncestryList();
-//     this.cultures = this.service.getCultureList();
-//   }
-
-//   displayAncestry(ancestry: Ancestry): string {
-//     return ancestry ? ancestry.name : '';
-//   }
-// }

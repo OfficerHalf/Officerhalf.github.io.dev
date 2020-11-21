@@ -29,18 +29,19 @@
     </mat-toolbar>
     <div class="content">
       <div class="content-tile">
-        <mat-vertical-stepper class="stepper">
+        <mat-vertical-stepper (selectionChange)="onSelectionChange($event)" class="stepper">
           <mat-step label="Select Ancestry">
-            <form [formGroup]="ancestry">abc</form>
+            <app-ancestry-step></app-ancestry-step>
           </mat-step>
           <mat-step label="Select Culture">
-            <form [formGroup]="culture">def</form>
+            <app-culture-step></app-culture-step>
           </mat-step>
           <mat-step label="Generate Race"> ghi </mat-step>
         </mat-vertical-stepper>
       </div>
       <mat-divider [vertical]="true"></mat-divider>
-      <div class="content-tile">info</div>
+      <app-ancestry *ngIf="currentStepIndex === 0"></app-ancestry>
+      <app-culture *ngIf="currentStepIndex === 1"></app-culture>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

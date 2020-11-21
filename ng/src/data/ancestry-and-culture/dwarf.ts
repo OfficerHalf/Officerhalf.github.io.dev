@@ -1,4 +1,4 @@
-import { AbilityType, Ancestry, AncestryAndCulture, Culture, Size, Speed } from 'src/models/ancestry-and-culture';
+import { AbilityType, Ancestry, AncestryAndCulture, Culture, Size, SpeedType } from 'src/models/ancestry-and-culture';
 
 const ancestry: Ancestry = {
   id: 'ancestry:dwarf',
@@ -15,7 +15,7 @@ const ancestry: Ancestry = {
     text: 'Your base walking speed is 25 feet. Your speed is not reduced by wearing heavy armor.',
     modalities: [
       {
-        mode: Speed.Walking,
+        mode: SpeedType.Walking,
         value: 25
       }
     ]

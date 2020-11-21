@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
-import { Ancestry } from 'src/models/ancestry-and-culture';
+import { AncestryAndCultureService } from '../ancestry-and-culture.service';
 
 @Component({
   selector: 'app-ancestry',
@@ -7,9 +7,11 @@ import { Ancestry } from 'src/models/ancestry-and-culture';
   styleUrls: ['./ancestry.component.scss']
 })
 export class AncestryComponent implements OnInit {
-  @Input() ancestry: Ancestry;
+  constructor(readonly service: AncestryAndCultureService) {}
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.service.ancestry$.subscribe(value => {
+      console.log(value);
+    });
+  }
 }

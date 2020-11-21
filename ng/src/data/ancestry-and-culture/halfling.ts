@@ -1,4 +1,4 @@
-import { AbilityType, Ancestry, AncestryAndCulture, Culture, Size, Speed } from 'src/models/ancestry-and-culture';
+import { AbilityType, Ancestry, AncestryAndCulture, Culture, Size, SpeedType } from 'src/models/ancestry-and-culture';
 
 const ancestry: Ancestry = {
   id: 'ancestry:halfling',
@@ -18,7 +18,7 @@ const ancestry: Ancestry = {
     },
     weight: 40
   },
-  speed: { text: 'Your base walking speed is 25 feet.', modalities: [{ mode: Speed.Walking, value: 25 }] },
+  speed: { text: 'Your base walking speed is 25 feet.', modalities: [{ mode: SpeedType.Walking, value: 25 }] },
   abilities: [
     {
       id: 'ancestry:halfling:ability:halflingNimbleness',
