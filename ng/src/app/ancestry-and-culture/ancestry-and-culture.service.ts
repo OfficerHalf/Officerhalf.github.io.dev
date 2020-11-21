@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Ability, Ancestry, Culture, Ref } from 'src/models/ancestry-and-culture';
 import data from 'src/data/ancestry-and-culture';
-import { Subject, of, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
