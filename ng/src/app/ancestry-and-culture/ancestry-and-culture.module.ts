@@ -23,6 +23,8 @@ import { CultureComponent } from './culture/culture.component';
 import { AbilityComponent } from './ability/ability.component';
 import { AncestryStepComponent } from './ancestry-step/ancestry-step.component';
 import { CultureStepComponent } from './culture-step/culture-step.component';
+import { GenerateRaceStepComponent } from './generate-race-step/generate-race-step.component';
+import { TraitDisplayComponent } from './trait-display/trait-display.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { CultureStepComponent } from './culture-step/culture-step.component';
     CultureComponent,
     AbilityComponent,
     AncestryStepComponent,
-    CultureStepComponent
+    CultureStepComponent,
+    GenerateRaceStepComponent,
+    TraitDisplayComponent
   ],
   imports: [
     CommonModule,

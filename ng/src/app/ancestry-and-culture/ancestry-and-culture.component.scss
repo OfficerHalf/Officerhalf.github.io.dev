@@ -17,7 +17,8 @@
 }
 
 .content {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   height: calc(100% - 64px);
   .content-tile {
     width: 100%;

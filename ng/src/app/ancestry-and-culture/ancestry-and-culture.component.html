@@ -36,12 +36,12 @@
           <mat-step label="Select Culture">
             <app-culture-step></app-culture-step>
           </mat-step>
-          <mat-step label="Generate Race"> ghi </mat-step>
+          <mat-step label="Generate Race"><app-generate-race-step></app-generate-race-step></mat-step>
         </mat-vertical-stepper>
       </div>
-      <mat-divider [vertical]="true"></mat-divider>
       <app-ancestry *ngIf="currentStepIndex === 0"></app-ancestry>
       <app-culture *ngIf="currentStepIndex === 1"></app-culture>
+      <app-trait-display *ngIf="currentStepIndex === 2"></app-trait-display>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

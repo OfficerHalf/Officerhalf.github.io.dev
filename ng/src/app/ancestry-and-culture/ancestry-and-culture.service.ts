@@ -9,6 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AncestryAndCultureService {
   public ancestry$: BehaviorSubject<Ancestry> = new BehaviorSubject(null);
   public culture$: BehaviorSubject<Culture> = new BehaviorSubject(null);
+  public trait$: BehaviorSubject<Ability> = new BehaviorSubject(null);
 
   constructor() {}
 
@@ -19,6 +20,10 @@ export class AncestryAndCultureService {
 
   setCurrentCulture(newCulture: Culture | null): void {
     this.culture$.next(newCulture);
+  }
+
+  setCurrentTrait(newTrait: Ability | null): void {
+    this.trait$.next(newTrait);
   }
 
   // API / data

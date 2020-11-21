@@ -1,4 +1,16 @@
-<ng-template *ngIf="service.culture$ | async">
+<div *ngIf="service.culture$ | async">
   <h1>{{ (service.culture$ | async).name }}</h1>
   <p>{{ (service.culture$ | async).description }}</p>
-</ng-template>
+  <div>
+    <p><b>Ability Score Increase.</b> {{ (service.culture$ | async).asi }}</p>
+  </div>
+  <div>
+    <p><b>Alignment.</b> {{ (service.culture$ | async).alignment }}</p>
+  </div>
+  <hr />
+  <div *ngFor="let ability of (service.culture$ | async).abilities">
+    <p>
+      <b>{{ ability.name }}</b> {{ ability.description }}
+    </p>
+  </div>
+</div>
