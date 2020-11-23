@@ -1,0 +1,5 @@
+<mat-selection-list (selectionChange)="onSelectionChange($event)" [multiple]="false">
+  <mat-list-option *ngFor="let ancestry of ancestries" [value]="ancestry">
+    {{ ancestry.name }}
+  </mat-list-option>
+</mat-selection-list>

@@ -1,0 +1,19 @@
+<div *ngIf="service.ancestry$ | async">
+  <h1>{{ (service.ancestry$ | async).name }}</h1>
+  <p>{{ (service.ancestry$ | async).description }}</p>
+  <div>
+    <p><b>Age.</b> {{ (service.ancestry$ | async).age.text }}</p>
+  </div>
+  <div>
+    <p><b>Size.</b> {{ (service.ancestry$ | async).size.text }}</p>
+  </div>
+  <div>
+    <p><b>Speed.</b> {{ (service.ancestry$ | async).speed.text }}</p>
+  </div>
+  <hr />
+  <div *ngFor="let ability of (service.ancestry$ | async).abilities">
+    <p>
+      <b>{{ ability.name }}</b> {{ ability.description }}
+    </p>
+  </div>
+</div>
