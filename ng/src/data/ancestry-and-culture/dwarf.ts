@@ -31,12 +31,6 @@ const ancestry: Ancestry = {
   },
   abilities: [
     {
-      id: 'ancestry:dwarf:ability:walkingSpeed',
-      name: 'Walking Speed',
-      description: 'You are not slowed by armor.',
-      type: AbilityType.Speed
-    },
-    {
       id: 'ancestry:dwarf:ability:darkvision',
       name: 'Darkvision',
       description:
