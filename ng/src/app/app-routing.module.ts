@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AncestryAndCultureComponent } from './ancestry-and-culture/ancestry-and-culture.component';
-import { SnakeComponent } from './snake/snake.component';
 
 const routes: Routes = [
   {
     path: 'snake',
-    component: SnakeComponent
+    loadChildren: () => import('./snake/snake.module').then(m => m.SnakeModule)
   },
   {
     path: 'ancestry-and-culture',
-    component: AncestryAndCultureComponent
+    loadChildren: () =>
+      import('./ancestry-and-culture/ancestry-and-culture.module').then(m => m.AncestryAndCultureModule)
   }
 ];
 
