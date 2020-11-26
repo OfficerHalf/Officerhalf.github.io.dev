@@ -2,15 +2,107 @@
 
 @include mat-core();
 
-$ancestry-and-culture-primary: mat-palette($mat-red);
-$ancestry-and-culture-accent: mat-palette($mat-indigo);
-$ancestry-and-culture-theme: mat-dark-theme(
+$palette-primary: (
+  50: #70bdb6,
+  100: #5fb5ad,
+  200: #4faba3,
+  300: #479a92,
+  400: #3f8882,
+  500: #377771,
+  600: #2f6660,
+  700: #275450,
+  800: #1f433f,
+  900: #17312f,
+  A100: #82c5bf,
+  A200: #93cdc8,
+  A400: #a5d5d1,
+  A700: #0f201e,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $light-primary-text
+  )
+);
+
+// var customAccent = {
+$palette-accent: (
+  50: #167d5e,
+  100: #19936e,
+  200: #1da97e,
+  300: #21be8f,
+  400: #25d49f,
+  500: #36dcaa,
+  600: #62e4bc,
+  700: #77e8c5,
+  800: #8debcf,
+  900: #a3efd8,
+  A100: #62e4bc,
+  A200: #4ce0b3,
+  A400: #36dcaa,
+  A700: #b9f3e1,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $light-primary-text
+  )
+);
+
+$theme-primary: mat-palette($palette-primary);
+$theme-accent: mat-palette($palette-accent);
+$theme-light: mat-light-theme(
   (
     color: (
-      primary: $ancestry-and-culture-primary,
-      accent: $ancestry-and-culture-accent
+      primary: $theme-primary,
+      accent: $theme-accent
+    )
+  )
+);
+$theme-dark: mat-dark-theme(
+  (
+    color: (
+      primary: $theme-primary,
+      accent: $theme-accent
     )
   )
 );
 
-@include angular-material-theme($ancestry-and-culture-theme);
+// Space
+$xxs: 2px;
+$xs: 2px;
+$s: 8px;
+$sm: 12px;
+$m: 16px;
+$l: 24px;
+$xl: 32px;
+$xxl: 64px;
+$xxxl: 96px;
+
+.theme-dark {
+  @include angular-material-theme($theme-dark);
+}
+
+.theme-light {
+  @include angular-material-theme($theme-light);
+}

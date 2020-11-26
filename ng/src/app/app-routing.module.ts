@@ -10,6 +10,10 @@ const routes: Routes = [
     path: 'ancestry-and-culture',
     loadChildren: () =>
       import('./ancestry-and-culture/ancestry-and-culture.module').then(m => m.AncestryAndCultureModule)
+  },
+  {
+    path: 'top-five',
+    loadChildren: () => import('./top-five/top-five.module').then(m => m.TopFiveModule)
   }
 ];
 

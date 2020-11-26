@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Board, Direction, Snake, UI, Position } from 'src/models/snake';
-import { createBoard, move as doMove, randomChoice } from 'src/utils/snake';
+import { createBoard, move as doMove, randomChoice } from 'src/util/snake';
 
 @Component({
   selector: 'app-snake',
