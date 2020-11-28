@@ -88,17 +88,6 @@ $theme-dark: mat-dark-theme(
   )
 );
 
-// Space
-$xxs: 2px;
-$xs: 2px;
-$s: 8px;
-$sm: 12px;
-$m: 16px;
-$l: 24px;
-$xl: 32px;
-$xxl: 64px;
-$xxxl: 96px;
-
 .theme-dark {
   @include angular-material-theme($theme-dark);
 }

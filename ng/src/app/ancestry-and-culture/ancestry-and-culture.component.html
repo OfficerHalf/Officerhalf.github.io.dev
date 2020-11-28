@@ -1,47 +1,25 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false"
-  >
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async"
-      >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>Ancestry and Culture</span>
-    </mat-toolbar>
-    <div class="content">
-      <div class="content-tile">
-        <mat-vertical-stepper (selectionChange)="onSelectionChange($event)" class="stepper">
-          <mat-step label="Select Ancestry">
-            <app-ancestry-step></app-ancestry-step>
-          </mat-step>
-          <mat-step label="Select Culture">
-            <app-culture-step></app-culture-step>
-          </mat-step>
-          <mat-step label="Generate Race"><app-generate-race-step></app-generate-race-step></mat-step>
-        </mat-vertical-stepper>
-      </div>
-      <app-ancestry *ngIf="currentStepIndex === 0"></app-ancestry>
-      <app-culture *ngIf="currentStepIndex === 1"></app-culture>
-      <app-trait-display *ngIf="currentStepIndex === 2"></app-trait-display>
+<div class="ancestry-and-culture">
+  <mat-form-field>
+    <mat-label>Mixed Ancestry Chance</mat-label>
+    <input matInput type="text" [(ngModel)]="multipleAncestryChance" />
+    <button mat-button matSuffix mat-icon-button aria-label="Reset" (click)="multipleAncestryChance = 20">
+      <mat-icon>undo</mat-icon>
+    </button>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Same Culture Chance</mat-label>
+    <input matInput type="text" [(ngModel)]="sameCultureChance" />
+    <button mat-button matSuffix mat-icon-button aria-label="Reset" (click)="sameCultureChance = 40">
+      <mat-icon>undo</mat-icon>
+    </button>
+  </mat-form-field>
+  <button mat-button (click)="generate()">Generate</button>
+  <div *ngIf="currentAncestries && currentCulture">
+    <h2>Ancestry</h2>
+    <div class="ancestries">
+      <span *ngFor="let a of currentAncestries" class="ancestry">{{ a.option }}</span>
     </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <h2>Culture</h2>
+    <span class="culture">{{ currentCulture.option }}</span>
+  </div>
+</div>

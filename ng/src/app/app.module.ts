@@ -12,6 +12,8 @@ import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MobileFirstService } from './services/mobile-first.service';
+import { ThemeService } from './services/theme.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatSlideToggleModule,
     MatListModule
   ],
-  providers: [],
+  providers: [MobileFirstService, ThemeService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

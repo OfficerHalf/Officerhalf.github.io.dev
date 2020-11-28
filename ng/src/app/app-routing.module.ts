@@ -7,13 +7,18 @@ const routes: Routes = [
     loadChildren: () => import('./snake/snake.module').then(m => m.SnakeModule)
   },
   {
-    path: 'ancestry-and-culture',
+    path: 'ancestry-and-culture-full',
     loadChildren: () =>
-      import('./ancestry-and-culture/ancestry-and-culture.module').then(m => m.AncestryAndCultureModule)
+      import('./ancestry-and-culture-full/ancestry-and-culture.module').then(m => m.AncestryAndCultureModule)
   },
   {
     path: 'top-five',
     loadChildren: () => import('./top-five/top-five.module').then(m => m.TopFiveModule)
+  },
+  {
+    path: 'ancestry-and-culture',
+    loadChildren: () =>
+      import('./ancestry-and-culture/ancestry-and-culture.module').then(m => m.AncestryAndCultureModule)
   }
 ];
 
