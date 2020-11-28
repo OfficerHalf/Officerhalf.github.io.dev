@@ -10,8 +10,10 @@ import { ancestries, cultures } from './data/ancestries-cultures';
 export class AncestryAndCultureComponent implements OnInit {
   ancestries: WeightedAncestry[];
   cultures: WeightedOption[];
-  sameCultureChance: number = 60;
-  multipleAncestryChance: number = 20;
+  defaultSameCultureChance = 80;
+  defaultMultipleAncestryChance = 20;
+  sameCultureChance = 80;
+  multipleAncestryChance = 20;
   currentAncestries: WeightedAncestry[];
   currentCulture: WeightedOption;
 

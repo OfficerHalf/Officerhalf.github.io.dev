@@ -2,14 +2,26 @@
   <mat-form-field>
     <mat-label>Mixed Ancestry Chance</mat-label>
     <input matInput type="text" [(ngModel)]="multipleAncestryChance" />
-    <button mat-button matSuffix mat-icon-button aria-label="Reset" (click)="multipleAncestryChance = 20">
+    <button
+      mat-button
+      matSuffix
+      mat-icon-button
+      aria-label="Reset"
+      (click)="multipleAncestryChance = defaultMultipleAncestryChance"
+    >
       <mat-icon>undo</mat-icon>
     </button>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Same Culture Chance</mat-label>
     <input matInput type="text" [(ngModel)]="sameCultureChance" />
-    <button mat-button matSuffix mat-icon-button aria-label="Reset" (click)="sameCultureChance = 40">
+    <button
+      mat-button
+      matSuffix
+      mat-icon-button
+      aria-label="Reset"
+      (click)="sameCultureChance = defaultSameCultureChance"
+    >
       <mat-icon>undo</mat-icon>
     </button>
   </mat-form-field>
