@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeightedAncestry, WeightedOption } from './interfaces/WeightedOption';
-import { ancestries, cultures } from './data/ancestries-cultures';
+import { ancestries, cultures, geographicCultures, planarCultures } from './data/ancestries-cultures';
 
 @Component({
   selector: 'app-ancestry-and-culture',
@@ -10,16 +10,22 @@ import { ancestries, cultures } from './data/ancestries-cultures';
 export class AncestryAndCultureComponent implements OnInit {
   ancestries: WeightedAncestry[];
   cultures: WeightedOption[];
+  geographicCultures: WeightedOption[];
+  planarCultures: WeightedOption[];
   defaultSameCultureChance = 80;
   defaultMultipleAncestryChance = 20;
   sameCultureChance = 80;
   multipleAncestryChance = 20;
   currentAncestries: WeightedAncestry[];
   currentCulture: WeightedOption;
+  currentGeographicCulture: WeightedOption;
+  currentPlanarCulture: WeightedOption;
 
   constructor() {
     this.ancestries = ancestries;
     this.cultures = cultures;
+    this.geographicCultures = geographicCultures;
+    this.planarCultures = planarCultures;
   }
 
   ngOnInit(): void {}
@@ -27,6 +33,8 @@ export class AncestryAndCultureComponent implements OnInit {
   generate(): void {
     this.currentAncestries = this.randomAncestry();
     this.currentCulture = this.randomCulture(this.currentAncestries);
+    this.currentGeographicCulture = this.weightedRandom(this.geographicCultures);
+    this.currentPlanarCulture = this.weightedRandom(this.planarCultures);
   }
 
   private randomAncestry(): WeightedAncestry[] {
@@ -61,8 +69,6 @@ export class AncestryAndCultureComponent implements OnInit {
   private weightedRandom<T extends WeightedOption>(options: T[]): T {
     // Prepare
     const sorted = [...options].sort((a, b) => b.weight - a.weight);
-    console.log('Sorted');
-    console.log(sorted);
     let cumulativeSum = 0;
     const segments: number[] = [];
     sorted.forEach(opt => {
@@ -70,14 +76,8 @@ export class AncestryAndCultureComponent implements OnInit {
       segments.push(cumulativeSum);
     });
 
-    console.log('Segments');
-    console.log(segments);
-
     // Generate random
     const result = this.randomNumber(cumulativeSum);
-
-    console.log('Random Result');
-    console.log(result);
 
     // Find the result
     for (let i = 0; i < sorted.length; i++) {

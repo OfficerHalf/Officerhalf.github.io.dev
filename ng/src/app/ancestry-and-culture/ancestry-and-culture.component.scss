@@ -2,10 +2,7 @@
 
 .ancestry-and-culture {
     margin: $l;
-    display: flex;
-    flex-direction: column;
-    .ancestries {
-        display: flex;
-        flex-direction: column;
+    .result-card {
+        margin: $m 0;
     }
 }

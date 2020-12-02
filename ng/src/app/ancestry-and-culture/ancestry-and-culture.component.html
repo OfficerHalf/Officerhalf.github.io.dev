@@ -1,37 +1,74 @@
 <div class="ancestry-and-culture">
-  <mat-form-field>
-    <mat-label>Mixed Ancestry Chance</mat-label>
-    <input matInput type="text" [(ngModel)]="multipleAncestryChance" />
-    <button
-      mat-button
-      matSuffix
-      mat-icon-button
-      aria-label="Reset"
-      (click)="multipleAncestryChance = defaultMultipleAncestryChance"
-    >
-      <mat-icon>undo</mat-icon>
-    </button>
-  </mat-form-field>
-  <mat-form-field>
-    <mat-label>Same Culture Chance</mat-label>
-    <input matInput type="text" [(ngModel)]="sameCultureChance" />
-    <button
-      mat-button
-      matSuffix
-      mat-icon-button
-      aria-label="Reset"
-      (click)="sameCultureChance = defaultSameCultureChance"
-    >
-      <mat-icon>undo</mat-icon>
-    </button>
-  </mat-form-field>
-  <button mat-button (click)="generate()">Generate</button>
-  <div *ngIf="currentAncestries && currentCulture">
-    <h2>Ancestry</h2>
-    <div class="ancestries">
-      <span *ngFor="let a of currentAncestries" class="ancestry">{{ a.option }}</span>
-    </div>
-    <h2>Culture</h2>
-    <span class="culture">{{ currentCulture.option }}</span>
+  <mat-card>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Mixed Ancestry Chance</mat-label>
+            <input matInput type="text" [(ngModel)]="multipleAncestryChance" />
+            <button
+              mat-button
+              matSuffix
+              mat-icon-button
+              aria-label="Reset"
+              (click)="multipleAncestryChance = defaultMultipleAncestryChance"
+            >
+              <mat-icon>undo</mat-icon>
+            </button>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-form-field>
+            <mat-label>Same Culture Chance</mat-label>
+            <input matInput type="text" [(ngModel)]="sameCultureChance" />
+            <button
+              mat-button
+              matSuffix
+              mat-icon-button
+              aria-label="Reset"
+              (click)="sameCultureChance = defaultSameCultureChance"
+            >
+              <mat-icon>undo</mat-icon>
+            </button>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item>
+          <button mat-raised-button color="primary" (click)="generate()">Generate</button>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+  <div *ngIf="currentAncestries && currentCulture && currentGeographicCulture && currentPlanarCulture">
+    <mat-card class="result-card">
+      <mat-card-header>
+        <mat-card-title>Ancestry and Culture</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <div matSubheader>Ancestries</div>
+          <mat-list-item *ngFor="let a of currentAncestries">{{ a.option }}</mat-list-item>
+          <mat-divider></mat-divider>
+          <div matSubheader>Culture</div>
+          <mat-list-item>{{ currentCulture.option }}</mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="result-card">
+      <mat-card-header>
+        <mat-card-title>Geographic and Planar Culture</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>
+            These cultures are optional and modify any given culture by replacing cultural traits.
+          </mat-list-item>
+          <div matSubheader>Geographic</div>
+          <mat-list-item>{{ currentGeographicCulture.option }}</mat-list-item>
+          <mat-divider></mat-divider>
+          <div matSubheader>Planar</div>
+          <mat-list-item>{{ currentPlanarCulture.option }}</mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>

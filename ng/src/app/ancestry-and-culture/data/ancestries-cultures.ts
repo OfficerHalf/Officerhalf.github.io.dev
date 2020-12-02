@@ -66,3 +66,31 @@ export const cultures: WeightedOption[] = [
   { option: 'Hobgoblin', weight: 4 },
   { option: 'Leonin', weight: 6 }
 ];
+
+export const geographicCultures: WeightedOption[] = [
+  { option: 'Arctic', weight: 10 },
+  { option: 'Coastal', weight: 10 },
+  { option: 'Desert', weight: 10 },
+  { option: 'Forest', weight: 10 },
+  { option: 'Grassland', weight: 10 },
+  { option: 'Mountain', weight: 10 },
+  { option: 'Swamp', weight: 10 },
+  { option: 'Subterranean', weight: 10 },
+  { option: 'Underwater', weight: 10 },
+  { option: 'Urban', weight: 10 }
+];
+
+export const planarCultures: WeightedOption[] = [
+  { option: 'Astral Plane', weight: 10 },
+  { option: 'Elemental Plane (Earth)', weight: 10 },
+  { option: 'Elemental Plane (Air)', weight: 10 },
+  { option: 'Elemental Plane (Fire)', weight: 10 },
+  { option: 'Elemental Plane (Water)', weight: 10 },
+  { option: 'Ethereal Plane', weight: 10 },
+  { option: 'Lower Planes (Abyssal)', weight: 10 },
+  { option: 'Lower Planes (Infernal)', weight: 10 },
+  { option: 'Outer Realms', weight: 10 },
+  { option: 'Plane of Faerie', weight: 10 },
+  { option: 'Plane of Shadows', weight: 10 },
+  { option: 'Upper Planes', weight: 10 }
+];
