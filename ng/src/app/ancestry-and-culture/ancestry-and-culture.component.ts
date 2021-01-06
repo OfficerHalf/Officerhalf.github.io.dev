@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { WeightedAncestry, WeightedOption } from './interfaces/WeightedOption';
 import { ancestries, cultures, geographicCultures, planarCultures } from './data/ancestries-cultures';
-import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-ancestry-and-culture',
@@ -19,24 +18,15 @@ export class AncestryAndCultureComponent implements OnInit {
   currentPlanarCulture: WeightedOption;
 
   // Form
-  ignoreWeights = new FormControl(false);
-  lockAncestry = new FormControl(false);
-  lockCulture = new FormControl(false);
-  lockGeographicCulture = new FormControl(false);
-  lockPlanarCulture = new FormControl(false);
+  ignoreWeights = false;
+  lockAncestry = false;
+  lockCulture = false;
+  lockGeographicCulture = false;
+  lockPlanarCulture = false;
   defaultSameCultureChance = 80;
   defaultMultipleAncestryChance = 20;
-  sameCultureChance = new FormControl(this.defaultSameCultureChance);
-  multipleAncestryChance = new FormControl(this.defaultMultipleAncestryChance);
-  form = new FormGroup({
-    ignoreWeights: this.ignoreWeights,
-    lockAncestry: this.lockAncestry,
-    lockCulture: this.lockCulture,
-    lockGeographicCulture: this.lockGeographicCulture,
-    lockPlanarCulture: this.lockPlanarCulture,
-    sameCultureChance: this.sameCultureChance,
-    multipleAncestryChance: this.multipleAncestryChance
-  });
+  sameCultureChance = this.defaultSameCultureChance;
+  multipleAncestryChance = this.defaultMultipleAncestryChance;
 
   constructor() {
     this.ancestries = ancestries;
@@ -48,26 +38,27 @@ export class AncestryAndCultureComponent implements OnInit {
   ngOnInit(): void {}
 
   generate(): void {
-    this.currentAncestries = this.randomAncestry();
-    this.currentCulture = this.randomCulture(this.currentAncestries);
-    this.currentGeographicCulture = this.weightedRandom(this.geographicCultures);
-    this.currentPlanarCulture = this.weightedRandom(this.planarCultures);
+    if (!this.lockAncestry) {
+      this.currentAncestries = this.randomAncestry();
+    }
+    if (!this.lockCulture) {
+      this.currentCulture = this.randomCulture(this.currentAncestries);
+    }
+    if (!this.lockGeographicCulture) {
+      this.currentGeographicCulture = this.weightedRandom(this.geographicCultures);
+    }
+    if (!this.lockPlanarCulture) {
+      this.currentPlanarCulture = this.weightedRandom(this.planarCultures);
+    }
   }
 
   private randomAncestry(): WeightedAncestry[] {
-    let result: WeightedAncestry;
-    if (!this.ignoreWeights) {
-      result = this.weightedRandom(this.ancestries);
-    } else {
-      result = this.unweightedRandom(this.ancestries);
-    }
+    const result = this.resolvedRandom(this.ancestries);
 
     // Should this be mixed ancestry?
     const random = this.randomNumber(100);
-    if (random < this.multipleAncestryChance.value && !this.ignoreWeights) {
-      return [result, this.weightedRandom(this.ancestries)];
-    } else if (random < this.multipleAncestryChance.value && this.ignoreWeights) {
-      return [result, this.unweightedRandom(this.ancestries)];
+    if (random < this.multipleAncestryChance) {
+      return [result, this.resolvedRandom(this.ancestries)];
     } else {
       return [result];
     }
@@ -77,12 +68,12 @@ export class AncestryAndCultureComponent implements OnInit {
     // Same culture?
     const sameCulture = this.randomNumber(100);
 
-    if (sameCulture < this.sameCultureChance.value && ancestries) {
-      const ancestry = this.weightedRandom(ancestries);
-      const culture = this.weightedRandom(this.cultures.filter(c => ancestry.match.includes(c.option)));
+    if (sameCulture < this.sameCultureChance && ancestries) {
+      const ancestry = this.resolvedRandom(ancestries);
+      const culture = this.resolvedRandom(this.cultures.filter(c => ancestry.match.includes(c.option)));
       return culture;
     } else {
-      return this.weightedRandom(this.cultures);
+      return this.resolvedRandom(this.cultures);
     }
   }
 
@@ -90,8 +81,13 @@ export class AncestryAndCultureComponent implements OnInit {
     return Math.floor(Math.random() * max);
   }
 
-  // should call weighted/unweighted based on current state
-  private resolvedRandom;
+  private resolvedRandom<T extends WeightedOption>(options: T[]): T {
+    if (this.ignoreWeights) {
+      return this.unweightedRandom(options);
+    } else {
+      return this.weightedRandom(options);
+    }
+  }
 
   private unweightedRandom<T>(options: T[]): T {
     const index = this.randomNumber(options.length);

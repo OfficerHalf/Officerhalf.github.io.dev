@@ -1,8 +1,9 @@
 <div class="ancestry-and-culture">
   <mat-card>
     <mat-card-content>
-      <mat-list>
-        <mat-list-item>
+      <div>
+        <div>
+          <mat-slider thumbLabel [(ngModel)]="multipleAncestryChance"></mat-slider>
           <mat-form-field>
             <mat-label>Mixed Ancestry Chance</mat-label>
             <input matInput type="text" [(ngModel)]="multipleAncestryChance" />
@@ -16,8 +17,6 @@
               <mat-icon>undo</mat-icon>
             </button>
           </mat-form-field>
-        </mat-list-item>
-        <mat-list-item>
           <mat-form-field>
             <mat-label>Same Culture Chance</mat-label>
             <input matInput type="text" [(ngModel)]="sameCultureChance" />
@@ -31,11 +30,14 @@
               <mat-icon>undo</mat-icon>
             </button>
           </mat-form-field>
-        </mat-list-item>
-        <mat-list-item>
+        </div>
+        <div>
+          <mat-checkbox [(ngModel)]="ignoreWeights">Ignore Weights</mat-checkbox>
+        </div>
+        <div>
           <button mat-raised-button color="primary" (click)="generate()">Generate</button>
-        </mat-list-item>
-      </mat-list>
+        </div>
+      </div>
     </mat-card-content>
   </mat-card>
   <div *ngIf="currentAncestries && currentCulture && currentGeographicCulture && currentPlanarCulture">
@@ -47,9 +49,11 @@
         <mat-list>
           <div matSubheader>Ancestries</div>
           <mat-list-item *ngFor="let a of currentAncestries">{{ a.option }}</mat-list-item>
+          <mat-checkbox [(ngModel)]="lockAncestry">Lock</mat-checkbox>
           <mat-divider></mat-divider>
           <div matSubheader>Culture</div>
           <mat-list-item>{{ currentCulture.option }}</mat-list-item>
+          <mat-checkbox [(ngModel)]="lockCulture">Lock</mat-checkbox>
         </mat-list>
       </mat-card-content>
     </mat-card>
@@ -64,9 +68,11 @@
           </mat-list-item>
           <div matSubheader>Geographic</div>
           <mat-list-item>{{ currentGeographicCulture.option }}</mat-list-item>
+          <mat-checkbox [(ngModel)]="lockGeographicCulture">Lock</mat-checkbox>
           <mat-divider></mat-divider>
           <div matSubheader>Planar</div>
           <mat-list-item>{{ currentPlanarCulture.option }}</mat-list-item>
+          <mat-checkbox [(ngModel)]="lockPlanarCulture">Lock</mat-checkbox>
         </mat-list>
       </mat-card-content>
     </mat-card>
