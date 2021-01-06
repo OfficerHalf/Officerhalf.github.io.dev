@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Material
 import { MatInputModule } from '@angular/material/input';
@@ -20,6 +20,7 @@ import { AncestryAndCultureComponent } from './ancestry-and-culture.component';
     MatInputModule,
     MatIconModule,
     FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
     MatListModule
