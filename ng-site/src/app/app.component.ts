@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import halfmoon from 'src/util/halfmoon';
@@ -14,9 +14,9 @@ export class AppComponent {
   title = 'ng-site';
   darkMode$: Observable<boolean>;
 
-  constructor(private readonly router: Router, private readonly theme: ThemeService) {
+  constructor(private readonly router: Router, private route: ActivatedRoute, private readonly theme: ThemeService) {
     // Call halfmoon.onDOMContentLoaded any time the route changes
-    router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(() => {
+    this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(e => {
       halfmoon.onDOMContentLoaded();
     });
     this.darkMode$ = theme.darkMode;
