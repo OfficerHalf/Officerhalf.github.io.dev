@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import halfmoon from 'src/util/halfmoon';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  toggleSidebar() {
+    halfmoon.toggleSidebar();
   }
-
 }

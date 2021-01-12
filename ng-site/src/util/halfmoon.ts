@@ -1,5 +1,3 @@
-import { KeyboardEventHandler, MouseEventHandler } from 'react';
-
 interface StickyAlert {
   content: string;
   title?: string;
@@ -23,9 +21,14 @@ interface Halfmoon {
   toggleModal: (modalId: string) => void;
   toastAlert: (alertId: string, timeShown: number) => void;
   initStickyAlert: (alert: StickyAlert) => void;
-  clickHandler: MouseEventHandler;
-  keydownHandler: KeyboardEventHandler;
+  clickHandler: (event: MouseEvent) => void;
+  keydownHandler: (event: KeyboardEvent) => void;
+  onDOMContentLoaded: () => void;
 }
 
 declare const halfmoonOnDOMContentLoaded: () => void;
 declare const halfmoon: Halfmoon;
+
+halfmoon.onDOMContentLoaded = halfmoonOnDOMContentLoaded;
+
+export default halfmoon;
