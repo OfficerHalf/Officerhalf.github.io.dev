@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import halfmoon from 'src/util/halfmoon';
-import { ThemeService } from './theme/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -12,21 +10,11 @@ import { ThemeService } from './theme/theme.service';
 })
 export class AppComponent {
   title = 'ng-site';
-  darkMode$: Observable<boolean>;
 
-  constructor(private readonly router: Router, private route: ActivatedRoute, private readonly theme: ThemeService) {
+  constructor(private readonly router: Router) {
     // Call halfmoon.onDOMContentLoaded any time the route changes
     this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(e => {
       halfmoon.onDOMContentLoaded();
     });
-    this.darkMode$ = theme.darkMode;
-  }
-
-  onToggleSidebarClick() {
-    halfmoon.toggleSidebar();
-  }
-
-  onToggleThemeClick() {
-    this.theme.toggleTheme();
   }
 }

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ThemeService } from './theme.service';
+import { HalfmoonService } from './halfmoon.service';
 
-describe('ThemeService', () => {
-  let service: ThemeService;
+describe('HalfmoonService', () => {
+  let service: HalfmoonService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ThemeService);
+    service = TestBed.inject(HalfmoonService);
   });
 
   it('should be created', () => {
