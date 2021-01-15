@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { BlogPost } from '../interfaces/blog-post';
+import { BlogService } from '../services/blog.service';
 
 @Component({
   selector: 'app-post-list',
@@ -6,10 +10,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post-list.component.scss']
 })
 export class PostListComponent implements OnInit {
+  blogPosts$: Observable<BlogPost[]>;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private readonly blogService: BlogService, private readonly router: Router) {
+    this.blogPosts$ = blogService.posts$;
   }
 
+  ngOnInit(): void {}
+
+  onCardClick(slug: string): void {
+    this.router.navigateByUrl(`/blog/post/${slug}`);
+  }
 }

@@ -1,1 +1,28 @@
-<p>post-list works!</p>
+<div class="post-list__wrapper">
+  <div class="container post-list">
+    <div class="row row-cols-2">
+      <div *ngFor="let post of blogPosts$ | async" class="col">
+        <div class="card post-card m-3" (click)="onCardClick(post.slug)">
+          <div *ngIf="post.featured_image; else vertical" class="row p-0 m-0">
+            <div class="col-md-4 p-0 featured-image__container">
+              <img class="featured-image__image" [src]="post.featured_image" [alt]="post.meta_description" />
+            </div>
+            <div class="col-md-8 p-0">
+              <ng-container *ngTemplateOutlet="cardBody; context: { post: post }"></ng-container>
+            </div>
+          </div>
+          <ng-template #vertical>
+            <ng-container *ngTemplateOutlet="cardBody; context: { post: post }"></ng-container>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #cardBody let-post="post">
+  <div class="card-body">
+    <h5 class="card-title">{{ post.title }}</h5>
+    <p class="card-text">{{ post.summary }}</p>
+  </div>
+</ng-template>

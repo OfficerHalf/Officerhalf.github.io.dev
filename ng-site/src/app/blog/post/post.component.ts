@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { AfterViewChecked, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -18,7 +19,8 @@ export class PostComponent implements OnInit, AfterViewChecked {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly blogService: BlogService,
-    private readonly prismService: PrismService
+    private readonly prismService: PrismService,
+    private readonly viewportScroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
