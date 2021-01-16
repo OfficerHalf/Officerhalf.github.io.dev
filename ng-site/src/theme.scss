@@ -1,5 +1,9 @@
 /* Bootswatch Overrides*/
-$primary:       scale-color(#C1707E, $lightness: -5%);
+// $primary: scale-color(#a25538, $saturation: -18%);
+$primary: #377771;
+$secondary: #25384D;
+$link-color: scale-color($secondary, $lightness: 25%, $saturation: 60%);
+// $primary:       scale-color(#C1707E, $lightness: -5%);
 
 /* Default Theme */
-@import "~bootswatch/dist/darkly/variables";
+@import "~bootswatch/dist/flatly/variables";

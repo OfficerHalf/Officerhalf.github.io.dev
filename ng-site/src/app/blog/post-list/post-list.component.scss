@@ -1,10 +1,16 @@
 @import "../../../theme.scss";
 
 .post-list {
+    &__featured {
+
+    }
+    &__wrapper {
+        background-color: scale-color($secondary, $saturation: -40%);
+    }
     .post-card {
         max-width: 580px;
+        overflow: hidden;
         &:hover {
-            background-color: rgba($dark, 0.6);
             cursor: pointer;
         }
         .featured-image {

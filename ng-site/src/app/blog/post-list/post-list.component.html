@@ -1,8 +1,17 @@
+<div *ngIf="featuredPost$ | async as post" class="post-list__featured container">
+  <div class="jumbotron my-3 py-4">
+    <h1 class="display-4">{{ post!.title }}</h1>
+    <p class="lead">Latest Post</p>
+    <hr class="my-4" />
+    <p>{{ post!.summary }}</p>
+    <a class="btn btn-primary btn-lg" routerLink="/blog/post/{{ post!.slug }}" role="button">Read</a>
+  </div>
+</div>
 <div class="post-list__wrapper">
   <div class="container post-list">
     <div class="row row-cols-2">
       <div *ngFor="let post of blogPosts$ | async" class="col">
-        <div class="card post-card m-3" (click)="onCardClick(post.slug)">
+        <div class="card shadow post-card my-3 border-0" (click)="onCardClick(post.slug)">
           <div *ngIf="post.featured_image; else vertical" class="row p-0 m-0">
             <div class="col-md-4 p-0 featured-image__container">
               <img class="featured-image__image" [src]="post.featured_image" [alt]="post.meta_description" />
