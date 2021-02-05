@@ -1,0 +1,72 @@
+@import '../variables.scss';
+
+.reveal-wrapper {
+  .text-wrapper {
+    position: relative;
+    display: inline-block;
+    .text {
+      margin: 0;
+      padding: 0;
+    }
+    .reveal {
+      top: 0;
+      position: absolute;
+      width: 0%;
+      background-color: $red;
+      animation-timing-function: ease-in;
+      animation-direction: forwards;
+    }
+  }
+
+  &.toRight {
+    .reveal {
+      animation-name: doRevealRight;
+    }
+  }
+
+  &.toLeft {
+    .reveal {
+      animation-name: doRevealLeft;
+    }
+  }
+
+  &.title {
+    height: 46px;
+    .reveal {
+      height: 46px;
+      animation-duration: 0.5s;
+    }
+  }
+
+  &.bio {
+    height: 23px;
+    .reveal {
+      animation-fill-mode: backwards;
+      height: 23px;
+      animation-delay: 0.5s;
+      animation-duration: 0.5s;
+    }
+  }
+}
+
+@keyframes doRevealRight {
+  0% {
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    width: 0;
+    left: 100%;
+  }
+}
+
+@keyframes doRevealLeft {
+  0% {
+    width: 100%;
+    right: 0;
+  }
+  100% {
+    width: 0;
+    right: 100%;
+  }
+}

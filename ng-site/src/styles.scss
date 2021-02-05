@@ -1,0 +1,16 @@
+@import './variables.scss';
+
+body {
+    background-color: black;
+    color: $red;
+    font-family: "Rajdhani", "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+    font-size: 18px;
+}
+
+::selection, ::-moz-selection {
+    background: $yellow;
+}
+
+h1, h2, h3 {
+    text-transform: uppercase;
+}
