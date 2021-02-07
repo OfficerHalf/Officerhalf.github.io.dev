@@ -15,6 +15,7 @@
       background-color: $red;
       animation-timing-function: ease-in;
       animation-direction: forwards;
+      animation-fill-mode: backwards;
     }
   }
 
@@ -35,15 +36,15 @@
     .reveal {
       height: 46px;
       animation-duration: 0.5s;
+      animation-delay: 1s;
     }
   }
 
   &.bio {
     height: 23px;
     .reveal {
-      animation-fill-mode: backwards;
       height: 23px;
-      animation-delay: 0.5s;
+      animation-delay: 1.5s;
       animation-duration: 0.5s;
     }
   }
