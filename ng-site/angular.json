@@ -150,9 +150,8 @@
           "options": {
             "browserTarget": "ng-site:build:production",
             "serverTarget": "ng-site:server:production",
-            "routes": [
-              "/"
-            ]
+            "routes": [],
+            "routesFile": ".routefile"
           },
           "configurations": {
             "production": {}

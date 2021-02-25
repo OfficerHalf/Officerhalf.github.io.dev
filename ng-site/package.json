@@ -11,7 +11,8 @@
     "dev:ssr": "ng run ng-site:serve-ssr",
     "serve:ssr": "node dist/ng-site/server/main.js",
     "build:ssr": "ng build --prod && ng run ng-site:server:production",
-    "prerender": "ng run ng-site:prerender"
+    "prerender": "npm run route-list && ng run ng-site:prerender",
+    "route-list": "ts-node --compiler-options \"{\\\"module\\\": \\\"commonjs\\\", \\\"target\\\": \\\"ES2017\\\"}\" src/prerender.ts"
   },
   "private": true,
   "dependencies": {
@@ -46,6 +47,7 @@
     "@types/node": "^12.11.1",
     "@typescript-eslint/eslint-plugin": "4.3.0",
     "@typescript-eslint/parser": "4.3.0",
+    "axios": "^0.21.1",
     "eslint": "^7.6.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsdoc": "30.7.6",
