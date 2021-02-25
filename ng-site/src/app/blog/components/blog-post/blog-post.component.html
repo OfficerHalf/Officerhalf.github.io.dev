@@ -1,0 +1,10 @@
+<a routerLink="/blog/list">Back to post list.</a>
+<div *ngIf="postData | async as post; else fourOhFour">
+  <h1>{{ post!.title }}</h1>
+  <div class="body" [innerHTML]="post!.body"></div>
+</div>
+<ng-template #fourOhFour>
+  <div>
+    Couldn't find a post.
+  </div>
+</ng-template>
