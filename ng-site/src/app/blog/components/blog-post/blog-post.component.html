@@ -1,0 +1,5 @@
+<p>Post!</p>
+<span>{{ postData$ | async }}</span>
+<div *ngIf="postData$ | async as post">
+  <h1>{{ post.data.title }}</h1>
+</div>
