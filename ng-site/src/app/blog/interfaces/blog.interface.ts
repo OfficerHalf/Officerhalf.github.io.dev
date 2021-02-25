@@ -20,8 +20,8 @@ export interface Author {
 
 export interface BlogPostMetadata {
   url: string;
-  created: Date;
-  published: Date;
+  created: string;
+  published: string;
   author: Author;
   categories: Ref[];
   tags: Ref[];
@@ -51,7 +51,7 @@ export interface ListResponse {
     next_page: string | null;
     previous_page: string | null;
   };
-  data: BlogPostMetadata[];
+  data: BlogPost[];
 }
 
 export interface RetrieveResponse {

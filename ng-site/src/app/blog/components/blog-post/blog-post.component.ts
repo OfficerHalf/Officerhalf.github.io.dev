@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { RetrieveResponse } from '../../interfaces/blog.interface';
-import { BlogApiService } from '../../services/blog-api.service';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { BlogPost } from '../../interfaces/blog.interface';
+import { BlogService } from '../../services/blog.service';
 
 @Component({
   selector: 'app-blog-post',
@@ -10,15 +10,12 @@ import { BlogApiService } from '../../services/blog-api.service';
   styleUrls: ['./blog-post.component.scss']
 })
 export class BlogPostComponent implements OnInit {
-  postData$: Observable<RetrieveResponse> = new Observable();
+  postData = new BehaviorSubject<BlogPost | undefined>(undefined);
 
-  constructor(private route: ActivatedRoute, private readonly blogService: BlogApiService) {}
+  constructor(private route: ActivatedRoute, private readonly blogService: BlogService) {}
 
   ngOnInit(): void {
     const slug = this.route.snapshot.paramMap.get('slug') as string;
-    this.postData$ = this.blogService.getBlogPost(slug);
-    this.postData$.subscribe(resp => {
-      console.log(resp);
-    });
+    this.postData.next(this.blogService.getPost(slug));
   }
 }

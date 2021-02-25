@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ListResponse } from './app/blog/interfaces/blog.interface';
+import { BlogPost, ListResponse } from './app/blog/interfaces/blog.interface';
 import { environment as env } from './environments/environment';
 import { promises } from 'fs';
 
@@ -8,8 +8,13 @@ const getPostList = async () => {
     headers: { Authorization: `Token ${env.butter}` }
   });
   // const response = await (butter.post.list({ excludeBody: true }) as Promise<ApiResponse<ListResponse>>);
-  const posts = response.data.data;
-  await promises.writeFile('./.routefile', posts.map(p => `/blog/post/${p.slug}`).join('\n'), 'utf-8');
+  const postList = response.data.data;
+  const postMap: Record<string, number> = {};
+  postList.forEach((post, index) => {
+    postMap[post.slug] = index;
+  });
+  await promises.writeFile('./src/.postlist.json', JSON.stringify(postList), 'utf-8');
+  await promises.writeFile('./src/.postmap.json', JSON.stringify(postMap), 'utf-8');
 };
 
 getPostList();
