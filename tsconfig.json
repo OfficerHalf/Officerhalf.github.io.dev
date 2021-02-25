@@ -17,5 +17,5 @@
     "noEmit": true,
     "lib": ["dom", "es2015", "es2016"]
   },
-  "exclude": ["artifacts/**/*", "dist/**/*", "public/**/*", "node_modules", "backup/**/*", "ng"]
+  "exclude": ["artifacts/**/*", "dist/**/*", "public/**/*", "node_modules", "backup/**/*", "ng", "ng-site"]
 }
