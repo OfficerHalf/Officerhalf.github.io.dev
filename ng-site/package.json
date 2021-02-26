@@ -14,8 +14,8 @@
     "build:ssr": "ng build --prod && ng run ng-site:server:production",
     "prerender": "npm run route-list && ng run ng-site:prerender",
     "route-list": "ts-node --compiler-options \"{\\\"module\\\": \\\"commonjs\\\", \\\"target\\\": \\\"ES2017\\\"}\" src/prerender.ts",
-    "copy": "cp src/__redirects dist/ng-site/browser/__redirects",
-    "copy:ssr": "cp src/__redirects dist/ng-site/server/__redirects"
+    "copy": "cp src/_redirects dist/ng-site/browser/_redirects",
+    "copy:ssr": "cp src/_redirects dist/ng-site/server/_redirects"
   },
   "private": true,
   "dependencies": {
