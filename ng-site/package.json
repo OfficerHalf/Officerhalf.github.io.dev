@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:prod": "npm run route-list && ng build --prod",
+    "build:prod": "npm run copy && npm run route-list && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -13,7 +13,9 @@
     "serve:ssr": "node dist/ng-site/server/main.js",
     "build:ssr": "ng build --prod && ng run ng-site:server:production",
     "prerender": "npm run route-list && ng run ng-site:prerender",
-    "route-list": "ts-node --compiler-options \"{\\\"module\\\": \\\"commonjs\\\", \\\"target\\\": \\\"ES2017\\\"}\" src/prerender.ts"
+    "route-list": "ts-node --compiler-options \"{\\\"module\\\": \\\"commonjs\\\", \\\"target\\\": \\\"ES2017\\\"}\" src/prerender.ts",
+    "copy": "cp src/__redirects dist/ng-site/browser/__redirects",
+    "copy:ssr": "cp src/__redirects dist/ng-site/server/__redirects"
   },
   "private": true,
   "dependencies": {
