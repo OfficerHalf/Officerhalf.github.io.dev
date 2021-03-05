@@ -1,0 +1,9 @@
+<div *ngIf="mapData | async as map; else fourOhFour">
+  <h1>{{ map!.name }}</h1>
+  <div class="body" [innerHTML]="map!.fields.description"></div>
+</div>
+<ng-template #fourOhFour>
+  <div>
+    Couldn't find a map.
+  </div>
+</ng-template>

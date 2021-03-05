@@ -3,6 +3,19 @@ export interface Ref {
   slug: string;
 }
 
+export enum BattlemapType {
+  Dungeondraft = 'dungeondraft',
+  Wonderdraft = 'wonderdraft',
+  DungeonBuilder = 'dungeon-builder',
+  Other = 'other'
+}
+
+export interface BasicMetadata {
+  published: string;
+  slug: string;
+  updated: string;
+}
+
 export interface Author {
   first_name: string;
   last_name: string;
@@ -18,21 +31,19 @@ export interface Author {
   profile_image: string | null;
 }
 
-export interface BlogPostMetadata {
+export interface BlogPostMetadata extends BasicMetadata {
+  status: string;
   url: string;
   created: string;
-  published: string;
   author: Author;
   categories: Ref[];
   tags: Ref[];
   featured_image: string | null;
   featured_image_alt: string | null;
-  slug: string;
   title: string;
   summary: string;
   seo_title: string;
   meta_description: string;
-  status: string;
 }
 
 export interface BlogPost extends BlogPostMetadata {
@@ -45,13 +56,30 @@ export interface PostSummary {
   featured_image: string | null;
 }
 
-export interface ListResponse {
+export interface BattlemapPage extends BasicMetadata {
+  name: string;
+  page_type: 'battlemap';
+  fields: {
+    description: string;
+    images: {
+      title: string;
+      map: string;
+    }[];
+    download_links: {
+      text: string;
+      url: string;
+    }[];
+    made_in: BattlemapType;
+  };
+}
+
+export interface ListResponse<T> {
   meta: {
     count: number;
-    next_page: string | null;
-    previous_page: string | null;
+    next_page: number | null;
+    previous_page: number | null;
   };
-  data: BlogPost[];
+  data: T[];
 }
 
 export interface RetrieveResponse {

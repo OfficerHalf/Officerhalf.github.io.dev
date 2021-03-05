@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'uses', component: UsesComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'projects', loadChildren: () => import('./projects/projects.module').then(m => m.ProjectsModule) },
+  { path: 'battlemaps', loadChildren: () => import('./battlemaps/battlemaps.module').then(m => m.BattlemapsModule) },
   { path: '', component: HomepageComponent }
 ];
 
