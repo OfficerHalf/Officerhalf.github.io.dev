@@ -1,6 +1,10 @@
 <div *ngIf="mapData | async as map; else fourOhFour">
   <h1>{{ map!.name }}</h1>
   <div class="body" [innerHTML]="map!.fields.description"></div>
+  <div class="map" *ngFor="let image of map!.fields.images">
+    <img class="map__image" [src]="image.map" />
+    <p class="map__title">{{ image.title }}</p>
+  </div>
 </div>
 <ng-template #fourOhFour>
   <div>
