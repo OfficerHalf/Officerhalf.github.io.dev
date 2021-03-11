@@ -5,12 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { UsesComponent } from './components/uses/uses.component';
-import { NavComponent } from './components/nav/nav.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
-  declarations: [AppComponent, HomepageComponent, UsesComponent, NavComponent, ContactComponent],
-  imports: [BrowserModule.withServerTransition({ appId: 'serverApp' }), AppRoutingModule],
+  declarations: [AppComponent, HomepageComponent, UsesComponent, ContactComponent],
+  imports: [BrowserModule.withServerTransition({ appId: 'serverApp' }), SharedModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent]
 })
