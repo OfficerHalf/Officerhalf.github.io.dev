@@ -1,7 +1,9 @@
 import axios, { AxiosResponse } from 'axios';
-import { BattlemapPage, BlogPost, ListResponse } from './app/blog/interfaces/blog.interface';
+import { BlogPost } from './app/blog/interfaces/blog.interface';
 import { environment as env } from './environments/environment';
 import { promises } from 'fs';
+import { ListResponse } from './app/shared/interfaces/butter.interface';
+import { BattlemapPage } from './app/battlemaps/interfaces/battlemap.interface';
 
 const butter = 'https://api.buttercms.com/v2';
 

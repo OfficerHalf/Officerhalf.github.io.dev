@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { BattlemapPage } from 'src/app/blog/interfaces/blog.interface';
+import { BattlemapPage } from '../../interfaces/battlemap.interface';
 import { BattlemapService } from '../../services/battlemap.service';
 
 @Component({

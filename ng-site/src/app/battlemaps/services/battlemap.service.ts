@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BattlemapPage } from '../../blog/interfaces/blog.interface';
+import { BattlemapPage } from '../interfaces/battlemap.interface';
 
 import BattlemapList from '../../../.battlemaplist.json';
 import BattlemapMap from '../../../.battlemapmap.json';
