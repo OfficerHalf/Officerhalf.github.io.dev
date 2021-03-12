@@ -1,0 +1,10 @@
+#blog-post {
+  max-width: 680px;
+  font-size: 19px;
+  line-height: 30px;
+  .body {
+    iframe {
+      border: 0;
+    }
+  }
+}

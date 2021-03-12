@@ -82,11 +82,13 @@ export interface ListResponse<T> {
   data: T[];
 }
 
+export interface RetrieveResponseMeta {
+  next_post: PostSummary | null;
+  previous_post: PostSummary | null;
+}
+
 export interface RetrieveResponse {
-  meta: {
-    next_post: PostSummary | null;
-    previous_post: PostSummary | null;
-  };
+  meta: RetrieveResponseMeta;
   data: BlogPost;
 }
 
