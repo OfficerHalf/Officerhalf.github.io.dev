@@ -1,20 +1,5 @@
-export interface Ref {
-  name: string;
-  slug: string;
-}
-
-export enum BattlemapType {
-  Dungeondraft = 'dungeondraft',
-  Wonderdraft = 'wonderdraft',
-  DungeonBuilder = 'dungeon-builder',
-  Other = 'other'
-}
-
-export interface BasicMetadata {
-  published: string;
-  slug: string;
-  updated: string;
-}
+import { SafeHtml } from '@angular/platform-browser';
+import { BasicMetadata, Ref } from '../../shared/interfaces/butter.interface';
 
 export interface Author {
   first_name: string;
@@ -56,32 +41,6 @@ export interface PostSummary {
   featured_image: string | null;
 }
 
-export interface BattlemapPage extends BasicMetadata {
-  name: string;
-  page_type: 'battlemap';
-  fields: {
-    description: string;
-    images: {
-      title: string;
-      map: string;
-    }[];
-    download_links: {
-      text: string;
-      url: string;
-    }[];
-    made_in: BattlemapType;
-  };
-}
-
-export interface ListResponse<T> {
-  meta: {
-    count: number;
-    next_page: number | null;
-    previous_page: number | null;
-  };
-  data: T[];
-}
-
 export interface RetrieveResponseMeta {
   next_post: PostSummary | null;
   previous_post: PostSummary | null;
@@ -92,6 +51,13 @@ export interface RetrieveResponse {
   data: BlogPost;
 }
 
-export interface ApiResponse<T> {
-  data: T;
+export interface BlogPostExtendedData {
+  data: BlogPost;
+  body: SafeHtml;
+  meta: RetrieveResponseMeta;
+  dates: {
+    created: Date;
+    published: Date;
+    updated: Date;
+  };
 }

@@ -1,13 +1,16 @@
-<div id="blog-post" *ngIf="postData | async as post; else fourOhFour">
-  <h1>{{ post!.title }}</h1>
-  <div class="body" [innerHTML]="postBody | async"></div>
+<div id="blog-post" *ngIf="blogPost | async as post; else fourOhFour">
+  <div class="header">
+    <h1>{{ post.data.title }}</h1>
+    <small>{{ post.dates.published }}</small>
+  </div>
+  <div class="body" [innerHTML]="post.body"></div>
   <div class="footer">
-    <div *ngIf="postMeta | async as meta" class="next-prev">
-      <a *ngIf="meta!.previous_post" [routerLink]="['/blog/post', meta!.previous_post!.slug]">
-        <<< {{ meta!.previous_post!.title }}
+    <div *ngIf="post.meta.next_post || post.meta.previous_post" class="next-prev">
+      <a *ngIf="post.meta.previous_post !== null" [routerLink]="['/blog/post', post.meta.previous_post!.slug]">
+        <<< {{ post.meta.previous_post!.title }}
       </a>
-      <a *ngIf="meta!.next_post" [routerLink]="['/blog/post', meta!.next_post!.slug]">
-        {{ meta!.next_post!.title }} >>>
+      <a *ngIf="post.meta.next_post !== null" [routerLink]="['/blog/post', post.meta.next_post!.slug]">
+        {{ post.meta.next_post!.title }} >>>
       </a>
     </div>
   </div>

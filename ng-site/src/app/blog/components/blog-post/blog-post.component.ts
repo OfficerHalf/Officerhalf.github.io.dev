@@ -3,7 +3,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { BlogPost, RetrieveResponseMeta } from '../../interfaces/blog.interface';
+import { BlogPostExtendedData } from '../../interfaces/blog.interface';
 import { BlogService } from '../../services/blog.service';
 
 @Component({
@@ -13,9 +13,7 @@ import { BlogService } from '../../services/blog.service';
   encapsulation: ViewEncapsulation.None
 })
 export class BlogPostComponent implements OnInit, OnDestroy {
-  postData = new BehaviorSubject<BlogPost | undefined>(undefined);
-  postBody = new BehaviorSubject<SafeHtml | undefined>(undefined);
-  postMeta = new BehaviorSubject<RetrieveResponseMeta | undefined>(undefined);
+  blogPost = new BehaviorSubject<BlogPostExtendedData>((undefined as unknown) as BlogPostExtendedData);
   private readonly destroy = new Subject();
 
   constructor(
@@ -29,9 +27,16 @@ export class BlogPostComponent implements OnInit, OnDestroy {
       const slug = paramMap.get('slug') as string;
       const post = this.blogService.getPost(slug);
       if (post) {
-        this.postData.next(post.data);
-        this.postBody.next(this.sanitizer.bypassSecurityTrustHtml(post.data.body));
-        this.postMeta.next(post.meta);
+        this.blogPost.next({
+          data: post.data,
+          body: this.sanitizer.bypassSecurityTrustHtml(post.data.body),
+          meta: post.meta,
+          dates: {
+            created: new Date(post.data.created),
+            published: new Date(post.data.published),
+            updated: new Date(post.data.updated)
+          }
+        });
       }
     });
   }
