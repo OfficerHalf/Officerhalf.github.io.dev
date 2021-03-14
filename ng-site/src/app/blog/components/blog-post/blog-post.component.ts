@@ -5,9 +5,7 @@ import {
   ElementRef,
   OnDestroy,
   OnInit,
-  QueryList,
   ViewChild,
-  ViewChildren,
   ViewEncapsulation
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -30,7 +28,7 @@ export class BlogPostComponent implements OnInit, OnDestroy, AfterViewInit, Afte
   blogPost = new BehaviorSubject<BlogPostExtendedData>((undefined as unknown) as BlogPostExtendedData);
   private readonly destroy = new Subject();
   private markForCheck = false;
-  @ViewChildren('body') bodyElement!: QueryList<ElementRef<HTMLDivElement>>;
+  @ViewChild('body') private bodyElement!: ElementRef<HTMLDivElement>;
 
   constructor(
     private route: ActivatedRoute,
@@ -60,21 +58,12 @@ export class BlogPostComponent implements OnInit, OnDestroy, AfterViewInit, Afte
   }
 
   ngAfterViewInit(): void {
-    this.bodyElement.changes.pipe(takeUntil(this.destroy)).subscribe(() => {
-      if (this.bodyElement) {
-        const body = this.bodyElement.first.nativeElement;
-        const images = body.querySelectorAll('img');
-        images.forEach(img => {
-          img.style.cursor = 'pointer';
-          img.onclick = () => this.openImageModal(img);
-        });
-      }
-    });
+    this.updateImageElements();
   }
 
   ngAfterViewChecked(): void {
-    if (this.bodyElement && this.markForCheck) {
-      this.bodyElement.notifyOnChanges();
+    if (this.markForCheck) {
+      this.updateImageElements();
       this.markForCheck = false;
     }
   }
@@ -90,5 +79,16 @@ export class BlogPostComponent implements OnInit, OnDestroy, AfterViewInit, Afte
       alt: image.alt,
       text: image.alt
     });
+  }
+
+  private updateImageElements(): void {
+    if (this.bodyElement) {
+      const body = this.bodyElement.nativeElement;
+      const images = body.querySelectorAll('img');
+      images.forEach(img => {
+        img.style.cursor = 'pointer';
+        img.onclick = () => this.openImageModal(img);
+      });
+    }
   }
 }
