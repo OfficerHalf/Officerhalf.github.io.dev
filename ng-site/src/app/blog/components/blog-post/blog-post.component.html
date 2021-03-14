@@ -3,7 +3,7 @@
     <h1>{{ post.data.title }}</h1>
     <small>{{ post.dates.published }}</small>
   </div>
-  <div class="body" [innerHTML]="post.body"></div>
+  <div #body class="body" [innerHTML]="post.body"></div>
   <div class="footer">
     <div *ngIf="post.meta.next_post || post.meta.previous_post" class="next-prev">
       <a *ngIf="post.meta.previous_post !== null" [routerLink]="['/blog/post', post.meta.previous_post!.slug]">

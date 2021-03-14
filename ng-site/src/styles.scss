@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import './variables.scss';
+@import '~@angular/cdk/overlay-prebuilt.css';
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
@@ -17,4 +18,15 @@ a:active {
     color: $light;
     text-decoration: underline;
   }
+}
+
+/* Modal Styles */
+.modal-backdrop {
+  background-color: rgba(10, 10, 10, 0.86);
+}
+.modal {
+  background-color: $background;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 2rem;
 }

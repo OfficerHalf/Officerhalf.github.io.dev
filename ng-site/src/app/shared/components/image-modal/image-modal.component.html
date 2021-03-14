@@ -1,0 +1,4 @@
+<div class="image-modal-wrapper">
+  <img class="image" [src]="data.src" [alt]="data.alt" />
+  <p *ngIf="data.text !== undefined && data.text !== 'undefined'" class="text">{{ data.text }}</p>
+</div>
