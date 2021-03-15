@@ -1,10 +1,23 @@
 #blog-post {
-  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-size: 19px;
   line-height: 30px;
-  .body {
-    iframe {
-      border: 0;
+  .wrapper {
+    max-width: 680px;
+    .body {
+      iframe {
+        border: 0;
+      }
+      img {
+        display: block;
+        max-width: 90%;
+        max-height: 300px;
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
   }
 }
