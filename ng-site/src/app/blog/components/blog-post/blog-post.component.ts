@@ -18,6 +18,7 @@ import { BlogPostExtendedData } from '../../interfaces/blog.interface';
 import { BlogService } from '../../services/blog.service';
 import { ImageModalData } from 'src/app/shared/interfaces/modal.interface';
 import { ViewportScroller } from '@angular/common';
+import { CodeHighlightService } from 'src/app/shared/services/code-highlight.service';
 
 @Component({
   selector: 'app-blog-post',
@@ -36,7 +37,8 @@ export class BlogPostComponent implements OnInit, OnDestroy, AfterViewInit, Afte
     private readonly blogService: BlogService,
     private readonly sanitizer: DomSanitizer,
     private readonly modalService: ModalService,
-    private readonly scroller: ViewportScroller
+    private readonly scroller: ViewportScroller,
+    private readonly highlighter: CodeHighlightService
   ) {}
 
   ngOnInit(): void {
@@ -67,6 +69,7 @@ export class BlogPostComponent implements OnInit, OnDestroy, AfterViewInit, Afte
   ngAfterViewChecked(): void {
     if (this.markForCheck) {
       this.updateImageElements();
+      this.highlighter.highlightAll();
       this.markForCheck = false;
     }
   }

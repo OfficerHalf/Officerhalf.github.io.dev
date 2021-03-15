@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 @import './variables.scss';
 @import '~@angular/cdk/overlay-prebuilt.css';
+// PrismJs
+@import './prismjs-alloy.css';
+@import '~prismjs/plugins/line-numbers/prism-line-numbers.css';
 
 /* Box Sizing */
 html {
