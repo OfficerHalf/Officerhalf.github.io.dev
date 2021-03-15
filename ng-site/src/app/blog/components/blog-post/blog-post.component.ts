@@ -93,6 +93,8 @@ export class BlogPostComponent implements OnInit, OnDestroy, AfterViewInit, Afte
       const images = body.querySelectorAll('img');
       images.forEach(img => {
         img.style.cursor = 'pointer';
+        img.removeAttribute('width');
+        img.removeAttribute('height');
         img.onclick = () => this.openImageModal(img);
       });
     }
