@@ -17,6 +17,7 @@ import { ImageModalComponent } from '../../../shared/components/image-modal/imag
 import { BlogPostExtendedData } from '../../interfaces/blog.interface';
 import { BlogService } from '../../services/blog.service';
 import { ImageModalData } from 'src/app/shared/interfaces/modal.interface';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-blog-post',
@@ -34,7 +35,8 @@ export class BlogPostComponent implements OnInit, OnDestroy, AfterViewInit, Afte
     private route: ActivatedRoute,
     private readonly blogService: BlogService,
     private readonly sanitizer: DomSanitizer,
-    private readonly modalService: ModalService
+    private readonly modalService: ModalService,
+    private readonly scroller: ViewportScroller
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +54,7 @@ export class BlogPostComponent implements OnInit, OnDestroy, AfterViewInit, Afte
             updated: new Date(post.data.updated)
           }
         });
+        this.scroller.scrollToPosition([0, 0]);
         this.markForCheck = true;
       }
     });
