@@ -40,8 +40,8 @@ export class ImageCompareSliderComponent {
   holdSlider(event: MouseEvent | TouchEvent): void {
     event.preventDefault();
     this.held = true;
-    window.addEventListener('mouseup', this.releaseSlider.bind(this));
-    window.addEventListener('touchend', this.releaseSlider.bind(this));
+    window.addEventListener('mouseup', this.releaseSlider.bind(this), { once: true });
+    window.addEventListener('touchend', this.releaseSlider.bind(this), { once: true });
   }
 
   releaseSlider(event: MouseEvent | TouchEvent): void {
