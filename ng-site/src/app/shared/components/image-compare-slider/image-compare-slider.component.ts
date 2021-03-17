@@ -40,15 +40,15 @@ export class ImageCompareSliderComponent {
   holdSlider(event: MouseEvent | TouchEvent): void {
     event.preventDefault();
     this.held = true;
-    window.addEventListener('mouseup', event => this.releaseSlider(event));
-    window.addEventListener('touchend', event => this.releaseSlider(event));
+    window.addEventListener('mouseup', this.releaseSlider.bind(this));
+    window.addEventListener('touchend', this.releaseSlider.bind(this));
   }
 
   releaseSlider(event: MouseEvent | TouchEvent): void {
     event.preventDefault();
     this.held = false;
-    window.removeEventListener('mouseup', event => this.releaseSlider(event));
-    window.removeEventListener('touchend', event => this.releaseSlider(event));
+    window.removeEventListener('mouseup', this.releaseSlider.bind(this));
+    window.removeEventListener('touchend', this.releaseSlider.bind(this));
   }
 
   getSliderPosition(x: number): string {
