@@ -1,0 +1,16 @@
+<div class="wrapper" [style.maxWidth]="maxWidth">
+  <div #comparer class="comparer">
+    <div #left class="container left" [style.width]="sliderPosition.toString() + '%'">
+      <img [src]="leftSrc" />
+    </div>
+    <div #right class="container right">
+      <img [src]="rightSrc" />
+    </div>
+    <div
+      class="slider"
+      (mousedown)="holdSlider($event)"
+      (touchstart)="holdSlider($event)"
+      [style.left]="getSliderPosition(sliderPosition)"
+    ></div>
+  </div>
+</div>

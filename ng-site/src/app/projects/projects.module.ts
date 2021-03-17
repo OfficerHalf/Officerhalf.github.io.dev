@@ -5,13 +5,10 @@ import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectsComponent } from './projects.component';
 import { AlloyComponent } from './components/alloy/alloy.component';
 import { HomebreweryComponent } from './components/homebrewery/homebrewery.component';
-
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [ProjectsComponent, AlloyComponent, HomebreweryComponent],
-  imports: [
-    CommonModule,
-    ProjectsRoutingModule
-  ]
+  imports: [CommonModule, SharedModule, ProjectsRoutingModule]
 })
-export class ProjectsModule { }
+export class ProjectsModule {}

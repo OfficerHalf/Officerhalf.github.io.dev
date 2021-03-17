@@ -6,11 +6,11 @@ import { NavComponent } from './components/nav/nav.component';
 import { RouterModule } from '@angular/router';
 import { ImageModalComponent } from './components/image-modal/image-modal.component';
 import { ModalComponent } from './components/modal/modal.component';
-import { ModalService } from './services/modal.service';
+import { ImageCompareSliderComponent } from './components/image-compare-slider/image-compare-slider.component';
 
 @NgModule({
-  declarations: [LayoutComponent, NavComponent, ImageModalComponent, ModalComponent],
-  exports: [LayoutComponent, NavComponent, ImageModalComponent, ModalComponent],
+  declarations: [LayoutComponent, NavComponent, ImageModalComponent, ModalComponent, ImageCompareSliderComponent],
+  exports: [LayoutComponent, NavComponent, ImageModalComponent, ModalComponent, ImageCompareSliderComponent],
   imports: [CommonModule, OverlayModule, RouterModule]
 })
 export class SharedModule {}
