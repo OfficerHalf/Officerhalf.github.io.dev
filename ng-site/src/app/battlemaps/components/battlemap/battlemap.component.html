@@ -1,9 +1,11 @@
-<div *ngIf="mapData | async as map; else fourOhFour">
-  <h1>{{ map!.name }}</h1>
-  <div class="body" [innerHTML]="map!.fields.description"></div>
-  <div class="map" *ngFor="let image of map!.fields.images">
-    <img class="map__image" [src]="image.map" />
-    <p class="map__title">{{ image.title }}</p>
+<div *ngIf="mapData | async as map; else fourOhFour" class="wrapper">
+  <div class="battlemap">
+    <h1>{{ map!.name }}</h1>
+    <div class="body" [innerHTML]="map!.fields.description"></div>
+    <div class="map" *ngFor="let image of map!.fields.images">
+      <a [href]="image.map" target="_blank" rel="noopener noreferrer"><img class="map__image" [src]="image.map" /></a>
+      <p class="map__title">{{ image.title }}</p>
+    </div>
   </div>
 </div>
 <ng-template #fourOhFour>
