@@ -1,5 +1,10 @@
-.map {
-  &__image {
-    max-width: 100%;
+.wrapper {
+  .battlemap {
+    max-width: 680px;
+    .map {
+      &__image {
+        max-width: 100%;
+      }
+    }
   }
 }
