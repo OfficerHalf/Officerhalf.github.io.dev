@@ -1,13 +1,7 @@
 <h1>Tabletop RPG Maps</h1>
-<ul>
-  <li *ngFor="let map of maps | async">
-    <a [routerLink]="'map/' + map.slug">{{ map.name }}</a>
-  </li>
-</ul>
-<app-carousel>
-  <p *ngFor="let map of maps | async" appCarouselItem>{{ map.name }}</p>
-</app-carousel>
-<app-carousel>
-  <p appCarouselItem>A</p>
-  <p appCarouselItem>B</p>
+<app-carousel *ngFor="let map of maps | async">
+  <a *ngFor="let image of map.fields.images" appCarouselItem class="battlemap-tile" [routerLink]="'map/' + map.slug">
+    <img [src]="image.map" />
+    <p>{{ map.name }}</p>
+  </a>
 </app-carousel>
