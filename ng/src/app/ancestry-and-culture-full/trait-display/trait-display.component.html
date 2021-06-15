@@ -1,7 +1,0 @@
-<div *ngIf="service.trait$ | async; else showBasic">
-  <h2>{{ (service.trait$ | async).name }}</h2>
-  <p>{{ (service.trait$ | async).description }}</p>
-</div>
-<ng-template #showBasic>
-  <h2>Basic Information</h2>
-</ng-template>
