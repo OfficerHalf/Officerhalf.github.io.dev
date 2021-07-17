@@ -1,21 +1,30 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "jsx": "preserve",
-    "allowJs": false,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "removeComments": false,
-    "preserveConstEnums": true,
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
-    "skipLibCheck": true,
-    "noEmit": true,
-    "lib": ["dom", "es2015", "es2016"]
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2017",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ]
   },
-  "exclude": ["artifacts/**/*", "dist/**/*", "public/**/*", "node_modules", "backup/**/*", "ng", "ng-site"]
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
 }

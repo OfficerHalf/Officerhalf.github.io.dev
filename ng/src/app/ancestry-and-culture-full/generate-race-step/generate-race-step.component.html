@@ -1,6 +1,0 @@
-<mat-selection-list (selectionChange)="onSelectionChange($event)" [multiple]="false">
-  <mat-list-option value="basicInfo">Basic Information</mat-list-option>
-  <mat-list-option *ngFor="let trait of traits" [value]="trait">
-    {{ trait.name }}
-  </mat-list-option>
-</mat-selection-list>
