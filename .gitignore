@@ -43,3 +43,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Prerender
+.postlist.json
+.postmap.json
+.battlemaplist.json
+.battlemapmap.json
