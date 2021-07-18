@@ -1,7 +1,4 @@
-import { config } from 'dotenv';
 import { DevSiteEnvironment } from './environment.interface';
-
-config();
 
 export const environment: DevSiteEnvironment = {
   production: true,
