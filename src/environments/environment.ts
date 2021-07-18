@@ -1,9 +1,12 @@
+import { DevSiteEnvironment } from './environment.interface';
+
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const environment = {
-  production: false
+export const environment: DevSiteEnvironment = {
+  production: false,
+  butter: '9ffd3dad4fd54423ad22bc3ce3e1a2fd6bbc9081'
 };
 
 /*
