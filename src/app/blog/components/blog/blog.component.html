@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let post of blogPosts">
+    <a [routerLink]="'post/' + post.slug">{{ post.title }}</a>
+  </li>
+</ul>
