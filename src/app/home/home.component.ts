@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { BlogService } from '../blog/services/blog.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +6,5 @@ import { BlogService } from '../blog/services/blog.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  blogPosts = this.blogService.getPostList();
-  constructor(private readonly blogService: BlogService) {}
+  constructor() {}
 }
