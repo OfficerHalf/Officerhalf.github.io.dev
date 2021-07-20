@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { BlogService } from '../../services/blog.service';
+import { BlogService } from './services/blog.service';
 
 @Component({
   selector: 'app-blog',
