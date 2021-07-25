@@ -21,7 +21,7 @@
   </mat-list>
 </ng-template>
 
-<mat-sidenav-container [ngStyle]="{ height: '100%' }">
+<mat-sidenav-container>
   <mat-sidenav [opened]="sidenavService.opened | async">
     <ng-container [ngTemplateOutlet]="navlinks"></ng-container>
   </mat-sidenav>

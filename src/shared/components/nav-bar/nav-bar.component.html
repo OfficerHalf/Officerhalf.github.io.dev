@@ -7,7 +7,7 @@
   </a>
 </ng-template>
 
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" [ngStyle]="{ height: '64px' }">
   <button
     *ngIf="collapseNav | async"
     mat-icon-button

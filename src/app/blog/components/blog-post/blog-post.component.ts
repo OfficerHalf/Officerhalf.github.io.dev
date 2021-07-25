@@ -24,6 +24,7 @@ export class BlogPostComponent implements OnDestroy {
     null
   );
   readonly blogPost = new BehaviorSubject<BlogPost | null>(null);
+  readonly published = new BehaviorSubject<Date | null>(null);
   private readonly destroy = new Subject();
   constructor(
     private readonly activatedRoute: ActivatedRoute,
@@ -38,6 +39,7 @@ export class BlogPostComponent implements OnDestroy {
           if (post) {
             this.blogPostMeta.next(post.meta);
             this.blogPost.next(post.data);
+            this.published.next(new Date(post.data.published));
           }
         }
       });
