@@ -1,6 +1,4 @@
 <div *ngIf="blogPost | async as post">
-  <div>sometimes show this</div>
   <h1>{{ post.title }}</h1>
   <div [innerHTML]="post.body"></div>
 </div>
-<div>show this all the time</div>

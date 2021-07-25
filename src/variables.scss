@@ -1,4 +1,16 @@
 @use 'sass:map';
 @use '~@angular/material' as mat;
 
-$dark-background: map.get(mat.$grey-palette, 900);
+/* Main Theme */
+$dev-site-primary: mat.define-palette(mat.$green-palette, 700, 500, 900);
+$dev-site-accent: mat.define-palette(mat.$blue-grey-palette, A200, A100, A400);
+$dev-site-warn: mat.define-palette(mat.$red-palette);
+$dev-site-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $dev-site-primary,
+      accent: $dev-site-accent,
+      warn: $dev-site-warn
+    )
+  )
+);
