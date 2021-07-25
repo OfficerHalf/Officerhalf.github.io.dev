@@ -1,0 +1,31 @@
+<ng-template #navlinks>
+  <mat-list [ngStyle]="{ 'min-width': '10rem' }">
+    <a
+      mat-list-item
+      class="navlink"
+      routerLink="/home"
+      routerLinkActive="active"
+      (click)="sidenavService.opened.next(false)"
+    >
+      Home
+    </a>
+    <a
+      mat-list-item
+      class="navlink"
+      routerLink="/blog"
+      routerLinkActive="active"
+      (click)="sidenavService.opened.next(false)"
+    >
+      Blog
+    </a>
+  </mat-list>
+</ng-template>
+
+<mat-sidenav-container [ngStyle]="{ height: '100%' }">
+  <mat-sidenav [opened]="sidenavService.opened | async">
+    <ng-container [ngTemplateOutlet]="navlinks"></ng-container>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

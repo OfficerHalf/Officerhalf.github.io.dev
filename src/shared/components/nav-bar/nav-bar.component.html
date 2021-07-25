@@ -1,8 +1,22 @@
-<mat-toolbar color="primary">
+<ng-template #buttons>
   <a mat-button class="navlink" routerLink="/home" routerLinkActive="active">
     Home
   </a>
   <a mat-button class="navlink" routerLink="/blog" routerLinkActive="active">
     Blog
   </a>
+</ng-template>
+
+<mat-toolbar color="primary">
+  <button
+    *ngIf="collapseNav | async"
+    mat-icon-button
+    (click)="sidenavService.toggle()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <ng-container
+    *ngIf="(collapseNav | async) === false"
+    [ngTemplateOutlet]="buttons"
+  ></ng-container>
 </mat-toolbar>
