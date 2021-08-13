@@ -16,7 +16,10 @@ export class CodeHighlightService {
     Prism.highlightAll();
   }
 
-  highlightAllUnder(element: HTMLElement) {
+  highlightAllUnder(element: HTMLElement, lineNumbers = true) {
+    if (lineNumbers) {
+      element.classList.add('line-numbers');
+    }
     Prism.highlightAllUnder(element);
   }
 }
