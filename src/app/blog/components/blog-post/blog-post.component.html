@@ -1,5 +1,5 @@
 <div *ngIf="blogPost | async as post" class="post-wrapper">
   <h1>{{ post!.title }}</h1>
   <p>{{ (published | async)!.toLocaleString() }}</p>
-  <div [innerHTML]="post!.body"></div>
+  <div [innerHTML]="post!.body" #postBody></div>
 </div>
