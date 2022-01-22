@@ -1,8 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BlogStreamComponent } from './blog-stream/blog-stream.component';
+import { BlogPostComponent } from './components/blog-post/blog-post.component';
+import { BlogComponent } from './blog.component';
 
-const routes: Routes = [{ path: '', component: BlogStreamComponent }];
+const routes: Routes = [
+  {
+    path: 'post/:slug',
+    component: BlogPostComponent
+  },
+  { path: '', component: BlogComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

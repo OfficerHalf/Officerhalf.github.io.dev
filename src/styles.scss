@@ -1,1 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
+@use './theme/main.css';
+@use './theme/themes/sakura-vader.css';
+@use './theme/prismjs-alloy.css';

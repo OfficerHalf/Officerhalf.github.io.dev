@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { BlogRoutingModule } from './blog-routing.module';
-import { BlogStreamComponent } from './blog-stream/blog-stream.component';
 import { BlogPostComponent } from './components/blog-post/blog-post.component';
-import { StreamPostComponent } from './blog-stream/stream-post/stream-post.component';
+import { BlogComponent } from './blog.component';
+import { BlogRoutingModule } from './blog-routing.module';
 
 @NgModule({
-  declarations: [BlogStreamComponent, BlogPostComponent, StreamPostComponent],
-  imports: [CommonModule, BlogRoutingModule]
+  declarations: [BlogPostComponent, BlogComponent],
+  imports: [CommonModule, BlogRoutingModule],
+  exports: [BlogPostComponent]
 })
 export class BlogModule {}
