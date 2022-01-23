@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "npm run prerender && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "prerender": "ts-node --compiler-options \"{\\\"module\\\": \\\"commonjs\\\", \\\"target\\\": \\\"ES2017\\\"}\" src/prerender.ts"
