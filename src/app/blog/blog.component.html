@@ -1,5 +1,6 @@
-<ul>
-  <li *ngFor="let post of blogPosts">
+<ul class="blog-post-list">
+  <li *ngFor="let post of blogPosts" class="blog-post-card">
+    <div class="featured-image" [ngStyle]="{ backgroundImage: featuredImage(post) }"></div>
     <a [routerLink]="'post/' + post.slug">{{ post.title }}</a>
   </li>
 </ul>

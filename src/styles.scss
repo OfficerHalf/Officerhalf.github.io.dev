@@ -1,3 +1,12 @@
 @use './theme/main.css';
-@use './theme/themes/sakura-vader.css';
+@use './variables.scss';
 @use './theme/prismjs-alloy.css';
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}

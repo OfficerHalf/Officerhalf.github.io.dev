@@ -1,1 +1,25 @@
+@use '../../variables.scss';
 
+.blog-post-list {
+  display: flex;
+  gap: 16px;
+  padding: 0;
+  flex-wrap: wrap;
+  max-width: 48em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blog-post-card {
+  display: block;
+  border: var(--color-fade) 1px solid;
+  min-width: 250px;
+  height: 300px;
+  flex: 1;
+  margin: 0;
+
+  .featured-image {
+    height: 175px;
+    background-size: cover;
+  }
+}
