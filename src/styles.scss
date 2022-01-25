@@ -1,12 +1,12 @@
-@use './theme/main.css';
-@use './variables.scss';
+// @use './theme/main.css';
+// @use './variables.scss';
+@use '~simpledotcss/simple.min';
 @use './theme/prismjs-alloy.css';
 
-html {
-  box-sizing: border-box;
+:root {
+  --reading-width: min(45rem, 90%);
 }
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
+
+body {
+  max-width: revert;
 }
