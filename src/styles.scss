@@ -1,12 +1,24 @@
 // @use './theme/main.css';
 // @use './variables.scss';
-@use '~simpledotcss/simple.min';
-@use './theme/prismjs-alloy.css';
+@use '~simpledotcss/simple';
+@use './prismjs-alloy.css';
 
 :root {
   --reading-width: min(45rem, 90%);
 }
 
 body {
-  max-width: revert;
+  grid-template-columns: 1fr var(--reading-width) 1fr;
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: auto;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
 }
