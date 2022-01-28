@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
     <nav>
       <div class="site-title">
         <a routerLink="/home">
-          <h1>Nathan Smith</h1>
+          <h1>Nathan&nbsp;Smith</h1>
         </a>
       </div>
       <div class="nav-links">
