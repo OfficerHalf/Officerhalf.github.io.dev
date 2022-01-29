@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BlogService } from '../blog/services/blog.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  blogPosts = this.blogService.getPostList();
+
+  constructor(private readonly blogService: BlogService) {}
 
   ngOnInit(): void {}
 }

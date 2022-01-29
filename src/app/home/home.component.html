@@ -1,1 +1,11 @@
-Content
+<main>
+  <div *ngFor="let post of blogPosts" class="post-card">
+    <h3>{{ post.title }}</h3>
+    <small>{{ post.published | date }}</small>
+    <div class="featured-image">
+      <img [src]="post.featured_image" [alt]="post.featured_image_alt" />
+    </div>
+    <p>{{ post.summary }}</p>
+    <a [routerLink]="'/blog/post/' + post.slug"><button>Read More</button></a>
+  </div>
+</main>

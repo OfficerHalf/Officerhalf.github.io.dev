@@ -1,24 +1,27 @@
-nav {
+header {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: baseline;
+  align-items: center;
 }
 
-div.site-title h1 {
-  font-size: 2rem;
+div.site-title {
+  h1 {
+    display: inline-block;
+    color: var(--text);
+    &:hover {
+      color: var(--accent);
+    }
+  }
 }
 
-div.nav-links {
+nav.nav-links {
   display: flex;
-  gap: 2rem;
   justify-content: flex-end;
 }
 
 a {
-  border: none;
-  margin: 0;
-  padding: 0;
   &.active {
     color: var(--accent);
+    border-color: var(--accent);
   }
 }
