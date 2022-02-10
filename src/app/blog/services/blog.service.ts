@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 
-import PostList from '../../../.postlist.json';
-import PostMap from '../../../.postmap.json';
-import {
-  BlogPost,
-  PostSummary,
-  RetrieveResponse
-} from '../interfaces/blog.interface';
+// import PostList from '../../../.postlist.json';
+// import PostMap from '../../../.postmap.json';
+import { BlogPost, PostSummary, RetrieveResponse } from '../interfaces/blog.interface';
+import { BlogAdapterService } from './blog-adapter.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogService {
-  private readonly postList: BlogPost[] = PostList;
-  private readonly postMap: Record<string, number> = PostMap;
-  constructor() {}
+  // private readonly postList: BlogPost[] = PostList;
+  // private readonly postMap: Record<string, number> = PostMap;
+  private readonly postList: BlogPost[];
+  private readonly postMap: Record<string, number>;
+  constructor(private readonly adapterService: BlogAdapterService) {
+    this.postList = adapterService.getPostList();
+    this.postMap = adapterService.getPostMap();
+  }
 
   getPostList(): BlogPost[] {
     return this.postList;
@@ -27,12 +29,8 @@ export class BlogService {
       return {
         data: post,
         meta: {
-          previous_post:
-            index < this.postList.length - 1
-              ? this.getPostSummary(this.postList[index + 1])
-              : null,
-          next_post:
-            index > 0 ? this.getPostSummary(this.postList[index - 1]) : null
+          previous_post: index < this.postList.length - 1 ? this.getPostSummary(this.postList[index + 1]) : null,
+          next_post: index > 0 ? this.getPostSummary(this.postList[index - 1]) : null
         }
       };
     }
