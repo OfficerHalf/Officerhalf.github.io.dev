@@ -24,6 +24,15 @@ export class BlogService {
 
   getPost(slug: string): RetrieveResponse | undefined {
     const index = this.postMap[slug];
+    return this.getPostByIndex(index);
+  }
+
+  getPostByPath(path: string): RetrieveResponse | undefined {
+    const index = this.postList.findIndex((post) => path === post.path);
+    return this.getPostByIndex(index);
+  }
+
+  private getPostByIndex(index: number): RetrieveResponse | undefined {
     if (index !== undefined && index >= 0 && index < this.postList.length) {
       const post = this.postList[index];
       return {

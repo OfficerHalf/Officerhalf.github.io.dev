@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subject, ReplaySubject } from 'rxjs';
+import { Subject, ReplaySubject, combineLatest } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 import { CodeHighlightService } from '../../../../shared/services/code-highlight.service';
 import { BlogPost, RetrieveResponse, RetrieveResponseMeta } from '../../interfaces/blog.interface';
@@ -26,8 +26,10 @@ export class BlogPostComponent implements OnDestroy, AfterViewInit {
   ) {
     this.activatedRoute.paramMap.pipe(takeUntil(this.destroy)).subscribe((params) => {
       const slug = params.get('slug');
+      const path = decodeURI(`${window.location.pathname}`.replace('/blog/post/', ''));
+      console.log(path);
       if (slug) {
-        const post = this.blogService.getPost(slug);
+        const post = this.blogService.getPost(slug) || this.blogService.getPostByPath(path);
         if (post) {
           this.postData.next(post);
         }

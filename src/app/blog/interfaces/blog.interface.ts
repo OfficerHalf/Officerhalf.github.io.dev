@@ -31,7 +31,11 @@ export interface BlogPostMetadata extends BasicMetadata {
   meta_description: string;
 }
 
-export interface BlogPost extends BlogPostMetadata {
+export interface ExtendedPostMetadata extends BlogPostMetadata {
+  path?: string;
+}
+
+export interface BlogPost extends ExtendedPostMetadata {
   body: string;
 }
 

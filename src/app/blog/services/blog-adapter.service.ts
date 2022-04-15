@@ -49,7 +49,8 @@ export class BlogAdapterService {
       title: exported.meta.title,
       slug: exported.meta.slug,
       published: new Date().toDateString(),
-      summary: ''
+      summary: '',
+      path: exported.meta.path
     } as BlogPost;
   }
 }
