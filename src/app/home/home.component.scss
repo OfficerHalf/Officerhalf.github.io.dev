@@ -1,0 +1,30 @@
+a {
+  color: var(--secondary);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1rem;
+  font-size: 1.4rem;
+  box-sizing: border-box;
+  font-family: var(--font-primary);
+  background-color: var(--neutral);
+  color: var(--primary);
+}
+section {
+  max-width: 800px;
+}
+
+main *,
+main *:before,
+main *:after {
+  box-sizing: inherit;
+}
+
+input,
+label,
+button {
+  font-family: inherit;
+}
