@@ -3,11 +3,23 @@
 /* Document Styles */
 :host {
   display: block;
-  padding: 1cm 2cm;
+  padding: 0.6cm 1.6cm;
   max-width: 21.59cm; /* Letter paper */
+  max-height: 27.94cm;
   font-family: "Roboto", sans-serif;
   border: 1px solid black;
   margin: 1cm;
+  page-break-inside: avoid;
+}
+
+/* Print Styles */
+@media print {
+  :host {
+    border: none;
+    margin: 0;
+    padding: 0;
+    float: none;
+  }
 }
 
 /* Style Resets */
@@ -28,7 +40,7 @@ p {
 }
 
 /* Heading / Contact */
-header {
+section#header {
   text-align: center;
   border-bottom: 1px solid black;
   margin-bottom: 1rem;
