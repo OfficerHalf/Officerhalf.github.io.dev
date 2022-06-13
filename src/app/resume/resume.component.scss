@@ -69,10 +69,22 @@ h2 {
   font-weight: 200;
 }
 
-section#experience > ul {
+.skill-list {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+section#experience,
+section#research,
+section#coursework,
+section#education,
+section#skills {
+  & > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
 .experience-title {
