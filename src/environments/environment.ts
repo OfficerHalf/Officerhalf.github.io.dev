@@ -2,8 +2,13 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const environment = {
-  production: false
+import { Environment } from "./environment.interface";
+
+export const environment: Environment = {
+  production: false,
+  redirectUrls: {
+    foundry: "http://99.42.74.168:30000",
+  },
 };
 
 /*
