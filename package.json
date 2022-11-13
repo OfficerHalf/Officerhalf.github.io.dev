@@ -24,6 +24,7 @@
     "@angular/platform-server": "^14.2.10",
     "@angular/router": "^14.2.10",
     "@nguniversal/express-engine": "^14.2.2",
+    "@picocss/pico": "^1.5.6",
     "crypt-ui": "^1.1.0",
     "express": "^4.15.2",
     "rxjs": "~7.5.0",
