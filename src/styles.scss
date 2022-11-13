@@ -1,9 +1,2 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~crypt-ui";
-@import "~crypt-ui/src/fonts";
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-}
+@import "@picocss/pico/css/pico.min";
