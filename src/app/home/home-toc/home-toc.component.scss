@@ -1,0 +1,9 @@
+aside > nav {
+  position: fixed;
+  width: var(--nav-width);
+  padding: 20px;
+
+  details {
+    border-bottom: none;
+  }
+}
