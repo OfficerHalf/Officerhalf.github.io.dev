@@ -1,3 +1,9 @@
+:host {
+  @media only screen and (max-width: 999px) {
+    display: none;
+  }
+}
+
 aside > nav {
   position: fixed;
   width: var(--nav-width);
