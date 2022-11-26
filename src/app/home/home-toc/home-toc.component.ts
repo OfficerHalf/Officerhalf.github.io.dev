@@ -16,8 +16,8 @@ import { Component } from "@angular/core";
         <ul>
           <li><a routerLink fragment="foundry">Foundry VTT</a></li>
           <li><a routerLink fragment="crypt-ui">Crypt UI</a></li>
-          <li><a routerLink fragment="obsidian">Obsidian</a></li>
           <li><a routerLink fragment="alloy">Alloy</a></li>
+          <li><a routerLink fragment="obsidian">Obsidian</a></li>
           <li><a routerLink fragment="homebrewery">Homebrewery</a></li>
         </ul>
       </details>
