@@ -143,6 +143,20 @@ import { Brand } from "../brand-badge/brand-badge.component";
         Automatically apply CSS classes to the markdown based on a note's path
         and tags.
       </p>
+      <h4>Obsidian FETA 🧀</h4>
+      <app-brand-badge
+        href="https://github.com/OfficerHalf/obsidian-feta"
+        [brand]="Brand.GitHub"
+      ></app-brand-badge>
+      <p>
+        A still-in-development plugin for gooier, greasier note exports that
+        aren't as polished as Obsidian Publish but include output from all
+        plugins that add to the reading view and could be combined with a static
+        site generator of your own to publish your notes as you see fit.
+        <br /><br />
+        <strong>F</strong>older JSON <strong>E</strong>xpor<strong>T </strong>
+        <strong>A</strong>ddon - <em>It's dairy free!</em>
+      </p>
       <hr class="project-separator" />
       <h3 id="homebrewery">Homebrewery VS Code</h3>
       <app-brand-badge-list>
