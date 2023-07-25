@@ -1,27 +1,20 @@
-import { enableProdMode, importProvidersFrom } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
-
-import { environment } from './environments/environment';
-import { AppComponent } from './app/app.component';
-import { AppRoutingModule } from './app/app-routing.module';
-import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
+import { AppModule } from "./app/app.module";
+import { enableProdMode } from "@angular/core";
+import { environment } from "./environments/environment";
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
 if (environment.production) {
   enableProdMode();
 }
 
 function bootstrap() {
-  bootstrapApplication(AppComponent, {
-    providers: [importProvidersFrom(BrowserModule.withServerTransition({ appId: 'serverApp' }), AppRoutingModule)]
-})
-  .catch(err => console.error(err));
-};
-
-
-if (document.readyState === 'complete') {
-  bootstrap();
-} else {
-  document.addEventListener('DOMContentLoaded', bootstrap);
+  platformBrowserDynamic()
+    .bootstrapModule(AppModule)
+    .catch((err) => console.error(err));
 }
 
+if (document.readyState === "complete") {
+  bootstrap();
+} else {
+  document.addEventListener("DOMContentLoaded", bootstrap);
+}
