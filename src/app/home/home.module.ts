@@ -10,14 +10,11 @@ import { BrandBadgeComponent } from "./brand-badge/brand-badge.component";
 import { BrandBadgeListComponent } from "./brand-badge/brand-badge-list.component";
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-    HomeTocComponent,
-    AboutComponent,
-    ProjectsComponent,
-    BrandBadgeComponent,
-    BrandBadgeListComponent,
-  ],
-  imports: [CommonModule, HomeRoutingModule],
+    imports: [CommonModule, HomeRoutingModule, HomeComponent,
+        HomeTocComponent,
+        AboutComponent,
+        ProjectsComponent,
+        BrandBadgeComponent,
+        BrandBadgeListComponent],
 })
 export class HomeModule {}

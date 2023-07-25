@@ -18,15 +18,16 @@ const brandMap: Record<Brand, { label: string; icon: string }> = {
 };
 
 @Component({
-  selector: "app-brand-badge",
-  template: `
+    selector: "app-brand-badge",
+    template: `
     <a class="brand-badge" [href]="href"
       ><i [className]="brandMap[brand].icon"></i> View on
       {{ brandMap[brand].label }}
       <i class="fa-solid fa-arrow-up-right-from-square fa-2xs"></i
     ></a>
   `,
-  styleUrls: ["./brand-badge.component.scss"],
+    styleUrls: ["./brand-badge.component.scss"],
+    standalone: true,
 })
 export class BrandBadgeComponent {
   protected brandMap = brandMap;

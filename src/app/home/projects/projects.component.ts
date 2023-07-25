@@ -1,5 +1,10 @@
+import {
+  Brand,
+  BrandBadgeComponent,
+} from "../brand-badge/brand-badge.component";
+
+import { BrandBadgeListComponent } from "../brand-badge/brand-badge-list.component";
 import { Component } from "@angular/core";
-import { Brand } from "../brand-badge/brand-badge.component";
 
 @Component({
   selector: "app-projects",
@@ -15,11 +20,11 @@ import { Brand } from "../brand-badge/brand-badge.component";
         <app-brand-badge
           href="https://foundryvtt.com/packages/cryptomancer"
           [brand]="Brand.Foundry"
-        ></app-brand-badge>
+        />
         <app-brand-badge
           href="https://github.com/OfficerHalf/cryptomancer-fvtt"
           [brand]="Brand.GitHub"
-        ></app-brand-badge>
+        />
       </app-brand-badge-list>
       <p>
         An implementation of the Cryptomancer RPG system for Foundry Virtual
@@ -30,12 +35,11 @@ import { Brand } from "../brand-badge/brand-badge.component";
         <app-brand-badge
           href="https://foundryvtt.com/packages/go-to-combatant"
           [brand]="Brand.Foundry"
-        ></app-brand-badge>
+        />
         <app-brand-badge
           href="https://github.com/OfficerHalf/foundryvtt-go-to-combatant"
           [brand]="Brand.GitHub"
-        >
-        </app-brand-badge>
+        />
       </app-brand-badge-list>
       <p>
         Patches the Foundry VTT combat tracker so that clicking on a combatant
@@ -46,12 +50,11 @@ import { Brand } from "../brand-badge/brand-badge.component";
         <app-brand-badge
           href="https://foundryvtt.com/packages/insert-journal-page"
           [brand]="Brand.Foundry"
-        ></app-brand-badge>
+        />
         <app-brand-badge
           href="https://github.com/OfficerHalf/foundryvtt-insert-journal-page"
           [brand]="Brand.GitHub"
-        >
-        </app-brand-badge>
+        />
       </app-brand-badge-list>
       <p>
         Patches the Foundry VTT journal so that creating a new page in a journal
@@ -64,11 +67,11 @@ import { Brand } from "../brand-badge/brand-badge.component";
         <app-brand-badge
           href="https://www.crypt.nathan-smith.org/"
           [brand]="Brand.Storybook"
-        ></app-brand-badge>
+        />
         <app-brand-badge
           href="https://github.com/OfficerHalf/crypt-ui"
           [brand]="Brand.GitHub"
-        ></app-brand-badge>
+        />
       </app-brand-badge-list>
       <p>
         A sci-fi themed CSS component library, written mainly to support
@@ -80,11 +83,11 @@ import { Brand } from "../brand-badge/brand-badge.component";
         <app-brand-badge
           href="https://marketplace.visualstudio.com/items?itemName=officerhalf.alloy-theme"
           [brand]="Brand.VisualStudio"
-        ></app-brand-badge>
+        />
         <app-brand-badge
           href="https://github.com/OfficerHalf/alloy-theme"
           [brand]="Brand.GitHub"
-        ></app-brand-badge>
+        />
       </app-brand-badge-list>
       <p>
         Alloy is a color theme available for
@@ -115,39 +118,48 @@ import { Brand } from "../brand-badge/brand-badge.component";
         I maintain the following plugins for
         <a href="https://obsidian.md/">Obsidian</a>.
       </p>
-      <h4>Collapse All</h4>
+      <h4>Obsidian Jira Cloud</h4>
       <app-brand-badge
-        href="https://github.com/OfficerHalf/obsidian-collapse-all"
+        href="https://github.com/OfficerHalf/obsidian-jira-cloud"
         [brand]="Brand.GitHub"
-      ></app-brand-badge>
+      />
       <p>
-        When your Obsidian file explorer is overloaded with open folders, close
-        them all with a single click or command. Or, if you want to explore your
-        folder tree, expand all folders.
-      </p>
-      <h4>Obsidian Trello</h4>
-      <app-brand-badge
-        href="https://github.com/OfficerHalf/obsidian-trello"
-        [brand]="Brand.GitHub"
-      ></app-brand-badge>
-      <p>
-        Connect your Trello cards with your Obsidian notes to see and update
-        labels, comments, and checklists from within Obsidian.
+        Connect your Jira issues to Obsidian. Search for issues and them to
+        frontmatter or use them in templates without leaving Obsidian.
       </p>
       <h4>Auto Class</h4>
       <app-brand-badge
         href="https://github.com/OfficerHalf/obsidian-auto-class"
         [brand]="Brand.GitHub"
-      ></app-brand-badge>
+      />
       <p>
         Automatically apply CSS classes to the markdown based on a note's path
         and tags.
+      </p>
+      <h4>Obsidian Trello</h4>
+      <app-brand-badge
+        href="https://github.com/OfficerHalf/obsidian-trello"
+        [brand]="Brand.GitHub"
+      />
+      <p>
+        Connect your Trello cards with your Obsidian notes to see and update
+        labels, comments, and checklists from within Obsidian.
+      </p>
+      <h4>Collapse All</h4>
+      <app-brand-badge
+        href="https://github.com/OfficerHalf/obsidian-collapse-all"
+        [brand]="Brand.GitHub"
+      />
+      <p>
+        When your Obsidian file explorer is overloaded with open folders, close
+        them all with a single click or command. Or, if you want to explore your
+        folder tree, expand all folders.
       </p>
       <h4>Obsidian FETA 🧀</h4>
       <app-brand-badge
         href="https://github.com/OfficerHalf/obsidian-feta"
         [brand]="Brand.GitHub"
-      ></app-brand-badge>
+      />
       <p>
         A still-in-development plugin for gooier, greasier note exports that
         aren't as polished as Obsidian Publish but include output from all
@@ -163,11 +175,11 @@ import { Brand } from "../brand-badge/brand-badge.component";
         <app-brand-badge
           href="https://marketplace.visualstudio.com/items?itemName=officerhalf.homebrewery-vscode"
           [brand]="Brand.VisualStudio"
-        ></app-brand-badge>
+        />
         <app-brand-badge
           href="https://github.com/OfficerHalf/homebrewery-vscode"
           [brand]="Brand.GitHub"
-        ></app-brand-badge>
+        />
       </app-brand-badge-list>
       <p>
         Homebrewery VS Code is a VS Code extension for rendering markdown in the
@@ -178,6 +190,8 @@ import { Brand } from "../brand-badge/brand-badge.component";
     </section>
   `,
   styleUrls: ["./projects.component.scss"],
+  standalone: true,
+  imports: [BrandBadgeListComponent, BrandBadgeComponent],
 })
 export class ProjectsComponent {
   protected Brand = Brand;

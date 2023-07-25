@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 
 @Component({
-  selector: "app-about",
-  template: `
+    selector: "app-about",
+    template: `
     <section id="about">
       <h2 id="bio">Hi, I'm Nathan Smith</h2>
       <p>
@@ -20,6 +20,7 @@ import { Component } from "@angular/core";
       </ul>
     </section>
   `,
-  styleUrls: ["./about.component.scss"],
+    styleUrls: ["./about.component.scss"],
+    standalone: true,
 })
 export class AboutComponent {}

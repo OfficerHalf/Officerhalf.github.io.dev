@@ -1,8 +1,9 @@
 import { Component } from "@angular/core";
+import { RouterLink } from "@angular/router";
 
 @Component({
-  selector: "app-home-toc",
-  template: `<aside>
+    selector: "app-home-toc",
+    template: `<aside>
     <nav>
       <details open="">
         <summary>About</summary>
@@ -23,6 +24,8 @@ import { Component } from "@angular/core";
       </details>
     </nav>
   </aside>`,
-  styleUrls: ["./home-toc.component.scss"],
+    styleUrls: ["./home-toc.component.scss"],
+    standalone: true,
+    imports: [RouterLink],
 })
 export class HomeTocComponent {}
