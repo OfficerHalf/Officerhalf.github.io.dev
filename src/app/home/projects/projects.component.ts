@@ -118,15 +118,6 @@ import { Component } from "@angular/core";
         I maintain the following plugins for
         <a href="https://obsidian.md/">Obsidian</a>.
       </p>
-      <h4>Obsidian Jira Cloud</h4>
-      <app-brand-badge
-        href="https://github.com/OfficerHalf/obsidian-jira-cloud"
-        [brand]="Brand.GitHub"
-      />
-      <p>
-        Connect your Jira issues to Obsidian. Search for issues and them to
-        frontmatter or use them in templates without leaving Obsidian.
-      </p>
       <h4>Auto Class</h4>
       <app-brand-badge
         href="https://github.com/OfficerHalf/obsidian-auto-class"
