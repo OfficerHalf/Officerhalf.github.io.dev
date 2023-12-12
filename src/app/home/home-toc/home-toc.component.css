@@ -1,5 +1,5 @@
-:host {
-  @media only screen and (max-width: 999px) {
+@media only screen and (max-width: 999px) {
+  :host {
     display: none;
   }
 }
@@ -8,8 +8,7 @@ aside > nav {
   position: fixed;
   width: var(--nav-width);
   padding: 20px;
-
-  details {
-    border-bottom: none;
-  }
+}
+aside > nav details {
+  border-bottom: none;
 }
