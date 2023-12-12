@@ -1,33 +1,15 @@
-import { RedirectorComponent } from "./redirector/redirector.component";
-import { Routes } from "@angular/router";
-import { environment } from "../environments/environment";
+import { HomeComponent } from './home/home.component';
+import { RedirectorComponent } from './redirector/redirector.component';
+import { Routes } from '@angular/router';
 
-export const ROUTES: Routes = [
+export const routes: Routes = [
   {
-    path: "home",
-    loadChildren: () => import("./home/home.routes").then((m) => m.HOME_ROUTES),
+    path: 'home',
+    component: HomeComponent,
   },
   {
-    path: "foundry",
-    component: RedirectorComponent,
-    data: {
-      redirect: environment.redirectUrls.foundry,
-    },
-  },
-  {
-    path: "",
-    pathMatch: "full",
-    redirectTo: "home",
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home',
   },
 ];
-
-// @NgModule({
-//   imports: [
-//     RouterModule.forRoot(routes, {
-//       anchorScrolling: "enabled",
-//       initialNavigation: "enabledBlocking",
-//     }),
-//   ],
-//   exports: [RouterModule],
-// })
-// export class AppRoutingModule {}

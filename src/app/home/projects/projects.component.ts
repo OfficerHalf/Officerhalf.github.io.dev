@@ -1,13 +1,13 @@
 import {
   Brand,
   BrandBadgeComponent,
-} from "../brand-badge/brand-badge.component";
+} from '../brand-badge/brand-badge.component';
 
-import { BrandBadgeListComponent } from "../brand-badge/brand-badge-list.component";
-import { Component } from "@angular/core";
+import { BrandBadgeListComponent } from '../brand-badge/brand-badge-list.component';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "app-projects",
+  selector: 'app-projects',
   template: `
     <section id="projects">
       <h3 id="foundry">Foundry VTT</h3>
@@ -180,7 +180,7 @@ import { Component } from "@angular/core";
       </p>
     </section>
   `,
-  styleUrls: ["./projects.component.scss"],
+  styleUrls: ['./projects.component.css'],
   standalone: true,
   imports: [BrandBadgeListComponent, BrandBadgeComponent],
 })
