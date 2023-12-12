@@ -22,7 +22,7 @@ import { Component } from "@angular/core";
           [brand]="Brand.Foundry"
         />
         <app-brand-badge
-          href="https://github.com/OfficerHalf/cryptomancer-fvtt"
+          href="https://github.com/nathonius/cryptomancer-fvtt"
           [brand]="Brand.GitHub"
         />
       </app-brand-badge-list>
@@ -37,7 +37,7 @@ import { Component } from "@angular/core";
           [brand]="Brand.Foundry"
         />
         <app-brand-badge
-          href="https://github.com/OfficerHalf/foundryvtt-go-to-combatant"
+          href="https://github.com/nathonius/foundryvtt-go-to-combatant"
           [brand]="Brand.GitHub"
         />
       </app-brand-badge-list>
@@ -52,7 +52,7 @@ import { Component } from "@angular/core";
           [brand]="Brand.Foundry"
         />
         <app-brand-badge
-          href="https://github.com/OfficerHalf/foundryvtt-insert-journal-page"
+          href="https://github.com/nathonius/foundryvtt-insert-journal-page"
           [brand]="Brand.GitHub"
         />
       </app-brand-badge-list>
@@ -69,7 +69,7 @@ import { Component } from "@angular/core";
           [brand]="Brand.Storybook"
         />
         <app-brand-badge
-          href="https://github.com/OfficerHalf/crypt-ui"
+          href="https://github.com/nathonius/crypt-ui"
           [brand]="Brand.GitHub"
         />
       </app-brand-badge-list>
@@ -85,7 +85,7 @@ import { Component } from "@angular/core";
           [brand]="Brand.VisualStudio"
         />
         <app-brand-badge
-          href="https://github.com/OfficerHalf/alloy-theme"
+          href="https://github.com/nathonius/alloy-theme"
           [brand]="Brand.GitHub"
         />
       </app-brand-badge-list>
@@ -97,17 +97,17 @@ import { Component } from "@angular/core";
           VS Code</a
         >,
         <a
-          href="https://github.com/OfficerHalf/alloy-theme/tree/master/themes/prismjs"
+          href="https://github.com/nathonius/alloy-theme/tree/master/themes/prismjs"
         >
           Prismjs</a
         >,
         <a
-          href="https://github.com/OfficerHalf/alloy-theme/tree/master/themes/windows-terminal"
+          href="https://github.com/nathonius/alloy-theme/tree/master/themes/windows-terminal"
         >
           Windows Terminal</a
         >, and
         <a
-          href="https://github.com/OfficerHalf/alloy-theme/tree/master/themes/conemu"
+          href="https://github.com/nathonius/alloy-theme/tree/master/themes/conemu"
         >
           ConEmu</a
         >.
@@ -120,7 +120,7 @@ import { Component } from "@angular/core";
       </p>
       <h4>Auto Class</h4>
       <app-brand-badge
-        href="https://github.com/OfficerHalf/obsidian-auto-class"
+        href="https://github.com/nathonius/obsidian-auto-class"
         [brand]="Brand.GitHub"
       />
       <p>
@@ -129,7 +129,7 @@ import { Component } from "@angular/core";
       </p>
       <h4>Obsidian Trello</h4>
       <app-brand-badge
-        href="https://github.com/OfficerHalf/obsidian-trello"
+        href="https://github.com/nathonius/obsidian-trello"
         [brand]="Brand.GitHub"
       />
       <p>
@@ -138,7 +138,7 @@ import { Component } from "@angular/core";
       </p>
       <h4>Collapse All</h4>
       <app-brand-badge
-        href="https://github.com/OfficerHalf/obsidian-collapse-all"
+        href="https://github.com/nathonius/obsidian-collapse-all"
         [brand]="Brand.GitHub"
       />
       <p>
@@ -148,7 +148,7 @@ import { Component } from "@angular/core";
       </p>
       <h4>Obsidian FETA 🧀</h4>
       <app-brand-badge
-        href="https://github.com/OfficerHalf/obsidian-feta"
+        href="https://github.com/nathonius/obsidian-feta"
         [brand]="Brand.GitHub"
       />
       <p>
@@ -168,7 +168,7 @@ import { Component } from "@angular/core";
           [brand]="Brand.VisualStudio"
         />
         <app-brand-badge
-          href="https://github.com/OfficerHalf/homebrewery-vscode"
+          href="https://github.com/nathonius/homebrewery-vscode"
           [brand]="Brand.GitHub"
         />
       </app-brand-badge-list>
