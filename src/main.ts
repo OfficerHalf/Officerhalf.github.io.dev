@@ -1,16 +1,24 @@
-import { AppModule } from "./app/app.module";
+import { provideRouter, withInMemoryScrolling } from "@angular/router";
+
+import { AppComponent } from "./app/app.component";
+import { ROUTES } from "./app/app.routes";
+import { bootstrapApplication } from "@angular/platform-browser";
 import { enableProdMode } from "@angular/core";
 import { environment } from "./environments/environment";
-import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
 if (environment.production) {
   enableProdMode();
 }
 
 function bootstrap() {
-  platformBrowserDynamic()
-    .bootstrapModule(AppModule)
-    .catch((err) => console.error(err));
+  bootstrapApplication(AppComponent, {
+    providers: [
+      provideRouter(
+        ROUTES,
+        withInMemoryScrolling({ anchorScrolling: "enabled" })
+      ),
+    ],
+  }).catch((err) => console.error(err));
 }
 
 if (document.readyState === "complete") {
