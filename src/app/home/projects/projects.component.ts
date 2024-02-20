@@ -118,6 +118,14 @@ import { Component } from '@angular/core';
         I maintain the following plugins for
         <a href="https://obsidian.md/">Obsidian</a>.
       </p>
+      <h4>GitHub Link</h4>
+      <app-brand-badge
+        href="https://github.com/nathonius/obsidian-github-link"
+      />
+      <p>
+        Transform boring GitHub links in notes into tags with rich content from
+        GitHub, and query issues and pull requests within your notes.
+      </p>
       <h4>Auto Class</h4>
       <app-brand-badge
         href="https://github.com/nathonius/obsidian-auto-class"
@@ -145,20 +153,6 @@ import { Component } from '@angular/core';
         When your Obsidian file explorer is overloaded with open folders, close
         them all with a single click or command. Or, if you want to explore your
         folder tree, expand all folders.
-      </p>
-      <h4>Obsidian FETA 🧀</h4>
-      <app-brand-badge
-        href="https://github.com/nathonius/obsidian-feta"
-        [brand]="Brand.GitHub"
-      />
-      <p>
-        A still-in-development plugin for gooier, greasier note exports that
-        aren't as polished as Obsidian Publish but include output from all
-        plugins that add to the reading view and could be combined with a static
-        site generator of your own to publish your notes as you see fit.
-        <br /><br />
-        <strong>F</strong>older JSON <strong>E</strong>xpor<strong>T </strong>
-        <strong>A</strong>ddon - <em>It's dairy free!</em>
       </p>
       <hr class="project-separator" />
       <h3 id="homebrewery">Homebrewery VS Code</h3>
