@@ -1,7 +1,9 @@
+import {
+  ApplicationConfig,
+  provideExperimentalZonelessChangeDetection,
+} from '@angular/core';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 
-import { ApplicationConfig } from '@angular/core';
-import { provideClientHydration } from '@angular/platform-browser';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -10,6 +12,6 @@ export const appConfig: ApplicationConfig = {
       routes,
       withInMemoryScrolling({ anchorScrolling: 'enabled' })
     ),
-    provideClientHydration(),
+    provideExperimentalZonelessChangeDetection(),
   ],
 };
