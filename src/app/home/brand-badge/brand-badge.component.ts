@@ -1,4 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
+
+import { IconComponent } from '../../icon/icon.component';
+import { IconName } from '../../icon/icons.constant';
 
 export enum Brand {
   GitHub,
@@ -7,30 +10,31 @@ export enum Brand {
   VisualStudio,
 }
 
-const brandMap: Record<Brand, { label: string; icon: string }> = {
-  [Brand.GitHub]: { label: 'GitHub', icon: 'fa-brands fa-github' },
-  [Brand.Storybook]: { label: 'Storybook', icon: 'fa-solid fa-book' },
-  [Brand.Foundry]: { label: 'Foundry VTT', icon: 'fa-solid fa-dice-d20' },
+const brandMap: Record<Brand, { label: string; icon: IconName }> = {
+  [Brand.GitHub]: { label: 'GitHub', icon: 'github' },
+  [Brand.Storybook]: { label: 'Storybook', icon: 'book-a' },
+  [Brand.Foundry]: { label: 'Foundry VTT', icon: 'dices' },
   [Brand.VisualStudio]: {
     label: 'Visual Studio Marketplace',
-    icon: 'fa-brands fa-microsoft',
+    icon: 'code',
   },
 };
 
 @Component({
   selector: 'app-brand-badge',
   template: `
-    <a class="brand-badge" [href]="href"
-      ><i [className]="brandMap[brand].icon"></i> View on
-      {{ brandMap[brand].label }}
+    <a class="brand-badge" [href]="href()"
+      ><app-icon [icon]="brandMap[brand()].icon" /> View on
+      {{ brandMap[brand()].label }}
       <i class="fa-solid fa-arrow-up-right-from-square fa-2xs"></i
     ></a>
   `,
   styleUrls: ['./brand-badge.component.css'],
+  imports: [IconComponent],
   standalone: true,
 })
 export class BrandBadgeComponent {
   protected brandMap = brandMap;
-  @Input() brand: Brand = Brand.GitHub;
-  @Input() href: string = '';
+  brand = input<Brand>(Brand.GitHub);
+  href = input<string>('');
 }
